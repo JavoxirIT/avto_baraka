@@ -1,0 +1,22 @@
+{
+  "qoshimchaMalumot": "Дополнительная информация",
+  "yoqilgiTuri": "Вид топлива",
+  "yurganMasofasi": "Пройденное расстояние",
+  "tortuvchiTomon": "Ведущая стороно",
+  "boyoqHolati": "Состояние краски",
+  "uzatishQutisi": "Каробка передачи",
+  "dvigatelHajmi": "Объем двигателя",
+  "kuzovTuri": "Вид кузова",
+  "ishlabChiqarilganYili": "Год выпуска",
+  "versiyasiniTanlang": "Выберите версию",
+  "markaniTanlang": "Выберите марку",
+  "avvalTexnikaTuriniTanlang": "Сначала выберите тип техники",
+  "brendniTanlang": "Выберите бренд",
+  "texnikaTuriniTanlang": "Выберите тип техники",
+  "avvalViloyatniTanlang": "Сначало выберите регион",
+  "tumanlar": "Регионы",
+  "viloyatniTanlang": "Выберите облость",
+  "xaritadaJoylashuvi": "Местоположение на карте",
+  "geolokatsiyaniYoqish": "На вашем устройстве необходимо будет включить и разрешить геолокацию",
+  "avtomatikTanlash": "Текущая геопозиция"
+}

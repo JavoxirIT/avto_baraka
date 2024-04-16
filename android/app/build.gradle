@@ -1,3 +1,4 @@
+
 plugins {
     id "com.android.application"
     id "kotlin-android"
@@ -24,7 +25,8 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.avtobaraka.avto_baraka"
-    compileSdkVersion flutter.compileSdkVersion
+    // compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -47,9 +49,12 @@ android {
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         // minSdkVersion flutter.minSdkVersion
         minSdkVersion 21
+        // minSdkVersion 19
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        // 
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -65,4 +70,6 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+	implementation "com.android.support:multidex:1.0.3"
+}
