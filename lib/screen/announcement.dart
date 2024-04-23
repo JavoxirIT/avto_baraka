@@ -1,3 +1,8 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:app_settings/app_settings.dart';
 import 'package:avto_baraka/api/models/districs_model.dart';
 import 'package:avto_baraka/api/models/region_models.dart';
 import 'package:avto_baraka/api/regions_repository/districts_service.dart';
@@ -5,7 +10,7 @@ import 'package:avto_baraka/api/regions_repository/region_service.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/state/main_state_controller.dart';
 import 'package:avto_baraka/style/colors.dart';
-import 'package:avto_baraka/style/elevated_button.dart';
+import 'package:avto_baraka/style/elevate_btn_cam_gall.dart';
 import 'package:avto_baraka/style/elevation_button_map.dart';
 import 'package:avto_baraka/style/location_button.dart';
 import 'package:avto_baraka/utill/auto_name.dart';
@@ -20,25 +25,21 @@ import 'package:avto_baraka/utill/type_of_transport.dart';
 import 'package:avto_baraka/widgets/announcement/form_build_complate.dart';
 import 'package:avto_baraka/widgets/announcement/form_step_title.dart';
 import 'package:avto_baraka/widgets/announcement/step_navigation.dart';
+import 'package:avto_baraka/widgets/camera.dart';
 import 'package:avto_baraka/widgets/show_modal_date.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geocoding/geocoding.dart';
-// import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-// import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-// import 'package:latlng/latlng.dart';
-// import 'package:latlng/latlng.dart';
-// import 'package:location/location.dart';
-// import 'package:location_picker_flutter_map/location_picker_flutter_map.dart';
 import 'package:multi_dropdown/multiselect_dropdown.dart';
-// import 'package:flutter_map/flutter_map.dart';
-// import 'package:url_launcher/url_launcher_string.dart';
 
 class Announcement extends StatefulWidget {
   const Announcement({Key? key}) : super(key: key);
@@ -57,6 +58,16 @@ class AnnouncementState extends State<Announcement> {
   List<DistrictsModel>? districts;
   bool isComplate = false;
   int currentStep = 0;
+
+// camera
+  // String base64String = '';
+  // File? _studentImg;
+
+
+// ::::::::::::::::::::::GALLERY IMAGE PICKER::::::::::::::::::::::::::::
+  final ImagePicker imagePicker = ImagePicker();
+  late List<XFile> imageFileList = [];
+// ::::::::::::::::::::::GALLERY IMAGE PICKER::::::::::::::::::::::::::::
 
   // form item value
   final _dateValue = TextEditingController();
@@ -92,7 +103,6 @@ class AnnouncementState extends State<Announcement> {
     super.dispose();
   }
 
-  String _currentAddress = "";
   Position? _currentLocation;
   bool servicePosition = false;
   late LocationPermission permission;
@@ -101,6 +111,7 @@ class AnnouncementState extends State<Announcement> {
     servicePosition = await Geolocator.isLocationServiceEnabled();
     if (!servicePosition) {
       print('Сервис не работает!!!');
+      // AppSettings.openAppSettings(type: AppSettingsType.location);
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
@@ -127,10 +138,8 @@ class AnnouncementState extends State<Announcement> {
         placemarks = await placemarkFromCoordinates(
             _currentLocation!.latitude, _currentLocation!.longitude);
       }
-
       Placemark place = placemarks[0];
       setState(() {
-        _currentAddress = " ${place.locality}, ${place.thoroughfare}";
         _mapData.text = " ${place.locality}, ${place.thoroughfare}";
         // print('_currentAddress: ${place}');
       });
@@ -142,7 +151,6 @@ class AnnouncementState extends State<Announcement> {
   @override
   initState() {
     loadRegion();
-    _getCurrentLocation();
     super.initState();
   }
 
@@ -165,43 +173,6 @@ class AnnouncementState extends State<Announcement> {
     borderRadius: const BorderRadius.all(Radius.circular(10.0)),
     borderSide: BorderSide(color: backgnColStepCard, width: 1.0),
   );
-
-  // Location location = Location();
-
-  // late bool _serviceEnabled;
-  // late PermissionStatus _permissionGranted;
-  // late LocationData _locationData;
-
-  // _getUserLocation() async {
-  //   _serviceEnabled = await location.serviceEnabled();
-  //   if (!_serviceEnabled) {
-  //     _serviceEnabled = await location.requestService();
-  //     if (!_serviceEnabled) {
-  //       return;
-  //     }
-  //   }
-
-  //   _permissionGranted = await location.hasPermission();
-  //   if (_permissionGranted == PermissionStatus.denied) {
-  //     _permissionGranted = await location.requestPermission();
-  //     if (_permissionGranted != PermissionStatus.granted) {
-  //       return;
-  //     }
-  //   }
-
-  //   return await location.getLocation();
-  // }
-
-  // void _liveLocation() {}
-
-  // Future<void> _openGoogle(String le, String ln) async {
-  //   String googleUrl =
-  //       'https://www.google.com/maps/search/?api=1&query=$le,$ln';
-
-  //   await canLaunchUrlString(googleUrl)
-  //       ? await launchUrlString(googleUrl)
-  //       : throw 'Could not launch $googleUrl';
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -873,41 +844,41 @@ class AnnouncementState extends State<Announcement> {
             //   ),
             // ),
 
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     Expanded(
-            //       child: Text(
-            //         S.of(context).geolokatsiyaniYoqish,
-            //         style: const TextStyle(fontSize: 10.0, color: Colors.red),
-            //       ),
-            //     ),
-            //     OutlinedButton(
-            //       style: locationButton,
-            //       onPressed: () async {
-            //         _getCurrentLocation();
-            //         await _getAddressFromCoordinates();
-            //         // print('data: ${_currentLocation}');
-            //         print('address: ${_currentAddress}');
-            //       },
-            //       child: Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //         children: [
-            //           Text(
-            //             S.of(context).avtomatikTanlash,
-            //             // style: TextStyle(fontSize: 16.0, color: Colors.red),
-            //           ),
-            //           const Icon(
-            //             Icons.location_pin,
-            //             color: Colors.red,
-            //             size: 14.0,
-            //           )
-            //         ],
-            //       ),
-            //     ),
-            //   ],
-            // ),
-
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    S.of(context).geolokatsiyaniYoqish,
+                    style: const TextStyle(fontSize: 10.0, color: Colors.red),
+                  ),
+                ),
+                OutlinedButton(
+                  style: locationButton,
+                  onPressed: () async {
+                    _getCurrentLocation();
+                    await _getAddressFromCoordinates();
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        S.of(context).avtomatikTanlash,
+                        // style: TextStyle(fontSize: 16.0, color: Colors.red),
+                      ),
+                      const Icon(
+                        Icons.location_pin,
+                        color: Colors.red,
+                        size: 14.0,
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10.0,
+            ),
             Row(
               children: [
                 Expanded(
@@ -930,6 +901,40 @@ class AnnouncementState extends State<Announcement> {
                 ElevatedButton(
                   style: elevatedButtonMap,
                   onPressed: () async {
+                    if (permission == LocationPermission.deniedForever) {
+                      showModalBottomSheet<void>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return SizedBox(
+                            height: 200,
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  const Text(
+                                      'Доступ к гелокации запрещен, пожалуйста включите доступ к локации!!'),
+                                  ElevatedButton(
+                                    child: const Text('Открыть настройки'),
+                                    onPressed: () =>
+                                        AppSettings.openAppSettings(
+                                            type: AppSettingsType.location),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                      // Fluttertoast.showToast(
+                      //   toastLength: Toast.LENGTH_LONG,
+                      //   gravity: ToastGravity.SNACKBAR,
+                      //   // msg: 'Click to ${goPoint.toString()}',
+                      //   msg:
+                      //       'Разрешения на определение местоположения навсегда запрещены. Мы не можем запросить разрешения.',
+                      // );
+                      return;
+                    }
                     var goPoint = await showSimplePickerLocation(
                       context: context,
                       isDismissible: true,
@@ -961,13 +966,127 @@ class AnnouncementState extends State<Announcement> {
           ],
         ),
       ),
+
+      // foto
       Step(
         isActive: currentStep >= 7,
         title: const Text(""),
-        content: Column(
-          children: [
-            formStepsTitle("Rasmlarni yuklang", context),
-          ],
+        content: SingleChildScrollView(
+          child: Column(
+            children: [
+              formStepsTitle("Rasmlarni yuklang", context),
+              const SizedBox(
+                height: 23.0,
+              ),
+              GridView(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  // childAspectRatio: (itemWidth / itemHeight),
+                  childAspectRatio: 3,
+                  crossAxisSpacing: 20.0,
+                  mainAxisSpacing: 0,
+                  // mainAxisExtent: ,
+                ),
+                children: [
+                  ElevatedButton(
+                    style:
+                        elevatedBtnCamGall(backgrounColor: elevatedButtonColor),
+                    onPressed: () => selectImages(),
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          WidgetSpan(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: Icon(
+                                Icons.file_upload,
+                                size: 14.0,
+                                color: elevatedButtonTextColor,
+                              ),
+                            ),
+                          ),
+                          TextSpan(
+                            text: "Gallereyadan tanlash",
+                            style: TextStyle(color: elevatedButtonTextColor),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: elevatedBtnCamGall(
+                        backgrounColor: elevatedButtonCameraBtnColor),
+                    onPressed: () {
+                      dataCamera();
+                    },
+                    child: const Text.rich(
+                      TextSpan(
+                        children: [
+                          WidgetSpan(
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 8.0),
+                              child: Icon(FontAwesomeIcons.camera, size: 14.0),
+                            ),
+                          ),
+                          TextSpan(
+                            text: "Rasimga olish",
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 17.0,
+              ),
+              GridView(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  // childAspectRatio: (itemWidth / itemHeight),
+                  childAspectRatio: 1.0,
+                  crossAxisSpacing: 20.0,
+                  mainAxisSpacing: 20.0,
+                  // mainAxisExtent: ,
+                ),
+                children: imageFileList
+                    .map((img) => Stack(
+                          children: [
+                            ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10.0)),
+                              child: Image.file(
+                                File(img.path),
+                                fit: BoxFit.cover,
+                                height: 157.0,
+                                width: MediaQuery.of(context).size.width,
+                              ),
+                            ),
+                            Positioned(
+                              top: 3.0,
+                              right: 3.0,
+                              child: CircleAvatar(
+                                backgroundColor: colorRed,
+                                radius: 15.0,
+                                child: IconButton(
+                                  onPressed: () => onDeleteImage(img.path),
+                                  icon: const Icon(
+                                    Icons.clear,
+                                    size: 15.0,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ))
+                    .toList(),
+              )
+            ],
+          ),
         ),
       ),
       Step(
@@ -981,6 +1100,70 @@ class AnnouncementState extends State<Announcement> {
       ),
     ];
   }
+  
+  
+  
+  
+  
+  
+//::::::::::::::::::::::::УДАЛЕНИЕ ИЗОБРАЖЕНИЯ ::::::::::::::::::::::::
+
+  onDeleteImage(String path) {
+    List<XFile> img = imageFileList.where((el) => el.path != path).toList();
+    setState(() {
+      imageFileList = img;
+    });
+  }
+
+  // ::::::::::::::::::::::GALLERY IMAGE PICKER::::::::::::::::::::::::
+  
+  void selectImages() async {
+    final List<XFile> selectedImages = await imagePicker.pickMultiImage();
+    if (selectedImages.isNotEmpty) {
+      imageFileList.addAll(selectedImages);
+    }
+
+    if (kDebugMode) {
+      print("Image List Length:${imageFileList.length}");
+    }
+    setState(() {});
+  }
+  
+  
+  // ::::::::::::::::::::::PICK IMAGE CAMERA::::::::::::::::::::::::
+  void dataCamera() async {
+    final camera = await availableCameras().then((value) {
+      return value;
+    });
+    Route route = MaterialPageRoute(
+      builder: (_) => CameraPage(cameras: camera),
+    );
+    final result = await Navigator.push(context, route);
+
+    setState(() {
+      if (result != null) {
+        imageFileList.add(result);
+      }
+    });
+
+    // ImagetoBase64();
+  }
+
+  // imagetoBase64() async {
+  //   Read bytes from the file object
+  //   Uint8List _bytes = await _studentImg!.readAsBytes();
+
+  //   base64 encode the bytes
+  //   String _base64String = base64.encode(_bytes);
+  //   setState(() {
+  //     base64String = _base64String;
+  //     print('base64String---->: ${base64String}');
+  //   });
+  // }
+
+
+// ::::::::::::::::STEP SETTING::::::::::::::::::::::
+
 
   void onStepTapped(step) => setState(() {
         currentStep = step;
@@ -1011,6 +1194,7 @@ class AnnouncementState extends State<Announcement> {
     }
   }
 
+// ::::::::::ПОЛУЧЕНИЕ ДАННЫХ ИЗ API :::::::::::::::::::
   Future<void> loadRegion() async {
     region = await RegionService().getRegions();
     districts = await DistrictsService().getDistricts();

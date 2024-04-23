@@ -59,6 +59,11 @@ dependencies:
   get: any
   flutter_osm_plugin: any
   fluttertoast: any
+  app_settings: ^5.1.1
+  # 
+  camera: ^0.10.5+9
+  video_player: ^2.8.6
+  image_picker: ^1.0.8
 
 dev_dependencies:
   flutter_test:
