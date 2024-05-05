@@ -5,4 +5,8 @@ class RouteName {
   static const cobinetScreen = "/cobinet";
   static const oneCarView = "/oneCarView";
   static const announcement = "/announcement";
+  static const creditBankListScreen = "/creditBankListScreen";
+  static const creditSecondView = "/creditSecondView";
+  static const creditGraphicView = "/creditGraphicView";
+  static const settingView = "/settingView";
 }

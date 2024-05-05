@@ -249,6 +249,176 @@ class S {
       args: [],
     );
   }
+
+  /// `Choose a tariff`
+  String get tarifniTanlang {
+    return Intl.message(
+      'Choose a tariff',
+      name: 'tarifniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Internet aloqasi yo'q`
+  String get internetAloqasiYoq {
+    return Intl.message(
+      'Internet aloqasi yo\'q',
+      name: 'internetAloqasiYoq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sozlamalarni ochisgh`
+  String get sozlamalarniOchisgh {
+    return Intl.message(
+      'Sozlamalarni ochisgh',
+      name: 'sozlamalarniOchisgh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Iltimos internet aloqani yoqing`
+  String get iltimosInternetAloqaniYoqing {
+    return Intl.message(
+      'Iltimos internet aloqani yoqing',
+      name: 'iltimosInternetAloqaniYoqing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Avval Bankni tanlang`
+  String get avvalBankniTanlang {
+    return Intl.message(
+      'Avval Bankni tanlang',
+      name: 'avvalBankniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oldinga`
+  String get oldinga {
+    return Intl.message(
+      'Oldinga',
+      name: 'oldinga',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kredit summasi`
+  String get kreditSummasi {
+    return Intl.message(
+      'Kredit summasi',
+      name: 'kreditSummasi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valuta`
+  String get valuta {
+    return Intl.message(
+      'Valuta',
+      name: 'valuta',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Boshlang'ich to'lov`
+  String get boshlangichTolov {
+    return Intl.message(
+      'Boshlang`ich to`lov',
+      name: 'boshlangichTolov',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valutani tanlang`
+  String get valutaniTanlang {
+    return Intl.message(
+      'Valutani tanlang',
+      name: 'valutaniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kridit summasini kriting`
+  String get kriditSummasiniKriting {
+    return Intl.message(
+      'Kridit summasini kriting',
+      name: 'kriditSummasiniKriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Boshlang'ich tulovni kiriting`
+  String get boshlangichTulovniKiriting {
+    return Intl.message(
+      'Boshlang`ich tulovni kiriting',
+      name: 'boshlangichTulovniKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kredit meddatini tanlang`
+  String get kreditMeddatiniTanlang {
+    return Intl.message(
+      'Kredit meddatini tanlang',
+      name: 'kreditMeddatiniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Orqaga`
+  String get orqaga {
+    return Intl.message(
+      'Orqaga',
+      name: 'orqaga',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To'lov Grafigi`
+  String get tolovGrafigi {
+    return Intl.message(
+      'To`lov Grafigi',
+      name: 'tolovGrafigi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sozlamalar`
+  String get sozlamalar {
+    return Intl.message(
+      'Sozlamalar',
+      name: 'sozlamalar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Til`
+  String get til {
+    return Intl.message(
+      'Til',
+      name: 'til',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

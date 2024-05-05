@@ -24,29 +24,56 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "avtomatikTanlash":
             MessageLookupByLibrary.simpleMessage("Avtomatik tanlash"),
+        "avvalBankniTanlang":
+            MessageLookupByLibrary.simpleMessage("Avval Bankni tanlang"),
         "avvalTexnikaTuriniTanlang": MessageLookupByLibrary.simpleMessage(
             "Avval texnika turini tanlang"),
         "avvalViloyatniTanlang":
             MessageLookupByLibrary.simpleMessage("Avval viloyatni tanlang"),
+        "boshlangichTolov":
+            MessageLookupByLibrary.simpleMessage("Boshlang`ich to`lov"),
+        "boshlangichTulovniKiriting": MessageLookupByLibrary.simpleMessage(
+            "Boshlang`ich tulovni kiriting"),
         "boyoqHolati": MessageLookupByLibrary.simpleMessage("Bo`yoq holati"),
         "brendniTanlang":
             MessageLookupByLibrary.simpleMessage("Brendni tanlang"),
         "dvigatelHajmi": MessageLookupByLibrary.simpleMessage("Dvigatel hajmi"),
         "geolokatsiyaniYoqish": MessageLookupByLibrary.simpleMessage(
             "Uskunadan Geolokatsiyani yoqish va foydalanishga ruxsat berish kerak bo’ladi"),
+        "iltimosInternetAloqaniYoqing": MessageLookupByLibrary.simpleMessage(
+            "Iltimos internet aloqani yoqing"),
+        "internetAloqasiYoq":
+            MessageLookupByLibrary.simpleMessage("Internet aloqasi yo\'q"),
         "ishlabChiqarilganYili":
             MessageLookupByLibrary.simpleMessage("Ishlab chiqarilgan yili"),
+        "kreditMeddatiniTanlang":
+            MessageLookupByLibrary.simpleMessage("Kredit meddatini tanlang"),
+        "kreditSummasi": MessageLookupByLibrary.simpleMessage("Kredit summasi"),
+        "kriditSummasiniKriting":
+            MessageLookupByLibrary.simpleMessage("Kridit summasini kiriting"),
         "kuzovTuri": MessageLookupByLibrary.simpleMessage("Kuzov turi"),
         "markaniTanlang":
             MessageLookupByLibrary.simpleMessage("Markani tanlang"),
+        "oldinga": MessageLookupByLibrary.simpleMessage("Oldinga"),
+        "orqaga": MessageLookupByLibrary.simpleMessage("Orqaga"),
         "qoshimchaMalumot":
             MessageLookupByLibrary.simpleMessage("Qo`shimcha ma`lumot"),
+        "sozlamalar": MessageLookupByLibrary.simpleMessage("Sozlamalar"),
+        "sozlamalarniOchisgh":
+            MessageLookupByLibrary.simpleMessage("Sozlamalarni ochish"),
+        "tarifniTanlang":
+            MessageLookupByLibrary.simpleMessage("Tarifni tanlang"),
         "texnikaTuriniTanlang":
             MessageLookupByLibrary.simpleMessage("Texnika turini tanlang"),
+        "til": MessageLookupByLibrary.simpleMessage("Til"),
+        "tolovGrafigi": MessageLookupByLibrary.simpleMessage("To`lov Grafigi"),
         "tortuvchiTomon":
             MessageLookupByLibrary.simpleMessage("Tortuvchi tomon"),
         "tumanlar": MessageLookupByLibrary.simpleMessage("Tumanlar"),
         "uzatishQutisi": MessageLookupByLibrary.simpleMessage("Uzatish qutisi"),
+        "valuta": MessageLookupByLibrary.simpleMessage("Valuta"),
+        "valutaniTanlang":
+            MessageLookupByLibrary.simpleMessage("Valutani tanlang"),
         "versiyasiniTanlang":
             MessageLookupByLibrary.simpleMessage("Versiyasini tanlang"),
         "viloyatniTanlang":

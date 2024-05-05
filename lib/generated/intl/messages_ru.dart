@@ -24,10 +24,16 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "avtomatikTanlash":
             MessageLookupByLibrary.simpleMessage("Текущая геопозиция"),
+        "avvalBankniTanlang":
+            MessageLookupByLibrary.simpleMessage("Сначало выберите банк"),
         "avvalTexnikaTuriniTanlang": MessageLookupByLibrary.simpleMessage(
             "Сначала выберите тип техники"),
         "avvalViloyatniTanlang":
             MessageLookupByLibrary.simpleMessage("Сначало выберите регион"),
+        "boshlangichTolov":
+            MessageLookupByLibrary.simpleMessage("Начальная оплата"),
+        "boshlangichTulovniKiriting":
+            MessageLookupByLibrary.simpleMessage("Введите сумму предоплаты"),
         "boyoqHolati": MessageLookupByLibrary.simpleMessage("Состояние краски"),
         "brendniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите бренд"),
@@ -35,20 +41,41 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Объем двигателя"),
         "geolokatsiyaniYoqish": MessageLookupByLibrary.simpleMessage(
             "На вашем устройстве необходимо будет включить и разрешить геолокацию"),
+        "iltimosInternetAloqaniYoqing": MessageLookupByLibrary.simpleMessage(
+            "Пожалуйста, включите подключение к Интернету"),
+        "internetAloqasiYoq":
+            MessageLookupByLibrary.simpleMessage("Нет связи с интернетом"),
         "ishlabChiqarilganYili":
             MessageLookupByLibrary.simpleMessage("Год выпуска"),
+        "kreditMeddatiniTanlang":
+            MessageLookupByLibrary.simpleMessage("Выберите срок кредита"),
+        "kreditSummasi": MessageLookupByLibrary.simpleMessage("Сумма кредита"),
+        "kriditSummasiniKriting":
+            MessageLookupByLibrary.simpleMessage("Введите сумму кредита"),
         "kuzovTuri": MessageLookupByLibrary.simpleMessage("Вид кузова"),
         "markaniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите марку"),
+        "oldinga": MessageLookupByLibrary.simpleMessage("Вперед"),
+        "orqaga": MessageLookupByLibrary.simpleMessage("Назад"),
         "qoshimchaMalumot":
             MessageLookupByLibrary.simpleMessage("Дополнительная информация"),
+        "sozlamalar": MessageLookupByLibrary.simpleMessage("Настройки"),
+        "sozlamalarniOchisgh":
+            MessageLookupByLibrary.simpleMessage("Открыть настройки"),
+        "tarifniTanlang":
+            MessageLookupByLibrary.simpleMessage("Выберите тариф"),
         "texnikaTuriniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите тип техники"),
+        "til": MessageLookupByLibrary.simpleMessage("Язык"),
+        "tolovGrafigi": MessageLookupByLibrary.simpleMessage("График оплаты"),
         "tortuvchiTomon":
             MessageLookupByLibrary.simpleMessage("Ведущая стороно"),
         "tumanlar": MessageLookupByLibrary.simpleMessage("Регионы"),
         "uzatishQutisi":
             MessageLookupByLibrary.simpleMessage("Каробка передачи"),
+        "valuta": MessageLookupByLibrary.simpleMessage("Валюта"),
+        "valutaniTanlang":
+            MessageLookupByLibrary.simpleMessage("Выберите валюту"),
         "versiyasiniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите версию"),
         "viloyatniTanlang":

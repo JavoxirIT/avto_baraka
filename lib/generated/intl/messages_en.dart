@@ -24,28 +24,55 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "avtomatikTanlash":
             MessageLookupByLibrary.simpleMessage("Avtomatik tanlash"),
+        "avvalBankniTanlang":
+            MessageLookupByLibrary.simpleMessage("Avval Bankni tanlang"),
         "avvalTexnikaTuriniTanlang": MessageLookupByLibrary.simpleMessage(
             "First select the type of technique"),
         "avvalViloyatniTanlang":
             MessageLookupByLibrary.simpleMessage("Choose a region first"),
+        "boshlangichTolov":
+            MessageLookupByLibrary.simpleMessage("Boshlang`ich to`lov"),
+        "boshlangichTulovniKiriting": MessageLookupByLibrary.simpleMessage(
+            "Boshlang`ich tulovni kiriting"),
         "boyoqHolati": MessageLookupByLibrary.simpleMessage("Paint Condition"),
         "brendniTanlang":
             MessageLookupByLibrary.simpleMessage("Choose a Brand"),
         "dvigatelHajmi": MessageLookupByLibrary.simpleMessage("Motor size"),
         "geolokatsiyaniYoqish": MessageLookupByLibrary.simpleMessage(
             "Uskunadan Geolokatsiyani yoqish va foydalanishga ruxsat berish kerak bo’ladi"),
+        "iltimosInternetAloqaniYoqing": MessageLookupByLibrary.simpleMessage(
+            "Iltimos internet aloqani yoqing"),
+        "internetAloqasiYoq":
+            MessageLookupByLibrary.simpleMessage("Internet aloqasi yo\'q"),
         "ishlabChiqarilganYili":
             MessageLookupByLibrary.simpleMessage("Year of manufacture"),
+        "kreditMeddatiniTanlang":
+            MessageLookupByLibrary.simpleMessage("Kredit meddatini tanlang"),
+        "kreditSummasi": MessageLookupByLibrary.simpleMessage("Kredit summasi"),
+        "kriditSummasiniKriting":
+            MessageLookupByLibrary.simpleMessage("Kridit summasini kriting"),
         "kuzovTuri": MessageLookupByLibrary.simpleMessage("Body type"),
         "markaniTanlang":
             MessageLookupByLibrary.simpleMessage("Select a brand"),
+        "oldinga": MessageLookupByLibrary.simpleMessage("Oldinga"),
+        "orqaga": MessageLookupByLibrary.simpleMessage("Orqaga"),
         "qoshimchaMalumot":
             MessageLookupByLibrary.simpleMessage("Additional information"),
+        "sozlamalar": MessageLookupByLibrary.simpleMessage("Sozlamalar"),
+        "sozlamalarniOchisgh":
+            MessageLookupByLibrary.simpleMessage("Sozlamalarni ochisgh"),
+        "tarifniTanlang":
+            MessageLookupByLibrary.simpleMessage("Choose a tariff"),
         "texnikaTuriniTanlang": MessageLookupByLibrary.simpleMessage(
             "Select the type of equipment"),
+        "til": MessageLookupByLibrary.simpleMessage("Til"),
+        "tolovGrafigi": MessageLookupByLibrary.simpleMessage("To`lov Grafigi"),
         "tortuvchiTomon": MessageLookupByLibrary.simpleMessage("Pulling side"),
         "tumanlar": MessageLookupByLibrary.simpleMessage("Regions"),
         "uzatishQutisi": MessageLookupByLibrary.simpleMessage("Transmission"),
+        "valuta": MessageLookupByLibrary.simpleMessage("Valuta"),
+        "valutaniTanlang":
+            MessageLookupByLibrary.simpleMessage("Valutani tanlang"),
         "versiyasiniTanlang":
             MessageLookupByLibrary.simpleMessage("Select the version"),
         "viloyatniTanlang":

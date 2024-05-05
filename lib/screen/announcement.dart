@@ -13,6 +13,8 @@ import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevate_btn_cam_gall.dart';
 import 'package:avto_baraka/style/elevation_button_map.dart';
 import 'package:avto_baraka/style/location_button.dart';
+import 'package:avto_baraka/style/outline_input_border.dart';
+import 'package:avto_baraka/utill/ad_rates.dart';
 import 'package:avto_baraka/utill/auto_name.dart';
 import 'package:avto_baraka/utill/body_type.dart';
 import 'package:avto_baraka/utill/car_brand.dart';
@@ -59,10 +61,12 @@ class AnnouncementState extends State<Announcement> {
   bool isComplate = false;
   int currentStep = 0;
 
+  //
+  int? oncheckId;
+
 // camera
   // String base64String = '';
   // File? _studentImg;
-
 
 // ::::::::::::::::::::::GALLERY IMAGE PICKER::::::::::::::::::::::::::::
   final ImagePicker imagePicker = ImagePicker();
@@ -169,10 +173,7 @@ class AnnouncementState extends State<Announcement> {
   TextStyle formLabelTextStyle = TextStyle(
       color: iconSelectedColor, fontSize: 14.0, fontWeight: FontWeight.w600);
 
-  OutlineInputBorder fotmInputBorder = OutlineInputBorder(
-    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-    borderSide: BorderSide(color: backgnColStepCard, width: 1.0),
-  );
+
 
   @override
   Widget build(BuildContext context) {
@@ -612,8 +613,8 @@ class AnnouncementState extends State<Announcement> {
                   controller: _dateValue,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    focusedBorder: fotmInputBorder,
-                    enabledBorder: fotmInputBorder,
+                    focusedBorder: formInputBorder,
+                    enabledBorder: formInputBorder,
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     label: Text(
                       S.of(context).ishlabChiqarilganYili,
@@ -654,8 +655,8 @@ class AnnouncementState extends State<Announcement> {
                     _bodyType.text = value.toString();
                   },
                   decoration: InputDecoration(
-                    focusedBorder: fotmInputBorder,
-                    enabledBorder: fotmInputBorder,
+                    focusedBorder: formInputBorder,
+                    enabledBorder: formInputBorder,
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     label: Text(
                       S.of(context).kuzovTuri,
@@ -678,8 +679,8 @@ class AnnouncementState extends State<Announcement> {
                   },
                   decoration: InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.always,
-                    enabledBorder: fotmInputBorder,
-                    focusedBorder: fotmInputBorder,
+                    enabledBorder: formInputBorder,
+                    focusedBorder: formInputBorder,
                     label: Text(
                       S.of(context).dvigatelHajmi,
                       style: formLabelTextStyle,
@@ -701,8 +702,8 @@ class AnnouncementState extends State<Announcement> {
                   },
                   decoration: InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.always,
-                    enabledBorder: fotmInputBorder,
-                    focusedBorder: fotmInputBorder,
+                    enabledBorder: formInputBorder,
+                    focusedBorder: formInputBorder,
                     label: Text(
                       S.of(context).uzatishQutisi,
                       style: formLabelTextStyle,
@@ -724,8 +725,8 @@ class AnnouncementState extends State<Announcement> {
                   },
                   decoration: InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.always,
-                    enabledBorder: fotmInputBorder,
-                    focusedBorder: fotmInputBorder,
+                    enabledBorder: formInputBorder,
+                    focusedBorder: formInputBorder,
                     label: Text(
                       S.of(context).boyoqHolati,
                       style: formLabelTextStyle,
@@ -747,8 +748,8 @@ class AnnouncementState extends State<Announcement> {
                   },
                   decoration: InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.always,
-                    enabledBorder: fotmInputBorder,
-                    focusedBorder: fotmInputBorder,
+                    enabledBorder: formInputBorder,
+                    focusedBorder: formInputBorder,
                     label: Text(
                       S.of(context).tortuvchiTomon,
                       style: formLabelTextStyle,
@@ -761,8 +762,8 @@ class AnnouncementState extends State<Announcement> {
               controller: _mileageValue,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                focusedBorder: fotmInputBorder,
-                enabledBorder: fotmInputBorder,
+                focusedBorder: formInputBorder,
+                enabledBorder: formInputBorder,
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 label: Text(
                   S.of(context).yurganMasofasi,
@@ -821,8 +822,8 @@ class AnnouncementState extends State<Announcement> {
               keyboardType: TextInputType.multiline,
               minLines: 3,
               decoration: InputDecoration(
-                focusedBorder: fotmInputBorder,
-                enabledBorder: fotmInputBorder,
+                focusedBorder: formInputBorder,
+                enabledBorder: formInputBorder,
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 label: Text(
                   S.of(context).qoshimchaMalumot,
@@ -885,8 +886,8 @@ class AnnouncementState extends State<Announcement> {
                   child: TextFormField(
                     controller: _mapData,
                     decoration: InputDecoration(
-                      focusedBorder: fotmInputBorder,
-                      enabledBorder: fotmInputBorder,
+                      focusedBorder: formInputBorder,
+                      enabledBorder: formInputBorder,
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       label: Text(
                         S.of(context).xaritadaJoylashuvi,
@@ -1089,23 +1090,98 @@ class AnnouncementState extends State<Announcement> {
           ),
         ),
       ),
+      
+      // Tarigf step
       Step(
         isActive: currentStep >= 8,
         title: const Text(""),
         content: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            formStepsTitle("Tarifni tanlang", context),
+            formStepsTitle(S.of(context).tarifniTanlang, context),
+            Flexible(
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                physics: const ScrollPhysics(),
+                itemCount: adRates.length,
+                itemBuilder: (context, i) {
+                  final el = adRates[i];
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 6.0),
+                    child: InkWell(
+                      onTap: () {
+                        print('data: ${el["name"]}');
+                        setState(() {
+                          oncheckId = el['id'];
+                        });
+                      },
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(15.0),
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: oncheckId == el['id']
+                              ? Colors.white
+                              : Color(int.parse(el['color'])),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(15.0),
+                          ),
+                          border: oncheckId == el['id']
+                              ? Border.all(width: 2.0, color: colorRed)
+                              : null,
+                        ),
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  el['name'],
+                                  style: const TextStyle(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15.0, vertical: 3.0),
+                                  decoration: const BoxDecoration(
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(15.0),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    '${el['pay']} s',
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Text(el["topDay"]),
+                            Text(el["pullUp"]),
+                            Text(el["inRecommended"]),
+                            Text(el["shelfLife"]),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
     ];
   }
-  
-  
-  
-  
-  
-  
+
 //::::::::::::::::::::::::УДАЛЕНИЕ ИЗОБРАЖЕНИЯ ::::::::::::::::::::::::
 
   onDeleteImage(String path) {
@@ -1116,7 +1192,7 @@ class AnnouncementState extends State<Announcement> {
   }
 
   // ::::::::::::::::::::::GALLERY IMAGE PICKER::::::::::::::::::::::::
-  
+
   void selectImages() async {
     final List<XFile> selectedImages = await imagePicker.pickMultiImage();
     if (selectedImages.isNotEmpty) {
@@ -1128,8 +1204,7 @@ class AnnouncementState extends State<Announcement> {
     }
     setState(() {});
   }
-  
-  
+
   // ::::::::::::::::::::::PICK IMAGE CAMERA::::::::::::::::::::::::
   void dataCamera() async {
     final camera = await availableCameras().then((value) {
@@ -1161,9 +1236,7 @@ class AnnouncementState extends State<Announcement> {
   //   });
   // }
 
-
 // ::::::::::::::::STEP SETTING::::::::::::::::::::::
-
 
   void onStepTapped(step) => setState(() {
         currentStep = step;

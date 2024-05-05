@@ -1,4 +1,5 @@
-import 'package:avto_baraka/router/route_name.dart';
+// import 'package:avto_baraka/router/route_name.dart';
+import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/utill/main_carousel_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
@@ -32,30 +33,18 @@ class _MainPageState extends State<IntroductionScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Center(
-                              child: Image.asset(
-                                item["image"],
-                                fit: BoxFit.cover,
-                                height: heightImage,
-                              ),
+                              child: item["image"] is int
+                                  ? fourthcard(context, item)
+                                  : Image.asset(
+                                      item["image"],
+                                      fit: BoxFit.contain,
+                                      height: heightImage,
+                                    ),
                             ),
                             const SizedBox(
                               height: 30.0,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 10.0, left: 35.0, right: 35.0),
-                              child: Center(
-                                child: Text(
-                                  item['text'],
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 18.0,
-                                    color: Color(0xFF008080),
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ),
-                            ),
+                            textcard(item),
                           ],
                         ),
                       )
@@ -115,15 +104,15 @@ class _MainPageState extends State<IntroductionScreen> {
                         activeSize: Size(15.0, 15.0),
                       ),
                     ),
-                    _currentPosition == 2
+                    _currentPosition == 3
                         ? ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 shape: const CircleBorder(),
                                 backgroundColor: const Color(0xff008080),
                                 padding: const EdgeInsets.all(15.0)),
                             onPressed: () {
-                              Navigator.of(context).pushNamed(
-                                  RouteName.bottomNavigationHomeScreen);
+                              // Navigator.of(context).pushNamed(
+                              //     RouteName.bottomNavigationHomeScreen);
                             },
                             child: const Icon(
                               Icons.check,
@@ -149,6 +138,48 @@ class _MainPageState extends State<IntroductionScreen> {
             ],
           );
         },
+      ),
+    );
+  }
+
+  Padding textcard(Map<String, dynamic> item) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0, left: 35.0, right: 35.0),
+      child: Center(
+        child: Text(
+          item['text'],
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 18.0,
+            color: Color(0xFF008080),
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Container fourthcard(BuildContext context, Map<String, dynamic> item) {
+    return Container(
+      decoration: BoxDecoration(
+        color: backgnColStepCard,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(10.0),
+        ),
+        border: Border.all(
+          color: cardCashColor,
+        ),
+      ),
+      width: MediaQuery.of(context).size.width / 1.2,
+      padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
+      child: Text(
+        item["image"].toString(),
+        style: TextStyle(
+          color: iconSelectedColor,
+          fontSize: 36.0,
+          fontWeight: FontWeight.w700,
+        ),
+        textAlign: TextAlign.center,
       ),
     );
   }

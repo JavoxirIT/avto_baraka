@@ -13,4 +13,6 @@ Color textColorWhite = const Color(0xFFFFFFFF);
 Color textColorViolet = const Color(0xFF9B00E3);
 Color elevatedButtonColor = const Color(0xFFf3f3f3);
 Color elevatedButtonTextColor = const Color(0xFF797979);
-Color elevatedButtonCameraBtnColor = const  Color(0xA6008080);
+Color elevatedButtonCameraBtnColor = const Color(0xA6008080);
+Color tagBackgroundColor = const Color(0xFFCEFFE2);
+Color cardCashColor = const Color.fromARGB(255, 146, 146, 146);

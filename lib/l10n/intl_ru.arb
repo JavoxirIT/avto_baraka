@@ -18,5 +18,22 @@
   "viloyatniTanlang": "Выберите облость",
   "xaritadaJoylashuvi": "Местоположение на карте",
   "geolokatsiyaniYoqish": "На вашем устройстве необходимо будет включить и разрешить геолокацию",
-  "avtomatikTanlash": "Текущая геопозиция"
+  "avtomatikTanlash": "Текущая геопозиция",
+  "tarifniTanlang": "Выберите тариф",
+  "internetAloqasiYoq": "Нет связи с интернетом",
+  "sozlamalarniOchisgh": "Открыть настройки",
+  "iltimosInternetAloqaniYoqing": "Пожалуйста, включите подключение к Интернету",
+  "avvalBankniTanlang": "Сначало выберите банк",
+  "oldinga": "Вперед",
+  "kreditSummasi": "Сумма кредита",
+  "valuta": "Валюта",
+  "boshlangichTolov": "Начальная оплата",
+  "valutaniTanlang": "Выберите валюту",
+  "kriditSummasiniKriting": "Введите сумму кредита",
+  "boshlangichTulovniKiriting": "Введите сумму предоплаты",
+  "kreditMeddatiniTanlang": "Выберите срок кредита",
+  "orqaga": "Назад",
+  "tolovGrafigi": "График оплаты",
+  "sozlamalar": "Настройки",
+  "til": "Язык"
 }

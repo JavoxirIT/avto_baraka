@@ -1,3 +1,4 @@
+import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/utill/car_list_data.dart';
 import 'package:avto_baraka/widgets/car_card.dart';
@@ -50,7 +51,10 @@ class CobinetScreenState extends State<CobinetScreen> {
                             ),
                           ),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed(RouteName.settingView);
+                            },
                             icon: Icon(
                               Icons.settings_outlined,
                               color: iconSelectedColor,

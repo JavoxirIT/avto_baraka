@@ -1,3 +1,5 @@
+import 'package:avto_baraka/router/route_name.dart';
+import 'package:avto_baraka/router/routers.dart';
 import 'package:avto_baraka/style/elevated_button.dart';
 import 'package:avto_baraka/utill/car_list_data.dart';
 import 'package:avto_baraka/utill/category_carousel_item.dart';
@@ -22,27 +24,38 @@ class _MainScreenState extends State<MainScreen> {
       // initialIndex: 1,
       length: 1,
       child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 35.0,
+          leadingWidth: MediaQuery.of(context).size.width / 2.5,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 15.0),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(RouteName.creditBankListScreen);
+              },
+              style: elevatedButton,
+              child: const Text("Kredit Kalkulatori"),
+            ),
+          ),
+          actions: [
+            Padding(
+              padding: EdgeInsets.only(right: 15.0),
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(FontAwesomeIcons.sliders),
+              ),
+            ),
+          ],
+        ),
         body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
+                // pinned: true,
+                // floating: true,
                 toolbarHeight: 168.0,
                 title: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: elevatedButton,
-                          child: const Text("Kredit Kalkulatori"),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(FontAwesomeIcons.sliders),
-                        )
-                      ],
-                    ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: const Padding(
@@ -64,14 +77,14 @@ class _MainScreenState extends State<MainScreen> {
                         viewportFraction: 0.4,
                         aspectRatio: 2.0,
                         initialPage: 1,
-                        height: 79.0,
+                        height: 85.0,
                         showIndicator: false,
                         onPageChanged: (index, reason) {},
                       ),
                       items: categoryCarouselItem
                           .map(
                             (item) => Card(
-                              margin: const EdgeInsets.only(right: 16.0),
+                              // margin: const EdgeInsets.only(right: 16.0),
                               color: const Color(0xFFF0F0F0),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -103,8 +116,6 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   ],
                 ),
-                pinned: true,
-                floating: true,
                 bottom: Tab(
                   height: 65.0,
                   child: SizedBox(

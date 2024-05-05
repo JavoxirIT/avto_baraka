@@ -13,5 +13,12 @@ List<Map<String, dynamic>> mainCarouselItem = [
     "id": 3,
     "image": "assets/main_image/Intro3.png",
     "text": "Qisqa vaqt ichida o’z avtomobilingizga ega bo’ling"
+  },
+  {
+    "id": 4,
+    "image": 10000,
+    // "image": "assets/main_image/cash.png",
+    "text":
+        "Tizimdan to’liq foydalanish uchun 10000 so’m miqdorida to’lov qilishingiz lozim bo’ladi"
   }
 ];
