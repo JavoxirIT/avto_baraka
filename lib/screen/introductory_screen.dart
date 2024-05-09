@@ -1,4 +1,3 @@
-// import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/utill/main_carousel_item.dart';
 import 'package:flutter/material.dart';
@@ -15,129 +14,134 @@ class _MainPageState extends State<IntroductionScreen> {
   CarouselController buttonCarouselController = CarouselController();
   int _currentPosition = 0;
 
+  bool onNextPage = false;
+
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height / 2;
+    final double heightImage = MediaQuery.of(context).size.height / 5;
     return Scaffold(
-      body: Builder(
-        builder: (context) {
-          final double height = MediaQuery.of(context).size.height / 2;
-          final double heightImage = MediaQuery.of(context).size.height / 5;
-
-          return Column(
-            children: [
-              Expanded(
-                child: FlutterCarousel(
-                  items: mainCarouselItem
-                      .map(
-                        (item) => Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Center(
-                              child: item["image"] is int
-                                  ? fourthcard(context, item)
-                                  : Image.asset(
-                                      item["image"],
-                                      fit: BoxFit.contain,
-                                      height: heightImage,
-                                    ),
-                            ),
-                            const SizedBox(
-                              height: 30.0,
-                            ),
-                            textcard(item),
-                          ],
-                        ),
-                      )
-                      .toList(),
-                  options: CarouselOptions(
-                    autoPlay: false,
-                    controller: buttonCarouselController,
-                    enlargeCenterPage: true,
-                    viewportFraction: 1,
-                    aspectRatio: 2.0,
-                    initialPage: 0,
-                    height: height,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        _currentPosition = index;
-                      });
-                    },
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 200,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    _currentPosition == 0
-                        ? ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                shape: const CircleBorder(),
-                                backgroundColor: const Color(0xffd9d9d9),
-                                padding: const EdgeInsets.all(15.0)),
-                            onPressed: () {},
-                            child:
-                                const Icon(Icons.circle, color: Colors.black),
-                          )
-                        : ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                shape: const CircleBorder(),
-                                backgroundColor: const Color(0xff008080),
-                                padding: const EdgeInsets.all(15.0)),
-                            onPressed: () {
-                              buttonCarouselController.previousPage(
-                                  duration: const Duration(milliseconds: 300),
-                                  curve: Curves.linear);
-                            },
-                            child: const Icon(Icons.arrow_back_ios_new,
-                                color: Colors.white),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: FlutterCarousel(
+                items: mainCarouselItem
+                    .map(
+                      (item) => Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: item["image"] is int
+                                ? fourthcard(context, item)
+                                : item["image"] is Widget
+                                    ? item["image"]
+                                    : Image.asset(
+                                        item["image"],
+                                        fit: BoxFit.contain,
+                                        height: heightImage,
+                                      ),
                           ),
-                    DotsIndicator(
-                      dotsCount: mainCarouselItem.length,
-                      position: _currentPosition,
-                      decorator: const DotsDecorator(
-                        activeColor: Color(0xFF008080),
-                        color: Color(0XFFd9d9d9),
-                        size: Size(15.0, 15.0),
-                        activeSize: Size(15.0, 15.0),
+                          const SizedBox(
+                            height: 30.0,
+                          ),
+                          textcard(item),
+                        ],
                       ),
-                    ),
-                    _currentPosition == 3
-                        ? ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                shape: const CircleBorder(),
-                                backgroundColor: const Color(0xff008080),
-                                padding: const EdgeInsets.all(15.0)),
-                            onPressed: () {
-                              // Navigator.of(context).pushNamed(
-                              //     RouteName.bottomNavigationHomeScreen);
-                            },
-                            child: const Icon(
-                              Icons.check,
-                              color: Colors.white,
-                            ),
-                          )
-                        : ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                shape: const CircleBorder(),
-                                backgroundColor: const Color(0xff008080),
-                                padding: const EdgeInsets.all(15.0)),
-                            onPressed: () {
-                              buttonCarouselController.nextPage(
-                                  duration: const Duration(milliseconds: 300),
-                                  curve: Curves.linear);
-                            },
-                            child: const Icon(Icons.arrow_forward_ios_rounded,
-                                color: Colors.white),
-                          ),
-                  ],
+                    )
+                    .toList(),
+                options: CarouselOptions(
+                  autoPlay: false,
+                  controller: buttonCarouselController,
+                  enlargeCenterPage: true,
+                  viewportFraction: 1,
+                  aspectRatio: 2.0,
+                  initialPage: 0,
+                  height: height,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _currentPosition = index;
+                    });
+                  },
                 ),
               ),
-            ],
-          );
-        },
+            ),
+            SizedBox(
+              height: 200,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _currentPosition == 0
+                      ? ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              shape: const CircleBorder(),
+                              backgroundColor: const Color(0xffd9d9d9),
+                              padding: const EdgeInsets.all(15.0)),
+                          onPressed: () {},
+                          child: const Icon(Icons.circle, color: Colors.black),
+                        )
+                      : ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              shape: const CircleBorder(),
+                              backgroundColor: const Color(0xff008080),
+                              padding: const EdgeInsets.all(15.0)),
+                          onPressed: () {
+                            buttonCarouselController.previousPage(
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.linear);
+                          },
+                          child: const Icon(Icons.arrow_back_ios_new,
+                              color: Colors.white),
+                        ),
+                  DotsIndicator(
+                    dotsCount: mainCarouselItem.length,
+                    position: _currentPosition,
+                    decorator: const DotsDecorator(
+                      activeColor: Color(0xFF008080),
+                      color: Color(0XFFd9d9d9),
+                      size: Size(15.0, 15.0),
+                      activeSize: Size(15.0, 15.0),
+                    ),
+                  ),
+                  _currentPosition == 4
+                      ? ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              shape: const CircleBorder(),
+                              backgroundColor: const Color(0xff008080),
+                              padding: const EdgeInsets.all(15.0)),
+                          onPressed: () {
+                            // Navigator.of(context).pushNamed(
+                            //     RouteName.bottomNavigationHomeScreen);
+                          },
+                          child: const Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          ),
+                        )
+                      : ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              shape: const CircleBorder(),
+                              backgroundColor: _currentPosition != 3
+                                  ? iconSelectedColor
+                                  : unselectedItemColor,
+                              padding: const EdgeInsets.all(15.0)),
+                          onPressed: () {
+                            if (_currentPosition == 3) {
+                              return;
+                            }
+                            buttonCarouselController.nextPage(
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.linear);
+                          },
+                          child: const Icon(Icons.arrow_forward_ios_rounded,
+                              color: Colors.white),
+                        ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

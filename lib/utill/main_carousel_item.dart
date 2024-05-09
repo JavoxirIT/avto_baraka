@@ -1,3 +1,5 @@
+import 'package:avto_baraka/widgets/carousel/main_carousel_form_registration.dart';
+
 List<Map<String, dynamic>> mainCarouselItem = [
   {
     "id": 1,
@@ -16,8 +18,13 @@ List<Map<String, dynamic>> mainCarouselItem = [
   },
   {
     "id": 4,
+    "image": const MainCarouselFormRegistration(),
+    "text":
+        "BARCHA IMKONIYATLARDAN FOYDALANISH UCHUN TELEFON RAQAMINGIZ ORQALI IDENTIFIKATSIYADAN O’TING."
+  },
+  {
+    "id": 5,
     "image": 10000,
-    // "image": "assets/main_image/cash.png",
     "text":
         "Tizimdan to’liq foydalanish uchun 10000 so’m miqdorida to’lov qilishingiz lozim bo’ladi"
   }

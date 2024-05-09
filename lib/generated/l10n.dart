@@ -419,6 +419,216 @@ class S {
       args: [],
     );
   }
+
+  /// `Kredit Kalkulatori`
+  String get kreditKalkulatori {
+    return Intl.message(
+      'Kredit Kalkulatori',
+      name: 'kreditKalkulatori',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `KATEGORIYALAR`
+  String get kategoriyalar {
+    return Intl.message(
+      'KATEGORIYALAR',
+      name: 'kategoriyalar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ENG YAXSHI TAKLIFLAR`
+  String get engYaxshiTakliflar {
+    return Intl.message(
+      'ENG YAXSHI TAKLIFLAR',
+      name: 'engYaxshiTakliflar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E’lonlar`
+  String get elonlar {
+    return Intl.message(
+      'E’lonlar',
+      name: 'elonlar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tanlanganlar`
+  String get tanlanganlar {
+    return Intl.message(
+      'Tanlanganlar',
+      name: 'tanlanganlar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kabinet`
+  String get kabinet {
+    return Intl.message(
+      'Kabinet',
+      name: 'kabinet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suhbatlar`
+  String get suhbatlar {
+    return Intl.message(
+      'Suhbatlar',
+      name: 'suhbatlar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Foydalanish shartlari`
+  String get foydalanishShartlari {
+    return Intl.message(
+      'Foydalanish shartlari',
+      name: 'foydalanishShartlari',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maxfiylik siyosati`
+  String get maxfiylikSiyosati {
+    return Intl.message(
+      'Maxfiylik siyosati',
+      name: 'maxfiylikSiyosati',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ilova haqida`
+  String get ilovaHaqida {
+    return Intl.message(
+      'Ilova haqida',
+      name: 'ilovaHaqida',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maxsus sozlamalar`
+  String get maxsusSozlamalar {
+    return Intl.message(
+      'Maxsus sozlamalar',
+      name: 'maxsusSozlamalar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mening hisobim`
+  String get meningHisobim {
+    return Intl.message(
+      'Mening hisobim',
+      name: 'meningHisobim',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tasdiqlangan`
+  String get tasdiqlangan {
+    return Intl.message(
+      'Tasdiqlangan',
+      name: 'tasdiqlangan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bekor qilingan`
+  String get bekorQilingan {
+    return Intl.message(
+      'Bekor qilingan',
+      name: 'bekorQilingan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tanlangan E’lonlar`
+  String get tanlanganElonlar {
+    return Intl.message(
+      'Tanlangan E’lonlar',
+      name: 'tanlanganElonlar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Qidiruv so’zlari`
+  String get qidiruvSozlari {
+    return Intl.message(
+      'Qidiruv so’zlari',
+      name: 'qidiruvSozlari',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yuborish`
+  String get yuborish {
+    return Intl.message(
+      'Yuborish',
+      name: 'yuborish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SMS kodni kiriting`
+  String get smsKodniKiriting {
+    return Intl.message(
+      'SMS kodni kiriting',
+      name: 'smsKodniKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Telefon`
+  String get telefon {
+    return Intl.message(
+      'Telefon',
+      name: 'telefon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notugri kod`
+  String get notugriKod {
+    return Intl.message(
+      'Notugri kod',
+      name: 'notugriKod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Iltimos nomeringizni kiriting`
+  String get iltimosNomeringizniKiriting {
+    return Intl.message(
+      'Iltimos nomeringizni kiriting',
+      name: 'iltimosNomeringizniKiriting',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

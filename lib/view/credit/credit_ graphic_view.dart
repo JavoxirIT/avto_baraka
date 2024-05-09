@@ -28,9 +28,11 @@ class CreditGraphicViewState extends State<CreditGraphicView> {
                 .toUpperCase()),
       ),
       body: Container(
-        child: ListView.builder(itemBuilder: (context, index) {
-          return Column();
-        }),
+        child: ListView.builder(
+            itemCount: 2,
+            itemBuilder: (context, index) {
+              return Column();
+            }),
       ),
     );
   }

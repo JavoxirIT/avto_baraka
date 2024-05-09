@@ -7,9 +7,7 @@ import 'package:avto_baraka/style/elevation_button_white.dart';
 import 'package:avto_baraka/style/outline_input_border.dart';
 import 'package:avto_baraka/utill/credit_term.dart';
 import 'package:avto_baraka/utill/validation/validation.dart';
-import 'package:avto_baraka/view/credit/credit_term_tag.dart';
 import 'package:avto_baraka/widgets/flutterShowToast.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CreditSecondView extends StatefulWidget {
@@ -44,6 +42,7 @@ class CreditSecondViewState extends State<CreditSecondView> {
   void dispose() {
     _summa.dispose();
     _currency.dispose();
+    _initialPayment.dispose();
     super.dispose();
   }
 
@@ -233,18 +232,25 @@ class CreditSecondViewState extends State<CreditSecondView> {
             ElevatedButton(
               style: elevatedButton,
               onPressed: () {
-                if (termGroupValue < 0) {
-                  flutterShowToast(S.of(context).kreditMeddatiniTanlang);
-                }
-                if (formKey.currentState!.validate() && termGroupValue > 0) {
-                  Navigator.of(context)
-                      .pushNamed(RouteName.creditGraphicView, arguments: {
-                    "turm": termGroupValue,
-                    "summa": _summa.text,
-                    "curency": _currency.text,
-                    "initialPayment": _initialPayment.text,
-                    ...data
-                  });
+                try {
+                  if (termGroupValue < 0) {
+                    flutterShowToast(S.of(context).kreditMeddatiniTanlang);
+                  } else if (formKey.currentState!.validate()) {
+                    if (termGroupValue > 0) {
+                      var creditData = {
+                        "turm": termGroupValue,
+                        "summa": _summa.text,
+                        "curency": _currency.text,
+                        "initialPayment": _initialPayment.text,
+                        ...data
+                      };
+                      Navigator.of(context).pushNamed(
+                          RouteName.creditGraphicView,
+                          arguments: creditData);
+                    }
+                  }
+                } catch (e) {
+                  debugPrint('Какая то ошибка: $e');
                 }
               },
               child: Row(

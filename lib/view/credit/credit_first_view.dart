@@ -29,7 +29,7 @@ class CreditFirstViewState extends State<CreditFirstView> {
     );
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kredit Kalkulatori'.toUpperCase()),
+        title: Text(S.of(context).kreditKalkulatori.toUpperCase()),
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -38,11 +38,12 @@ class CreditFirstViewState extends State<CreditFirstView> {
           itemBuilder: (context, index) {
             final creditItem = credit[index];
             TextStyle textStyle = TextStyle(
-                color: bankGroupValue == creditItem['id']
-                    ? textColorWhite
-                    : Colors.black,
-                fontSize: 14.0,
-                fontWeight: FontWeight.w800);
+              color: bankGroupValue == creditItem['id']
+                  ? textColorWhite
+                  : Colors.black,
+              fontSize: 14.0,
+              fontWeight: FontWeight.w800,
+            );
 
             return Card(
               child: RadioListTile(

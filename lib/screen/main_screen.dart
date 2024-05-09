@@ -1,11 +1,10 @@
+import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/router/route_name.dart';
-import 'package:avto_baraka/router/routers.dart';
 import 'package:avto_baraka/style/elevated_button.dart';
 import 'package:avto_baraka/utill/car_list_data.dart';
-import 'package:avto_baraka/utill/category_carousel_item.dart';
 import 'package:avto_baraka/widgets/car_card.dart';
+import 'package:avto_baraka/widgets/carousel/category_carousel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MainScreen extends StatefulWidget {
@@ -34,12 +33,16 @@ class _MainScreenState extends State<MainScreen> {
                 Navigator.of(context).pushNamed(RouteName.creditBankListScreen);
               },
               style: elevatedButton,
-              child: const Text("Kredit Kalkulatori"),
+              child: Text(
+                S.of(context).kreditKalkulatori,
+                style: Theme.of(context).textTheme.displayMedium,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
           ),
           actions: [
             Padding(
-              padding: EdgeInsets.only(right: 15.0),
+              padding: const EdgeInsets.only(right: 15.0),
               child: IconButton(
                 onPressed: () {},
                 icon: const Icon(FontAwesomeIcons.sliders),
@@ -47,102 +50,29 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ],
         ),
-        body: NestedScrollView(
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              SliverAppBar(
-                // pinned: true,
-                // floating: true,
-                toolbarHeight: 168.0,
-                title: Column(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: const Padding(
-                        padding: EdgeInsets.only(top: 10.0, bottom: 14.0),
-                        child: Text(
-                          "KATEGORIYALAR",
-                          style: TextStyle(
-                              fontSize: 14.0, fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                    ),
-                    FlutterCarousel(
-                      options: CarouselOptions(
-                        autoPlay: false,
-                        // controller: buttonCarouselController,
-                        enlargeCenterPage: false,
-                        enableInfiniteScroll: true,
-                        // disableCenter: true,
-                        viewportFraction: 0.4,
-                        aspectRatio: 2.0,
-                        initialPage: 1,
-                        height: 85.0,
-                        showIndicator: false,
-                        onPageChanged: (index, reason) {},
-                      ),
-                      items: categoryCarouselItem
-                          .map(
-                            (item) => Card(
-                              // margin: const EdgeInsets.only(right: 16.0),
-                              color: const Color(0xFFF0F0F0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    item["image"],
-                                    fit: BoxFit.cover,
-                                    height: 42.0,
-                                    width: 42.0,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 5.0, left: 0.0, right: 0.0),
-                                    child: Center(
-                                      child: Text(
-                                        item['text'],
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                          fontSize: 12.0,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  ],
-                ),
-                bottom: Tab(
-                  height: 65.0,
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: const Padding(
-                      padding:
-                          EdgeInsets.only(top: 22.0, bottom: 14.0, left: 15.0),
-                      child: Text(
-                        "ENG YAXSHI TAKLIFLAR",
-                        style: TextStyle(
-                            fontSize: 14.0, fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                  ),
+        body: Column(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Padding(
+                padding:
+                    const EdgeInsets.only(top: 10.0, bottom: 0.0, left: 15.0),
+                child: Text(
+                  S.of(context).kategoriyalar,
+                  style: Theme.of(context).textTheme.displayLarge,
                 ),
               ),
-            ];
-          },
-          body: Column(
-            children: [
-              Expanded(
-                  child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: carCard(list),
-              ))
-            ],
-          ),
+            ),
+            flutterCarousel(),
+            const SizedBox(
+              height: 10.0,
+            ),
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: carCard(list),
+            ))
+          ],
         ),
       ),
     );

@@ -56,5 +56,12 @@
 		<string>This app needs access to location when open.</string>
 		<key>NSLocationAlwaysUsageDescription</key>
 		<string>This app needs access to location when in the background.</string>
+		<!-- lang -->
+		<key>CFBundleLocalizations</key>
+		<array>
+			<string>uz</string>
+			<string>ru</string>
+			<!-- <string>de_DE</string> -->
+		</array>
 	</dict>
 </plist>

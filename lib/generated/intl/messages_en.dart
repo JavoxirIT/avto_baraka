@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "First select the type of technique"),
         "avvalViloyatniTanlang":
             MessageLookupByLibrary.simpleMessage("Choose a region first"),
+        "bekorQilingan": MessageLookupByLibrary.simpleMessage("Bekor qilingan"),
         "boshlangichTolov":
             MessageLookupByLibrary.simpleMessage("Boshlang`ich to`lov"),
         "boshlangichTulovniKiriting": MessageLookupByLibrary.simpleMessage(
@@ -38,14 +39,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "brendniTanlang":
             MessageLookupByLibrary.simpleMessage("Choose a Brand"),
         "dvigatelHajmi": MessageLookupByLibrary.simpleMessage("Motor size"),
+        "elonlar": MessageLookupByLibrary.simpleMessage("E’lonlar"),
+        "engYaxshiTakliflar":
+            MessageLookupByLibrary.simpleMessage("ENG YAXSHI TAKLIFLAR"),
+        "foydalanishShartlari":
+            MessageLookupByLibrary.simpleMessage("Foydalanish shartlari"),
         "geolokatsiyaniYoqish": MessageLookupByLibrary.simpleMessage(
             "Uskunadan Geolokatsiyani yoqish va foydalanishga ruxsat berish kerak bo’ladi"),
+        "ilovaHaqida": MessageLookupByLibrary.simpleMessage("Ilova haqida"),
         "iltimosInternetAloqaniYoqing": MessageLookupByLibrary.simpleMessage(
             "Iltimos internet aloqani yoqing"),
+        "iltimosNomeringizniKiriting": MessageLookupByLibrary.simpleMessage(
+            "Iltimos nomeringizni kiriting"),
         "internetAloqasiYoq":
             MessageLookupByLibrary.simpleMessage("Internet aloqasi yo\'q"),
         "ishlabChiqarilganYili":
             MessageLookupByLibrary.simpleMessage("Year of manufacture"),
+        "kabinet": MessageLookupByLibrary.simpleMessage("Kabinet"),
+        "kategoriyalar": MessageLookupByLibrary.simpleMessage("KATEGORIYALAR"),
+        "kreditKalkulatori":
+            MessageLookupByLibrary.simpleMessage("Kredit Kalkulatori"),
         "kreditMeddatiniTanlang":
             MessageLookupByLibrary.simpleMessage("Kredit meddatini tanlang"),
         "kreditSummasi": MessageLookupByLibrary.simpleMessage("Kredit summasi"),
@@ -54,15 +67,31 @@ class MessageLookup extends MessageLookupByLibrary {
         "kuzovTuri": MessageLookupByLibrary.simpleMessage("Body type"),
         "markaniTanlang":
             MessageLookupByLibrary.simpleMessage("Select a brand"),
+        "maxfiylikSiyosati":
+            MessageLookupByLibrary.simpleMessage("Maxfiylik siyosati"),
+        "maxsusSozlamalar":
+            MessageLookupByLibrary.simpleMessage("Maxsus sozlamalar"),
+        "meningHisobim": MessageLookupByLibrary.simpleMessage("Mening hisobim"),
+        "notugriKod": MessageLookupByLibrary.simpleMessage("Notugri kod"),
         "oldinga": MessageLookupByLibrary.simpleMessage("Oldinga"),
         "orqaga": MessageLookupByLibrary.simpleMessage("Orqaga"),
+        "qidiruvSozlari":
+            MessageLookupByLibrary.simpleMessage("Qidiruv so’zlari"),
         "qoshimchaMalumot":
             MessageLookupByLibrary.simpleMessage("Additional information"),
+        "smsKodniKiriting":
+            MessageLookupByLibrary.simpleMessage("SMS kodni kiriting"),
         "sozlamalar": MessageLookupByLibrary.simpleMessage("Sozlamalar"),
         "sozlamalarniOchisgh":
             MessageLookupByLibrary.simpleMessage("Sozlamalarni ochisgh"),
+        "suhbatlar": MessageLookupByLibrary.simpleMessage("Suhbatlar"),
+        "tanlanganElonlar":
+            MessageLookupByLibrary.simpleMessage("Tanlangan E’lonlar"),
+        "tanlanganlar": MessageLookupByLibrary.simpleMessage("Tanlanganlar"),
         "tarifniTanlang":
             MessageLookupByLibrary.simpleMessage("Choose a tariff"),
+        "tasdiqlangan": MessageLookupByLibrary.simpleMessage("Tasdiqlangan"),
+        "telefon": MessageLookupByLibrary.simpleMessage("Telefon"),
         "texnikaTuriniTanlang": MessageLookupByLibrary.simpleMessage(
             "Select the type of equipment"),
         "til": MessageLookupByLibrary.simpleMessage("Til"),
@@ -80,6 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "xaritadaJoylashuvi":
             MessageLookupByLibrary.simpleMessage("Location on the map"),
         "yoqilgiTuri": MessageLookupByLibrary.simpleMessage("Type of fuel"),
+        "yuborish": MessageLookupByLibrary.simpleMessage("Yuborish"),
         "yurganMasofasi":
             MessageLookupByLibrary.simpleMessage("Distance traveled")
       };

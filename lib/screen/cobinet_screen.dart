@@ -1,3 +1,4 @@
+import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/utill/car_list_data.dart';
@@ -17,6 +18,7 @@ class CobinetScreenState extends State<CobinetScreen> {
       carList.where((element) => element['activeStatus'] == false).toList();
   List<Map<String, dynamic>> listActive =
       carList.where((element) => element['activeStatus'] != false).toList();
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -34,7 +36,7 @@ class CobinetScreenState extends State<CobinetScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "suhbatlar".toUpperCase(),
+                        S.of(context).kabinet.toUpperCase(),
                         style: const TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w600,
@@ -44,7 +46,10 @@ class CobinetScreenState extends State<CobinetScreen> {
                       ButtonBar(
                         children: [
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed(RouteName.contactWithAdmin);
+                            },
                             icon: Icon(
                               Icons.support_agent,
                               color: iconSelectedColor,
@@ -69,9 +74,9 @@ class CobinetScreenState extends State<CobinetScreen> {
                   color: backgrounColor,
                   elevation: 0,
                   child: ListTile(
-                    title: const Text(
-                      "Mening hisobim",
-                      style: TextStyle(fontSize: 14.0),
+                    title: Text(
+                      S.of(context).meningHisobim,
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     subtitle: Text(
                       "210 000 so`m",
@@ -101,36 +106,21 @@ class CobinetScreenState extends State<CobinetScreen> {
               bottom: TabBar(
                 // tabAlignment: TabAlignment.center,
                 indicatorPadding: const EdgeInsets.symmetric(
-                  horizontal: -35.0,
-                  vertical: 3.0,
+                  horizontal: -10.0,
+                  vertical: 0.0,
                 ),
                 // indicatorColor: iconSelectedColor,
                 indicator: BoxDecoration(
                   color: iconSelectedColor,
                   borderRadius: BorderRadius.circular(5.0),
                 ),
-
+                // unselectedLabelStyle: Theme.of(context).textTheme.displaySmall,
                 // isScrollable: true,
-                // labelStyle: tabBarText,
-                // padding: const EdgeInsets.all(0.0),
+                labelStyle: Theme.of(context).textTheme.displaySmall,
 
-                tabs: const [
-                  Tab(
-                    child: Text(
-                      'Tasdiqlangan',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                  Tab(
-                    child: Text(
-                      'Bekor qilingan',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
+                tabs: [
+                  Tab(text: S.of(context).tasdiqlangan),
+                  Tab(text: S.of(context).bekorQilingan),
                 ],
               ),
             ),

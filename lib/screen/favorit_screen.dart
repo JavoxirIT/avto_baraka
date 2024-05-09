@@ -1,3 +1,4 @@
+import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/utill/favorit_car_card.dart';
 import 'package:avto_baraka/widgets/car_card.dart';
@@ -24,7 +25,7 @@ class FavoritScreenState extends State<FavoritScreen> {
         child: paddingLayout(
           Column(
             children: [
-              title(context, "Tanlaganlar"),
+              title(context, S.of(context).tanlanganlar),
               Card(
                 color: const Color.fromARGB(255, 243, 243, 243),
                 elevation: 0,
@@ -32,7 +33,7 @@ class FavoritScreenState extends State<FavoritScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Tanlangan E’lonlar", style: _textStyle),
+                      Text(S.of(context).tanlanganElonlar, style: _textStyle),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 7.0,
@@ -57,7 +58,7 @@ class FavoritScreenState extends State<FavoritScreen> {
                           },
                         ),
                       ),
-                      Text("Qidiruv so’zlari", style: _textStyle),
+                      Text(S.of(context).qidiruvSozlari, style: _textStyle),
                     ]),
               ),
               const SizedBox(

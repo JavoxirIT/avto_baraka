@@ -27,61 +27,90 @@ class MessageLookup extends MessageLookupByLibrary {
         "avvalBankniTanlang":
             MessageLookupByLibrary.simpleMessage("Avval Bankni tanlang"),
         "avvalTexnikaTuriniTanlang": MessageLookupByLibrary.simpleMessage(
-            "Avval texnika turini tanlang"),
+            "First select the type of technique"),
         "avvalViloyatniTanlang":
-            MessageLookupByLibrary.simpleMessage("Avval viloyatni tanlang"),
+            MessageLookupByLibrary.simpleMessage("Choose a region first"),
+        "bekorQilingan": MessageLookupByLibrary.simpleMessage("Bekor qilingan"),
         "boshlangichTolov":
             MessageLookupByLibrary.simpleMessage("Boshlang`ich to`lov"),
         "boshlangichTulovniKiriting": MessageLookupByLibrary.simpleMessage(
             "Boshlang`ich tulovni kiriting"),
-        "boyoqHolati": MessageLookupByLibrary.simpleMessage("Bo`yoq holati"),
+        "boyoqHolati": MessageLookupByLibrary.simpleMessage("Paint Condition"),
         "brendniTanlang":
-            MessageLookupByLibrary.simpleMessage("Brendni tanlang"),
-        "dvigatelHajmi": MessageLookupByLibrary.simpleMessage("Dvigatel hajmi"),
+            MessageLookupByLibrary.simpleMessage("Choose a Brand"),
+        "dvigatelHajmi": MessageLookupByLibrary.simpleMessage("Motor size"),
+        "elonlar": MessageLookupByLibrary.simpleMessage("E’lonlar"),
+        "engYaxshiTakliflar":
+            MessageLookupByLibrary.simpleMessage("ENG YAXSHI TAKLIFLAR"),
+        "foydalanishShartlari":
+            MessageLookupByLibrary.simpleMessage("Foydalanish shartlari"),
         "geolokatsiyaniYoqish": MessageLookupByLibrary.simpleMessage(
             "Uskunadan Geolokatsiyani yoqish va foydalanishga ruxsat berish kerak bo’ladi"),
+        "ilovaHaqida": MessageLookupByLibrary.simpleMessage("Ilova haqida"),
         "iltimosInternetAloqaniYoqing": MessageLookupByLibrary.simpleMessage(
             "Iltimos internet aloqani yoqing"),
+        "iltimosNomeringizniKiriting": MessageLookupByLibrary.simpleMessage(
+            "Iltimos nomeringizni kiriting"),
         "internetAloqasiYoq":
             MessageLookupByLibrary.simpleMessage("Internet aloqasi yo\'q"),
         "ishlabChiqarilganYili":
-            MessageLookupByLibrary.simpleMessage("Ishlab chiqarilgan yili"),
+            MessageLookupByLibrary.simpleMessage("Year of manufacture"),
+        "kabinet": MessageLookupByLibrary.simpleMessage("Kabinet"),
+        "kategoriyalar": MessageLookupByLibrary.simpleMessage("KATEGORIYALAR"),
+        "kreditKalkulatori":
+            MessageLookupByLibrary.simpleMessage("Kredit Kalkulatori"),
         "kreditMeddatiniTanlang":
             MessageLookupByLibrary.simpleMessage("Kredit meddatini tanlang"),
         "kreditSummasi": MessageLookupByLibrary.simpleMessage("Kredit summasi"),
         "kriditSummasiniKriting":
-            MessageLookupByLibrary.simpleMessage("Kridit summasini kiriting"),
-        "kuzovTuri": MessageLookupByLibrary.simpleMessage("Kuzov turi"),
+            MessageLookupByLibrary.simpleMessage("Kridit summasini kriting"),
+        "kuzovTuri": MessageLookupByLibrary.simpleMessage("Body type"),
         "markaniTanlang":
-            MessageLookupByLibrary.simpleMessage("Markani tanlang"),
+            MessageLookupByLibrary.simpleMessage("Select a brand"),
+        "maxfiylikSiyosati":
+            MessageLookupByLibrary.simpleMessage("Maxfiylik siyosati"),
+        "maxsusSozlamalar":
+            MessageLookupByLibrary.simpleMessage("Maxsus sozlamalar"),
+        "meningHisobim": MessageLookupByLibrary.simpleMessage("Mening hisobim"),
+        "notugriKod": MessageLookupByLibrary.simpleMessage("Notugri kod"),
         "oldinga": MessageLookupByLibrary.simpleMessage("Oldinga"),
         "orqaga": MessageLookupByLibrary.simpleMessage("Orqaga"),
+        "qidiruvSozlari":
+            MessageLookupByLibrary.simpleMessage("Qidiruv so’zlari"),
         "qoshimchaMalumot":
-            MessageLookupByLibrary.simpleMessage("Qo`shimcha ma`lumot"),
+            MessageLookupByLibrary.simpleMessage("Additional information"),
+        "smsKodniKiriting":
+            MessageLookupByLibrary.simpleMessage("SMS kodni kiriting"),
         "sozlamalar": MessageLookupByLibrary.simpleMessage("Sozlamalar"),
         "sozlamalarniOchisgh":
-            MessageLookupByLibrary.simpleMessage("Sozlamalarni ochish"),
+            MessageLookupByLibrary.simpleMessage("Sozlamalarni ochisgh"),
+        "suhbatlar": MessageLookupByLibrary.simpleMessage("Suhbatlar"),
+        "tanlanganElonlar":
+            MessageLookupByLibrary.simpleMessage("Tanlangan E’lonlar"),
+        "tanlanganlar": MessageLookupByLibrary.simpleMessage("Tanlanganlar"),
         "tarifniTanlang":
-            MessageLookupByLibrary.simpleMessage("Tarifni tanlang"),
-        "texnikaTuriniTanlang":
-            MessageLookupByLibrary.simpleMessage("Texnika turini tanlang"),
+            MessageLookupByLibrary.simpleMessage("Choose a tariff"),
+        "tasdiqlangan": MessageLookupByLibrary.simpleMessage("Tasdiqlangan"),
+        "telefon": MessageLookupByLibrary.simpleMessage("Telefon"),
+        "texnikaTuriniTanlang": MessageLookupByLibrary.simpleMessage(
+            "Select the type of equipment"),
         "til": MessageLookupByLibrary.simpleMessage("Til"),
         "tolovGrafigi": MessageLookupByLibrary.simpleMessage("To`lov Grafigi"),
-        "tortuvchiTomon":
-            MessageLookupByLibrary.simpleMessage("Tortuvchi tomon"),
-        "tumanlar": MessageLookupByLibrary.simpleMessage("Tumanlar"),
-        "uzatishQutisi": MessageLookupByLibrary.simpleMessage("Uzatish qutisi"),
+        "tortuvchiTomon": MessageLookupByLibrary.simpleMessage("Pulling side"),
+        "tumanlar": MessageLookupByLibrary.simpleMessage("Regions"),
+        "uzatishQutisi": MessageLookupByLibrary.simpleMessage("Transmission"),
         "valuta": MessageLookupByLibrary.simpleMessage("Valuta"),
         "valutaniTanlang":
             MessageLookupByLibrary.simpleMessage("Valutani tanlang"),
         "versiyasiniTanlang":
-            MessageLookupByLibrary.simpleMessage("Versiyasini tanlang"),
+            MessageLookupByLibrary.simpleMessage("Select the version"),
         "viloyatniTanlang":
-            MessageLookupByLibrary.simpleMessage("Viloyatni tanlang"),
+            MessageLookupByLibrary.simpleMessage("Select Region"),
         "xaritadaJoylashuvi":
-            MessageLookupByLibrary.simpleMessage("Xaritada joylashuvi"),
-        "yoqilgiTuri": MessageLookupByLibrary.simpleMessage("Yoqilg`i turi"),
+            MessageLookupByLibrary.simpleMessage("Location on the map"),
+        "yoqilgiTuri": MessageLookupByLibrary.simpleMessage("Type of fuel"),
+        "yuborish": MessageLookupByLibrary.simpleMessage("Yuborish"),
         "yurganMasofasi":
-            MessageLookupByLibrary.simpleMessage("Yurgan masofasi")
+            MessageLookupByLibrary.simpleMessage("Distance traveled")
       };
 }

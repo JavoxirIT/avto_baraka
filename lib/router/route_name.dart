@@ -9,4 +9,6 @@ class RouteName {
   static const creditSecondView = "/creditSecondView";
   static const creditGraphicView = "/creditGraphicView";
   static const settingView = "/settingView";
+  static const settingUserView = "/settingUserView";
+  static const contactWithAdmin = "/contactWithAdmin";
 }

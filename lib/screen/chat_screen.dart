@@ -1,3 +1,4 @@
+import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/utill/chat_list.dart';
 import 'package:avto_baraka/widgets/padding_layout.dart';
@@ -21,7 +22,7 @@ class ChatScreenState extends State<ChatScreen> {
         child: paddingLayout(
           Column(
             children: [
-              title(context, "SUHBATLAR"),
+              title(context, S.of(context).suhbatlar),
               Expanded(
                 child: ListView.builder(
                     itemCount: chatList.length,
