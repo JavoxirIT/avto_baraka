@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
 Card cardTagCard(item, icon) {
-  const TextStyle textStyle = TextStyle(fontSize: 12.0);
+  const TextStyle textStyle = TextStyle(fontSize: 10.0);
   return Card(
-  elevation: 3.0,
-  
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 7.0),
+    elevation: 3.0,
+    child: Center(
       child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           icon,

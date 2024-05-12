@@ -39,17 +39,21 @@ class SettingUserView extends StatelessWidget {
                       languageProvider.persistLocale(newValue);
                     }
                   },
-                  items:
-                      const AppLocalizationDelegate().supportedLocales.map((l) {
-                    return DropdownMenuItem(
-                      value: l.languageCode,
-                      child: Text(
-                          l.languageCode == "uz"
-                              ? "O`zbek tili"
-                              : "Русски язык",
-                          style: Theme.of(context).textTheme.bodyLarge),
-                    );
-                  }).toList(),
+                  items: const AppLocalizationDelegate()
+                      .supportedLocales
+                      .where((element) => element.languageCode != "en")
+                      .map(
+                    (l) {
+                      return DropdownMenuItem(
+                        value: l.languageCode,
+                        child: Text(
+                            l.languageCode == "uz"
+                                ? "O`zbek tili"
+                                : "Русски язык",
+                            style: Theme.of(context).textTheme.bodyLarge),
+                      );
+                    },
+                  ).toList(),
                 ),
               ],
             );

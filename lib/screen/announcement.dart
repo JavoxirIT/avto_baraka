@@ -3,11 +3,16 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:app_settings/app_settings.dart';
+import 'package:avto_baraka/api/models/car_brand.models.dart';
+import 'package:avto_baraka/api/models/car_category_models.dart';
+import 'package:avto_baraka/api/models/car_models.dart';
 import 'package:avto_baraka/api/models/districs_model.dart';
 import 'package:avto_baraka/api/models/region_models.dart';
-import 'package:avto_baraka/api/regions_repository/districts_service.dart';
-import 'package:avto_baraka/api/regions_repository/region_service.dart';
+import 'package:avto_baraka/api/service/car_service.dart';
+import 'package:avto_baraka/api/service/districts_service.dart';
+import 'package:avto_baraka/api/service/region_service.dart';
 import 'package:avto_baraka/generated/l10n.dart';
+import 'package:avto_baraka/http/config.dart';
 import 'package:avto_baraka/state/main_state_controller.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevate_btn_cam_gall.dart';
@@ -51,6 +56,9 @@ class Announcement extends StatefulWidget {
 }
 
 class AnnouncementState extends State<Announcement> {
+//
+
+//
   late double lat;
   late double long;
   var controller = Get.put(MainStateControllee());
@@ -58,6 +66,9 @@ class AnnouncementState extends State<Announcement> {
   DateTime date = DateTime.now();
   List<RegionModel>? region;
   List<DistrictsModel>? districts;
+  List<CarCategoryModels> categoryList = [];
+  List<CarBrandsModels> carBrandList = [];
+  List<CarModels> carModelList = [];
   bool isComplate = false;
   int currentStep = 0;
 
@@ -114,7 +125,7 @@ class AnnouncementState extends State<Announcement> {
   Future<void> _getCurrentLocation() async {
     servicePosition = await Geolocator.isLocationServiceEnabled();
     if (!servicePosition) {
-      print('Сервис не работает!!!');
+      debugPrint('Сервис не работает!!!');
       // AppSettings.openAppSettings(type: AppSettingsType.location);
     }
     permission = await Geolocator.checkPermission();
@@ -173,8 +184,6 @@ class AnnouncementState extends State<Announcement> {
   TextStyle formLabelTextStyle = TextStyle(
       color: iconSelectedColor, fontSize: 14.0, fontWeight: FontWeight.w600);
 
-
-
   @override
   Widget build(BuildContext context) {
     RoundedRectangleBorder shape = const RoundedRectangleBorder(
@@ -185,34 +194,35 @@ class AnnouncementState extends State<Announcement> {
 
     EdgeInsets contentPadding = const EdgeInsets.fromLTRB(20.0, 0, 3.0, 0);
     return Scaffold(
-        appBar: AppBar(
-          title: Text(!isComplate ? "E’lon joylash" : "Bosh sahifa"),
-        ),
-        body: isComplate
-            ? fomBuildComplate(onBackForm)
-            : Theme(
-                data: Theme.of(context).copyWith(
-                    colorScheme: ColorScheme.light(primary: iconSelectedColor)),
-                child: SafeArea(
-                  child: Form(
-                    key: formKey,
-                    child: Stepper(
-                      elevation: 0,
-                      type: StepperType.horizontal,
-                      steps: getSteps(context, shape, contentPadding),
-                      currentStep: currentStep,
-                      onStepTapped: onStepTapped,
-                      controlsBuilder: (context, details) {
-                        return const SizedBox.shrink();
-                      },
-                    ),
+      appBar: AppBar(
+        title: Text(!isComplate ? "E’lon joylash" : "Bosh sahifa"),
+      ),
+      body: isComplate
+          ? fomBuildComplate(onBackForm)
+          : Theme(
+              data: Theme.of(context).copyWith(
+                  colorScheme: ColorScheme.light(primary: iconSelectedColor)),
+              child: SafeArea(
+                child: Form(
+                  key: formKey,
+                  child: Stepper(
+                    elevation: 0,
+                    type: StepperType.horizontal,
+                    steps: getSteps(context, shape, contentPadding),
+                    currentStep: currentStep,
+                    onStepTapped: onStepTapped,
+                    controlsBuilder: (context, details) {
+                      return const SizedBox.shrink();
+                    },
                   ),
                 ),
               ),
-        bottomNavigationBar: !isComplate
-            ? stepsNavigation(context, currentStep, onStepCansel,
-                onStepContinue, region, districts, getSteps)
-            : null);
+            ),
+      bottomNavigationBar: !isComplate
+          ? stepsNavigation(context, currentStep, onStepCansel, onStepContinue,
+              region, districts, getSteps)
+          : null,
+    );
   }
 
   List<Step> getSteps(BuildContext context,
@@ -367,37 +377,39 @@ class AnnouncementState extends State<Announcement> {
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 physics: const ScrollPhysics(),
-                itemCount: typeOfTransport.length,
+                itemCount: categoryList.length,
                 itemBuilder: (context, index) {
-                  final type = typeOfTransport[index];
+                  final type = categoryList[index];
                   return Card(
                     shape: shape,
                     elevation: 0,
                     color: backgnColStepCard,
                     child: RadioListTile(
                       tileColor:
-                          carTypeGroupValue == type['id'] ? splashColor : null,
+                          carTypeGroupValue == type.id ? splashColor : null,
                       shape: shape,
                       contentPadding: contentPadding,
                       controlAffinity: ListTileControlAffinity.trailing,
                       title: Row(children: [
-                        Image.asset(type['image'], height: 34.0),
+                        Image.network(Config.imageUrl! + type.icon,
+                            height: 34.0),
                         const SizedBox(
                           width: 10.0,
                         ),
                         Text(
-                          type['name'],
+                          type.nameRu,
                           style: const TextStyle(
                               fontSize: 14.0, fontWeight: FontWeight.w600),
                         ),
                       ]),
-                      value: type["id"],
+                      value: type.id,
                       groupValue: carTypeGroupValue,
-                      onChanged: (value) {
+                      onChanged: (value) async {
                         setState(() {
                           carTypeGroupValue = value!;
-                          debugPrint('${value}');
                         });
+                        carBrandList =
+                            await CarService().getBrands(carTypeGroupValue);
                       },
                     ),
                   );
@@ -411,7 +423,7 @@ class AnnouncementState extends State<Announcement> {
       Step(
         isActive: currentStep >= 3,
         title: const Text(""),
-        content: carTypeGroupValue < 0
+        content: carBrandList.isEmpty
             ? SizedBox(
                 height: MediaQuery.of(context).size.height / 2,
                 child: Center(
@@ -427,26 +439,21 @@ class AnnouncementState extends State<Announcement> {
                   formStepsTitle(S.of(context).brendniTanlang, context),
                   StatefulBuilder(
                     builder: (BuildContext context, StateSetter setState) {
-                      final brands = carBrand
-                          .where((i) => i['typeId'] == carTypeGroupValue)
-                          .toList();
-
-                      setState(() {});
                       return Flexible(
                         child: ListView.builder(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
                           physics: const ScrollPhysics(),
-                          itemCount: brands.length,
+                          itemCount: carBrandList.length,
                           itemBuilder: (context, index) {
-                            final brand = brands[index];
+                            final brand = carBrandList[index];
                             return Card(
                               shape: shape,
                               elevation: 0,
                               color: backgnColStepCard,
                               child: RadioListTile(
                                 shape: shape,
-                                tileColor: carBrandGroupValue == brand['id']
+                                tileColor: carBrandGroupValue == brand.id
                                     ? splashColor
                                     : null,
                                 contentPadding: contentPadding,
@@ -455,26 +462,31 @@ class AnnouncementState extends State<Announcement> {
                                 title: Row(children: [
                                   CircleAvatar(
                                     backgroundColor: backgrounColorWhite,
-                                    child: Image.asset(brand['image'],
-                                        height: 24.0, width: 24.0),
+                                    child: Image.network(
+                                      Config.imageUrl! + brand.logo,
+                                      height: 24.0,
+                                      width: 24.0,
+                                    ),
                                   ),
                                   const SizedBox(
                                     width: 10.0,
                                   ),
                                   Text(
-                                    brand['name'],
+                                    brand.nameRu,
                                     style: const TextStyle(
                                         fontSize: 14.0,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ]),
-                                value: brand["id"],
+                                value: brand.id,
                                 groupValue: carBrandGroupValue,
-                                onChanged: (value) {
+                                onChanged: (value) async {
                                   setState(() {
                                     carBrandGroupValue = value!;
                                     debugPrint('$value');
                                   });
+                                  carModelList = await CarService().getCarModel(
+                                      carTypeGroupValue, carBrandGroupValue);
                                 },
                               ),
                             );
@@ -496,104 +508,116 @@ class AnnouncementState extends State<Announcement> {
             formStepsTitle(S.of(context).markaniTanlang, context),
             StatefulBuilder(
                 builder: (BuildContext context, StateSetter setState) {
-              final name = autoName
-                  .where((i) => i['brandId'] == carBrandGroupValue)
-                  .toList();
-
-              setState(() {});
-
-              return Flexible(
-                child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  physics: const ScrollPhysics(),
-                  itemCount: name.length,
-                  itemBuilder: (context, index) {
-                    final names = name[index];
-                    return Card(
-                      shape: shape,
-                      elevation: 0,
-                      color: backgnColStepCard,
-                      child: RadioListTile(
-                        shape: shape,
-                        tileColor: carNameGroupValue == names['id']
-                            ? splashColor
-                            : null,
-                        contentPadding: contentPadding,
-                        controlAffinity: ListTileControlAffinity.trailing,
-                        title: Text(
-                          names['name'],
-                          style: const TextStyle(
-                              fontSize: 14.0, fontWeight: FontWeight.w600),
-                        ),
-                        value: names["id"],
-                        groupValue: carNameGroupValue,
-                        onChanged: (value) {
-                          setState(() {
-                            carNameGroupValue = value!;
-                            debugPrint('$value');
-                          });
+              return carModelList.isEmpty
+                  ? const SizedBox(
+                      child: Text("Avval avtotransport turini tanlang"),
+                    )
+                  : Flexible(
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        physics: const ScrollPhysics(),
+                        itemCount: carModelList.length,
+                        itemBuilder: (context, index) {
+                          final names = carModelList[index];
+                          return Card(
+                            shape: shape,
+                            elevation: 0,
+                            color: backgnColStepCard,
+                            child: RadioListTile(
+                              shape: shape,
+                              tileColor: carNameGroupValue == names.id
+                                  ? splashColor
+                                  : null,
+                              contentPadding: contentPadding,
+                              controlAffinity: ListTileControlAffinity.trailing,
+                              title: Row(children: [
+                                CircleAvatar(
+                                  backgroundColor: backgrounColorWhite,
+                                  child: Image.network(
+                                    Config.imageUrl! + names.img,
+                                    height: 35.0,
+                                    width: 35.0,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 10.0,
+                                ),
+                                Text(
+                                  names.nameRu,
+                                  style: const TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ]),
+                              value: names.id,
+                              groupValue: carNameGroupValue,
+                              onChanged: (value) {
+                                setState(() {
+                                  carNameGroupValue = value!;
+                                  debugPrint('$value');
+                                });
+                              },
+                            ),
+                          );
                         },
                       ),
                     );
-                  },
-                ),
-              );
             }),
           ],
         ),
       ),
       // Versiyasini tanlang
-      Step(
-        isActive: currentStep >= 5,
-        title: const Text(""),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            formStepsTitle(S.of(context).versiyasiniTanlang, context),
-            Flexible(
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                physics: const ScrollPhysics(),
-                itemCount: autoPosition.length,
-                itemBuilder: (context, index) {
-                  final names = autoPosition[index];
-                  return Card(
-                    shape: shape,
-                    elevation: 0,
-                    color: backgnColStepCard,
-                    child: RadioListTile(
-                      shape: shape,
-                      tileColor: carPositionNameGroupValue == names['id']
-                          ? splashColor
-                          : null,
-                      contentPadding: contentPadding,
-                      controlAffinity: ListTileControlAffinity.trailing,
-                      title: Text(
-                        names['name'],
-                        style: const TextStyle(
-                            fontSize: 14.0, fontWeight: FontWeight.w600),
-                      ),
-                      value: names["id"],
-                      groupValue: carPositionNameGroupValue,
-                      onChanged: (value) {
-                        setState(() {
-                          carPositionNameGroupValue = value!;
-                          debugPrint('$value');
-                        });
-                      },
-                    ),
-                  );
-                },
-              ),
-            )
-          ],
-        ),
-      ),
+      // Step(
+      //   isActive: currentStep >= 5,
+      //   title: const Text(""),
+      //   content: Column(
+      //     mainAxisSize: MainAxisSize.min,
+      //     children: [
+      //       formStepsTitle(S.of(context).versiyasiniTanlang, context),
+      //       Flexible(
+      //         child: ListView.builder(
+      //           scrollDirection: Axis.vertical,
+      //           shrinkWrap: true,
+      //           physics: const ScrollPhysics(),
+      //           itemCount: autoPosition.length,
+      //           itemBuilder: (context, index) {
+      //             final names = autoPosition[index];
+      //             return Card(
+      //               shape: shape,
+      //               elevation: 0,
+      //               color: backgnColStepCard,
+      //               child: RadioListTile(
+      //                 shape: shape,
+      //                 tileColor: carPositionNameGroupValue == names['id']
+      //                     ? splashColor
+      //                     : null,
+      //                 contentPadding: contentPadding,
+      //                 controlAffinity: ListTileControlAffinity.trailing,
+      //                 title: Text(
+      //                   names['name'],
+      //                   style: const TextStyle(
+      //                       fontSize: 14.0, fontWeight: FontWeight.w600),
+      //                 ),
+      //                 value: names["id"],
+      //                 groupValue: carPositionNameGroupValue,
+      //                 onChanged: (value) {
+      //                   setState(() {
+      //                     carPositionNameGroupValue = value!;
+      //                     debugPrint('$value');
+      //                   });
+      //                 },
+      //               ),
+      //             );
+      //           },
+      //         ),
+      //       )
+      //     ],
+      //   ),
+      // ),
       // form item
       Step(
-        isActive: currentStep >= 6,
+        isActive: currentStep >= 5,
         title: const Text(""),
         content: Column(
           children: [
@@ -970,7 +994,7 @@ class AnnouncementState extends State<Announcement> {
 
       // foto
       Step(
-        isActive: currentStep >= 7,
+        isActive: currentStep >= 6,
         title: const Text(""),
         content: SingleChildScrollView(
           child: Column(
@@ -1090,10 +1114,10 @@ class AnnouncementState extends State<Announcement> {
           ),
         ),
       ),
-      
+
       // Tarigf step
       Step(
-        isActive: currentStep >= 8,
+        isActive: currentStep >= 7,
         title: const Text(""),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -1111,7 +1135,6 @@ class AnnouncementState extends State<Announcement> {
                     padding: const EdgeInsets.symmetric(vertical: 6.0),
                     child: InkWell(
                       onTap: () {
-                        print('data: ${el["name"]}');
                         setState(() {
                           oncheckId = el['id'];
                         });
@@ -1271,6 +1294,7 @@ class AnnouncementState extends State<Announcement> {
   Future<void> loadRegion() async {
     region = await RegionService().getRegions();
     districts = await DistrictsService().getDistricts();
+    categoryList = await CarService().carCategoryLoad();
     setState(() {});
   }
 }

@@ -353,22 +353,51 @@ ListView carCard(carList) {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        padding: const EdgeInsets.only(top: 5.0),
+                        child: GridView(
+                          shrinkWrap: true,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4,
+                            // childAspectRatio: (itemWidth / itemHeight),
+                            childAspectRatio: 1.5,
+                            crossAxisSpacing: 2.0,
+                            mainAxisSpacing: 0,
+                            // mainAxisExtent: ,
+                          ),
                           children: [
-                            cardTagCard("${item["year"]} yil",
-                                const Icon(Icons.calendar_month, size: 17.0)),
                             cardTagCard(
-                                item["transmission"],
-                                const Icon(Symbols.auto_transmission,
-                                    size: 17.0)),
+                              "${item["year"]} yil",
+                              Icon(
+                                Icons.calendar_month,
+                                size: 17.0,
+                                color: iconSelectedColor,
+                              ),
+                            ),
                             cardTagCard(
-                                item["typeOfFuel"],
-                                const Icon(Symbols.gas_meter_sharp,
-                                    size: 17.0)),
-                            cardTagCard('${item["mileage"].toString()} km',
-                                const Icon(Symbols.speed, size: 17.0))
+                              item["transmission"],
+                              Icon(
+                                Symbols.auto_transmission,
+                                size: 17.0,
+                                color: iconSelectedColor,
+                              ),
+                            ),
+                            cardTagCard(
+                              item["typeOfFuel"],
+                              Icon(
+                                Symbols.gas_meter_sharp,
+                                size: 17.0,
+                                color: iconSelectedColor,
+                              ),
+                            ),
+                            cardTagCard(
+                              '${item["mileage"].toString()} km',
+                              Icon(
+                                Symbols.speed,
+                                size: 17.0,
+                                color: iconSelectedColor,
+                              ),
+                            ),
                           ],
                         ),
                       )

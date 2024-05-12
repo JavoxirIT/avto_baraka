@@ -1,4 +1,5 @@
 class RouteName {
+  static const introduction = "/introduction";
   static const bottomNavigationHomeScreen = "/home";
   static const favoritScreen = "/favorit";
   static const chatScreen = "/chat";
@@ -11,4 +12,5 @@ class RouteName {
   static const settingView = "/settingView";
   static const settingUserView = "/settingUserView";
   static const contactWithAdmin = "/contactWithAdmin";
+  static const firstpayView = "/firstpayView";
 }

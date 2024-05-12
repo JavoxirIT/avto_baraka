@@ -1,9 +1,9 @@
 import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
-import 'package:avto_baraka/screen/introductory_screen.dart';
+import 'package:avto_baraka/provider/token_provider/token_provider.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/router/routers.dart';
 import 'package:avto_baraka/style/colors.dart';
-import 'package:avto_baraka/widgets/bottom_navigation_menu.dart';
+import 'package:avto_baraka/view/loading_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -14,10 +14,20 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   var languageProvider = LocalProvider();
   await languageProvider.fetchLocale();
-  runApp(ChangeNotifierProvider(
-    create: (_) => languageProvider,
-    child: const MyApp(),
-  ));
+
+// token
+  var tokenProvider = TokenProvider();
+  await tokenProvider.fetchTokenLocale();
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => languageProvider),
+        ChangeNotifierProvider(create: (_) => tokenProvider)
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -31,10 +41,14 @@ class _MyAppState extends State<MyApp> {
   final bool isActivateKey = false;
 
   @override
-  Widget build(BuildContext context) => ChangeNotifierProvider(
-        create: (context) => LocalProvider(),
+  Widget build(BuildContext context) => MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => LocalProvider()),
+          ChangeNotifierProvider(create: (context) => TokenProvider())
+        ],
         builder: (context, chil) {
           final providerLanguage = Provider.of<LocalProvider>(context);
+          final tokenProvider = Provider.of<TokenProvider>(context);
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
@@ -117,10 +131,10 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
             routes: routers,
-            home: isActivateKey
-                ? const BottomNavigationMenu()
-                : const IntroductionScreen(),
-            // home: const BottomNavigationMenu(),
+            // home: tokenProvider != ""
+            //     ? const BottomNavigationMenu()
+            //     : const IntroductionScreen(),
+            home: const LoadingView(),
           );
         },
       );

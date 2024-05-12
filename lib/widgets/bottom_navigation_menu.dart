@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:developer' as developer;
-
-import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/screen/chat_screen.dart';
 import 'package:avto_baraka/screen/cobinet_screen.dart';
@@ -9,7 +7,6 @@ import 'package:avto_baraka/screen/favorit_screen.dart';
 import 'package:avto_baraka/screen/main_screen.dart';
 import 'package:avto_baraka/view/checking_internet_connection.dart';
 import 'package:avto_baraka/style/colors.dart';
-import 'package:avto_baraka/widgets/bottom_nav_bar_item.dart';
 import 'package:avto_baraka/widgets/botton_nav_item.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
@@ -90,6 +87,8 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
     });
   }
 
+  final bool payStatus = false;
+
   @override
   Widget build(BuildContext context) {
     const double _size = 18.0;
@@ -107,6 +106,10 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
         width: 65.0,
         child: FloatingActionButton(
           onPressed: () {
+            if (!payStatus) {
+              Navigator.of(context).pushNamed(RouteName.firstpayView);
+              return;
+            }
             Navigator.of(context).pushNamed(RouteName.announcement);
           },
           backgroundColor: iconSelectedColor,

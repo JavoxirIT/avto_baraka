@@ -4,5 +4,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class Config {
   static final dbUrl = dotenv.env['DB_URL'];
   static final dbMobile = dotenv.env['DB_URL_MOBILE'];
+  static final imageUrl = dotenv.env['DB_IMAGE_URL'];
   static final dio = Dio();
 }
