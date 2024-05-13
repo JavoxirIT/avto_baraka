@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "avvalViloyatniTanlang":
             MessageLookupByLibrary.simpleMessage("Сначало выберите регион"),
         "bekorQilingan": MessageLookupByLibrary.simpleMessage("Отменённые"),
+        "boshSahifa": MessageLookupByLibrary.simpleMessage("Главное окно"),
         "boshlangichTolov":
             MessageLookupByLibrary.simpleMessage("Начальная оплата"),
         "boshlangichTulovniKiriting":
@@ -40,13 +41,22 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Выберите бренд"),
         "dvigatelHajmi":
             MessageLookupByLibrary.simpleMessage("Объем двигателя"),
+        "elonJoylash":
+            MessageLookupByLibrary.simpleMessage("Размещение объявление"),
         "elonlar": MessageLookupByLibrary.simpleMessage("Объявления"),
         "engYaxshiTakliflar":
             MessageLookupByLibrary.simpleMessage("ЛУЧШИЕ ПРЕДЛОЖЕНИЯ"),
         "foydalanishShartlari":
             MessageLookupByLibrary.simpleMessage("Условия использования"),
+        "gallereyadanTanlash":
+            MessageLookupByLibrary.simpleMessage("Из галлереи"),
+        "geolokachiyadanFoydalanishCheklanganIltimosLokachiyaniYoking":
+            MessageLookupByLibrary.simpleMessage(
+                "Доступ к гелокации запрещен, пожалуйста включите доступ к локации!!"),
         "geolokatsiyaniYoqish": MessageLookupByLibrary.simpleMessage(
             "На вашем устройстве необходимо будет включить и разрешить геолокацию"),
+        "geopozitsiyaKabulKilindi":
+            MessageLookupByLibrary.simpleMessage("Геопозиция определена"),
         "ilovaHaqida": MessageLookupByLibrary.simpleMessage("О приложении"),
         "iltimosInternetAloqaniYoqing": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, включите подключение к Интернету"),
@@ -66,6 +76,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "kriditSummasiniKriting":
             MessageLookupByLibrary.simpleMessage("Введите сумму кредита"),
         "kuzovTuri": MessageLookupByLibrary.simpleMessage("Вид кузова"),
+        "lokatsiyaniTanlang":
+            MessageLookupByLibrary.simpleMessage("Выберите локацию"),
         "markaniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите марку"),
         "maxfiylikSiyosati":
@@ -80,14 +92,21 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Поисковые слова"),
         "qoshimchaMalumot":
             MessageLookupByLibrary.simpleMessage("Дополнительная информация"),
+        "rasimgaOlish": MessageLookupByLibrary.simpleMessage("Открыть камеру"),
+        "rasmlarniYuklang":
+            MessageLookupByLibrary.simpleMessage("Загрузите изображения"),
+        "saqlash": MessageLookupByLibrary.simpleMessage("Сохранить"),
         "smsKodniKiriting":
             MessageLookupByLibrary.simpleMessage("Введите код из смс"),
         "sozlamalar": MessageLookupByLibrary.simpleMessage("Настройки"),
         "sozlamalarniOchisgh":
             MessageLookupByLibrary.simpleMessage("Открыть настройки"),
+        "sozlamalarniOchish":
+            MessageLookupByLibrary.simpleMessage("Открыть настройки"),
         "suhbatlar": MessageLookupByLibrary.simpleMessage("Сообщения"),
         "tanlanganElonlar": MessageLookupByLibrary.simpleMessage("Избранные"),
         "tanlanganlar": MessageLookupByLibrary.simpleMessage("Избранные"),
+        "tanlash": MessageLookupByLibrary.simpleMessage("Выберите"),
         "tarifniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите тариф"),
         "tasdiqlangan": MessageLookupByLibrary.simpleMessage("Подтвержденный"),

@@ -56,5 +56,16 @@
   "smsKodniKiriting": "Введите код из смс",
   "telefon": "Телефон",
   "notugriKod": "Неверный код",
-  "iltimosNomeringizniKiriting": "Пожалуйста, введите свой номер"
+  "iltimosNomeringizniKiriting": "Пожалуйста, введите свой номер",
+  "elonJoylash": "Размещение объявление",
+  "boshSahifa": "Главное окно",
+  "saqlash": "Сохранить",
+  "rasimgaOlish": "Открыть камеру",
+  "gallereyadanTanlash": "Из галлереи",
+  "rasmlarniYuklang": "Загрузите изображения",
+  "geopozitsiyaKabulKilindi": "Геопозиция определена",
+  "tanlash": "Выберите",
+  "lokatsiyaniTanlang": "Выберите локацию",
+  "sozlamalarniOchish": "Открыть настройки",
+  "geolokachiyadanFoydalanishCheklanganIltimosLokachiyaniYoking": "Доступ к гелокации запрещен, пожалуйста включите доступ к локации!!"
 }

@@ -137,18 +137,11 @@ ListView carCard(carList) {
                           padding: const EdgeInsets.only(top: 9.0),
                           child: Text(
                             carTitle,
-                            style: const TextStyle(
-                              fontSize: 17.0,
-                              fontWeight: FontWeight.w600,
-                            ),
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                         ),
-                        Text(
-                          item['region'] + " " + item['city'],
-                          style: const TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
+                        Text(item['region'] + " " + item['city'],
+                            style: Theme.of(context).textTheme.bodyMedium),
                         Padding(
                           padding: const EdgeInsets.only(top: 22.0),
                           child: Row(
@@ -340,17 +333,12 @@ ListView carCard(carList) {
                         padding: const EdgeInsets.only(top: 9.0),
                         child: Text(
                           carTitle,
-                          style: const TextStyle(
-                            fontSize: 17.0,
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ),
                       Text(
                         item['region'] + " " + item['city'],
-                        style: const TextStyle(
-                          fontSize: 14.0,
-                        ),
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0),

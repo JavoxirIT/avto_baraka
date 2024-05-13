@@ -1,3 +1,4 @@
+import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevated_button.dart';
 import 'package:avto_baraka/style/elevation_button_white.dart';
@@ -27,7 +28,7 @@ Row stepControls(context, currentStep, onStepCansel, onStepContinue, region,
                   color: iconSelectedColor,
                 ),
                 Text(
-                  "Orqaga",
+                  S.of(context).orqaga,
                   style: textStyle,
                 )
               ],
@@ -46,7 +47,7 @@ Row stepControls(context, currentStep, onStepCansel, onStepContinue, region,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  isLastStep ? "Saqlash" : "Oldinga",
+                  isLastStep ? S.of(context).saqlash : S.of(context).oldinga,
                   style: textStyle2,
                 ),
                 !isLastStep

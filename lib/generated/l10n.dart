@@ -629,6 +629,116 @@ class S {
       args: [],
     );
   }
+
+  /// `E’lon joylash`
+  String get elonJoylash {
+    return Intl.message(
+      'E’lon joylash',
+      name: 'elonJoylash',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bosh sahifa`
+  String get boshSahifa {
+    return Intl.message(
+      'Bosh sahifa',
+      name: 'boshSahifa',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Saqlash`
+  String get saqlash {
+    return Intl.message(
+      'Saqlash',
+      name: 'saqlash',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rasimga olish`
+  String get rasimgaOlish {
+    return Intl.message(
+      'Rasimga olish',
+      name: 'rasimgaOlish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gallereyadan tanlash`
+  String get gallereyadanTanlash {
+    return Intl.message(
+      'Gallereyadan tanlash',
+      name: 'gallereyadanTanlash',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rasmlarni yuklang`
+  String get rasmlarniYuklang {
+    return Intl.message(
+      'Rasmlarni yuklang',
+      name: 'rasmlarniYuklang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Geopozitsiya kabul kilindi`
+  String get geopozitsiyaKabulKilindi {
+    return Intl.message(
+      'Geopozitsiya kabul kilindi',
+      name: 'geopozitsiyaKabulKilindi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tanlash`
+  String get tanlash {
+    return Intl.message(
+      'Tanlash',
+      name: 'tanlash',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lokatsiyani tanlang`
+  String get lokatsiyaniTanlang {
+    return Intl.message(
+      'Lokatsiyani tanlang',
+      name: 'lokatsiyaniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sozlamalarni ochish`
+  String get sozlamalarniOchish {
+    return Intl.message(
+      'Sozlamalarni ochish',
+      name: 'sozlamalarniOchish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Geolokachiyadan foydalanish cheklangan, iltimos lokachiyani yoking`
+  String get geolokachiyadanFoydalanishCheklanganIltimosLokachiyaniYoking {
+    return Intl.message(
+      'Geolokachiyadan foydalanish cheklangan, iltimos lokachiyani yoking',
+      name: 'geolokachiyadanFoydalanishCheklanganIltimosLokachiyaniYoking',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

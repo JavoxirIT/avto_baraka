@@ -87,7 +87,7 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
     });
   }
 
-  final bool payStatus = false;
+  final bool payStatus = true;
 
   @override
   Widget build(BuildContext context) {

@@ -60,7 +60,10 @@ class OneCarViewState extends State<OneCarView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(carTitle),
+        title: Text(
+          carTitle,
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
         actions: [
           iconButton(
               Icon(FontAwesomeIcons.triangleExclamation,

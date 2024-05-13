@@ -3,9 +3,11 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:app_settings/app_settings.dart';
+import 'package:avto_baraka/api/models/car_body_models.dart';
 import 'package:avto_baraka/api/models/car_brand.models.dart';
 import 'package:avto_baraka/api/models/car_category_models.dart';
 import 'package:avto_baraka/api/models/car_models.dart';
+import 'package:avto_baraka/api/models/car_transmission_models.dart';
 import 'package:avto_baraka/api/models/districs_model.dart';
 import 'package:avto_baraka/api/models/region_models.dart';
 import 'package:avto_baraka/api/service/car_service.dart';
@@ -14,21 +16,20 @@ import 'package:avto_baraka/api/service/region_service.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/http/config.dart';
 import 'package:avto_baraka/state/main_state_controller.dart';
+import 'package:avto_baraka/style/announcement_input_decoration.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevate_btn_cam_gall.dart';
 import 'package:avto_baraka/style/elevation_button_map.dart';
 import 'package:avto_baraka/style/location_button.dart';
 import 'package:avto_baraka/style/outline_input_border.dart';
 import 'package:avto_baraka/utill/ad_rates.dart';
-import 'package:avto_baraka/utill/auto_name.dart';
-import 'package:avto_baraka/utill/body_type.dart';
-import 'package:avto_baraka/utill/car_brand.dart';
-import 'package:avto_baraka/utill/engine.dart';
+// import 'package:avto_baraka/utill/auto_name.dart';
+// import 'package:avto_baraka/utill/body_type.dart';
+// import 'package:avto_baraka/utill/car_brand.dart';
 import 'package:avto_baraka/utill/paint_condition.dart';
 import 'package:avto_baraka/utill/pulling_side.dart';
-import 'package:avto_baraka/utill/transmission.dart';
-import 'package:avto_baraka/utill/type_of_fuel.dart';
-import 'package:avto_baraka/utill/type_of_transport.dart';
+// import 'package:avto_baraka/utill/type_of_fuel.dart';
+// import 'package:avto_baraka/utill/type_of_transport.dart';
 import 'package:avto_baraka/widgets/announcement/form_build_complate.dart';
 import 'package:avto_baraka/widgets/announcement/form_step_title.dart';
 import 'package:avto_baraka/widgets/announcement/step_navigation.dart';
@@ -69,6 +70,8 @@ class AnnouncementState extends State<Announcement> {
   List<CarCategoryModels> categoryList = [];
   List<CarBrandsModels> carBrandList = [];
   List<CarModels> carModelList = [];
+  List<CarBodyModels> carBodyList = [];
+  List<CarTransmissionModels> carTransmissionList = [];
   bool isComplate = false;
   int currentStep = 0;
 
@@ -94,7 +97,7 @@ class AnnouncementState extends State<Announcement> {
   final _mileageValue = TextEditingController();
   final _descriptionValue = TextEditingController();
   final _mapData = TextEditingController();
-  final MultiSelectController _typeOfFuelValue = MultiSelectController();
+  final _typeOfFuelValue = TextEditingController();
   // step radio group
   int regionGroupValue = -1;
   int districtsGroupValue = -1;
@@ -115,6 +118,7 @@ class AnnouncementState extends State<Announcement> {
     _mileageValue.dispose();
     _descriptionValue.dispose();
     _mapData.dispose();
+    _typeOfFuelValue.dispose();
     super.dispose();
   }
 
@@ -181,9 +185,9 @@ class AnnouncementState extends State<Announcement> {
     fontWeight: FontWeight.w700,
     color: iconSelectedColor,
   );
-  TextStyle formLabelTextStyle = TextStyle(
-      color: iconSelectedColor, fontSize: 14.0, fontWeight: FontWeight.w600);
-
+  // TextStyle formLabelTextStyle = TextStyle(
+  //     color: iconSelectedColor, fontSize: 14.0, fontWeight: FontWeight.w600);
+  TextStyle fonmDataTextStyle = const TextStyle(fontSize: 12.0);
   @override
   Widget build(BuildContext context) {
     RoundedRectangleBorder shape = const RoundedRectangleBorder(
@@ -195,7 +199,9 @@ class AnnouncementState extends State<Announcement> {
     EdgeInsets contentPadding = const EdgeInsets.fromLTRB(20.0, 0, 3.0, 0);
     return Scaffold(
       appBar: AppBar(
-        title: Text(!isComplate ? "E’lon joylash" : "Bosh sahifa"),
+        title: Text(
+          !isComplate ? S.of(context).elonJoylash : S.of(context).boshSahifa,
+        ),
       ),
       body: isComplate
           ? fomBuildComplate(onBackForm)
@@ -227,10 +233,6 @@ class AnnouncementState extends State<Announcement> {
 
   List<Step> getSteps(BuildContext context,
       [RoundedRectangleBorder? shape, EdgeInsets? contentPadding]) {
-    // var size = MediaQuery.of(context).size;
-    // final double itemHeight = (size.height - kToolbarHeight - 24) / 2;
-    // final double itemWidth = size.width / 2;
-
     return [
       // Viloyatni tanlang
       Step(
@@ -642,7 +644,7 @@ class AnnouncementState extends State<Announcement> {
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     label: Text(
                       S.of(context).ishlabChiqarilganYili,
-                      style: formLabelTextStyle,
+                      // style: formLabelTextStyle,
                     ),
                     suffixIcon: GestureDetector(
                       child: const Icon(Icons.date_range),
@@ -669,69 +671,45 @@ class AnnouncementState extends State<Announcement> {
                   isExpanded: true,
                   borderRadius: const BorderRadius.all(Radius.circular(10.0)),
                   alignment: AlignmentDirectional.centerEnd,
-                  items: bodyType
+                  items: carBodyList
                       .map((e) => DropdownMenuItem(
-                            value: e["typeId"],
-                            child: Text(e['name']),
-                          ))
+                          value: e.id,
+                          child: Text(
+                            e.nameRu,
+                            style: fonmDataTextStyle,
+                          )))
                       .toList(),
                   onChanged: (value) {
                     _bodyType.text = value.toString();
                   },
-                  decoration: InputDecoration(
-                    focusedBorder: formInputBorder,
-                    enabledBorder: formInputBorder,
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    label: Text(
-                      S.of(context).kuzovTuri,
-                      style: formLabelTextStyle,
-                    ),
-                  ),
+                  decoration:
+                      announcementInputDecoration(S.of(context).kuzovTuri),
+                ),
+                // объём двигателя
+                TextFormField(
+                  decoration:
+                      announcementInputDecoration(S.of(context).dvigatelHajmi),
+                  keyboardType: TextInputType.number,
+                  controller: _engineValue,
                 ),
                 DropdownButtonFormField(
                   isExpanded: true,
                   borderRadius: const BorderRadius.all(Radius.circular(10.0)),
                   alignment: AlignmentDirectional.centerEnd,
-                  items: engine
+                  items: carTransmissionList
                       .map((e) => DropdownMenuItem(
-                            value: e["id"],
-                            child: Text(e['value']),
-                          ))
-                      .toList(),
-                  onChanged: (value) {
-                    _engineValue.text = value.toString();
-                  },
-                  decoration: InputDecoration(
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    enabledBorder: formInputBorder,
-                    focusedBorder: formInputBorder,
-                    label: Text(
-                      S.of(context).dvigatelHajmi,
-                      style: formLabelTextStyle,
-                    ),
-                  ),
-                ),
-                DropdownButtonFormField(
-                  isExpanded: true,
-                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                  alignment: AlignmentDirectional.centerEnd,
-                  items: transmission
-                      .map((e) => DropdownMenuItem(
-                            value: e["id"],
-                            child: Text(e['value']),
+                            value: e.id,
+                            child: Text(
+                              e.nameRu,
+                              style: fonmDataTextStyle,
+                            ),
                           ))
                       .toList(),
                   onChanged: (value) {
                     _transmissionValue.text = value.toString();
                   },
-                  decoration: InputDecoration(
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    enabledBorder: formInputBorder,
-                    focusedBorder: formInputBorder,
-                    label: Text(
-                      S.of(context).uzatishQutisi,
-                      style: formLabelTextStyle,
-                    ),
+                  decoration: announcementInputDecoration(
+                    S.of(context).uzatishQutisi,
                   ),
                 ),
                 DropdownButtonFormField(
@@ -741,20 +719,17 @@ class AnnouncementState extends State<Announcement> {
                   items: paintCondition
                       .map((e) => DropdownMenuItem(
                             value: e["id"],
-                            child: Text(e['value']),
+                            child: Text(
+                              e['value'],
+                              style: fonmDataTextStyle,
+                            ),
                           ))
                       .toList(),
                   onChanged: (value) {
                     _paintConditionValue.text = value.toString();
                   },
-                  decoration: InputDecoration(
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    enabledBorder: formInputBorder,
-                    focusedBorder: formInputBorder,
-                    label: Text(
-                      S.of(context).boyoqHolati,
-                      style: formLabelTextStyle,
-                    ),
+                  decoration: announcementInputDecoration(
+                    S.of(context).boyoqHolati,
                   ),
                 ),
                 DropdownButtonFormField(
@@ -764,79 +739,53 @@ class AnnouncementState extends State<Announcement> {
                   items: pullingSide
                       .map((e) => DropdownMenuItem(
                             value: e["id"],
-                            child: Text(e['value']),
+                            child: Text(
+                              e['value'],
+                              style: fonmDataTextStyle,
+                            ),
                           ))
                       .toList(),
                   onChanged: (value) {
                     _pullingSideValue.text = value.toString();
                   },
-                  decoration: InputDecoration(
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    enabledBorder: formInputBorder,
-                    focusedBorder: formInputBorder,
-                    label: Text(
-                      S.of(context).tortuvchiTomon,
-                      style: formLabelTextStyle,
-                    ),
+                  decoration: announcementInputDecoration(
+                    S.of(context).tortuvchiTomon,
                   ),
-                )
+                ),
               ],
             ),
             TextFormField(
               controller: _mileageValue,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                focusedBorder: formInputBorder,
-                enabledBorder: formInputBorder,
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                label: Text(
-                  S.of(context).yurganMasofasi,
-                  style: formLabelTextStyle,
-                ),
+              decoration: announcementInputDecoration(
+                S.of(context).yurganMasofasi,
               ),
             ),
-
             const SizedBox(
               height: 14.0,
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Text(
+
+            DropdownButtonFormField(
+              isExpanded: true,
+              borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+              alignment: AlignmentDirectional.centerEnd,
+              items: pullingSide
+                  .map((e) => DropdownMenuItem(
+                        value: e["id"],
+                        child: Text(
+                          e['value'],
+                          style: fonmDataTextStyle,
+                        ),
+                      ))
+                  .toList(),
+              onChanged: (value) {
+                _typeOfFuelValue.text = value.toString();
+              },
+              decoration: announcementInputDecoration(
                 S.of(context).yoqilgiTuri,
-                style: TextStyle(
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.w600,
-                    color: iconSelectedColor),
               ),
             ),
-            MultiSelectDropDown(
-              inputDecoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                border: Border.all(color: backgnColStepCard),
-              ),
-              maxItems: 2,
-              controller: _typeOfFuelValue,
-              hint: "",
-              onOptionSelected: (selectedOptions) {},
-              options: typeOfFuel.map((e) {
-                return ValueItem(label: e['value'], value: e['id']);
-              }).toList(),
-              selectionType: SelectionType.multi,
-              chipConfig: ChipConfig(
-                wrapType: WrapType.wrap,
-                backgroundColor: switchBackgrounColor,
-                labelColor: Colors.black,
-                radius: 10.0,
-                deleteIconColor: iconSelectedColor,
-              ),
-              selectedOptionIcon: Icon(
-                Icons.check_circle,
-                color: iconSelectedColor,
-              ),
-              selectedOptionTextColor: iconSelectedColor,
-              optionTextStyle: const TextStyle(fontSize: 14),
-              // selectedOptionIcon: const Icon(Icons.check_circle),
-            ),
+
             const SizedBox(
               height: 34.0,
             ),
@@ -845,37 +794,19 @@ class AnnouncementState extends State<Announcement> {
               maxLines: null,
               keyboardType: TextInputType.multiline,
               minLines: 3,
-              decoration: InputDecoration(
-                focusedBorder: formInputBorder,
-                enabledBorder: formInputBorder,
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                label: Text(
-                  S.of(context).qoshimchaMalumot,
-                  style: formLabelTextStyle,
-                ),
-              ),
+              decoration:
+                  announcementInputDecoration(S.of(context).qoshimchaMalumot),
             ),
             const SizedBox(
               height: 15.0,
             ),
-            // SizedBox(
-            //   width: MediaQuery.of(context).size.width,
-            //   child: Text(
-            //     S.of(context).xaritadaJoylashuvi,
-            //     style: TextStyle(
-            //         fontSize: 12.0,
-            //         fontWeight: FontWeight.w600,
-            //         color: iconSelectedColor),
-            //   ),
-            // ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: Text(
                     S.of(context).geolokatsiyaniYoqish,
-                    style: const TextStyle(fontSize: 10.0, color: Colors.red),
+                    style: TextStyle(fontSize: 10.0, color: colorRed),
                   ),
                 ),
                 OutlinedButton(
@@ -909,15 +840,8 @@ class AnnouncementState extends State<Announcement> {
                 Expanded(
                   child: TextFormField(
                     controller: _mapData,
-                    decoration: InputDecoration(
-                      focusedBorder: formInputBorder,
-                      enabledBorder: formInputBorder,
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                      label: Text(
-                        S.of(context).xaritadaJoylashuvi,
-                        style: formLabelTextStyle,
-                      ),
-                    ),
+                    decoration: announcementInputDecoration(
+                        S.of(context).xaritadaJoylashuvi),
                   ),
                 ),
                 const SizedBox(
@@ -937,10 +861,12 @@ class AnnouncementState extends State<Announcement> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
-                                  const Text(
-                                      'Доступ к гелокации запрещен, пожалуйста включите доступ к локации!!'),
+                                  Text(S
+                                      .of(context)
+                                      .geolokachiyadanFoydalanishCheklanganIltimosLokachiyaniYoking),
                                   ElevatedButton(
-                                    child: const Text('Открыть настройки'),
+                                    child:
+                                        Text(S.of(context).sozlamalarniOchish),
                                     onPressed: () =>
                                         AppSettings.openAppSettings(
                                             type: AppSettingsType.location),
@@ -963,8 +889,8 @@ class AnnouncementState extends State<Announcement> {
                     var goPoint = await showSimplePickerLocation(
                       context: context,
                       isDismissible: true,
-                      title: "Lokatsiyani tanlang",
-                      textConfirmPicker: "Tanlash",
+                      title: S.of(context).lokatsiyaniTanlang,
+                      textConfirmPicker: S.of(context).tanlash,
                       zoomOption: const ZoomOption(initZoom: 12.0),
                       initPosition: GeoPoint(latitude: lat, longitude: long),
                       radius: 15.0,
@@ -974,8 +900,8 @@ class AnnouncementState extends State<Announcement> {
                       Fluttertoast.showToast(
                         toastLength: Toast.LENGTH_LONG,
                         gravity: ToastGravity.SNACKBAR,
+                        msg: S.of(context).geopozitsiyaKabulKilindi,
                         // msg: 'Click to ${goPoint.toString()}',
-                        msg: 'Geopozitsiya kabul kilindi',
                       );
                       _getAddressFromCoordinates(
                           goPoint.latitude, goPoint.longitude);
@@ -999,7 +925,7 @@ class AnnouncementState extends State<Announcement> {
         content: SingleChildScrollView(
           child: Column(
             children: [
-              formStepsTitle("Rasmlarni yuklang", context),
+              formStepsTitle(S.of(context).rasmlarniYuklang, context),
               const SizedBox(
                 height: 23.0,
               ),
@@ -1032,7 +958,7 @@ class AnnouncementState extends State<Announcement> {
                             ),
                           ),
                           TextSpan(
-                            text: "Gallereyadan tanlash",
+                            text: S.of(context).gallereyadanTanlash,
                             style: TextStyle(color: elevatedButtonTextColor),
                           ),
                         ],
@@ -1045,17 +971,17 @@ class AnnouncementState extends State<Announcement> {
                     onPressed: () {
                       dataCamera();
                     },
-                    child: const Text.rich(
+                    child: Text.rich(
                       TextSpan(
                         children: [
-                          WidgetSpan(
+                          const WidgetSpan(
                             child: Padding(
                               padding: EdgeInsets.only(right: 8.0),
                               child: Icon(FontAwesomeIcons.camera, size: 14.0),
                             ),
                           ),
                           TextSpan(
-                            text: "Rasimga olish",
+                            text: S.of(context).rasimgaOlish,
                           ),
                         ],
                       ),
@@ -1290,11 +1216,13 @@ class AnnouncementState extends State<Announcement> {
     }
   }
 
-// ::::::::::ПОЛУЧЕНИЕ ДАННЫХ ИЗ API :::::::::::::::::::
+// ::::::::::ПОЛУЧЕНИЕ ДАННЫХ ИЗ :::::::::::::::::::
   Future<void> loadRegion() async {
     region = await RegionService().getRegions();
     districts = await DistrictsService().getDistricts();
     categoryList = await CarService().carCategoryLoad();
+    carBodyList = await CarService().getCarBody();
+    carTransmissionList = await CarService().getCarTransmision();
     setState(() {});
   }
 }

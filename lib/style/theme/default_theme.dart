@@ -1,0 +1,90 @@
+import 'package:avto_baraka/style/colors.dart';
+import 'package:flutter/material.dart';
+
+ThemeData defaultTheme() {
+  return ThemeData(
+    scaffoldBackgroundColor: Colors.white,
+    // /brightness: Brightness.light,
+    // primaryColor: Colors.red,
+    fontFamily: "Roboto",
+    appBarTheme: const AppBarTheme(
+      color: Colors.white,
+      titleTextStyle: TextStyle(
+          color: Colors.black,
+          fontSize: 15.0,
+          fontWeight: FontWeight.w600,
+          fontFamily: "Roboto"),
+    ),
+    tabBarTheme: const TabBarTheme(
+      // верхняя часть app bara
+      overlayColor: MaterialStatePropertyAll(Colors.white),
+      dividerHeight: 0.0,
+      labelStyle: TextStyle(
+        fontFamily: "Roboto",
+        fontSize: 14.0,
+        fontWeight: FontWeight.w700,
+      ),
+      labelColor: Colors.white,
+    ),
+    cardTheme: CardTheme(
+      // shape: Border.all(width: 1.0, color: const Color.fromARGB(255, 214, 214, 214), )
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(7.0),
+        side: const BorderSide(
+          color: Color.fromARGB(255, 214, 214, 214), // Цвет границы
+          width: 0.5, // Ширина границы
+        ),
+      ),
+      elevation: 0,
+      // shadowColor: Colors.black,
+      color: backgrounColorWhite,
+      surfaceTintColor: backgrounColorWhite,
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      errorStyle: const TextStyle(fontSize: 10.0),
+      hintStyle: const TextStyle(fontSize: 12.0),
+      labelStyle: TextStyle(
+          color: iconSelectedColor,
+          fontSize: 14.0,
+          fontWeight: FontWeight.w600),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: Colors.white,
+      unselectedLabelStyle: const TextStyle(fontSize: 10.0),
+      unselectedItemColor: unselectedItemColor,
+      selectedLabelStyle: const TextStyle(fontSize: 10.0),
+      selectedItemColor: iconSelectedColor,
+    ),
+    dropdownMenuTheme:
+        const DropdownMenuThemeData(textStyle: TextStyle(fontSize: 12.0)),
+    textTheme: TextTheme(
+      displayLarge:
+          const TextStyle(fontSize: 13.0, fontWeight: FontWeight.w600),
+      displayMedium: const TextStyle(
+        fontSize: 12.0,
+        color: Colors.white,
+      ),
+      displaySmall: const TextStyle(
+        fontSize: 12.0,
+        color: Colors.white,
+        fontWeight: FontWeight.w700,
+      ),
+      // BODY
+      bodyLarge: TextStyle(
+        fontSize: 14.0,
+        color: iconSelectedColor,
+        fontWeight: FontWeight.w700,
+      ),
+      bodyMedium: TextStyle(
+        fontSize: 13.0,
+        color: Colors.black.withOpacity(0.5),
+        fontWeight: FontWeight.w500,
+      ),
+      bodySmall: const TextStyle(
+        fontSize: 10.0,
+        color: Colors.black,
+        fontWeight: FontWeight.w700,
+      ),
+    ),
+  );
+}

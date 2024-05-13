@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "avvalViloyatniTanlang":
             MessageLookupByLibrary.simpleMessage("Avval viloyatni tanlang "),
         "bekorQilingan": MessageLookupByLibrary.simpleMessage("Bekor qilingan"),
+        "boshSahifa": MessageLookupByLibrary.simpleMessage("Bosh sahifa"),
         "boshlangichTolov":
             MessageLookupByLibrary.simpleMessage("Boshlang`ich to`lov"),
         "boshlangichTulovniKiriting": MessageLookupByLibrary.simpleMessage(
@@ -39,13 +40,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "brendniTanlang":
             MessageLookupByLibrary.simpleMessage("Brendni tanlang"),
         "dvigatelHajmi": MessageLookupByLibrary.simpleMessage("Dvigatel hajmi"),
+        "elonJoylash": MessageLookupByLibrary.simpleMessage("E’lon joylash"),
         "elonlar": MessageLookupByLibrary.simpleMessage("E’lonlar"),
         "engYaxshiTakliflar":
             MessageLookupByLibrary.simpleMessage("ENG YAXSHI TAKLIFLAR"),
         "foydalanishShartlari":
             MessageLookupByLibrary.simpleMessage("Foydalanish shartlari"),
+        "gallereyadanTanlash":
+            MessageLookupByLibrary.simpleMessage("Gallereyadan tanlash"),
+        "geolokachiyadanFoydalanishCheklanganIltimosLokachiyaniYoking":
+            MessageLookupByLibrary.simpleMessage(
+                "Geolokachiyadan foydalanish cheklangan, iltimos lokachiyani yoking"),
         "geolokatsiyaniYoqish": MessageLookupByLibrary.simpleMessage(
             "Uskunadan Geolokatsiyani yoqish va foydalanishga ruxsat berish kerak bo’ladi"),
+        "geopozitsiyaKabulKilindi":
+            MessageLookupByLibrary.simpleMessage("Geopozitsiya kabul kilindi"),
         "ilovaHaqida": MessageLookupByLibrary.simpleMessage("Ilova haqida"),
         "iltimosInternetAloqaniYoqing": MessageLookupByLibrary.simpleMessage(
             "Iltimos internet aloqani yoqing"),
@@ -65,6 +74,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "kriditSummasiniKriting":
             MessageLookupByLibrary.simpleMessage("Kridit summasini kriting"),
         "kuzovTuri": MessageLookupByLibrary.simpleMessage("Kuzov turi"),
+        "lokatsiyaniTanlang":
+            MessageLookupByLibrary.simpleMessage("Lokatsiyani tanlang"),
         "markaniTanlang":
             MessageLookupByLibrary.simpleMessage("Markani tanlang"),
         "maxfiylikSiyosati":
@@ -79,15 +90,22 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Qidiruv so’zlari"),
         "qoshimchaMalumot":
             MessageLookupByLibrary.simpleMessage("Qo`shimcha malumot"),
+        "rasimgaOlish": MessageLookupByLibrary.simpleMessage("Rasimga olish"),
+        "rasmlarniYuklang":
+            MessageLookupByLibrary.simpleMessage("Rasmlarni yuklang"),
+        "saqlash": MessageLookupByLibrary.simpleMessage("Saqlash"),
         "smsKodniKiriting":
             MessageLookupByLibrary.simpleMessage("SMS kodni kiriting"),
         "sozlamalar": MessageLookupByLibrary.simpleMessage("Sozlamalar"),
         "sozlamalarniOchisgh":
             MessageLookupByLibrary.simpleMessage("Sozlamalarni ochisgh"),
+        "sozlamalarniOchish":
+            MessageLookupByLibrary.simpleMessage("Sozlamalarni ochish"),
         "suhbatlar": MessageLookupByLibrary.simpleMessage("Suhbatlar"),
         "tanlanganElonlar":
             MessageLookupByLibrary.simpleMessage("Tanlangan E’lonlar"),
         "tanlanganlar": MessageLookupByLibrary.simpleMessage("Tanlanganlar"),
+        "tanlash": MessageLookupByLibrary.simpleMessage("Tanlash"),
         "tarifniTanlang":
             MessageLookupByLibrary.simpleMessage("Tarifni tanlang"),
         "tasdiqlangan": MessageLookupByLibrary.simpleMessage("Tasdiqlangan"),
