@@ -1,11 +1,9 @@
-import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 
-import 'package:app_settings/app_settings.dart';
 import 'package:avto_baraka/api/models/car_body_models.dart';
 import 'package:avto_baraka/api/models/car_brand.models.dart';
 import 'package:avto_baraka/api/models/car_category_models.dart';
+import 'package:avto_baraka/api/models/car_fuels_models.dart';
 import 'package:avto_baraka/api/models/car_models.dart';
 import 'package:avto_baraka/api/models/car_transmission_models.dart';
 import 'package:avto_baraka/api/models/districs_model.dart';
@@ -19,17 +17,11 @@ import 'package:avto_baraka/state/main_state_controller.dart';
 import 'package:avto_baraka/style/announcement_input_decoration.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevate_btn_cam_gall.dart';
-import 'package:avto_baraka/style/elevation_button_map.dart';
 import 'package:avto_baraka/style/location_button.dart';
 import 'package:avto_baraka/style/outline_input_border.dart';
 import 'package:avto_baraka/utill/ad_rates.dart';
-// import 'package:avto_baraka/utill/auto_name.dart';
-// import 'package:avto_baraka/utill/body_type.dart';
-// import 'package:avto_baraka/utill/car_brand.dart';
 import 'package:avto_baraka/utill/paint_condition.dart';
 import 'package:avto_baraka/utill/pulling_side.dart';
-// import 'package:avto_baraka/utill/type_of_fuel.dart';
-// import 'package:avto_baraka/utill/type_of_transport.dart';
 import 'package:avto_baraka/widgets/announcement/form_build_complate.dart';
 import 'package:avto_baraka/widgets/announcement/form_step_title.dart';
 import 'package:avto_baraka/widgets/announcement/step_navigation.dart';
@@ -39,15 +31,15 @@ import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:multi_dropdown/multiselect_dropdown.dart';
+import 'package:flutter_map/flutter_map.dart' as flutter_map;
+import 'package:latlong2/latlong.dart';
 
 class Announcement extends StatefulWidget {
   const Announcement({Key? key}) : super(key: key);
@@ -60,8 +52,7 @@ class AnnouncementState extends State<Announcement> {
 //
 
 //
-  late double lat;
-  late double long;
+
   var controller = Get.put(MainStateControllee());
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   DateTime date = DateTime.now();
@@ -72,6 +63,7 @@ class AnnouncementState extends State<Announcement> {
   List<CarModels> carModelList = [];
   List<CarBodyModels> carBodyList = [];
   List<CarTransmissionModels> carTransmissionList = [];
+  List<CarFuelsModels> carFuelsList = [];
   bool isComplate = false;
   int currentStep = 0;
 
@@ -85,6 +77,7 @@ class AnnouncementState extends State<Announcement> {
 // ::::::::::::::::::::::GALLERY IMAGE PICKER::::::::::::::::::::::::::::
   final ImagePicker imagePicker = ImagePicker();
   late List<XFile> imageFileList = [];
+
 // ::::::::::::::::::::::GALLERY IMAGE PICKER::::::::::::::::::::::::::::
 
   // form item value
@@ -98,15 +91,14 @@ class AnnouncementState extends State<Announcement> {
   final _descriptionValue = TextEditingController();
   final _mapData = TextEditingController();
   final _typeOfFuelValue = TextEditingController();
+  final _carPosition = TextEditingController();
+
   // step radio group
   int regionGroupValue = -1;
   int districtsGroupValue = -1;
   int carTypeGroupValue = -1;
   int carBrandGroupValue = -1;
   int carNameGroupValue = -1;
-  int carPositionNameGroupValue = -1;
-
-  List<String> selected = [];
 
   @override
   void dispose() {
@@ -119,9 +111,15 @@ class AnnouncementState extends State<Announcement> {
     _descriptionValue.dispose();
     _mapData.dispose();
     _typeOfFuelValue.dispose();
+    _carPosition.dispose();
     super.dispose();
   }
 
+// location
+  double lat = 0;
+  double long = 0;
+  final flutter_map.MapController _mapController = flutter_map.MapController();
+  LatLng _currentPosition = LatLng(0, 0);
   Position? _currentLocation;
   bool servicePosition = false;
   late LocationPermission permission;
@@ -141,6 +139,11 @@ class AnnouncementState extends State<Announcement> {
     Geolocator.getCurrentPosition().then((value) {
       lat = value.latitude;
       long = value.longitude;
+
+      setState(() {
+        _currentPosition = LatLng(value.latitude, value.longitude);
+        _mapController.move(_currentPosition, 16.0);
+      });
     });
     _getAddressFromCoordinates();
   }
@@ -185,8 +188,6 @@ class AnnouncementState extends State<Announcement> {
     fontWeight: FontWeight.w700,
     color: iconSelectedColor,
   );
-  // TextStyle formLabelTextStyle = TextStyle(
-  //     color: iconSelectedColor, fontSize: 14.0, fontWeight: FontWeight.w600);
   TextStyle fonmDataTextStyle = const TextStyle(fontSize: 12.0);
   @override
   Widget build(BuildContext context) {
@@ -569,55 +570,7 @@ class AnnouncementState extends State<Announcement> {
           ],
         ),
       ),
-      // Versiyasini tanlang
-      // Step(
-      //   isActive: currentStep >= 5,
-      //   title: const Text(""),
-      //   content: Column(
-      //     mainAxisSize: MainAxisSize.min,
-      //     children: [
-      //       formStepsTitle(S.of(context).versiyasiniTanlang, context),
-      //       Flexible(
-      //         child: ListView.builder(
-      //           scrollDirection: Axis.vertical,
-      //           shrinkWrap: true,
-      //           physics: const ScrollPhysics(),
-      //           itemCount: autoPosition.length,
-      //           itemBuilder: (context, index) {
-      //             final names = autoPosition[index];
-      //             return Card(
-      //               shape: shape,
-      //               elevation: 0,
-      //               color: backgnColStepCard,
-      //               child: RadioListTile(
-      //                 shape: shape,
-      //                 tileColor: carPositionNameGroupValue == names['id']
-      //                     ? splashColor
-      //                     : null,
-      //                 contentPadding: contentPadding,
-      //                 controlAffinity: ListTileControlAffinity.trailing,
-      //                 title: Text(
-      //                   names['name'],
-      //                   style: const TextStyle(
-      //                       fontSize: 14.0, fontWeight: FontWeight.w600),
-      //                 ),
-      //                 value: names["id"],
-      //                 groupValue: carPositionNameGroupValue,
-      //                 onChanged: (value) {
-      //                   setState(() {
-      //                     carPositionNameGroupValue = value!;
-      //                     debugPrint('$value');
-      //                   });
-      //                 },
-      //               ),
-      //             );
-      //           },
-      //         ),
-      //       )
-      //     ],
-      //   ),
-      // ),
-      // form item
+
       Step(
         isActive: currentStep >= 5,
         title: const Text(""),
@@ -752,6 +705,34 @@ class AnnouncementState extends State<Announcement> {
                     S.of(context).tortuvchiTomon,
                   ),
                 ),
+
+                DropdownButtonFormField(
+                  isExpanded: true,
+                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                  alignment: AlignmentDirectional.centerEnd,
+                  items: carFuelsList
+                      .map((e) => DropdownMenuItem(
+                            value: e.id,
+                            child: Text(
+                              e.nameRu,
+                              style: fonmDataTextStyle,
+                            ),
+                          ))
+                      .toList(),
+                  onChanged: (value) {
+                    _typeOfFuelValue.text = value.toString();
+                  },
+                  decoration: announcementInputDecoration(
+                    S.of(context).yoqilgiTuri,
+                  ),
+                ),
+                TextFormField(
+                  controller: _carPosition,
+                  keyboardType: TextInputType.number,
+                  decoration: announcementInputDecoration(
+                    S.of(context).versiyasiniTanlang,
+                  ),
+                ),
               ],
             ),
             TextFormField(
@@ -765,30 +746,6 @@ class AnnouncementState extends State<Announcement> {
               height: 14.0,
             ),
 
-            DropdownButtonFormField(
-              isExpanded: true,
-              borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-              alignment: AlignmentDirectional.centerEnd,
-              items: pullingSide
-                  .map((e) => DropdownMenuItem(
-                        value: e["id"],
-                        child: Text(
-                          e['value'],
-                          style: fonmDataTextStyle,
-                        ),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                _typeOfFuelValue.text = value.toString();
-              },
-              decoration: announcementInputDecoration(
-                S.of(context).yoqilgiTuri,
-              ),
-            ),
-
-            const SizedBox(
-              height: 34.0,
-            ),
             TextFormField(
               controller: _descriptionValue,
               maxLines: null,
@@ -799,6 +756,10 @@ class AnnouncementState extends State<Announcement> {
             ),
             const SizedBox(
               height: 15.0,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Text(S.of(context).xaritadaJoylashuvi),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -820,7 +781,6 @@ class AnnouncementState extends State<Announcement> {
                     children: [
                       Text(
                         S.of(context).avtomatikTanlash,
-                        // style: TextStyle(fontSize: 16.0, color: Colors.red),
                       ),
                       const Icon(
                         Icons.location_pin,
@@ -835,85 +795,72 @@ class AnnouncementState extends State<Announcement> {
             const SizedBox(
               height: 10.0,
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    controller: _mapData,
-                    decoration: announcementInputDecoration(
-                        S.of(context).xaritadaJoylashuvi),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10.0,
-                ),
-                ElevatedButton(
-                  style: elevatedButtonMap,
-                  onPressed: () async {
-                    if (permission == LocationPermission.deniedForever) {
-                      showModalBottomSheet<void>(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return SizedBox(
-                            height: 200,
-                            child: Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  Text(S
-                                      .of(context)
-                                      .geolokachiyadanFoydalanishCheklanganIltimosLokachiyaniYoking),
-                                  ElevatedButton(
-                                    child:
-                                        Text(S.of(context).sozlamalarniOchish),
-                                    onPressed: () =>
-                                        AppSettings.openAppSettings(
-                                            type: AppSettingsType.location),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                      // Fluttertoast.showToast(
-                      //   toastLength: Toast.LENGTH_LONG,
-                      //   gravity: ToastGravity.SNACKBAR,
-                      //   // msg: 'Click to ${goPoint.toString()}',
-                      //   msg:
-                      //       'Разрешения на определение местоположения навсегда запрещены. Мы не можем запросить разрешения.',
-                      // );
-                      return;
-                    }
-                    var goPoint = await showSimplePickerLocation(
-                      context: context,
-                      isDismissible: true,
-                      title: S.of(context).lokatsiyaniTanlang,
-                      textConfirmPicker: S.of(context).tanlash,
-                      zoomOption: const ZoomOption(initZoom: 12.0),
-                      initPosition: GeoPoint(latitude: lat, longitude: long),
-                      radius: 15.0,
-                    );
 
-                    if (goPoint != null) {
-                      Fluttertoast.showToast(
-                        toastLength: Toast.LENGTH_LONG,
-                        gravity: ToastGravity.SNACKBAR,
-                        msg: S.of(context).geopozitsiyaKabulKilindi,
-                        // msg: 'Click to ${goPoint.toString()}',
-                      );
-                      _getAddressFromCoordinates(
-                          goPoint.latitude, goPoint.longitude);
-                    }
-                  },
-                  child: const Icon(
-                    Icons.location_pin,
-                    color: Colors.white,
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Text(_mapData.text),
+            ),
+            // WIDGETS MAP GEOLOCATION CHANGE
+            SizedBox(
+              height: 400.0,
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                        border:
+                            Border.all(width: 1.0, color: iconSelectedColor),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15.0),
+                        child: FlutterMap(
+                          mapController: _mapController,
+                          options: MapOptions(
+                            initialCenter: _currentPosition,
+                            initialZoom: 16.0,
+                            onMapReady: () {
+                              _mapController.mapEventStream
+                                  .listen((MapEvent event) {
+                                if (event is MapEventMoveEnd) {
+                                  setState(() {
+                                    _currentPosition =
+                                        _mapController.camera.center;
+                                  });
+                                }
+                              });
+                            },
+                          ),
+                          children: [
+                            TileLayer(
+                              urlTemplate:
+                                  'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                              userAgentPackageName: 'com.example.app',
+                            ),
+                            MarkerLayer(
+                              markers: [
+                                Marker(
+                                  width: 80.0,
+                                  height: 80.0,
+                                  point: _currentPosition,
+                                  child: Icon(
+                                    Icons.location_pin,
+                                    color: iconSelectedColor,
+                                    size: 46.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
-                )
-              ],
+                ],
+              ),
             )
+// ЖЖЖЖЖЖЖ
           ],
         ),
       ),
@@ -1041,7 +988,7 @@ class AnnouncementState extends State<Announcement> {
         ),
       ),
 
-      // Tarigf step
+      // Tarif step
       Step(
         isActive: currentStep >= 7,
         title: const Text(""),
@@ -1223,6 +1170,7 @@ class AnnouncementState extends State<Announcement> {
     categoryList = await CarService().carCategoryLoad();
     carBodyList = await CarService().getCarBody();
     carTransmissionList = await CarService().getCarTransmision();
+    carFuelsList = await CarService().getCarTypeFuels();
     setState(() {});
   }
 }

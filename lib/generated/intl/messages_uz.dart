@@ -122,7 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "valutaniTanlang":
             MessageLookupByLibrary.simpleMessage("Valutani tanlang"),
         "versiyasiniTanlang":
-            MessageLookupByLibrary.simpleMessage("Versiyasini tanlang"),
+            MessageLookupByLibrary.simpleMessage("Versiya yoki positsiya"),
         "viloyatniTanlang":
             MessageLookupByLibrary.simpleMessage("Viloyatni tanlang"),
         "xaritadaJoylashuvi":

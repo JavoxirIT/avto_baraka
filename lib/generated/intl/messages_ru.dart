@@ -42,7 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dvigatelHajmi":
             MessageLookupByLibrary.simpleMessage("Объем двигателя"),
         "elonJoylash":
-            MessageLookupByLibrary.simpleMessage("Размещение объявление"),
+            MessageLookupByLibrary.simpleMessage("Размещение объявления"),
         "elonlar": MessageLookupByLibrary.simpleMessage("Объявления"),
         "engYaxshiTakliflar":
             MessageLookupByLibrary.simpleMessage("ЛУЧШИЕ ПРЕДЛОЖЕНИЯ"),
@@ -124,11 +124,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "valutaniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите валюту"),
         "versiyasiniTanlang":
-            MessageLookupByLibrary.simpleMessage("Выберите версию"),
+            MessageLookupByLibrary.simpleMessage("Позиция или версия"),
         "viloyatniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите облость"),
         "xaritadaJoylashuvi":
-            MessageLookupByLibrary.simpleMessage("Местоположение на карте"),
+            MessageLookupByLibrary.simpleMessage("Местоположение"),
         "yoqilgiTuri": MessageLookupByLibrary.simpleMessage("Вид топлива"),
         "yuborish": MessageLookupByLibrary.simpleMessage("Отправить"),
         "yurganMasofasi":

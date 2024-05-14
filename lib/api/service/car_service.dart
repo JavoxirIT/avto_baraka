@@ -1,6 +1,7 @@
 import 'package:avto_baraka/api/models/car_body_models.dart';
 import 'package:avto_baraka/api/models/car_brand.models.dart';
 import 'package:avto_baraka/api/models/car_category_models.dart';
+import 'package:avto_baraka/api/models/car_fuels_models.dart';
 import 'package:avto_baraka/api/models/car_models.dart';
 import 'package:avto_baraka/api/models/car_transmission_models.dart';
 import 'package:avto_baraka/http/config.dart';
@@ -17,6 +18,7 @@ class CarService {
   List<CarModels> carModelList = [];
   List<CarBodyModels> carBodyList = [];
   List<CarTransmissionModels> carTransmissonList = [];
+  List<CarFuelsModels> carFuelsList = [];
 
   Future<String> getLocolToken() async {
     final prefs = await SharedPreferences.getInstance();
@@ -161,5 +163,32 @@ class CarService {
       debugPrint('Какая-то ошибка: $e');
     }
     return carTransmissonList;
+  }
+
+  Future<List<CarFuelsModels>> getCarTypeFuels() async {
+    carFuelsList.clear();
+
+    try {
+      final response = await _dio.post(
+        '${_url}fuels',
+        options: Options(
+          headers: {
+            'Authorization': await getLocolToken(),
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        for (var element in response.data) {
+          carFuelsList.add(CarFuelsModels.fromMap(element));
+        }
+      } else {
+        debugPrint(
+            'Ошибка при получения  вида топлива: ${response.statusCode}');
+      }
+    } catch (e) {
+      debugPrint('Ошибка Fuels....: $e');
+    }
+
+    return carFuelsList;
   }
 }
