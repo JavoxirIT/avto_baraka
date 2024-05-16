@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "abtomashinaYiliniKiriting":
+            MessageLookupByLibrary.simpleMessage("Abtomashina yilini kiriting"),
         "avtomatikTanlash":
             MessageLookupByLibrary.simpleMessage("Avtomatik tanlash"),
         "avvalBankniTanlang":
@@ -37,9 +39,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "boshlangichTulovniKiriting": MessageLookupByLibrary.simpleMessage(
             "Boshlang`ich tulovni kiriting"),
         "boyoqHolati": MessageLookupByLibrary.simpleMessage("Paint Condition"),
+        "boyoqHolatiniKiriting":
+            MessageLookupByLibrary.simpleMessage("Bo`yoq holatini kiriting"),
         "brendniTanlang":
             MessageLookupByLibrary.simpleMessage("Choose a Brand"),
         "dvigatelHajmi": MessageLookupByLibrary.simpleMessage("Motor size"),
+        "dvigatelHajminiKiriting":
+            MessageLookupByLibrary.simpleMessage("Dvigatel hajmini kiriting"),
         "elonJoylash": MessageLookupByLibrary.simpleMessage("E’lon joylash"),
         "elonlar": MessageLookupByLibrary.simpleMessage("E’lonlar"),
         "engYaxshiTakliflar":
@@ -73,7 +79,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "kreditSummasi": MessageLookupByLibrary.simpleMessage("Kredit summasi"),
         "kriditSummasiniKriting":
             MessageLookupByLibrary.simpleMessage("Kridit summasini kriting"),
+        "kriditgaBeriladimi":
+            MessageLookupByLibrary.simpleMessage("Kriditga beriladimi?"),
         "kuzovTuri": MessageLookupByLibrary.simpleMessage("Body type"),
+        "kuzovTurinitanlang":
+            MessageLookupByLibrary.simpleMessage("Kuzov turinitanlang"),
         "lokatsiyaniTanlang":
             MessageLookupByLibrary.simpleMessage("Lokatsiyani tanlang"),
         "markaniTanlang":
@@ -83,6 +93,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "maxsusSozlamalar":
             MessageLookupByLibrary.simpleMessage("Maxsus sozlamalar"),
         "meningHisobim": MessageLookupByLibrary.simpleMessage("Mening hisobim"),
+        "narxi": MessageLookupByLibrary.simpleMessage("Narxi"),
+        "narxiniKiriting":
+            MessageLookupByLibrary.simpleMessage("Narxini kiriting"),
         "notugriKod": MessageLookupByLibrary.simpleMessage("Notugri kod"),
         "oldinga": MessageLookupByLibrary.simpleMessage("Oldinga"),
         "orqaga": MessageLookupByLibrary.simpleMessage("Orqaga"),
@@ -114,12 +127,19 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select the type of equipment"),
         "til": MessageLookupByLibrary.simpleMessage("Til"),
         "tolovGrafigi": MessageLookupByLibrary.simpleMessage("To`lov Grafigi"),
+        "tortishTomoniniTanlang":
+            MessageLookupByLibrary.simpleMessage("Tortish tomonini tanlang"),
         "tortuvchiTomon": MessageLookupByLibrary.simpleMessage("Pulling side"),
         "tumanlar": MessageLookupByLibrary.simpleMessage("Regions"),
         "uzatishQutisi": MessageLookupByLibrary.simpleMessage("Transmission"),
+        "uzatishQutisiniTanlang":
+            MessageLookupByLibrary.simpleMessage("Uzatish qutisini tanlang"),
         "valuta": MessageLookupByLibrary.simpleMessage("Valuta"),
         "valutaniTanlang":
             MessageLookupByLibrary.simpleMessage("Valutani tanlang"),
+        "valyuta": MessageLookupByLibrary.simpleMessage("Valyuta"),
+        "valyutaniTanlang":
+            MessageLookupByLibrary.simpleMessage("Valyutani tanlang"),
         "versiyasiniTanlang":
             MessageLookupByLibrary.simpleMessage("Select the version"),
         "viloyatniTanlang":
@@ -127,7 +147,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "xaritadaJoylashuvi":
             MessageLookupByLibrary.simpleMessage("Location on the map"),
         "yoqilgiTuri": MessageLookupByLibrary.simpleMessage("Type of fuel"),
+        "yoqilgiTuriniTanlang":
+            MessageLookupByLibrary.simpleMessage("Yoqilg`i turini tanlang"),
         "yuborish": MessageLookupByLibrary.simpleMessage("Yuborish"),
+        "yurganMasofaniKiriting":
+            MessageLookupByLibrary.simpleMessage("Yurgan masofani kiriting"),
         "yurganMasofasi":
             MessageLookupByLibrary.simpleMessage("Distance traveled")
       };

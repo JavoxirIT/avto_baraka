@@ -1,7 +1,7 @@
 {
   "qoshimchaMalumot": "Дополнительная информация",
   "yoqilgiTuri": "Вид топлива",
-  "yurganMasofasi": "Пройденное расстояние",
+  "yurganMasofasi": "Пробег автомобиля",
   "tortuvchiTomon": "Ведущая стороно",
   "boyoqHolati": "Состояние краски",
   "uzatishQutisi": "Каробка передачи",
@@ -67,5 +67,18 @@
   "tanlash": "Выберите",
   "lokatsiyaniTanlang": "Выберите локацию",
   "sozlamalarniOchish": "Открыть настройки",
-  "geolokachiyadanFoydalanishCheklanganIltimosLokachiyaniYoking": "Доступ к гелокации запрещен, пожалуйста включите доступ к локации!!"
+  "geolokachiyadanFoydalanishCheklanganIltimosLokachiyaniYoking": "Доступ к гелокации запрещен, пожалуйста включите доступ к локации!!",
+  "kriditgaBeriladimi": "В кредит?",
+  "narxi": "Стоимость авто",
+  "valyuta": "Валюта",
+  "abtomashinaYiliniKiriting": "Введите год автомобиля",
+  "kuzovTurinitanlang": "Выберите вид кузова",
+  "dvigatelHajminiKiriting": "Введите объем двигателя",
+  "uzatishQutisiniTanlang": "Выберите коробку передачи",
+  "boyoqHolatiniKiriting": "Выберите состояние окраски",
+  "tortishTomoniniTanlang": "Выберите ведущую сторону",
+  "yoqilgiTuriniTanlang": "Выберите вид топлива",
+  "narxiniKiriting": "Введите стоимость авто",
+  "valyutaniTanlang": "Выберите валюту",
+  "yurganMasofaniKiriting": "Введите пробег автомобиля"
 }

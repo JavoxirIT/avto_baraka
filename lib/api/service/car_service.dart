@@ -3,35 +3,26 @@ import 'package:avto_baraka/api/models/car_brand.models.dart';
 import 'package:avto_baraka/api/models/car_category_models.dart';
 import 'package:avto_baraka/api/models/car_fuels_models.dart';
 import 'package:avto_baraka/api/models/car_models.dart';
+import 'package:avto_baraka/api/models/car_paint_condition_models.dart';
+import 'package:avto_baraka/api/models/car_pulling_side_models.dart';
 import 'package:avto_baraka/api/models/car_transmission_models.dart';
+import 'package:avto_baraka/api/service/token_service.dart';
 import 'package:avto_baraka/http/config.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 class CarService {
   final _dio = Config.dio;
   final _url = Config.dbMobile;
-  String key = 'access_token';
   List<CarCategoryModels> categoryList = [];
   List<CarBrandsModels> categoryBrandList = [];
   List<CarModels> carModelList = [];
   List<CarBodyModels> carBodyList = [];
   List<CarTransmissionModels> carTransmissonList = [];
   List<CarFuelsModels> carFuelsList = [];
-
-  Future<String> getLocolToken() async {
-    final prefs = await SharedPreferences.getInstance();
-    final saveData = prefs.getString(key) ?? '';
-
-    if (saveData.isEmpty) {
-      debugPrint('Токен не найден');
-      return "";
-    } else {
-      debugPrint('CarCategoryService ${saveData}');
-      return saveData;
-    }
-  }
+  List<CarPullingSideModels> carPullingSideList = [];
+  List<CarPaintConditionModel> carPaintConditionList = [];
 
   Future<List<CarCategoryModels>> carCategoryLoad() async {
     categoryList.clear();
@@ -40,7 +31,7 @@ class CarService {
         '${_url}ltypes',
         options: Options(
           headers: {
-            'Authorization': await getLocolToken(),
+            'Authorization': TokenService.service.token,
           },
         ),
       );
@@ -56,9 +47,7 @@ class CarService {
     }
     return categoryList;
   }
-
-  // card brands
-
+  
   Future<List<CarBrandsModels>> getBrands(int id) async {
     categoryBrandList.clear();
     try {
@@ -66,7 +55,7 @@ class CarService {
         '${_url}brand/$id',
         options: Options(
           headers: {
-            'Authorization': await getLocolToken(),
+            'Authorization': TokenService.service.token,
           },
         ),
       );
@@ -92,7 +81,7 @@ class CarService {
         '${_url}model/$carTypeId/$id',
         options: Options(
           headers: {
-            'Authorization': await getLocolToken(),
+            'Authorization': TokenService.service.token,
           },
         ),
       );
@@ -120,7 +109,7 @@ class CarService {
         '${_url}car-body',
         options: Options(
           headers: {
-            'Authorization': await getLocolToken(),
+            'Authorization': TokenService.service.token,
           },
         ),
       );
@@ -146,7 +135,7 @@ class CarService {
         '${_url}transmission',
         options: Options(
           headers: {
-            'Authorization': await getLocolToken(),
+            'Authorization': TokenService.service.token,
           },
         ),
       );
@@ -173,7 +162,7 @@ class CarService {
         '${_url}fuels',
         options: Options(
           headers: {
-            'Authorization': await getLocolToken(),
+            'Authorization': TokenService.service.token,
           },
         ),
       );
@@ -190,5 +179,55 @@ class CarService {
     }
 
     return carFuelsList;
+  }
+
+  Future<List<CarPullingSideModels>> getCarPullingSide() async {
+    carPullingSideList.clear();
+    try {
+      final response = await _dio.post(
+        '${_url}pulling',
+        options: Options(
+          headers: {
+            'Authorization': TokenService.service.token,
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        for (var element in response.data) {
+          carPullingSideList.add(CarPullingSideModels.fromMap(element));
+        }
+      } else {
+        debugPrint(
+            'Ошибка при получение состояние окраски: ${response.statusCode}');
+      }
+    } catch (e) {
+      debugPrint('Не предвиденная ошибка: $e');
+    }
+    return carPullingSideList;
+  }
+
+  Future<List<CarPaintConditionModel>> getCarPointCondition() async {
+    carPaintConditionList.clear();
+    try {
+      final response = await _dio.post(
+        '${_url}paint-condition',
+        options: Options(
+          headers: {
+            'Authorization': TokenService.service.token,
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        for (var element in response.data) {
+          carPaintConditionList.add(CarPaintConditionModel.fromMap(element));
+        }
+      } else {
+        debugPrint(
+            'Ошибка при получение состояние окраски: ${response.statusCode}');
+      }
+    } catch (e) {
+      debugPrint('Что-то не так, ошибка при получение состояния окраски: $e');
+    }
+    return carPaintConditionList;
   }
 }

@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "abtomashinaYiliniKiriting":
+            MessageLookupByLibrary.simpleMessage("Введите год автомобиля"),
         "avtomatikTanlash":
             MessageLookupByLibrary.simpleMessage("Текущая геопозиция"),
         "avvalBankniTanlang":
@@ -37,10 +39,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "boshlangichTulovniKiriting":
             MessageLookupByLibrary.simpleMessage("Введите сумму предоплаты"),
         "boyoqHolati": MessageLookupByLibrary.simpleMessage("Состояние краски"),
+        "boyoqHolatiniKiriting":
+            MessageLookupByLibrary.simpleMessage("Выберите состояние окраски"),
         "brendniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите бренд"),
         "dvigatelHajmi":
             MessageLookupByLibrary.simpleMessage("Объем двигателя"),
+        "dvigatelHajminiKiriting":
+            MessageLookupByLibrary.simpleMessage("Введите объем двигателя"),
         "elonJoylash":
             MessageLookupByLibrary.simpleMessage("Размещение объявления"),
         "elonlar": MessageLookupByLibrary.simpleMessage("Объявления"),
@@ -75,7 +81,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "kreditSummasi": MessageLookupByLibrary.simpleMessage("Сумма кредита"),
         "kriditSummasiniKriting":
             MessageLookupByLibrary.simpleMessage("Введите сумму кредита"),
+        "kriditgaBeriladimi": MessageLookupByLibrary.simpleMessage("В кредит?"),
         "kuzovTuri": MessageLookupByLibrary.simpleMessage("Вид кузова"),
+        "kuzovTurinitanlang":
+            MessageLookupByLibrary.simpleMessage("Выберите вид кузова"),
         "lokatsiyaniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите локацию"),
         "markaniTanlang":
@@ -85,6 +94,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "maxsusSozlamalar":
             MessageLookupByLibrary.simpleMessage("Пользовательские настройки"),
         "meningHisobim": MessageLookupByLibrary.simpleMessage("Мой счет"),
+        "narxi": MessageLookupByLibrary.simpleMessage("Стоимость авто"),
+        "narxiniKiriting":
+            MessageLookupByLibrary.simpleMessage("Введите стоимость авто"),
         "notugriKod": MessageLookupByLibrary.simpleMessage("Неверный код"),
         "oldinga": MessageLookupByLibrary.simpleMessage("Вперед"),
         "orqaga": MessageLookupByLibrary.simpleMessage("Назад"),
@@ -115,13 +127,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Выберите тип техники"),
         "til": MessageLookupByLibrary.simpleMessage("Язык"),
         "tolovGrafigi": MessageLookupByLibrary.simpleMessage("График оплаты"),
+        "tortishTomoniniTanlang":
+            MessageLookupByLibrary.simpleMessage("Выберите ведущую сторону"),
         "tortuvchiTomon":
             MessageLookupByLibrary.simpleMessage("Ведущая стороно"),
         "tumanlar": MessageLookupByLibrary.simpleMessage("Регионы"),
         "uzatishQutisi":
             MessageLookupByLibrary.simpleMessage("Каробка передачи"),
+        "uzatishQutisiniTanlang":
+            MessageLookupByLibrary.simpleMessage("Выберите коробку передачи"),
         "valuta": MessageLookupByLibrary.simpleMessage("Валюта"),
         "valutaniTanlang":
+            MessageLookupByLibrary.simpleMessage("Выберите валюту"),
+        "valyuta": MessageLookupByLibrary.simpleMessage("Валюта"),
+        "valyutaniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите валюту"),
         "versiyasiniTanlang":
             MessageLookupByLibrary.simpleMessage("Позиция или версия"),
@@ -130,8 +149,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "xaritadaJoylashuvi":
             MessageLookupByLibrary.simpleMessage("Местоположение"),
         "yoqilgiTuri": MessageLookupByLibrary.simpleMessage("Вид топлива"),
+        "yoqilgiTuriniTanlang":
+            MessageLookupByLibrary.simpleMessage("Выберите вид топлива"),
         "yuborish": MessageLookupByLibrary.simpleMessage("Отправить"),
+        "yurganMasofaniKiriting":
+            MessageLookupByLibrary.simpleMessage("Введите пробег автомобиля"),
         "yurganMasofasi":
-            MessageLookupByLibrary.simpleMessage("Пройденное расстояние")
+            MessageLookupByLibrary.simpleMessage("Пробег автомобиля")
       };
 }

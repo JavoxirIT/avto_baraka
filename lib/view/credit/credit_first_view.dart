@@ -3,7 +3,7 @@ import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevated_button.dart';
 import 'package:avto_baraka/utill/credit.dart';
-import 'package:avto_baraka/widgets/flutterShowToast.dart';
+import 'package:avto_baraka/widgets/flutter_show_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 

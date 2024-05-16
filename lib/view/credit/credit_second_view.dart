@@ -7,7 +7,7 @@ import 'package:avto_baraka/style/elevation_button_white.dart';
 import 'package:avto_baraka/style/outline_input_border.dart';
 import 'package:avto_baraka/utill/credit_term.dart';
 import 'package:avto_baraka/utill/validation/validation.dart';
-import 'package:avto_baraka/widgets/flutterShowToast.dart';
+import 'package:avto_baraka/widgets/flutter_show_toast.dart';
 import 'package:flutter/material.dart';
 
 class CreditSecondView extends StatefulWidget {

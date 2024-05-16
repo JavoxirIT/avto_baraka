@@ -739,6 +739,136 @@ class S {
       args: [],
     );
   }
+
+  /// `Kriditga beriladimi?`
+  String get kriditgaBeriladimi {
+    return Intl.message(
+      'Kriditga beriladimi?',
+      name: 'kriditgaBeriladimi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Narxi`
+  String get narxi {
+    return Intl.message(
+      'Narxi',
+      name: 'narxi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valyuta`
+  String get valyuta {
+    return Intl.message(
+      'Valyuta',
+      name: 'valyuta',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Abtomashina yilini kiriting`
+  String get abtomashinaYiliniKiriting {
+    return Intl.message(
+      'Abtomashina yilini kiriting',
+      name: 'abtomashinaYiliniKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kuzov turinitanlang`
+  String get kuzovTurinitanlang {
+    return Intl.message(
+      'Kuzov turinitanlang',
+      name: 'kuzovTurinitanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dvigatel hajmini kiriting`
+  String get dvigatelHajminiKiriting {
+    return Intl.message(
+      'Dvigatel hajmini kiriting',
+      name: 'dvigatelHajminiKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Uzatish qutisini tanlang`
+  String get uzatishQutisiniTanlang {
+    return Intl.message(
+      'Uzatish qutisini tanlang',
+      name: 'uzatishQutisiniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bo'yoq holatini kiriting`
+  String get boyoqHolatiniKiriting {
+    return Intl.message(
+      'Bo`yoq holatini kiriting',
+      name: 'boyoqHolatiniKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tortish tomonini tanlang`
+  String get tortishTomoniniTanlang {
+    return Intl.message(
+      'Tortish tomonini tanlang',
+      name: 'tortishTomoniniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yoqilg'i turini tanlang`
+  String get yoqilgiTuriniTanlang {
+    return Intl.message(
+      'Yoqilg`i turini tanlang',
+      name: 'yoqilgiTuriniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Narxini kiriting`
+  String get narxiniKiriting {
+    return Intl.message(
+      'Narxini kiriting',
+      name: 'narxiniKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valyutani tanlang`
+  String get valyutaniTanlang {
+    return Intl.message(
+      'Valyutani tanlang',
+      name: 'valyutaniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yurgan masofani kiriting`
+  String get yurganMasofaniKiriting {
+    return Intl.message(
+      'Yurgan masofani kiriting',
+      name: 'yurganMasofaniKiriting',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

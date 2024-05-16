@@ -42,7 +42,7 @@ ThemeData defaultTheme() {
     ),
     inputDecorationTheme: InputDecorationTheme(
       errorStyle: const TextStyle(fontSize: 10.0),
-      hintStyle: const TextStyle(fontSize: 12.0),
+      hintStyle: const TextStyle(fontSize: 12.0, color: Colors.black),
       labelStyle: TextStyle(
           color: iconSelectedColor,
           fontSize: 14.0,
@@ -58,6 +58,7 @@ ThemeData defaultTheme() {
     dropdownMenuTheme:
         const DropdownMenuThemeData(textStyle: TextStyle(fontSize: 12.0)),
     textTheme: TextTheme(
+      labelLarge: const TextStyle(fontSize: 17.0, fontWeight: FontWeight.w700, letterSpacing: 2.0),
       displayLarge:
           const TextStyle(fontSize: 13.0, fontWeight: FontWeight.w600),
       displayMedium: const TextStyle(
@@ -86,5 +87,21 @@ ThemeData defaultTheme() {
         fontWeight: FontWeight.w700,
       ),
     ),
+    bottomSheetTheme: const BottomSheetThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+            top: Radius.circular(20.0)), // Задаем скругление верхних углов
+      ),
+      backgroundColor: Colors.blueGrey, // Задаем цвет фона
+      elevation: 10, // Задаем тень
+      modalBackgroundColor: Color.fromARGB(
+          248, 255, 255, 255), // Задаем прозрачный цвет фона для анимации
+    ),
+    // snackBarTheme: SnackBarThemeData(
+    //   contentTextStyle: TextStyle(
+    //       backgroundColor: iconSelectedColor,
+    //       fontSize: 18.0,
+    //       fontWeight: FontWeight.w800),
+    // ),
   );
 }

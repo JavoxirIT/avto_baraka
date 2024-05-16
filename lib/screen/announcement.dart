@@ -5,12 +5,19 @@ import 'package:avto_baraka/api/models/car_brand.models.dart';
 import 'package:avto_baraka/api/models/car_category_models.dart';
 import 'package:avto_baraka/api/models/car_fuels_models.dart';
 import 'package:avto_baraka/api/models/car_models.dart';
+import 'package:avto_baraka/api/models/car_paint_condition_models.dart';
+import 'package:avto_baraka/api/models/car_pulling_side_models.dart';
 import 'package:avto_baraka/api/models/car_transmission_models.dart';
 import 'package:avto_baraka/api/models/districs_model.dart';
+import 'package:avto_baraka/api/models/listing_models.dart';
 import 'package:avto_baraka/api/models/region_models.dart';
+import 'package:avto_baraka/api/models/valyuta_model.dart';
 import 'package:avto_baraka/api/service/car_service.dart';
 import 'package:avto_baraka/api/service/districts_service.dart';
+import 'package:avto_baraka/api/service/listing_service.dart';
 import 'package:avto_baraka/api/service/region_service.dart';
+import 'package:avto_baraka/api/service/token_service.dart';
+import 'package:avto_baraka/api/service/valyuta_service.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/http/config.dart';
 import 'package:avto_baraka/state/main_state_controller.dart';
@@ -19,14 +26,13 @@ import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevate_btn_cam_gall.dart';
 import 'package:avto_baraka/style/location_button.dart';
 import 'package:avto_baraka/style/outline_input_border.dart';
-import 'package:avto_baraka/utill/ad_rates.dart';
-import 'package:avto_baraka/utill/paint_condition.dart';
-import 'package:avto_baraka/utill/pulling_side.dart';
+import 'package:avto_baraka/utill/validation/validation.dart';
 import 'package:avto_baraka/widgets/announcement/form_build_complate.dart';
 import 'package:avto_baraka/widgets/announcement/form_step_title.dart';
 import 'package:avto_baraka/widgets/announcement/step_navigation.dart';
 import 'package:avto_baraka/widgets/camera.dart';
-import 'package:avto_baraka/widgets/show_modal_date.dart';
+import 'package:avto_baraka/widgets/carousel/show_modal_bottom_sheat.dart';
+import 'package:avto_baraka/widgets/flutter_show_toast.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -37,7 +43,6 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter_map/flutter_map.dart' as flutter_map;
 import 'package:latlong2/latlong.dart';
 
@@ -49,10 +54,6 @@ class Announcement extends StatefulWidget {
 }
 
 class AnnouncementState extends State<Announcement> {
-//
-
-//
-
   var controller = Get.put(MainStateControllee());
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   DateTime date = DateTime.now();
@@ -64,9 +65,13 @@ class AnnouncementState extends State<Announcement> {
   List<CarBodyModels> carBodyList = [];
   List<CarTransmissionModels> carTransmissionList = [];
   List<CarFuelsModels> carFuelsList = [];
+  List<CarPullingSideModels> carPullingSideList = [];
+  List<CarPaintConditionModel> carPaintConditionList = [];
+  List<ValyutaModels> valyutaList = [];
   bool isComplate = false;
   int currentStep = 0;
 
+  String _mapData = "";
   //
   int? oncheckId;
 
@@ -79,9 +84,10 @@ class AnnouncementState extends State<Announcement> {
   late List<XFile> imageFileList = [];
 
 // ::::::::::::::::::::::GALLERY IMAGE PICKER::::::::::::::::::::::::::::
-
+  bool creditCheckBoxValue = false;
   // form item value
-  final _dateValue = TextEditingController();
+  int _credit = 0;
+  final _carYearValue = TextEditingController();
   final _bodyType = TextEditingController();
   final _engineValue = TextEditingController();
   final _transmissionValue = TextEditingController();
@@ -89,29 +95,31 @@ class AnnouncementState extends State<Announcement> {
   final _pullingSideValue = TextEditingController();
   final _mileageValue = TextEditingController();
   final _descriptionValue = TextEditingController();
-  final _mapData = TextEditingController();
   final _typeOfFuelValue = TextEditingController();
   final _carPosition = TextEditingController();
+  final _price = TextEditingController();
+  final _valyuta = TextEditingController();
 
   // step radio group
   int regionGroupValue = -1;
   int districtsGroupValue = -1;
   int carTypeGroupValue = -1;
   int carBrandGroupValue = -1;
-  int carNameGroupValue = -1;
+  int carModelGroupValue = -1;
 
   @override
   void dispose() {
-    _dateValue.dispose();
+    _carYearValue.dispose();
     _bodyType.dispose();
     _engineValue.dispose();
     _transmissionValue.dispose();
     _pullingSideValue.dispose();
     _mileageValue.dispose();
     _descriptionValue.dispose();
-    _mapData.dispose();
     _typeOfFuelValue.dispose();
     _carPosition.dispose();
+    _price.dispose();
+    _valyuta.dispose();
     super.dispose();
   }
 
@@ -119,7 +127,7 @@ class AnnouncementState extends State<Announcement> {
   double lat = 0;
   double long = 0;
   final flutter_map.MapController _mapController = flutter_map.MapController();
-  LatLng _currentPosition = LatLng(0, 0);
+  LatLng _currentPosition = const LatLng(0, 0);
   Position? _currentLocation;
   bool servicePosition = false;
   late LocationPermission permission;
@@ -143,6 +151,8 @@ class AnnouncementState extends State<Announcement> {
       setState(() {
         _currentPosition = LatLng(value.latitude, value.longitude);
         _mapController.move(_currentPosition, 16.0);
+        // print('latitude: ${_currentPosition.latitude}');
+        // print('longitude: ${_currentPosition.longitude}');
       });
     });
     _getAddressFromCoordinates();
@@ -162,8 +172,7 @@ class AnnouncementState extends State<Announcement> {
       }
       Placemark place = placemarks[0];
       setState(() {
-        _mapData.text = " ${place.locality}, ${place.thoroughfare}";
-        // print('_currentAddress: ${place}');
+        _mapData = " ${place.locality}, ${place.thoroughfare}";
       });
     } catch (e) {
       print('error: ${e}');
@@ -172,8 +181,9 @@ class AnnouncementState extends State<Announcement> {
 
   @override
   initState() {
-    loadRegion();
     super.initState();
+    TokenService.service.getLocolToken();
+    loadRegion();
   }
 
   onBackForm() {
@@ -529,7 +539,7 @@ class AnnouncementState extends State<Announcement> {
                             color: backgnColStepCard,
                             child: RadioListTile(
                               shape: shape,
-                              tileColor: carNameGroupValue == names.id
+                              tileColor: carModelGroupValue == names.id
                                   ? splashColor
                                   : null,
                               contentPadding: contentPadding,
@@ -554,10 +564,10 @@ class AnnouncementState extends State<Announcement> {
                                 ),
                               ]),
                               value: names.id,
-                              groupValue: carNameGroupValue,
+                              groupValue: carModelGroupValue,
                               onChanged: (value) {
                                 setState(() {
-                                  carNameGroupValue = value!;
+                                  carModelGroupValue = value!;
                                   debugPrint('$value');
                                 });
                               },
@@ -570,7 +580,7 @@ class AnnouncementState extends State<Announcement> {
           ],
         ),
       ),
-
+      // input and drowdown
       Step(
         isActive: currentStep >= 5,
         title: const Text(""),
@@ -581,16 +591,17 @@ class AnnouncementState extends State<Announcement> {
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                // childAspectRatio: (itemWidth / itemHeight),
                 childAspectRatio: 2,
                 crossAxisSpacing: 10.0,
                 mainAxisSpacing: 0,
-                // mainAxisExtent: ,
               ),
               children: [
+                // год автомобиля
                 TextFormField(
-                  controller: _dateValue,
+                  controller: _carYearValue,
                   keyboardType: TextInputType.number,
+                  validator: (value) =>
+                      validate(value, S.of(context).abtomashinaYiliniKiriting),
                   decoration: InputDecoration(
                     focusedBorder: formInputBorder,
                     enabledBorder: formInputBorder,
@@ -599,31 +610,34 @@ class AnnouncementState extends State<Announcement> {
                       S.of(context).ishlabChiqarilganYili,
                       // style: formLabelTextStyle,
                     ),
-                    suffixIcon: GestureDetector(
-                      child: const Icon(Icons.date_range),
-                      onTap: () {
-                        showCupModalPopup(
-                          CupertinoDatePicker(
-                            initialDateTime: date,
-                            mode: CupertinoDatePickerMode.date,
-                            onDateTimeChanged: (DateTime newDate) {
-                              setState(() {
-                                date = newDate;
-                                _dateValue.text =
-                                    DateFormat.yMd().format(newDate);
-                              });
-                            },
-                          ),
-                          context,
-                        );
-                      },
-                    ),
+                    // suffixIcon: GestureDetector(
+                    //   child: const Icon(Icons.date_range),
+                    //   onTap: () {
+                    //     showCupModalPopup(
+                    //       CupertinoDatePicker(
+                    //         initialDateTime: date,
+                    //         mode: CupertinoDatePickerMode.monthYear,
+                    //         onDateTimeChanged: (DateTime newDate) {
+                    //           setState(() {
+                    //             date = newDate;
+                    //             _dateValue.text =
+                    //                 DateFormat.yMd().format(newDate);
+                    //           });
+                    //         },
+                    //       ),
+                    //       context,
+                    //     );
+                    //   },
+                    // ),
                   ),
                 ),
+                // кузов
                 DropdownButtonFormField(
                   isExpanded: true,
                   borderRadius: const BorderRadius.all(Radius.circular(10.0)),
                   alignment: AlignmentDirectional.centerEnd,
+                  validator: (value) =>
+                      validate(value, S.of(context).kuzovTurinitanlang),
                   items: carBodyList
                       .map((e) => DropdownMenuItem(
                           value: e.id,
@@ -644,7 +658,10 @@ class AnnouncementState extends State<Announcement> {
                       announcementInputDecoration(S.of(context).dvigatelHajmi),
                   keyboardType: TextInputType.number,
                   controller: _engineValue,
+                  validator: (value) =>
+                      validate(value, S.of(context).dvigatelHajminiKiriting),
                 ),
+                // carTransmissionList
                 DropdownButtonFormField(
                   isExpanded: true,
                   borderRadius: const BorderRadius.all(Radius.circular(10.0)),
@@ -664,16 +681,19 @@ class AnnouncementState extends State<Announcement> {
                   decoration: announcementInputDecoration(
                     S.of(context).uzatishQutisi,
                   ),
+                  validator: (value) =>
+                      validate(value, S.of(context).uzatishQutisiniTanlang),
                 ),
+                // paintCondition
                 DropdownButtonFormField(
                   isExpanded: true,
                   borderRadius: const BorderRadius.all(Radius.circular(10.0)),
                   alignment: AlignmentDirectional.centerEnd,
-                  items: paintCondition
+                  items: carPaintConditionList
                       .map((e) => DropdownMenuItem(
-                            value: e["id"],
+                            value: e.id,
                             child: Text(
-                              e['value'],
+                              e.nameRu,
                               style: fonmDataTextStyle,
                             ),
                           ))
@@ -684,16 +704,19 @@ class AnnouncementState extends State<Announcement> {
                   decoration: announcementInputDecoration(
                     S.of(context).boyoqHolati,
                   ),
+                  validator: (value) =>
+                      validate(value, S.of(context).boyoqHolatiniKiriting),
                 ),
+                // pullingSide
                 DropdownButtonFormField(
                   isExpanded: true,
                   borderRadius: const BorderRadius.all(Radius.circular(10.0)),
                   alignment: AlignmentDirectional.centerEnd,
-                  items: pullingSide
+                  items: carPullingSideList
                       .map((e) => DropdownMenuItem(
-                            value: e["id"],
+                            value: e.id,
                             child: Text(
-                              e['value'],
+                              e.nameRu,
                               style: fonmDataTextStyle,
                             ),
                           ))
@@ -704,8 +727,10 @@ class AnnouncementState extends State<Announcement> {
                   decoration: announcementInputDecoration(
                     S.of(context).tortuvchiTomon,
                   ),
+                  validator: (value) =>
+                      validate(value, S.of(context).tortishTomoniniTanlang),
                 ),
-
+                // carFuelsList
                 DropdownButtonFormField(
                   isExpanded: true,
                   borderRadius: const BorderRadius.all(Radius.circular(10.0)),
@@ -725,27 +750,72 @@ class AnnouncementState extends State<Announcement> {
                   decoration: announcementInputDecoration(
                     S.of(context).yoqilgiTuri,
                   ),
+                  validator: (value) =>
+                      validate(value, S.of(context).yoqilgiTuriniTanlang),
                 ),
+                // _carPosition
                 TextFormField(
                   controller: _carPosition,
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.streetAddress,
                   decoration: announcementInputDecoration(
                     S.of(context).versiyasiniTanlang,
                   ),
+                  validator: (value) => validate(
+                    value,
+                    S.of(context).versiyasiniTanlang,
+                  ),
+                ),
+                //  NARXI
+                TextFormField(
+                  controller: _price,
+                  keyboardType: TextInputType.number,
+                  decoration: announcementInputDecoration(
+                    S.of(context).narxi,
+                  ),
+                  validator: (value) =>
+                      validate(value, S.of(context).narxiniKiriting),
+                ),
+                // VALYUTA
+                DropdownButtonFormField(
+                  isExpanded: true,
+                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                  alignment: AlignmentDirectional.centerEnd,
+                  items: valyutaList
+                      .map(
+                        (valyuta) => DropdownMenuItem(
+                          value: valyuta.id,
+                          child: Text(
+                            valyuta.nameru,
+                            style: fonmDataTextStyle,
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) {
+                    _valyuta.text = value.toString();
+                  },
+                  decoration: announcementInputDecoration(
+                    S.of(context).valyuta,
+                  ),
+                  validator: (value) =>
+                      validate(value, S.of(context).valyutaniTanlang),
                 ),
               ],
             ),
+            // ПРОБЕГ
             TextFormField(
               controller: _mileageValue,
               keyboardType: TextInputType.number,
               decoration: announcementInputDecoration(
                 S.of(context).yurganMasofasi,
               ),
+              validator: (value) =>
+                  validate(value, S.of(context).yurganMasofaniKiriting),
             ),
             const SizedBox(
               height: 14.0,
             ),
-
+            // Description
             TextFormField(
               controller: _descriptionValue,
               maxLines: null,
@@ -754,9 +824,30 @@ class AnnouncementState extends State<Announcement> {
               decoration:
                   announcementInputDecoration(S.of(context).qoshimchaMalumot),
             ),
-            const SizedBox(
-              height: 15.0,
+            //
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 80.0,
+              child: Row(
+                children: [
+                  Checkbox(
+                    value: creditCheckBoxValue,
+                    onChanged: (value) {
+                      setState(() {
+                        creditCheckBoxValue = value!;
+                        if (value) {
+                          _credit = 1;
+                        } else {
+                          _credit = 0;
+                        }
+                      });
+                    },
+                  ),
+                  Text(S.of(context).kriditgaBeriladimi),
+                ],
+              ),
             ),
+            // Karta
             SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Text(S.of(context).xaritadaJoylashuvi),
@@ -798,7 +889,7 @@ class AnnouncementState extends State<Announcement> {
 
             SizedBox(
               width: MediaQuery.of(context).size.width,
-              child: Text(_mapData.text),
+              child: Text(_mapData),
             ),
             // WIDGETS MAP GEOLOCATION CHANGE
             SizedBox(
@@ -820,6 +911,11 @@ class AnnouncementState extends State<Announcement> {
                           options: MapOptions(
                             initialCenter: _currentPosition,
                             initialZoom: 16.0,
+                            onTap: (tapPosition, point) => {
+                              setState(() {
+                                _currentPosition = point;
+                              })
+                            },
                             onMapReady: () {
                               _mapController.mapEventStream
                                   .listen((MapEvent event) {
@@ -860,7 +956,6 @@ class AnnouncementState extends State<Announcement> {
                 ],
               ),
             )
-// ЖЖЖЖЖЖЖ
           ],
         ),
       ),
@@ -989,92 +1084,6 @@ class AnnouncementState extends State<Announcement> {
       ),
 
       // Tarif step
-      Step(
-        isActive: currentStep >= 7,
-        title: const Text(""),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            formStepsTitle(S.of(context).tarifniTanlang, context),
-            Flexible(
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                physics: const ScrollPhysics(),
-                itemCount: adRates.length,
-                itemBuilder: (context, i) {
-                  final el = adRates[i];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 6.0),
-                    child: InkWell(
-                      onTap: () {
-                        setState(() {
-                          oncheckId = el['id'];
-                        });
-                      },
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(15.0),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: oncheckId == el['id']
-                              ? Colors.white
-                              : Color(int.parse(el['color'])),
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(15.0),
-                          ),
-                          border: oncheckId == el['id']
-                              ? Border.all(width: 2.0, color: colorRed)
-                              : null,
-                        ),
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  el['name'],
-                                  style: const TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 15.0, vertical: 3.0),
-                                  decoration: const BoxDecoration(
-                                    color: Color.fromARGB(255, 255, 255, 255),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(15.0),
-                                    ),
-                                  ),
-                                  child: Text(
-                                    '${el['pay']} s',
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w800,
-                                      fontSize: 18.0,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(el["topDay"]),
-                            Text(el["pullUp"]),
-                            Text(el["inRecommended"]),
-                            Text(el["shelfLife"]),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
     ];
   }
 
@@ -1134,9 +1143,11 @@ class AnnouncementState extends State<Announcement> {
 
 // ::::::::::::::::STEP SETTING::::::::::::::::::::::
 
-  void onStepTapped(step) => setState(() {
-        currentStep = step;
-      });
+  void onStepTapped(step) {
+    setState(() {
+      currentStep = step;
+    });
+  }
 
   void onStepCansel() {
     if (currentStep == 0) {
@@ -1150,11 +1161,36 @@ class AnnouncementState extends State<Announcement> {
   void onStepContinue() {
     final isLastSteps = currentStep == getSteps(context).length - 1;
 
+    if (currentStep == 5) {
+      if (formKey.currentState!.validate() &&
+          _currentPosition.latitude != 0 &&
+          _currentPosition.longitude != 0) {
+        setState(() {
+          currentStep += 1;
+        });
+      } else {
+        showModalBottom(
+          context,
+          "Iltimos ".toUpperCase(),
+          "xaritadan joylashuvni tanlang",
+        );
+        Future.delayed(const Duration(seconds: 2), () {
+          Navigator.of(context).pop();
+        });
+        // flutterShowToast("Iltimos xaritadan joylashuvni tanlanh");
+        return;
+      }
+    }
+
     if (isLastSteps) {
       setState(() {
         isComplate = true;
         // Navigator.of(context).pop(false);
       });
+      // OTPRAVKA DANNIX
+      if (formKey.currentState!.validate()) {
+        sendData();
+      }
     } else {
       currentStep += 1;
       setState(() {
@@ -1171,6 +1207,36 @@ class AnnouncementState extends State<Announcement> {
     carBodyList = await CarService().getCarBody();
     carTransmissionList = await CarService().getCarTransmision();
     carFuelsList = await CarService().getCarTypeFuels();
+    carPullingSideList = await CarService().getCarPullingSide();
+    carPaintConditionList = await CarService().getCarPointCondition();
+    valyutaList = await ValyutaService().getValyuta();
     setState(() {});
+  }
+
+  sendData() {
+    ListingService.servive.postAutoData(
+      {
+        "region_id": regionGroupValue,
+        "district_id": districtsGroupValue,
+        "car_type_id": carTypeGroupValue,
+        "car_brand_id": carBrandGroupValue,
+        "car_model_id": carModelGroupValue,
+        "body_type_id": _bodyType.text,
+        "year": _carYearValue.text,
+        "engine": _engineValue.text,
+        "transmission_id": _transmissionValue.text,
+        "pulling_side_id": _pullingSideValue.text,
+        "mileage": _mileageValue.text,
+        "description": _descriptionValue.text,
+        "type_of_fuel_id": _typeOfFuelValue.text,
+        "car_position": _carPosition.text,
+        "lat": _currentPosition.latitude,
+        "long": _currentPosition.longitude,
+        "price": _price.text,
+        "valyuta_id": _valyuta.text,
+        "credit": _credit
+      },
+      imageFileList,
+    );
   }
 }
