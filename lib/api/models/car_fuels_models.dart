@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 class CarFuelsModels {
   CarFuelsModels({
     required this.id,

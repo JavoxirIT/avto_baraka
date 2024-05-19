@@ -91,7 +91,7 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
 
   @override
   Widget build(BuildContext context) {
-    const double _size = 18.0;
+    const double size = 18.0;
     if (_connectionStatus.toString() == [ConnectivityResult.none].toString()) {
       return const CheckingInternetConnection(title: "Title");
     }
@@ -126,7 +126,7 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
         ),
       ),
       bottomNavigationBar:
-          bottomNavItem(_onItemTapped, _selectedIndex, _size, context),
+          bottomNavItem(_onItemTapped, _selectedIndex, size, context),
     );
   }
 }

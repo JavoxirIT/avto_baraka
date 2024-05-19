@@ -1,5 +1,5 @@
+// import 'package:flutter/cupertino.dart';
 import 'package:avto_baraka/generated/l10n.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CreditGraphicView extends StatefulWidget {
@@ -10,6 +10,7 @@ class CreditGraphicView extends StatefulWidget {
 }
 
 class CreditGraphicViewState extends State<CreditGraphicView> {
+  // ignore: prefer_typing_uninitialized_variables
   late final routeData;
 
   @override

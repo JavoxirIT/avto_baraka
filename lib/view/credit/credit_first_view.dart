@@ -5,7 +5,7 @@ import 'package:avto_baraka/style/elevated_button.dart';
 import 'package:avto_baraka/utill/credit.dart';
 import 'package:avto_baraka/widgets/flutter_show_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 
 class CreditFirstView extends StatefulWidget {
   const CreditFirstView({Key? key}) : super(key: key);

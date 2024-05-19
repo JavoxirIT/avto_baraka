@@ -1,3 +1,5 @@
+import 'package:avto_baraka/api/service/listing_service.dart';
+import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
 import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
 import 'package:avto_baraka/provider/token_provider/token_provider.dart';
 import 'package:avto_baraka/generated/l10n.dart';
@@ -8,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -25,7 +28,14 @@ void main() async {
         ChangeNotifierProvider(create: (_) => languageProvider),
         ChangeNotifierProvider(create: (_) => tokenProvider)
       ],
-      child: const MyApp(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<ListingBloc>(
+            create: (context) => ListingBloc(ListingService.ls),
+          ),
+        ],
+        child: const MyApp(),
+      ),
     ),
   );
 }
@@ -38,38 +48,32 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final bool isActivateKey = false;
-
   @override
-  Widget build(BuildContext context) => MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (context) => LocalProvider()),
-          ChangeNotifierProvider(create: (context) => TokenProvider())
-        ],
-        builder: (context, chil) {
-          final providerLanguage = Provider.of<LocalProvider>(context);
-          final tokenProvider = Provider.of<TokenProvider>(context);
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: S.delegate.supportedLocales,
-            locale: providerLanguage.locale,
-            // darkTheme: ThemeData(
-            //   brightness: Brightness.dark,
-            // ),
+  Widget build(context) {
+    final providerLanguage = Provider.of<LocalProvider>(context);
+    final tokenProvider = Provider.of<TokenProvider>(context);
+    BlocProvider.of<ListingBloc>(context).add(ListingEventLoad(
+        providerLanguage.locale.languageCode, tokenProvider.token));
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
+      locale: providerLanguage.locale,
+      // darkTheme: ThemeData(
+      //   brightness: Brightness.dark,
+      // ),
 
-            theme: defaultTheme(),
-            routes: routers,
-            // home: tokenProvider != ""
-            //     ? const BottomNavigationMenu()
-            //     : const IntroductionScreen(),
-            home: const LoadingView(),
-          );
-        },
-      );
+      theme: defaultTheme(),
+      routes: routers,
+      // home: tokenProvider != ""
+      //     ? const BottomNavigationMenu()
+      //     : const IntroductionScreen(),
+      home: const LoadingView(),
+    );
+  }
 }

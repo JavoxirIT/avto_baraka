@@ -114,21 +114,18 @@ class _MainPageState extends State<IntroductionScreen> {
                           ? ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 shape: const CircleBorder(),
-                                backgroundColor: _currentPosition == 3 &&
-                                        tokenProvider.token == ""
+                                backgroundColor: tokenProvider.token == null
                                     ? unselectedItemColor
                                     : iconSelectedColor,
                                 padding: const EdgeInsets.all(15.0),
                               ),
                               onPressed: () {
-                                if (tokenProvider.token == "") {
-                                  if (_currentPosition == 3) {
-                                    return;
-                                  }
+                                if (tokenProvider.token == null) {
+                                  return;
+                                } else {
+                                  Navigator.of(context).pushNamed(
+                                      RouteName.bottomNavigationHomeScreen);
                                 }
-
-                                Navigator.of(context).pushNamed(
-                                    RouteName.bottomNavigationHomeScreen);
                               },
                               child: const Icon(
                                 Icons.check,

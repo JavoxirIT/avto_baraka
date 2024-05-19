@@ -9,7 +9,6 @@ import 'package:material_symbols_icons/symbols.dart';
 ListView carCard(carList) {
   onOneCarView(context, item) {
     Navigator.of(context).pushNamed(RouteName.oneCarView, arguments: item);
-    print('data: click');
   }
 
   return ListView.builder(

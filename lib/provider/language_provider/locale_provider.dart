@@ -20,6 +20,7 @@ class LocalProvider extends ChangeNotifier {
       final prefs = await SharedPreferences.getInstance();
       final savedLangCode = prefs.getString('lang');
       if (savedLangCode != null) {
+        
         _local = Locale.fromSubtags(languageCode: savedLangCode);
       }
     } catch (e) {

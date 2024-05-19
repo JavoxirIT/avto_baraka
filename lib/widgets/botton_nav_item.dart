@@ -1,5 +1,4 @@
 import 'package:avto_baraka/generated/l10n.dart';
-import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/widgets/bottom_nav_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -15,7 +14,7 @@ BottomNavigationBar bottomNavItem(
       bottomNavigationBarItem(const Text(""), ""),
       bottomNavigationBarItem(
           Badge(
-            label: Text('2'),
+            label: const Text('2'),
             child: Icon(Icons.messenger_sharp, size: size),
           ),
           S.of(context).suhbatlar),

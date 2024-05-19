@@ -1,3 +1,4 @@
+import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevation_button_map.dart';
 import 'package:avto_baraka/utill/mack/bank_card_mack.dart';
@@ -53,14 +54,14 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(
+              Padding(
+                padding: const EdgeInsets.only(
                     top: 10.0, left: 35.0, right: 35.0, bottom: 50.0),
                 child: Center(
                   child: Text(
-                    "Tizimdan to’liq foydalanish uchun 12 500 so’m miqdorida to’lov qilishingiz lozim bo’ladi",
+                    S.of(context).kartaMalumotlariniKiriting,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18.0,
                       color: Color(0xFF008080),
                       fontWeight: FontWeight.w700,
@@ -136,14 +137,14 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
                   ),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               Container(
                 width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.only(bottom: 30.0),
+                padding: const EdgeInsets.only(bottom: 30.0),
                 child: OutlinedButton(
                   onPressed: () {},
-                  child: Text("Bajarish"),
                   style: elevatedButtonMap,
+                  child: Text(S.of(context).bajarish),
                 ),
               )
             ],

@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 
 ThemeData defaultTheme() {
   return ThemeData(
+    dialogBackgroundColor: Colors.white,
+    colorScheme: ColorScheme.light(primary: iconSelectedColor),
     scaffoldBackgroundColor: Colors.white,
     // /brightness: Brightness.light,
     // primaryColor: Colors.red,
+    dialogTheme: const DialogTheme(
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.transparent,
+    ),
     fontFamily: "Roboto",
     appBarTheme: const AppBarTheme(
       color: Colors.white,
@@ -15,6 +21,7 @@ ThemeData defaultTheme() {
           fontWeight: FontWeight.w600,
           fontFamily: "Roboto"),
     ),
+    
     tabBarTheme: const TabBarTheme(
       // верхняя часть app bara
       overlayColor: MaterialStatePropertyAll(Colors.white),
@@ -58,7 +65,8 @@ ThemeData defaultTheme() {
     dropdownMenuTheme:
         const DropdownMenuThemeData(textStyle: TextStyle(fontSize: 12.0)),
     textTheme: TextTheme(
-      labelLarge: const TextStyle(fontSize: 17.0, fontWeight: FontWeight.w700, letterSpacing: 2.0),
+      labelLarge: const TextStyle(
+          fontSize: 17.0, fontWeight: FontWeight.w700, letterSpacing: 2.0),
       displayLarge:
           const TextStyle(fontSize: 13.0, fontWeight: FontWeight.w600),
       displayMedium: const TextStyle(

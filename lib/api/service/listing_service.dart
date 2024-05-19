@@ -1,17 +1,23 @@
-import 'package:avto_baraka/api/models/listing_models.dart';
+import 'package:avto_baraka/api/models/listing_get_models.dart';
 import 'package:avto_baraka/api/service/token_service.dart';
 import 'package:avto_baraka/http/config.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 
 class ListingService {
+  static ListingService ls = ListingService();
+
+  List<ListingGetModals> listingDataList = [];
   List<MultipartFile> filePaths = [];
+
   static final ListingService servive = ListingService();
 
   final _dio = Config.dio;
   final _url = Config.dbMobile;
 
-  Future<void> postAutoData(Map<String, dynamic> listing, imageFile) async {
+  String statusText = "";
+
+  Future<String> postAutoData(Map<String, dynamic> listing, imageFile) async {
     filePaths.clear();
     try {
       FormData formData = FormData();
@@ -44,9 +50,37 @@ class ListingService {
         ),
         data: formData,
       );
-      debugPrint('add-listing: ${response.toString()}');
+      if (response.statusCode == 200) {
+        statusText = response.data['status'];
+      } else {
+        debugPrint('rsponse daq request: ${response.statusMessage}');
+      }
     } catch (e) {
-      debugPrint('Ошибка при отправки данных: $e');
+      debugPrint('Ошибка при отправки данных: ${e.toString()}');
     }
+    return statusText;
+  }
+
+  // GET LISTING
+  Future<List<ListingGetModals>> getDataListing(lang, token) async {
+    listingDataList.clear();
+    try {
+      final response = await _dio.post(
+        '${_url}get-listing/$lang',
+        options: Options(
+          headers: {'Authorization': token},
+        ),
+      );
+      if (response.statusCode == 200) {
+        for (var element in response.data) {
+          listingDataList.add(ListingGetModals.fromMap(element));
+        }
+      } else {
+        debugPrint('LISTING ERROR: ${response.statusCode}');
+      }
+    } catch (e) {
+      debugPrint('LISTING ERROR: $e');
+    }
+    return listingDataList;
   }
 }

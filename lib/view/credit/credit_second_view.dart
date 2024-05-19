@@ -22,6 +22,7 @@ class CreditSecondViewState extends State<CreditSecondView> {
   int termGroupValue = -1;
   List<TermModels> termList = [];
 
+  // ignore: prefer_typing_uninitialized_variables
   late final data;
 
   // ::::::::::::::::Form Item Data::::::::::::::

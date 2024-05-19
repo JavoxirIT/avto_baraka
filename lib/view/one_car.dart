@@ -345,7 +345,7 @@ class OneCarViewState extends State<OneCarView> {
     );
   }
 
-  bool get _isOnDesktopAndWeb {
+  bool get isOnDesktopAndWeb {
     if (kIsWeb) {
       return true;
     }

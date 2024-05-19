@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-showModalBottom(context, title, text) {
+showModalBottom(context, widgets) {
   return showModalBottomSheet(
     context: context,
     builder: (_) {
@@ -10,16 +10,7 @@ showModalBottom(context, title, text) {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              title,
-              style: Theme.of(context).textTheme.labelLarge,
-            ),
-            Text(
-              text,
-              style: Theme.of(context).textTheme.bodyLarge,
-            )
-          ],
+          children: widgets,
         ),
       );
     },

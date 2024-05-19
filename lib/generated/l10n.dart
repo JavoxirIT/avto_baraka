@@ -869,6 +869,116 @@ class S {
       args: [],
     );
   }
+
+  /// `Iltimos`
+  String get iltimos {
+    return Intl.message(
+      'Iltimos',
+      name: 'iltimos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `xaritadan joylashuvni tanlang`
+  String get xaritadanJoylashuvniTanlang {
+    return Intl.message(
+      'xaritadan joylashuvni tanlang',
+      name: 'xaritadanJoylashuvniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Elon saqlandi`
+  String get elonSaqlandi {
+    return Intl.message(
+      'Elon saqlandi',
+      name: 'elonSaqlandi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yangi e'lon qo'shish`
+  String get yangiElonQoshish {
+    return Intl.message(
+      'Yangi e`lon qo`shish',
+      name: 'yangiElonQoshish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tizimdan to’liq foydalanish uchun\n12 500 so’m \nmiqdorida to’lov qilishingiz lozim bo’ladi`
+  String get tizimdanTolFoy {
+    return Intl.message(
+      'Tizimdan to’liq foydalanish uchun\\n12 500 so’m \\nmiqdorida to’lov qilishingiz lozim bo’ladi',
+      name: 'tizimdanTolFoy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Xali emas`
+  String get xaliEmas {
+    return Intl.message(
+      'Xali emas',
+      name: 'xaliEmas',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amalga oshirish`
+  String get amalgaOshirish {
+    return Intl.message(
+      'Amalga oshirish',
+      name: 'amalgaOshirish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Karta ma'lumotlarini kiriting`
+  String get kartaMalumotlariniKiriting {
+    return Intl.message(
+      'Karta ma`lumotlarini kiriting',
+      name: 'kartaMalumotlariniKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Elon holatini kabitendat \n kuzatsangiz bo'ladi`
+  String get elonHolatiniKabitendatNKuzatsangizBoladi {
+    return Intl.message(
+      'Elon holatini kabitendat \\n kuzatsangiz bo`ladi',
+      name: 'elonHolatiniKabitendatNKuzatsangizBoladi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bajarish`
+  String get bajarish {
+    return Intl.message(
+      'Bajarish',
+      name: 'bajarish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yangi e'lon joylash`
+  String get yangiElonJoylash {
+    return Intl.message(
+      'Yangi e\'lon joylash',
+      name: 'yangiElonJoylash',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

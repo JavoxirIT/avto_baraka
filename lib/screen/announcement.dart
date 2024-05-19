@@ -1,4 +1,20 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
+
+import 'package:avto_baraka/router/route_name.dart';
+import 'package:avto_baraka/widgets/dialog.dart';
+import 'package:camera/camera.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart' as flutter_map;
+import 'package:flutter_map/flutter_map.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:latlong2/latlong.dart';
 
 import 'package:avto_baraka/api/models/car_body_models.dart';
 import 'package:avto_baraka/api/models/car_brand.models.dart';
@@ -9,7 +25,6 @@ import 'package:avto_baraka/api/models/car_paint_condition_models.dart';
 import 'package:avto_baraka/api/models/car_pulling_side_models.dart';
 import 'package:avto_baraka/api/models/car_transmission_models.dart';
 import 'package:avto_baraka/api/models/districs_model.dart';
-import 'package:avto_baraka/api/models/listing_models.dart';
 import 'package:avto_baraka/api/models/region_models.dart';
 import 'package:avto_baraka/api/models/valyuta_model.dart';
 import 'package:avto_baraka/api/service/car_service.dart';
@@ -27,24 +42,10 @@ import 'package:avto_baraka/style/elevate_btn_cam_gall.dart';
 import 'package:avto_baraka/style/location_button.dart';
 import 'package:avto_baraka/style/outline_input_border.dart';
 import 'package:avto_baraka/utill/validation/validation.dart';
-import 'package:avto_baraka/widgets/announcement/form_build_complate.dart';
 import 'package:avto_baraka/widgets/announcement/form_step_title.dart';
 import 'package:avto_baraka/widgets/announcement/step_navigation.dart';
 import 'package:avto_baraka/widgets/camera.dart';
 import 'package:avto_baraka/widgets/carousel/show_modal_bottom_sheat.dart';
-import 'package:avto_baraka/widgets/flutter_show_toast.dart';
-import 'package:camera/camera.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:flutter_map/flutter_map.dart' as flutter_map;
-import 'package:latlong2/latlong.dart';
 
 class Announcement extends StatefulWidget {
   const Announcement({Key? key}) : super(key: key);
@@ -54,6 +55,10 @@ class Announcement extends StatefulWidget {
 }
 
 class AnnouncementState extends State<Announcement> {
+  // response status text
+  String responseStatusText = "";
+  //
+
   var controller = Get.put(MainStateControllee());
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   DateTime date = DateTime.now();
@@ -68,7 +73,6 @@ class AnnouncementState extends State<Announcement> {
   List<CarPullingSideModels> carPullingSideList = [];
   List<CarPaintConditionModel> carPaintConditionList = [];
   List<ValyutaModels> valyutaList = [];
-  bool isComplate = false;
   int currentStep = 0;
 
   String _mapData = "";
@@ -151,8 +155,6 @@ class AnnouncementState extends State<Announcement> {
       setState(() {
         _currentPosition = LatLng(value.latitude, value.longitude);
         _mapController.move(_currentPosition, 16.0);
-        // print('latitude: ${_currentPosition.latitude}');
-        // print('longitude: ${_currentPosition.longitude}');
       });
     });
     _getAddressFromCoordinates();
@@ -175,7 +177,7 @@ class AnnouncementState extends State<Announcement> {
         _mapData = " ${place.locality}, ${place.thoroughfare}";
       });
     } catch (e) {
-      print('error: ${e}');
+      debugPrint('_getAddressFromCoordinates error: $e');
     }
   }
 
@@ -183,12 +185,11 @@ class AnnouncementState extends State<Announcement> {
   initState() {
     super.initState();
     TokenService.service.getLocolToken();
-    loadRegion();
+    loadAllData();
   }
 
   onBackForm() {
     setState(() {
-      isComplate = false;
       currentStep = 0;
     });
   }
@@ -201,49 +202,48 @@ class AnnouncementState extends State<Announcement> {
   TextStyle fonmDataTextStyle = const TextStyle(fontSize: 12.0);
   @override
   Widget build(BuildContext context) {
+    EdgeInsets contentPadding = const EdgeInsets.fromLTRB(20.0, 0, 3.0, 0);
     RoundedRectangleBorder shape = const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(
         Radius.circular(15.0),
       ),
     );
-
-    EdgeInsets contentPadding = const EdgeInsets.fromLTRB(20.0, 0, 3.0, 0);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          !isComplate ? S.of(context).elonJoylash : S.of(context).boshSahifa,
-        ),
-      ),
-      body: isComplate
-          ? fomBuildComplate(onBackForm)
-          : Theme(
-              data: Theme.of(context).copyWith(
-                  colorScheme: ColorScheme.light(primary: iconSelectedColor)),
-              child: SafeArea(
-                child: Form(
-                  key: formKey,
-                  child: Stepper(
-                    elevation: 0,
-                    type: StepperType.horizontal,
-                    steps: getSteps(context, shape, contentPadding),
-                    currentStep: currentStep,
-                    onStepTapped: onStepTapped,
-                    controlsBuilder: (context, details) {
-                      return const SizedBox.shrink();
-                    },
-                  ),
-                ),
-              ),
+        appBar: AppBar(title: Text(S.of(context).elonJoylash)),
+        body: Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(primary: iconSelectedColor),
+          ),
+          child: Form(
+            key: formKey,
+            child: Stepper(
+              elevation: 0,
+              type: StepperType.horizontal,
+              steps: getSteps(context, shape, contentPadding),
+              currentStep: currentStep,
+              // onStepTapped: onStepTapped,
+              controlsBuilder: (context, details) {
+                return const SizedBox.shrink();
+              },
             ),
-      bottomNavigationBar: !isComplate
-          ? stepsNavigation(context, currentStep, onStepCansel, onStepContinue,
-              region, districts, getSteps)
-          : null,
-    );
+          ),
+        ),
+        bottomNavigationBar: stepsNavigation(
+          context,
+          currentStep,
+          onStepCansel,
+          onStepContinue,
+          region,
+          districts,
+          getSteps,
+        ));
   }
 
-  List<Step> getSteps(BuildContext context,
-      [RoundedRectangleBorder? shape, EdgeInsets? contentPadding]) {
+  List<Step> getSteps(
+    BuildContext context, [
+    RoundedRectangleBorder? shape,
+    EdgeInsets? contentPadding,
+  ]) {
     return [
       // Viloyatni tanlang
       Step(
@@ -823,6 +823,8 @@ class AnnouncementState extends State<Announcement> {
               minLines: 3,
               decoration:
                   announcementInputDecoration(S.of(context).qoshimchaMalumot),
+              validator: (value) =>
+                  validate(value, "Qo`shimcha malumotni kriting"),
             ),
             //
             SizedBox(
@@ -959,7 +961,6 @@ class AnnouncementState extends State<Announcement> {
           ],
         ),
       ),
-
       // foto
       Step(
         isActive: currentStep >= 6,
@@ -1082,7 +1083,6 @@ class AnnouncementState extends State<Announcement> {
           ),
         ),
       ),
-
       // Tarif step
     ];
   }
@@ -1097,7 +1097,6 @@ class AnnouncementState extends State<Announcement> {
   }
 
   // ::::::::::::::::::::::GALLERY IMAGE PICKER::::::::::::::::::::::::
-
   void selectImages() async {
     final List<XFile> selectedImages = await imagePicker.pickMultiImage();
     if (selectedImages.isNotEmpty) {
@@ -1143,11 +1142,11 @@ class AnnouncementState extends State<Announcement> {
 
 // ::::::::::::::::STEP SETTING::::::::::::::::::::::
 
-  void onStepTapped(step) {
-    setState(() {
-      currentStep = step;
-    });
-  }
+  // void onStepTapped(step) {
+  //   setState(() {
+  //     currentStep = step;
+  //   });
+  // }
 
   void onStepCansel() {
     if (currentStep == 0) {
@@ -1159,8 +1158,6 @@ class AnnouncementState extends State<Announcement> {
   }
 
   void onStepContinue() {
-    final isLastSteps = currentStep == getSteps(context).length - 1;
-
     if (currentStep == 5) {
       if (formKey.currentState!.validate() &&
           _currentPosition.latitude != 0 &&
@@ -1169,38 +1166,41 @@ class AnnouncementState extends State<Announcement> {
           currentStep += 1;
         });
       } else {
-        showModalBottom(
-          context,
-          "Iltimos ".toUpperCase(),
-          "xaritadan joylashuvni tanlang",
-        );
-        Future.delayed(const Duration(seconds: 2), () {
-          Navigator.of(context).pop();
-        });
-        // flutterShowToast("Iltimos xaritadan joylashuvni tanlanh");
-        return;
+        showModalBottom(context, [
+          Text(
+            S.of(context).iltimos.toUpperCase(),
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
+          Text(
+            S.of(context).xaritadanJoylashuvniTanlang,
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          const SizedBox(height: 20.0),
+          OutlinedButton(
+            onPressed: () async {
+              _getCurrentLocation();
+              await _getAddressFromCoordinates();
+              setState(() {
+                Navigator.of(context).pop();
+              });
+            },
+            child: Text(
+              S.of(context).avtomatikTanlash,
+            ),
+          )
+        ]);
       }
-    }
-
-    if (isLastSteps) {
-      setState(() {
-        isComplate = true;
-        // Navigator.of(context).pop(false);
-      });
-      // OTPRAVKA DANNIX
-      if (formKey.currentState!.validate()) {
-        sendData();
-      }
+    } else if (currentStep == 6) {
+      sendData();
     } else {
-      currentStep += 1;
       setState(() {
-        // Navigator.of(context).pop(false);
+        currentStep = (currentStep + 1) % getSteps(context).length;
       });
     }
   }
 
 // ::::::::::ПОЛУЧЕНИЕ ДАННЫХ ИЗ :::::::::::::::::::
-  Future<void> loadRegion() async {
+  Future<void> loadAllData() async {
     region = await RegionService().getRegions();
     districts = await DistrictsService().getDistricts();
     categoryList = await CarService().carCategoryLoad();
@@ -1213,8 +1213,10 @@ class AnnouncementState extends State<Announcement> {
     setState(() {});
   }
 
-  sendData() {
-    ListingService.servive.postAutoData(
+  sendData() async {
+    debugPrint('Data Send');
+
+    responseStatusText = await ListingService.servive.postAutoData(
       {
         "region_id": regionGroupValue,
         "district_id": districtsGroupValue,
@@ -1238,5 +1240,55 @@ class AnnouncementState extends State<Announcement> {
       },
       imageFileList,
     );
+
+    if (responseStatusText == "Unpaid") {
+      dialogBuilder(
+        context,
+        S.of(context).elonSaqlandi,
+        Text(
+          S.of(context).tizimdanTolFoy,
+        ),
+        [
+          TextButton(
+              style: TextButton.styleFrom(
+                  textStyle: Theme.of(context).textTheme.bodyLarge),
+              child: Text(S.of(context).yangiElonJoylash),
+              onPressed: () {
+                Navigator.of(context).pop();
+                onBackForm();
+              }),
+          TextButton(
+              style: TextButton.styleFrom(
+                  textStyle: Theme.of(context).textTheme.bodyLarge),
+              child: Text(S.of(context).amalgaOshirish),
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(RouteName.firstpayView)),
+        ],
+      );
+    } else if (responseStatusText == "success") {
+      dialogBuilder(
+        context,
+        S.of(context).elonSaqlandi,
+        Text(
+          S.of(context).elonHolatiniKabitendatNKuzatsangizBoladi,
+        ),
+        [
+          TextButton(
+              style: TextButton.styleFrom(
+                  textStyle: Theme.of(context).textTheme.bodyLarge),
+              child: Text(S.of(context).elonJoylash),
+              onPressed: () {
+                Navigator.of(context).pop();
+                onBackForm();
+              }),
+          TextButton(
+              style: TextButton.styleFrom(
+                  textStyle: Theme.of(context).textTheme.bodyLarge),
+              child: Text(S.of(context).kabinet),
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(RouteName.cobinetScreen)),
+        ],
+      );
+    }
   }
 }

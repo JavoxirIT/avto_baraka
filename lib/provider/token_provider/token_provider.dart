@@ -3,8 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class TokenProvider extends ChangeNotifier {
   String key = 'access_token';
-  String token = "";
-  String get accessToken => token;
+  String? token;
+  String get accessToken => token!;
 
   TokenProvider() {
     fetchTokenLocale();

@@ -14,9 +14,11 @@ class LoadingView extends StatefulWidget {
 class _LoadingViewState extends State<LoadingView>
     with TickerProviderStateMixin {
   final String img = "assets/loading/loading.png";
-  String token = "";
+  String? token;
   @override
-  void initState() {
+  initState() {
+    getLocalData();
+
     Timer(const Duration(seconds: 3), () {
       setState(() {
         if (token == null) {
@@ -40,8 +42,6 @@ class _LoadingViewState extends State<LoadingView>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Image.asset(img),
-    );
+    return Image.asset(img);
   }
 }
