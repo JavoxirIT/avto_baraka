@@ -1,36 +1,24 @@
-import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
+import 'package:avto_baraka/bloc/listing_active/listing_active_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/http/config.dart';
 import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
-import 'package:avto_baraka/style/elevated_button.dart';
 import 'package:avto_baraka/widgets/car_tag_card.dart';
-import 'package:avto_baraka/widgets/carousel/show_modal_bottom_sheat.dart';
-import 'package:avto_baraka/widgets/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-carCard(context, state) {
-  debugPrint('state: $state');
-
+carCativeCard(context, state) {
   onOneCarView(context, item) {
     Navigator.of(context).pushNamed(RouteName.oneCarView, arguments: item);
   }
 
-  if (state is ListingStateLoading) {
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
-  }
-  if (state is ListingStateLoad) {
+  if (state is ListingActiveStateLoad) {
     return ListView.builder(
       itemCount: state.listing.length,
       itemBuilder: (context, i) {
         final item = state.listing[i];
-
         final carTitle = "${item.brand} ${item.model} ${item.car_position}";
-
         return Stack(
           children: [
             Card(
@@ -216,12 +204,12 @@ carCard(context, state) {
       },
     );
   }
-  if (state is ListingStateNoData) {
+  if (state is ListingActiveNotData) {
     return Center(
-      child: Text(S.of(context).malumotlatYuklanishidaXatolik),
+      child: Text(S.of(context).tasdiqlanganElonlarMavjutEmas),
     );
   }
-  if (state is ListingStateError) {
+  if (state is ListingActiveStateError) {
     return Center(
       child: Text(S.of(context).malumotlarBazasidaXatolik),
     );

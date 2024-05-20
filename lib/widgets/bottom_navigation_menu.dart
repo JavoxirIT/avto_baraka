@@ -72,7 +72,7 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     MainScreen(),
-    FavoritScreen(),
+    FavoriteScreen(),
     SizedBox(),
     ChatScreen(),
     CobinetScreen()

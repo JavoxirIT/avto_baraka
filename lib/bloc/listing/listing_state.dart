@@ -8,6 +8,8 @@ sealed class ListingState extends Equatable {
 
 final class ListingStateInitial extends ListingState {}
 
+final class ListingStateLoading extends ListingState {}
+
 //
 final class ListingStateLoad extends ListingState {
   const ListingStateLoad({
@@ -31,3 +33,5 @@ final class ListingStateError extends ListingState {
   @override
   List<Object> get props => super.props..add(exception);
 }
+
+final class ListingStateNoDataSearch extends ListingState {}

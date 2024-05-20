@@ -1,11 +1,21 @@
-import 'package:avto_baraka/utill/category_carousel_item.dart';
+import 'package:avto_baraka/api/models/car_category_models.dart';
+import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
+import 'package:avto_baraka/http/config.dart';
+import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
+import 'package:avto_baraka/provider/token_provider/token_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+import 'package:provider/provider.dart';
 
-FlutterCarousel flutterCarousel() {
+FlutterCarousel flutterCarousel(
+    BuildContext context, List<CarCategoryModels> categoryList) {
+  final languageProvider = Provider.of<LocalProvider>(context);
+  final tokenProvider = Provider.of<TokenProvider>(context);
+
   return FlutterCarousel(
     options: CarouselOptions(
-      autoPlay: true,
+      // autoPlay: true,
       autoPlayCurve: Curves.ease,
       autoPlayInterval: const Duration(seconds: 3),
       // controller: buttonCarouselController,
@@ -19,32 +29,43 @@ FlutterCarousel flutterCarousel() {
       showIndicator: false,
       onPageChanged: (index, reason) {},
     ),
-    items: categoryCarouselItem
+    items: categoryList
         .map(
-          (item) => Card(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  item["image"],
-                  fit: BoxFit.cover,
-                  height: 42.0,
-                  width: 42.0,
+          (item) => InkWell(
+            onTap: () {
+              BlocProvider.of<ListingBloc>(context).add(
+                ListingEvantSearch(
+                  brand_id: item.id,
+                  lang: languageProvider.locale.languageCode,
+                  token: tokenProvider.token,
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(top: 5.0, left: 0.0, right: 0.0),
-                  child: Center(
-                    child: Text(
-                      item['text'],
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 12.0,
+              );
+            },
+            child: Card(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.network(
+                    Config.imageUrl! + item.icon,
+                    fit: BoxFit.cover,
+                    height: 42.0,
+                    width: 42.0,
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 5.0, left: 0.0, right: 0.0),
+                    child: Center(
+                      child: Text(
+                        item.nameRu,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 12.0,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         )

@@ -45,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Выберите состояние окраски"),
         "brendniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите бренд"),
+        "chiqarilganYili": MessageLookupByLibrary.simpleMessage("Год выпуска:"),
         "dvigatelHajmi":
             MessageLookupByLibrary.simpleMessage("Объем двигателя"),
         "dvigatelHajminiKiriting":
@@ -70,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "На вашем устройстве необходимо будет включить и разрешить геолокацию"),
         "geopozitsiyaKabulKilindi":
             MessageLookupByLibrary.simpleMessage("Геопозиция определена"),
+        "ilojiBor": MessageLookupByLibrary.simpleMessage("Нет"),
         "ilovaHaqida": MessageLookupByLibrary.simpleMessage("О приложении"),
         "iltimos": MessageLookupByLibrary.simpleMessage("Пожалуйста"),
         "iltimosInternetAloqaniYoqing": MessageLookupByLibrary.simpleMessage(
@@ -89,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "kreditMeddatiniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите срок кредита"),
         "kreditSummasi": MessageLookupByLibrary.simpleMessage("Сумма кредита"),
+        "kreditga": MessageLookupByLibrary.simpleMessage("В кредит:"),
         "kriditSummasiniKriting":
             MessageLookupByLibrary.simpleMessage("Введите сумму кредита"),
         "kriditgaBeriladimi": MessageLookupByLibrary.simpleMessage("В кредит?"),
@@ -97,6 +100,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Выберите вид кузова"),
         "lokatsiyaniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите локацию"),
+        "malumotlarBazasidaXatolik":
+            MessageLookupByLibrary.simpleMessage("Ошибка в базе данных"),
+        "malumotlatYuklanishidaXatolik":
+            MessageLookupByLibrary.simpleMessage("Обявления нет"),
         "markaniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите марку"),
         "maxfiylikSiyosati":
@@ -110,6 +117,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notugriKod": MessageLookupByLibrary.simpleMessage("Неверный код"),
         "oldinga": MessageLookupByLibrary.simpleMessage("Вперед"),
         "orqaga": MessageLookupByLibrary.simpleMessage("Назад"),
+        "parametrlar": MessageLookupByLibrary.simpleMessage("Параметры"),
         "qidiruvSozlari":
             MessageLookupByLibrary.simpleMessage("Поисковые слова"),
         "qoshimchaMalumot":
@@ -120,6 +128,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "saqlash": MessageLookupByLibrary.simpleMessage("Сохранить"),
         "smsKodniKiriting":
             MessageLookupByLibrary.simpleMessage("Введите код из смс"),
+        "sotuvchigaQongiroqQilish":
+            MessageLookupByLibrary.simpleMessage("Позвонить продавцу"),
         "sozlamalar": MessageLookupByLibrary.simpleMessage("Настройки"),
         "sozlamalarniOchisgh":
             MessageLookupByLibrary.simpleMessage("Открыть настройки"),
@@ -132,6 +142,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tarifniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите тариф"),
         "tasdiqlangan": MessageLookupByLibrary.simpleMessage("Подтвержденный"),
+        "tasdiqlanganElonlarMavjutEmas": MessageLookupByLibrary.simpleMessage(
+            "Одобренные обявления не найдены"),
         "telefon": MessageLookupByLibrary.simpleMessage("Телефон"),
         "texnikaTuriniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите тип техники"),
@@ -167,6 +179,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Добавть новый объявление"),
         "yangiElonQoshish":
             MessageLookupByLibrary.simpleMessage("Добавить обявления"),
+        "yoq": MessageLookupByLibrary.simpleMessage("ДА"),
         "yoqilgiTuri": MessageLookupByLibrary.simpleMessage("Вид топлива"),
         "yoqilgiTuriniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите вид топлива"),

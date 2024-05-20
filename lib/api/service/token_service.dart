@@ -7,15 +7,16 @@ class TokenService {
 
   String token = "";
 
-  Future<void> getLocolToken() async {
+  Future<String> getLocolToken() async {
     final prefs = await SharedPreferences.getInstance();
     final saveData = prefs.getString(key) ?? '';
 
     if (saveData.isEmpty) {
       debugPrint('Токен не найден');
     } else {
-      debugPrint('$saveData');
+      debugPrint('TokenService: $saveData');
       token = saveData;
     }
+    return saveData;
   }
 }

@@ -979,6 +979,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Parametrlar`
+  String get parametrlar {
+    return Intl.message(
+      'Parametrlar',
+      name: 'parametrlar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chiqarilgan yili:`
+  String get chiqarilganYili {
+    return Intl.message(
+      'Chiqarilgan yili:',
+      name: 'chiqarilganYili',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kreditga:`
+  String get kreditga {
+    return Intl.message(
+      'Kreditga:',
+      name: 'kreditga',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yo'q`
+  String get yoq {
+    return Intl.message(
+      'Yo`q',
+      name: 'yoq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Iloji bor`
+  String get ilojiBor {
+    return Intl.message(
+      'Iloji bor',
+      name: 'ilojiBor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sotuvchiga qo’ng’iroq qilish`
+  String get sotuvchigaQongiroqQilish {
+    return Intl.message(
+      'Sotuvchiga qo’ng’iroq qilish',
+      name: 'sotuvchigaQongiroqQilish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tasdiqlangan e'lonlar mavjut emas`
+  String get tasdiqlanganElonlarMavjutEmas {
+    return Intl.message(
+      'Tasdiqlangan e`lonlar mavjut emas',
+      name: 'tasdiqlanganElonlarMavjutEmas',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Malumotlar bazasida xatolik`
+  String get malumotlarBazasidaXatolik {
+    return Intl.message(
+      'Malumotlar bazasida xatolik',
+      name: 'malumotlarBazasidaXatolik',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ma'lumotlat yuklanishida xatolik`
+  String get malumotlatYuklanishidaXatolik {
+    return Intl.message(
+      'Ma`lumotlat yuklanishida xatolik',
+      name: 'malumotlatYuklanishidaXatolik',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

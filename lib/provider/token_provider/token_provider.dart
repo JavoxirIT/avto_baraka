@@ -38,4 +38,12 @@ class TokenProvider extends ChangeNotifier {
       debugPrint("Ошибка сохранения токена: $e");
     }
   }
+
+  void removeTokenPreferences(String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove(key);
+    debugPrint('token removed');
+    
+    notifyListeners();
+  }
 }

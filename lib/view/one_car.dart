@@ -1,6 +1,11 @@
+import 'package:avto_baraka/api/models/listing_get_models.dart';
+import 'package:avto_baraka/generated/l10n.dart';
+import 'package:avto_baraka/http/config.dart';
+import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/one_car_outline_button.dart';
 import 'package:avto_baraka/utill/call.dart';
+import 'package:avto_baraka/view/full_screen_image.dart';
 import 'package:avto_baraka/widgets/icon_button_circle_vatar.dart';
 import 'package:avto_baraka/widgets/one_card_chip_tag.dart';
 import 'package:avto_baraka/widgets/one_card_data_title.dart';
@@ -21,7 +26,7 @@ class OneCarView extends StatefulWidget {
 }
 
 class OneCarViewState extends State<OneCarView> {
-  Map<String, dynamic> _carData = {};
+  ListingGetModals? _carData;
   final List carImageList = [];
   final List carChipTagList = [];
 
@@ -30,15 +35,15 @@ class OneCarViewState extends State<OneCarView> {
     RouteSettings setting = ModalRoute.of(context)!.settings;
 
     if (setting.arguments != null) {
-      _carData = setting.arguments as Map<String, dynamic>;
-      // carImageList = _carData['carImage'];
+      _carData = setting.arguments as ListingGetModals;
+      // carImageList = _carData.carImage;
 
-      for (var i = 0; i < _carData['carImage'].length; i++) {
-        carImageList.add({"image": _carData['carImage'][i]});
+      for (var i = 0; i < _carData!.carImage.length; i++) {
+        carImageList.add({"image": _carData!.carImage[i]});
       }
-      for (var i = 0; i < _carData['additionalOption'].length; i++) {
-        carChipTagList.add({"tag": _carData['additionalOption'][i]});
-      }
+      // for (var i = 0; i < _carData.additionalOption.length; i++) {
+      //   carChipTagList.add({"tag": _carData.additionalOption[i]});
+      // }
     }
 
     super.didChangeDependencies();
@@ -51,12 +56,9 @@ class OneCarViewState extends State<OneCarView> {
     final double height = MediaQuery.of(context).size.height / 3;
     final double heightImage = MediaQuery.of(context).size.height;
 
-    final carTitle = _carData['carMark'] +
-        " " +
-        _carData['carName'] +
-        " " +
-        _carData['carPosition'];
-    final city = _carData['region'] + " " + _carData['city'];
+    final carTitle =
+        "${_carData!.brand} ${_carData!.model} ${_carData!.car_position}";
+    final city = "${_carData!.region} ${_carData!.district}";
 
     return Scaffold(
       appBar: AppBar(
@@ -92,11 +94,16 @@ class OneCarViewState extends State<OneCarView> {
           FlutterCarousel(
             items: carImageList
                 .map(
-                  (item) => Image.asset(
-                    item["image"],
-                    fit: BoxFit.cover,
-                    height: heightImage,
-                    width: MediaQuery.of(context).size.width,
+                  (item) => GestureDetector(
+                    onTap: () => Navigator.of(context).pushNamed(
+                        RouteName.fullScreenImage,
+                        arguments: carImageList),
+                    child: Image.network(
+                      Config.imageUrl! + item['image'].substring(1),
+                      fit: BoxFit.cover,
+                      height: heightImage,
+                      width: MediaQuery.of(context).size.width,
+                    ),
                   ),
                 )
                 .toList(),
@@ -136,8 +143,8 @@ class OneCarViewState extends State<OneCarView> {
                             ),
                           ),
                           TextSpan(
-                            text: _carData["viewed"] != 0
-                                ? _carData["viewed"].toString()
+                            text: _carData!.viewed != 0
+                                ? _carData!.viewed.toString()
                                 : "0",
                             style: const TextStyle(
                                 fontSize: 12.0, fontWeight: FontWeight.w700),
@@ -146,7 +153,7 @@ class OneCarViewState extends State<OneCarView> {
                       ),
                     ),
                     Text(
-                      '${_carData['price'].toString()} y.e',
+                      '${_carData!.price.toString()} y.e',
                       style: const TextStyle(
                         color: Color(0xFF1D00CE),
                         fontSize: 18.0,
@@ -201,7 +208,7 @@ class OneCarViewState extends State<OneCarView> {
                           )
                         ],
                       ),
-                      onaCardDataTitle(context, 'Parametrlar'),
+                      onaCardDataTitle(context, S.of(context).parametrlar),
                       Table(
                         border: TableBorder.all(
                           color: backgrounColor,
@@ -210,47 +217,50 @@ class OneCarViewState extends State<OneCarView> {
                           ),
                         ),
                         children: [
+                          tableRow(S.of(context).chiqarilganYili,
+                              _carData!.year.toString()),
+                          tableRow(S.of(context).dvigatelHajmi,
+                              _carData!.engine.toString()),
+                          tableRow(S.of(context).yurganMasofasi,
+                              _carData!.mileage.toString()),
+                          tableRow(S.of(context).uzatishQutisi,
+                              _carData!.transmission),
+                          tableRow("Kuzov:", _carData!.car_body),
+                          // tableRow(
+                          //     S.of(context).boyoqHolati, _carData.paintCondition),
+                          tableRow(S.of(context).tortuvchiTomon,
+                              _carData!.pulling_side),
+                          tableRow(S.of(context).yoqilgiTuri,
+                              _carData!.type_of_fuel),
                           tableRow(
-                              "Chiqarilgan yili:", _carData['year'].toString()),
-                          tableRow("Dvigatel hajmi:",
-                              _carData['engineCapacity'].toString()),
-                          tableRow("Yurgan masofasi:",
-                              _carData['mileage'].toString()),
-                          tableRow("Uzatish qutisi:", _carData['transmission']),
-                          tableRow("Kuzov:", _carData['carBody']),
-                          tableRow(
-                              "Bo’yoq holati:", _carData['paintCondition']),
-                          tableRow("Tortuvchi tomon:", _carData['pullingSide']),
-                          tableRow("Yoqilg’i turi:", _carData['typeOfFuel']),
-                          tableRow(
-                              "Narxni tushirish imkoni:",
-                              _carData['priceDiscount'] == false
-                                  ? "Yo`q"
-                                  : "Iloji bor"),
+                              S.of(context).kreditga,
+                              _carData!.credit != 1
+                                  ? S.of(context).yoq
+                                  : S.of(context).ilojiBor),
                         ],
                       ),
                       const SizedBox(
                         height: 23.0,
                       ),
-                      onaCardDataTitle(context, 'Qo’shimcha qulayliklar'),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Wrap(
-                          direction: Axis.horizontal,
-                          alignment: WrapAlignment.start,
-                          children: carChipTagList
-                              .map(
-                                (el) => oneCardChipTag(el['tag']),
-                              )
-                              .toList(),
-                        ),
-                      ),
+                      // onaCardDataTitle(context, 'Qo’shimcha qulayliklar'),
+                      // SizedBox(
+                      //   width: MediaQuery.of(context).size.width,
+                      //   child: Wrap(
+                      //     direction: Axis.horizontal,
+                      //     alignment: WrapAlignment.start,
+                      //     children: carChipTagList
+                      //         .map(
+                      //           (el) => oneCardChipTag(el.tag),
+                      //         )
+                      //         .toList(),
+                      //   ),
+                      // ),
                       const SizedBox(
                         height: 23.0,
                       ),
-                      onaCardDataTitle(context, 'Batafsil ma’lumot'),
+                      onaCardDataTitle(context, S.of(context).qoshimchaMalumot),
                       Text(
-                        _carData['description'],
+                        _carData!.description,
                         style: const TextStyle(fontSize: 12.0),
                         textAlign: TextAlign.justify,
                         overflow: TextOverflow.visible,
@@ -305,19 +315,19 @@ class OneCarViewState extends State<OneCarView> {
             ),
             OutlinedButton(
               onPressed: () {
-                call(_carData['phone']);
+                call("+998901005588");
               },
               style: oneCaroutlineButton,
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Icon(
+                  const Icon(
                     Symbols.phone,
                     size: 20.0,
                     // color: Color(0xFF001BAB),
                   ),
                   Text(
-                    "Sotuvchiga qo’ng’iroq qilish",
+                    S.of(context).sotuvchigaQongiroqQilish,
                   ),
                 ],
               ),

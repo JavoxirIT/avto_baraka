@@ -1,5 +1,7 @@
 import 'package:avto_baraka/api/service/listing_service.dart';
 import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
+import 'package:avto_baraka/bloc/listing_active/listing_active_bloc.dart';
+import 'package:avto_baraka/bloc/listing_blocked/listing_blocked_bloc.dart';
 import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
 import 'package:avto_baraka/provider/token_provider/token_provider.dart';
 import 'package:avto_baraka/generated/l10n.dart';
@@ -7,6 +9,7 @@ import 'package:avto_baraka/router/routers.dart';
 import 'package:avto_baraka/style/theme/default_theme.dart';
 import 'package:avto_baraka/view/loading_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +18,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 void main() async {
   await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ],
+  );
   var languageProvider = LocalProvider();
   await languageProvider.fetchLocale();
 
@@ -31,8 +40,14 @@ void main() async {
       child: MultiBlocProvider(
         providers: [
           BlocProvider<ListingBloc>(
-            create: (context) => ListingBloc(ListingService.ls),
+            create: (context) => ListingBloc(ListingService.servive),
           ),
+          BlocProvider<ListingActiveBloc>(
+            create: (context) => ListingActiveBloc(ListingService.servive),
+          ),
+          BlocProvider<ListingBlockedBloc>(
+            create: (context) => ListingBlockedBloc(ListingService.servive),
+          )
         ],
         child: const MyApp(),
       ),

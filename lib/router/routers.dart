@@ -9,6 +9,7 @@ import 'package:avto_baraka/view/credit/credit_first_view.dart';
 import 'package:avto_baraka/screen/favorit_screen.dart';
 import 'package:avto_baraka/view/credit/credit_second_view.dart';
 import 'package:avto_baraka/view/firs_pay_form_view.dart';
+import 'package:avto_baraka/view/full_screen_image.dart';
 import 'package:avto_baraka/view/one_car.dart';
 import 'package:avto_baraka/view/setting_view/setting_user_view.dart';
 import 'package:avto_baraka/view/setting_view/setting_view.dart';
@@ -17,7 +18,7 @@ import 'package:avto_baraka/widgets/bottom_navigation_menu.dart';
 final routers = {
   RouteName.introduction: (_) => const IntroductionScreen(),
   RouteName.bottomNavigationHomeScreen: (_) => const BottomNavigationMenu(),
-  RouteName.favoritScreen: (_) => const FavoritScreen(),
+  RouteName.favoritScreen: (_) => const FavoriteScreen(),
   RouteName.chatScreen: (_) => const ChatScreen(),
   RouteName.cobinetScreen: (_) => const CobinetScreen(),
   RouteName.oneCarView: (_) => const OneCarView(),
@@ -29,4 +30,5 @@ final routers = {
   RouteName.settingUserView: (_) => const SettingUserView(),
   RouteName.contactWithAdmin: (_) => const ContactWithAdmin(),
   RouteName.firstpayView: (_) => const FirstPayFormView(),
+  RouteName.fullScreenImage: (_) => FullScreenImage(),
 };

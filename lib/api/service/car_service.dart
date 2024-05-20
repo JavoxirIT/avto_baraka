@@ -11,7 +11,6 @@ import 'package:avto_baraka/http/config.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-
 class CarService {
   final _dio = Config.dio;
   final _url = Config.dbMobile;
@@ -31,7 +30,7 @@ class CarService {
         '${_url}ltypes',
         options: Options(
           headers: {
-            'Authorization': TokenService.service.token,
+            'Authorization': await await TokenService.service.getLocolToken(),
           },
         ),
       );
@@ -47,7 +46,7 @@ class CarService {
     }
     return categoryList;
   }
-  
+
   Future<List<CarBrandsModels>> getBrands(int id) async {
     categoryBrandList.clear();
     try {
@@ -55,7 +54,7 @@ class CarService {
         '${_url}brand/$id',
         options: Options(
           headers: {
-            'Authorization': TokenService.service.token,
+            'Authorization': await TokenService.service.getLocolToken(),
           },
         ),
       );
@@ -74,14 +73,14 @@ class CarService {
     return categoryBrandList;
   }
 
-  Future getCarModel(int carTypeId, int id) async {
+  Future<List<CarModels>> getCarModel(int carTypeId, int id) async {
     carModelList.clear();
     try {
       final response = await _dio.post(
         '${_url}model/$carTypeId/$id',
         options: Options(
           headers: {
-            'Authorization': TokenService.service.token,
+            'Authorization': await TokenService.service.getLocolToken(),
           },
         ),
       );
@@ -109,7 +108,7 @@ class CarService {
         '${_url}car-body',
         options: Options(
           headers: {
-            'Authorization': TokenService.service.token,
+            'Authorization': await TokenService.service.getLocolToken(),
           },
         ),
       );
@@ -135,7 +134,7 @@ class CarService {
         '${_url}transmission',
         options: Options(
           headers: {
-            'Authorization': TokenService.service.token,
+            'Authorization': await TokenService.service.getLocolToken(),
           },
         ),
       );
@@ -162,7 +161,7 @@ class CarService {
         '${_url}fuels',
         options: Options(
           headers: {
-            'Authorization': TokenService.service.token,
+            'Authorization': await TokenService.service.getLocolToken(),
           },
         ),
       );
@@ -188,7 +187,7 @@ class CarService {
         '${_url}pulling',
         options: Options(
           headers: {
-            'Authorization': TokenService.service.token,
+            'Authorization': await TokenService.service.getLocolToken(),
           },
         ),
       );
@@ -213,7 +212,7 @@ class CarService {
         '${_url}paint-condition',
         options: Options(
           headers: {
-            'Authorization': TokenService.service.token,
+            'Authorization': await TokenService.service.getLocolToken(),
           },
         ),
       );

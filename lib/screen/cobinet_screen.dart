@@ -1,10 +1,16 @@
+import 'package:avto_baraka/bloc/listing_active/listing_active_bloc.dart';
+import 'package:avto_baraka/bloc/listing_blocked/listing_blocked_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
+import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
+import 'package:avto_baraka/provider/token_provider/token_provider.dart';
 import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
-import 'package:avto_baraka/utill/car_list_data.dart';
-import 'package:avto_baraka/widgets/car_card.dart';
+import 'package:avto_baraka/widgets/car_active.card.dart';
+import 'package:avto_baraka/widgets/car_blocked_card.dart';
 import 'package:avto_baraka/widgets/padding_layout.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 class CobinetScreen extends StatefulWidget {
   const CobinetScreen({Key? key}) : super(key: key);
@@ -14,13 +20,22 @@ class CobinetScreen extends StatefulWidget {
 }
 
 class CobinetScreenState extends State<CobinetScreen> {
-  List<Map<String, dynamic>> listNotActive =
-      carList.where((element) => element['activeStatus'] == false).toList();
-  List<Map<String, dynamic>> listActive =
-      carList.where((element) => element['activeStatus'] != false).toList();
-
   @override
   Widget build(BuildContext context) {
+    final providerLanguage = Provider.of<LocalProvider>(context);
+    final tokenProvider = Provider.of<TokenProvider>(context);
+
+    BlocProvider.of<ListingActiveBloc>(context).add(
+      ListingActiveEventLoad(
+        providerLanguage.locale.languageCode,
+        tokenProvider.token,
+      ),
+    );
+    BlocProvider.of<ListingBlockedBloc>(context).add(ListingBlockedEventLoad(
+      providerLanguage.locale.languageCode,
+      tokenProvider.token,
+    ));
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -128,13 +143,18 @@ class CobinetScreenState extends State<CobinetScreen> {
         },
         body: TabBarView(
           children: <Widget>[
-            paddingLayout(
-              carCard(listActive),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: carCard(listNotActive),
-            ),
+            BlocBuilder<ListingActiveBloc, ListingActiveState>(
+                builder: (context, state) {
+              return paddingLayout(
+                carCativeCard(context, state),
+              );
+            }),
+            BlocBuilder<ListingBlockedBloc, ListingBlockedState>(
+                builder: (context, state) {
+              return paddingLayout(
+                carBlockedCard(context, state),
+              );
+            }),
           ],
         ),
       )),

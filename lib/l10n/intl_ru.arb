@@ -91,5 +91,14 @@
   "kartaMalumotlariniKiriting": "Karta ma`lumotlarini kiriting",
   "elonHolatiniKabitendatNKuzatsangizBoladi": "Отслеживать статус объявления  можно в кабитендате",
   "bajarish": "Выполнить",
-  "yangiElonJoylash": "Добавть новый объявление"
+  "yangiElonJoylash": "Добавть новый объявление",
+  "parametrlar": "Параметры",
+  "chiqarilganYili": "Год выпуска:",
+  "kreditga": "В кредит:",
+  "yoq": "ДА",
+  "ilojiBor": "Нет",
+  "sotuvchigaQongiroqQilish": "Позвонить продавцу",
+  "tasdiqlanganElonlarMavjutEmas": "Одобренные обявления не найдены",
+  "malumotlarBazasidaXatolik": "Ошибка в базе данных",
+  "malumotlatYuklanishidaXatolik": "Обявления нет"
 }

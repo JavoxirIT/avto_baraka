@@ -91,5 +91,14 @@
   "kartaMalumotlariniKiriting": "Karta ma`lumotlarini kiriting",
   "elonHolatiniKabitendatNKuzatsangizBoladi": "Elon holatini kabitendat \\n kuzatsangiz bo`ladi",
   "bajarish": "Bajarish",
-  "yangiElonJoylash": "Yangi e'lon joylash"
+  "yangiElonJoylash": "Yangi e'lon joylash",
+  "parametrlar": "Parametrlar",
+  "chiqarilganYili": "Chiqarilgan yili:",
+  "kreditga": "Kreditga:",
+  "yoq": "Yo`q",
+  "ilojiBor": "Iloji bor",
+  "sotuvchigaQongiroqQilish": "Sotuvchiga qo’ng’iroq qilish",
+  "tasdiqlanganElonlarMavjutEmas": "Tasdiqlangan e`lonlar mavjut emas",
+  "malumotlarBazasidaXatolik": "Malumotlar bazasida xatolik",
+  "malumotlatYuklanishidaXatolik": "Ma`lumotlat yuklanishida xatolik"
 }

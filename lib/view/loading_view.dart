@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LoadingView extends StatefulWidget {
   const LoadingView({Key? key}) : super(key: key);
-
   @override
   State<LoadingView> createState() => _LoadingViewState();
 }
@@ -42,6 +41,6 @@ class _LoadingViewState extends State<LoadingView>
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(img);
+    return Image.asset(img, fit: BoxFit.fill,);
   }
 }

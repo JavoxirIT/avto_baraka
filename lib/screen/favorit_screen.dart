@@ -1,23 +1,20 @@
 import 'package:avto_baraka/generated/l10n.dart';
-import 'package:avto_baraka/style/colors.dart';
-import 'package:avto_baraka/utill/favorit_car_card.dart';
-import 'package:avto_baraka/widgets/car_card.dart';
 import 'package:avto_baraka/widgets/padding_layout.dart';
 import 'package:avto_baraka/widgets/title.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 
-class FavoritScreen extends StatefulWidget {
-  const FavoritScreen({Key? key}) : super(key: key);
+class FavoriteScreen extends StatefulWidget {
+  const FavoriteScreen({Key? key}) : super(key: key);
 
   @override
-  FavoritScreenState createState() => FavoritScreenState();
+  FavoriteScreenState createState() => FavoriteScreenState();
 }
 
-class FavoritScreenState extends State<FavoritScreen> {
+class FavoriteScreenState extends State<FavoriteScreen> {
   final TextStyle _textStyle =
       const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w600);
   bool isSwitchValue = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,47 +23,12 @@ class FavoritScreenState extends State<FavoritScreen> {
           Column(
             children: [
               title(context, S.of(context).tanlanganlar),
-              Card(
-                color: const Color.fromARGB(255, 243, 243, 243),
-                elevation: 0,
-                child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(S.of(context).tanlanganElonlar, style: _textStyle),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 7.0,
-                          vertical: 4.0,
-                        ),
-                        child: FlutterSwitch(
-                          width: 52.0,
-                          height: 26.0,
-                          valueFontSize: 0,
-                          toggleSize: 20.0,
-                          value: isSwitchValue,
-                          borderRadius: 30.0,
-                          padding: 3.0,
-                          showOnOff: false,
-                          activeColor: switchBackgrounColor,
-                          inactiveColor: switchBackgrounColor,
-                          toggleColor: iconSelectedColor,
-                          onToggle: (val) {
-                            setState(() {
-                              isSwitchValue = val;
-                            });
-                          },
-                        ),
-                      ),
-                      Text(S.of(context).qidiruvSozlari, style: _textStyle),
-                    ]),
-              ),
               const SizedBox(
                 height: 14.0,
               ),
-              Expanded(
-                child: carCard(favoritCarList),
-              )
+              // Expanded(
+              //   child: carCard(favoritCarList),
+              // )
             ],
           ),
         ),

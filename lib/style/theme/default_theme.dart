@@ -1,8 +1,10 @@
 import 'package:avto_baraka/style/colors.dart';
+import 'package:avto_baraka/utill/page_transition.dart';
 import 'package:flutter/material.dart';
 
 ThemeData defaultTheme() {
   return ThemeData(
+    pageTransitionsTheme: pageTransitions(),
     dialogBackgroundColor: Colors.white,
     colorScheme: ColorScheme.light(primary: iconSelectedColor),
     scaffoldBackgroundColor: Colors.white,
@@ -21,7 +23,7 @@ ThemeData defaultTheme() {
           fontWeight: FontWeight.w600,
           fontFamily: "Roboto"),
     ),
-    
+
     tabBarTheme: const TabBarTheme(
       // верхняя часть app bara
       overlayColor: MaterialStatePropertyAll(Colors.white),
@@ -64,6 +66,19 @@ ThemeData defaultTheme() {
     ),
     dropdownMenuTheme:
         const DropdownMenuThemeData(textStyle: TextStyle(fontSize: 12.0)),
+    bottomSheetTheme: const BottomSheetThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+            top: Radius.circular(20.0)), // Задаем скругление верхних углов
+      ),
+      backgroundColor: Colors.blueGrey, // Задаем цвет фона
+      elevation: 10, // Задаем тень
+      modalBackgroundColor: Color.fromARGB(
+          248, 255, 255, 255), // Задаем прозрачный цвет фона для анимации
+    ),
+    listTileTheme: const ListTileThemeData(
+      tileColor: Colors.white,
+    ),
     textTheme: TextTheme(
       labelLarge: const TextStyle(
           fontSize: 17.0, fontWeight: FontWeight.w700, letterSpacing: 2.0),
@@ -95,16 +110,7 @@ ThemeData defaultTheme() {
         fontWeight: FontWeight.w700,
       ),
     ),
-    bottomSheetTheme: const BottomSheetThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-            top: Radius.circular(20.0)), // Задаем скругление верхних углов
-      ),
-      backgroundColor: Colors.blueGrey, // Задаем цвет фона
-      elevation: 10, // Задаем тень
-      modalBackgroundColor: Color.fromARGB(
-          248, 255, 255, 255), // Задаем прозрачный цвет фона для анимации
-    ),
+
     // snackBarTheme: SnackBarThemeData(
     //   contentTextStyle: TextStyle(
     //       backgroundColor: iconSelectedColor,

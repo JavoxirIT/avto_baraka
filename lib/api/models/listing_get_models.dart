@@ -1,4 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, non_constant_identifier_names
+import 'dart:convert';
+
+import 'package:avto_baraka/http/config.dart';
+
 class ListingGetModals {
   ListingGetModals({
     required this.id,
@@ -31,7 +35,7 @@ class ListingGetModals {
     required this.year,
   });
 
-  late String carImage;
+  late List<String> carImage;
   late double engine;
   late int discount;
   late int id;
@@ -61,7 +65,7 @@ class ListingGetModals {
   late String valyuta_short;
 
   ListingGetModals.fromMap(Map<String, dynamic> map) {
-    carImage = map["carImage"];
+    carImage =   jsonDecode(map['carImage']).cast<String>();
     engine = map['engine'];
     discount = map['discount'];
     id = map['id'];

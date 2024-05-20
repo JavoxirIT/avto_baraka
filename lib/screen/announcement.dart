@@ -184,7 +184,6 @@ class AnnouncementState extends State<Announcement> {
   @override
   initState() {
     super.initState();
-    TokenService.service.getLocolToken();
     loadAllData();
   }
 
@@ -1166,7 +1165,7 @@ class AnnouncementState extends State<Announcement> {
           currentStep += 1;
         });
       } else {
-        showModalBottom(context, [
+        showModalBottom(context, 190.0, [
           Text(
             S.of(context).iltimos.toUpperCase(),
             style: Theme.of(context).textTheme.labelLarge,
