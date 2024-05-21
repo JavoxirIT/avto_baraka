@@ -11,8 +11,6 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class FavoriteScreenState extends State<FavoriteScreen> {
-  final TextStyle _textStyle =
-      const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w600);
   bool isSwitchValue = false;
 
   @override

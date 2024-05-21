@@ -48,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Choose a Brand"),
         "chiqarilganYili":
             MessageLookupByLibrary.simpleMessage("Chiqarilgan yili:"),
+        "dan": MessageLookupByLibrary.simpleMessage("--- dan"),
         "dvigatelHajmi": MessageLookupByLibrary.simpleMessage("Motor size"),
         "dvigatelHajminiKiriting":
             MessageLookupByLibrary.simpleMessage("Dvigatel hajmini kiriting"),
@@ -61,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ENG YAXSHI TAKLIFLAR"),
         "foydalanishShartlari":
             MessageLookupByLibrary.simpleMessage("Foydalanish shartlari"),
+        "gacha": MessageLookupByLibrary.simpleMessage("--- gacha"),
         "gallereyadanTanlash":
             MessageLookupByLibrary.simpleMessage("Gallereyadan tanlash"),
         "geolokachiyadanFoydalanishCheklanganIltimosLokachiyaniYoking":
@@ -70,6 +72,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Uskunadan Geolokatsiyani yoqish va foydalanishga ruxsat berish kerak bo’ladi"),
         "geopozitsiyaKabulKilindi":
             MessageLookupByLibrary.simpleMessage("Geopozitsiya kabul kilindi"),
+        "hududniTanlang":
+            MessageLookupByLibrary.simpleMessage("Hududni tanlang"),
         "ilojiBor": MessageLookupByLibrary.simpleMessage("Iloji bor"),
         "ilovaHaqida": MessageLookupByLibrary.simpleMessage("Ilova haqida"),
         "iltimos": MessageLookupByLibrary.simpleMessage("Iltimos"),
@@ -85,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "kartaMalumotlariniKiriting": MessageLookupByLibrary.simpleMessage(
             "Karta ma`lumotlarini kiriting"),
         "kategoriyalar": MessageLookupByLibrary.simpleMessage("KATEGORIYALAR"),
+        "kechirasiz": MessageLookupByLibrary.simpleMessage("Kechirasiz"),
         "kreditKalkulatori":
             MessageLookupByLibrary.simpleMessage("Kredit Kalkulatori"),
         "kreditMeddatiniTanlang":
@@ -100,6 +105,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Kuzov turinitanlang"),
         "lokatsiyaniTanlang":
             MessageLookupByLibrary.simpleMessage("Lokatsiyani tanlang"),
+        "malumotTopilmadi":
+            MessageLookupByLibrary.simpleMessage("Ma`lumot topilmadi"),
         "malumotlarBazasidaXatolik":
             MessageLookupByLibrary.simpleMessage("Malumotlar bazasida xatolik"),
         "malumotlatYuklanishidaXatolik": MessageLookupByLibrary.simpleMessage(
@@ -178,6 +185,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Yangi e\'lon joylash"),
         "yangiElonQoshish":
             MessageLookupByLibrary.simpleMessage("Yangi e`lon qo`shish"),
+        "yilDan": MessageLookupByLibrary.simpleMessage("Yil dan"),
+        "yilGacha": MessageLookupByLibrary.simpleMessage("Yil gacha"),
         "yoq": MessageLookupByLibrary.simpleMessage("Yo`q"),
         "yoqilgiTuri": MessageLookupByLibrary.simpleMessage("Type of fuel"),
         "yoqilgiTuriniTanlang":

@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 ThemeData defaultTheme() {
   return ThemeData(
     pageTransitionsTheme: pageTransitions(),
-    dialogBackgroundColor: Colors.white,
     colorScheme: ColorScheme.light(primary: iconSelectedColor),
     scaffoldBackgroundColor: Colors.white,
     // /brightness: Brightness.light,
     // primaryColor: Colors.red,
     dialogTheme: const DialogTheme(
       backgroundColor: Colors.white,
-      surfaceTintColor: Colors.transparent,
+      surfaceTintColor: Colors.white,
+      
     ),
     fontFamily: "Roboto",
     appBarTheme: const AppBarTheme(

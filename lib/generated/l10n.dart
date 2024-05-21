@@ -1069,6 +1069,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Kechirasiz`
+  String get kechirasiz {
+    return Intl.message(
+      'Kechirasiz',
+      name: 'kechirasiz',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ma'lumot topilmadi`
+  String get malumotTopilmadi {
+    return Intl.message(
+      'Ma`lumot topilmadi',
+      name: 'malumotTopilmadi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yil dan`
+  String get yilDan {
+    return Intl.message(
+      'Yil dan',
+      name: 'yilDan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yil gacha`
+  String get yilGacha {
+    return Intl.message(
+      'Yil gacha',
+      name: 'yilGacha',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `--- dan`
+  String get dan {
+    return Intl.message(
+      '--- dan',
+      name: 'dan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `--- gacha`
+  String get gacha {
+    return Intl.message(
+      '--- gacha',
+      name: 'gacha',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hududni tanlang`
+  String get hududniTanlang {
+    return Intl.message(
+      'Hududni tanlang',
+      name: 'hududniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

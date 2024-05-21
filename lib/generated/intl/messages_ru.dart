@@ -46,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "brendniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите бренд"),
         "chiqarilganYili": MessageLookupByLibrary.simpleMessage("Год выпуска:"),
+        "dan": MessageLookupByLibrary.simpleMessage("--- от"),
         "dvigatelHajmi":
             MessageLookupByLibrary.simpleMessage("Объем двигателя"),
         "dvigatelHajminiKiriting":
@@ -62,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ЛУЧШИЕ ПРЕДЛОЖЕНИЯ"),
         "foydalanishShartlari":
             MessageLookupByLibrary.simpleMessage("Условия использования"),
+        "gacha": MessageLookupByLibrary.simpleMessage("--- до"),
         "gallereyadanTanlash":
             MessageLookupByLibrary.simpleMessage("Из галлереи"),
         "geolokachiyadanFoydalanishCheklanganIltimosLokachiyaniYoking":
@@ -71,6 +73,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "На вашем устройстве необходимо будет включить и разрешить геолокацию"),
         "geopozitsiyaKabulKilindi":
             MessageLookupByLibrary.simpleMessage("Геопозиция определена"),
+        "hududniTanlang":
+            MessageLookupByLibrary.simpleMessage("Выберите облость"),
         "ilojiBor": MessageLookupByLibrary.simpleMessage("Нет"),
         "ilovaHaqida": MessageLookupByLibrary.simpleMessage("О приложении"),
         "iltimos": MessageLookupByLibrary.simpleMessage("Пожалуйста"),
@@ -86,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "kartaMalumotlariniKiriting": MessageLookupByLibrary.simpleMessage(
             "Karta ma`lumotlarini kiriting"),
         "kategoriyalar": MessageLookupByLibrary.simpleMessage("КАТЕГОРИИ"),
+        "kechirasiz": MessageLookupByLibrary.simpleMessage("Извините"),
         "kreditKalkulatori":
             MessageLookupByLibrary.simpleMessage("Кредитный калькулятор"),
         "kreditMeddatiniTanlang":
@@ -100,6 +105,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Выберите вид кузова"),
         "lokatsiyaniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите локацию"),
+        "malumotTopilmadi":
+            MessageLookupByLibrary.simpleMessage("Информация не найдена"),
         "malumotlarBazasidaXatolik":
             MessageLookupByLibrary.simpleMessage("Ошибка в базе данных"),
         "malumotlatYuklanishidaXatolik":
@@ -179,6 +186,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Добавть новый объявление"),
         "yangiElonQoshish":
             MessageLookupByLibrary.simpleMessage("Добавить обявления"),
+        "yilDan": MessageLookupByLibrary.simpleMessage("c ---- года"),
+        "yilGacha": MessageLookupByLibrary.simpleMessage("до ---- года"),
         "yoq": MessageLookupByLibrary.simpleMessage("ДА"),
         "yoqilgiTuri": MessageLookupByLibrary.simpleMessage("Вид топлива"),
         "yoqilgiTuriniTanlang":

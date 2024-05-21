@@ -100,5 +100,12 @@
   "sotuvchigaQongiroqQilish": "Позвонить продавцу",
   "tasdiqlanganElonlarMavjutEmas": "Одобренные обявления не найдены",
   "malumotlarBazasidaXatolik": "Ошибка в базе данных",
-  "malumotlatYuklanishidaXatolik": "Обявления нет"
+  "malumotlatYuklanishidaXatolik": "Обявления нет",
+  "kechirasiz": "Извините",
+  "malumotTopilmadi": "Информация не найдена",
+  "yilDan": "c ---- года",
+  "yilGacha": "до ---- года",
+  "dan": "--- от",
+  "gacha": "--- до",
+  "hududniTanlang": "Выберите облость"
 }

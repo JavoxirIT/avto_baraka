@@ -1,4 +1,3 @@
-import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
 import 'package:avto_baraka/bloc/listing_blocked/listing_blocked_bloc.dart';
 import 'package:avto_baraka/http/config.dart';
 import 'package:avto_baraka/router/route_name.dart';

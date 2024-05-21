@@ -14,4 +14,5 @@ class RouteName {
   static const contactWithAdmin = "/contactWithAdmin";
   static const firstpayView = "/firstpayView";
   static const fullScreenImage = "/fullScreenImage";
+  static const searchView = "/searchView";
 }

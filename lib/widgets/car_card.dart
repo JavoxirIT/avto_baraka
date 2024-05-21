@@ -3,17 +3,12 @@ import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/http/config.dart';
 import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
-import 'package:avto_baraka/style/elevated_button.dart';
 import 'package:avto_baraka/widgets/car_tag_card.dart';
-import 'package:avto_baraka/widgets/carousel/show_modal_bottom_sheat.dart';
-import 'package:avto_baraka/widgets/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 carCard(context, state) {
-  debugPrint('state: $state');
-
   onOneCarView(context, item) {
     Navigator.of(context).pushNamed(RouteName.oneCarView, arguments: item);
   }

@@ -14,6 +14,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+// ignore: depend_on_referenced_packages
 import 'package:latlong2/latlong.dart';
 
 import 'package:avto_baraka/api/models/car_body_models.dart';
@@ -31,7 +32,6 @@ import 'package:avto_baraka/api/service/car_service.dart';
 import 'package:avto_baraka/api/service/districts_service.dart';
 import 'package:avto_baraka/api/service/listing_service.dart';
 import 'package:avto_baraka/api/service/region_service.dart';
-import 'package:avto_baraka/api/service/token_service.dart';
 import 'package:avto_baraka/api/service/valyuta_service.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/http/config.dart';
@@ -363,7 +363,6 @@ class AnnouncementState extends State<Announcement> {
                                 onChanged: (value) {
                                   setState(() {
                                     districtsGroupValue = value!;
-                                    debugPrint('${value}');
                                   });
                                 },
                               ),
@@ -495,7 +494,6 @@ class AnnouncementState extends State<Announcement> {
                                 onChanged: (value) async {
                                   setState(() {
                                     carBrandGroupValue = value!;
-                                    debugPrint('$value');
                                   });
                                   carModelList = await CarService().getCarModel(
                                       carTypeGroupValue, carBrandGroupValue);
@@ -1165,29 +1163,34 @@ class AnnouncementState extends State<Announcement> {
           currentStep += 1;
         });
       } else {
-        showModalBottom(context, 190.0, [
-          Text(
-            S.of(context).iltimos.toUpperCase(),
-            style: Theme.of(context).textTheme.labelLarge,
-          ),
-          Text(
-            S.of(context).xaritadanJoylashuvniTanlang,
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-          const SizedBox(height: 20.0),
-          OutlinedButton(
-            onPressed: () async {
-              _getCurrentLocation();
-              await _getAddressFromCoordinates();
-              setState(() {
-                Navigator.of(context).pop();
-              });
-            },
-            child: Text(
-              S.of(context).avtomatikTanlash,
-            ),
-          )
-        ]);
+        showModalBottom(
+            context,
+            190.0,
+            [
+              Text(
+                S.of(context).iltimos.toUpperCase(),
+                style: Theme.of(context).textTheme.labelLarge,
+              ),
+              Text(
+                S.of(context).xaritadanJoylashuvniTanlang,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              const SizedBox(height: 20.0),
+              OutlinedButton(
+                onPressed: () async {
+                  _getCurrentLocation();
+                  await _getAddressFromCoordinates();
+                  setState(() {
+                    Navigator.of(context).pop();
+                  });
+                },
+                child: Text(
+                  S.of(context).avtomatikTanlash,
+                ),
+              )
+            ],
+            false,
+            false);
       }
     } else if (currentStep == 6) {
       sendData();

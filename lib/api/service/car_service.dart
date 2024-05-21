@@ -86,7 +86,6 @@ class CarService {
       );
 
       if (response.statusCode == 200) {
-        debugPrint('response Model: ${response.data}');
         for (var element in response.data) {
           carModelList.add(CarModels.fromMap(element));
         }

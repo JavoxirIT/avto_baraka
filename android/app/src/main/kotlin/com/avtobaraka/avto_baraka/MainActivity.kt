@@ -1,4 +1,4 @@
-package com.avtobaraka.avto_baraka
+package com.autobaraka.auto_baraka
 
 import io.flutter.embedding.android.FlutterActivity
 

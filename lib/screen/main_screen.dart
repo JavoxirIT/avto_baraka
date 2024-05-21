@@ -1,12 +1,14 @@
 import 'package:avto_baraka/api/models/car_category_models.dart';
+import 'package:avto_baraka/api/models/region_models.dart';
 import 'package:avto_baraka/api/service/car_service.dart';
+import 'package:avto_baraka/api/service/region_service.dart';
 import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/elevated_button.dart';
 import 'package:avto_baraka/widgets/car_card.dart';
 import 'package:avto_baraka/widgets/carousel/category_carousel.dart';
-import 'package:avto_baraka/widgets/search_modal.dart';
+import 'package:avto_baraka/view/search_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -34,9 +36,7 @@ class _MainScreenState extends State<MainScreen> {
         Radius.circular(15.0),
       ),
     );
-    const sizeBox20 = const SizedBox(
-      height: 15.0,
-    );
+
     return DefaultTabController(
       // initialIndex: 1,
       length: 1,
@@ -63,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
               padding: const EdgeInsets.only(right: 15.0),
               child: IconButton(
                 onPressed: () {
-                  searchModal(context, sizeBox20, shape);
+                  Navigator.of(context).pushNamed(RouteName.searchView);
                 },
                 icon: const Icon(FontAwesomeIcons.sliders),
               ),
@@ -78,16 +78,16 @@ class _MainScreenState extends State<MainScreen> {
                   showDialog(
                     context: context,
                     builder: (_) {
-                      Future.delayed(const Duration(seconds: 2), () {
+                      Future.delayed(const Duration(seconds: 3), () {
                         Navigator.of(context).pop();
                       });
                       return AlertDialog(
                         title: Text(
-                          'Kechirasiz',
+                          S.of(context).kechirasiz,
                           style: Theme.of(context).textTheme.labelLarge,
                         ),
                         content: Text(
-                          'Ma`lumot topilmadi',
+                          S.of(context).malumotTopilmadi,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       );
