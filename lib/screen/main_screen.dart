@@ -1,14 +1,11 @@
 import 'package:avto_baraka/api/models/car_category_models.dart';
-import 'package:avto_baraka/api/models/region_models.dart';
 import 'package:avto_baraka/api/service/car_service.dart';
-import 'package:avto_baraka/api/service/region_service.dart';
 import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/elevated_button.dart';
 import 'package:avto_baraka/widgets/car_card.dart';
 import 'package:avto_baraka/widgets/carousel/category_carousel.dart';
-import 'package:avto_baraka/view/search_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -31,21 +28,15 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    RoundedRectangleBorder shape = const RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(
-        Radius.circular(15.0),
-      ),
-    );
-
     return DefaultTabController(
       // initialIndex: 1,
       length: 1,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 35.0,
+          toolbarHeight: 40.0,
           leadingWidth: MediaQuery.of(context).size.width / 2.5,
           leading: Padding(
-            padding: const EdgeInsets.only(left: 15.0),
+            padding: const EdgeInsets.only(left: 15.0, bottom: 5.0),
             child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pushNamed(RouteName.creditBankListScreen);
@@ -73,14 +64,14 @@ class _MainScreenState extends State<MainScreen> {
         body: BlocBuilder<ListingBloc, ListingState>(
           builder: (context, state) {
             if (state is ListingStateNoDataSearch) {
-              WidgetsBinding.instance!.addPostFrameCallback(
+              WidgetsBinding.instance.addPostFrameCallback(
                 (_) {
                   showDialog(
                     context: context,
                     builder: (_) {
-                      Future.delayed(const Duration(seconds: 3), () {
-                        Navigator.of(context).pop();
-                      });
+                      // Future.delayed(const Duration(seconds: 3), () {
+                      //   Navigator.of(context).pop(true);
+                      // });
                       return AlertDialog(
                         title: Text(
                           S.of(context).kechirasiz,

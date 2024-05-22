@@ -7,7 +7,7 @@ import 'package:avto_baraka/widgets/dialog.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart' as flutter_map;
+// import 'package:flutter_map/flutter_map.dart' as flutter_map;
 import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geocoding/geocoding.dart';
@@ -130,7 +130,7 @@ class AnnouncementState extends State<Announcement> {
 // location
   double lat = 0;
   double long = 0;
-  final flutter_map.MapController _mapController = flutter_map.MapController();
+  final MapController _mapController = MapController();
   LatLng _currentPosition = const LatLng(0, 0);
   Position? _currentLocation;
   bool servicePosition = false;
@@ -1238,7 +1238,8 @@ class AnnouncementState extends State<Announcement> {
         "long": _currentPosition.longitude,
         "price": _price.text,
         "valyuta_id": _valyuta.text,
-        "credit": _credit
+        "credit": _credit,
+        "paint_condition": _paintConditionValue.text
       },
       imageFileList,
     );

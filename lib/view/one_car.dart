@@ -1,9 +1,13 @@
 import 'package:avto_baraka/api/models/listing_get_models.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/http/config.dart';
+import 'package:avto_baraka/observer/launch_map.dart';
+import 'package:avto_baraka/observer/share_route_observer.dart';
 import 'package:avto_baraka/router/route_name.dart';
+import 'package:avto_baraka/style/box_decoration.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/one_car_outline_button.dart';
+import 'package:avto_baraka/style/sized_box_20.dart';
 import 'package:avto_baraka/utill/call.dart';
 import 'package:avto_baraka/widgets/icon_button_circle_vatar.dart';
 import 'package:avto_baraka/widgets/one_card_data_title.dart';
@@ -12,9 +16,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:latlong2/latlong.dart';
 
 class OneCarView extends StatefulWidget {
   const OneCarView({Key? key}) : super(key: key);
@@ -24,6 +30,7 @@ class OneCarView extends StatefulWidget {
 }
 
 class OneCarViewState extends State<OneCarView> {
+  final ShareRouteObserver shareRouteObserver = ShareRouteObserver();
   ListingGetModals? _carData;
   final List carImageList = [];
   final List carChipTagList = [];
@@ -48,6 +55,19 @@ class OneCarViewState extends State<OneCarView> {
   }
 
   void onPress(context) {}
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   WidgetsBinding.instance!.addPostFrameCallback((_) {
+  //     Navigator.of(context).addObserver(shareRouteObserver);
+  //   });
+  // }
+
+  // @override
+  // void dispose() {
+  //   Navigator.of(context).removeObserver(shareRouteObserver);
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -62,28 +82,27 @@ class OneCarViewState extends State<OneCarView> {
       appBar: AppBar(
         title: Text(
           carTitle,
-          style: Theme.of(context).textTheme.bodyLarge,
+          // style: Theme.of(context).textTheme.bodyLarge,
+          // style: TextStyle(color: textColorViolet),
         ),
         actions: [
-          iconButton(
-              Icon(FontAwesomeIcons.triangleExclamation,
-                  color: iconSelectedColor, size: 15.0),
-              16.0,
-              backgrounColor,
-              onPress,
-              context),
           Padding(
             padding: const EdgeInsets.only(left: 5.0, right: 10.0),
-            child: iconButton(
-                Icon(
+            child: CircleAvatar(
+              backgroundColor: backgrounColor,
+              radius: 16.0,
+              child: IconButton(
+                onPressed: () async {
+                  shareRouteObserver.share(context, _carData, carImageList);
+                  // _onShareXFileFromAssets(context, _carData);
+                },
+                icon: Icon(
                   Symbols.share,
                   color: iconSelectedColor,
                   size: 15.0,
                 ),
-                16.0,
-                backgrounColor,
-                onPress,
-                context),
+              ),
+            ),
           )
         ],
       ),
@@ -194,16 +213,19 @@ class OneCarViewState extends State<OneCarView> {
                             ),
                           ),
                           iconButton(
-                            Icon(
-                              FontAwesomeIcons.locationDot,
-                              color: colorRed,
-                              size: 18.0,
-                            ),
-                            18.0,
-                            backgrounColor,
-                            onPress,
-                            context,
-                          )
+                              Icon(
+                                FontAwesomeIcons.locationDot,
+                                color: colorRed,
+                                size: 18.0,
+                              ),
+                              18.0,
+                              backgrounColor,
+                              launchMap,
+                              context,
+                              [
+                                double.parse(_carData!.lat),
+                                double.parse(_carData!.long)
+                              ])
                         ],
                       ),
                       onaCardDataTitle(context, S.of(context).parametrlar),
@@ -223,13 +245,15 @@ class OneCarViewState extends State<OneCarView> {
                               _carData!.mileage.toString()),
                           tableRow(S.of(context).uzatishQutisi,
                               _carData!.transmission),
-                          tableRow("Kuzov:", _carData!.car_body),
+                          tableRow(S.of(context).kuzovTuri, _carData!.car_body),
                           // tableRow(
                           //     S.of(context).boyoqHolati, _carData.paintCondition),
                           tableRow(S.of(context).tortuvchiTomon,
                               _carData!.pulling_side),
                           tableRow(S.of(context).yoqilgiTuri,
                               _carData!.type_of_fuel),
+                          // tableRow(S.of(context).boyoqHolati,
+                          //     _carData!.paint_condition),
                           tableRow(
                               S.of(context).kreditga,
                               _carData!.credit != 1
@@ -237,9 +261,7 @@ class OneCarViewState extends State<OneCarView> {
                                   : S.of(context).ilojiBor),
                         ],
                       ),
-                      const SizedBox(
-                        height: 23.0,
-                      ),
+
                       // onaCardDataTitle(context, 'Qo’shimcha qulayliklar'),
                       // SizedBox(
                       //   width: MediaQuery.of(context).size.width,
@@ -253,16 +275,60 @@ class OneCarViewState extends State<OneCarView> {
                       //         .toList(),
                       //   ),
                       // ),
-                      const SizedBox(
-                        height: 23.0,
-                      ),
+                      sizedBoxH20,
                       onaCardDataTitle(context, S.of(context).qoshimchaMalumot),
-                      Text(
-                        _carData!.description,
-                        style: const TextStyle(fontSize: 12.0),
-                        textAlign: TextAlign.justify,
-                        overflow: TextOverflow.visible,
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: Text(
+                          _carData!.description,
+                          style: const TextStyle(fontSize: 12.0),
+                          textAlign: TextAlign.justify,
+                          overflow: TextOverflow.visible,
+                        ),
                       ),
+                      sizedBoxH20,
+                      onaCardDataTitle(context, "Xaritadagi joylashuvi"),
+                      SizedBox(
+                        height: 200.0,
+                        width: MediaQuery.of(context).size.width,
+                        child: Container(
+                          decoration: boxDecoration(),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15.0),
+                            child: FlutterMap(
+                              // mapController: _mapController,
+                              options: MapOptions(
+                                initialCenter: LatLng(
+                                    double.parse(_carData!.lat),
+                                    double.parse(_carData!.long)),
+                                initialZoom: 16.0,
+                              ),
+                              children: [
+                                TileLayer(
+                                  urlTemplate:
+                                      'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                  userAgentPackageName: 'com.example.app',
+                                ),
+                                MarkerLayer(
+                                  markers: [
+                                    Marker(
+                                      width: 80.0,
+                                      height: 80.0,
+                                      point: LatLng(double.parse(_carData!.lat),
+                                          double.parse(_carData!.long)),
+                                      child: Icon(
+                                        Icons.location_pin,
+                                        color: iconSelectedColor,
+                                        size: 46.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -279,13 +345,13 @@ class OneCarViewState extends State<OneCarView> {
           children: [
             iconButton(
               const Icon(
-                Symbols.share,
-                color: Color.fromARGB(255, 51, 51, 51),
+                FontAwesomeIcons.triangleExclamation,
+                color: Color(0xFFFFC400),
                 size: 15.0,
               ),
               16.0,
-              const Color(0x264E4E4E),
-              _onShareXFileFromAssets,
+              const Color(0x2EFFC400),
+              onPress,
               context,
             ),
             iconButton(
@@ -313,7 +379,7 @@ class OneCarViewState extends State<OneCarView> {
             ),
             OutlinedButton(
               onPressed: () {
-                call("+998901005588");
+                // call(_carData!.phone);
               },
               style: oneCaroutlineButton,
               child: Row(
@@ -321,11 +387,18 @@ class OneCarViewState extends State<OneCarView> {
                 children: [
                   const Icon(
                     Symbols.phone,
-                    size: 20.0,
+                    size: 16.0,
                     // color: Color(0xFF001BAB),
+                  ),
+                  const SizedBox(
+                    width: 10.0,
                   ),
                   Text(
                     S.of(context).sotuvchigaQongiroqQilish,
+                    style: Theme.of(context)
+                        .textTheme
+                        .displaySmall
+                        ?.copyWith(color: iconSelectedColor),
                   ),
                 ],
               ),
@@ -336,21 +409,28 @@ class OneCarViewState extends State<OneCarView> {
     );
   }
 
-  void _onShareXFileFromAssets(BuildContext context) async {
+  void _onShareXFileFromAssets(
+      BuildContext context, ListingGetModals? _carData) async {
+    final imageUrl = Config.imageUrl! + carImageList[0]['image'].substring(1);
     final box = context.findRenderObject() as RenderBox?;
-    final data = await rootBundle.load('assets/car/choko.jpg');
+    final data = await NetworkAssetBundle(Uri.parse(imageUrl)).load('');
+
     final buffer = data.buffer;
     await Share.shareXFiles(
       [
         XFile.fromData(
           buffer.asUint8List(data.offsetInBytes, data.lengthInBytes),
-          name: 'car',
+          name: _carData!.model,
           mimeType: 'image/png',
         ),
       ],
-      text: "salom",
+      text:
+          'Bu rasim Auto Baraka dasturidan yuborilgan\n ${_carData.brand} ${_carData.model} ${_carData.car_position} \n ${_carData.description}',
       sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
     );
+
+    // Вернуться на предыдущий маршрут
+    Navigator.of(context).pop();
   }
 
   bool get isOnDesktopAndWeb {

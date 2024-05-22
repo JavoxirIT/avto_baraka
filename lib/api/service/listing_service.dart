@@ -17,7 +17,9 @@ class ListingService {
   List<ListingGetModals> listingDataList = [];
   List<ListingGetModals> listingActiveDataList = [];
   List<ListingGetModals> listingBlockedDataList = [];
+  List<ListingGetModals> listingLikeList = [];
   List<MultipartFile> filePaths = [];
+  String? likedStatus;
   String statusText = "";
 
   Future<String> postAutoData(Map<String, dynamic> listing, imageFile) async {
@@ -140,7 +142,7 @@ class ListingService {
         debugPrint('LISTING BLOCKED ERROR: ${response.statusCode}');
       }
     } catch (e) {
-      debugPrint('CATCH LISTING BLOCKED ERROR : ${e}');
+      debugPrint('CATCH LISTING BLOCKED ERROR : $e');
       if (e is DioException) {
         if (e.response!.statusCode == 401) {
           TokenProvider().removeTokenPreferences(tokenKey);
@@ -193,7 +195,7 @@ class ListingService {
         debugPrint('ОШИБКА ПРИ ПОИСКЕ : ${response.statusCode}');
       }
     } catch (e) {
-      debugPrint('CATCH ERROR SEARCH : ${e}');
+      debugPrint('CATCH ERROR SEARCH : $e');
       if (e is DioException) {
         if (e.response!.statusCode == 401) {
           TokenProvider().removeTokenPreferences(tokenKey);
@@ -201,5 +203,62 @@ class ListingService {
       }
     }
     return listingDataList;
+  }
+
+  Future<String> onLiked(String token, int listing_id) async {
+    try {
+      final response = await _dio.post(
+        '${_url}liked',
+        options: Options(headers: {'Authorization': token}),
+        data: {"listing_id": listing_id},
+      );
+      if (response.statusCode == 200) {
+        debugPrint('LIKED Response: ${response.data}');
+        likedStatus = response.data;
+      } else {
+        debugPrint('LIKED ERORR Response: ${response.statusCode}');
+      }
+    } catch (e) {
+      debugPrint('LIKED ERORR: $e');
+      if (e is DioException) {
+        if (e.response!.statusCode == 401) {
+          TokenProvider().removeTokenPreferences(tokenKey);
+        }
+      }
+    }
+    return likedStatus!;
+  }
+
+  Future<List<ListingGetModals>> getLikeList(String lang, String token) async {
+    debugPrint('RESPONSE DATA');
+    listingLikeList.clear();
+    try {
+      final response = await _dio.get(
+        '${_url}favourites/$lang',
+        options: Options(
+          headers: {'Authorization': token},
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        debugPrint('RESPONSE DATA: ${response.data}');
+
+        for (var element in response.data) {
+          listingLikeList.add(ListingGetModals.fromMap(element));
+        }
+        debugPrint('like list: ${listingLikeList.toString()}');
+      } else {
+        debugPrint('Ошибка при получение LIKE LIST: ${response.statusCode}');
+      }
+    } catch (e) {
+      debugPrint('ERROR LIKE LIST: $e');
+      if (e is DioException) {
+        if (e.response!.statusCode == 401) {
+          TokenProvider().removeTokenPreferences(tokenKey);
+        }
+      }
+    }
+
+    return listingLikeList;
   }
 }

@@ -31,6 +31,8 @@ class ListingGetModals {
     required this.valyuta_short,
     required this.viewed,
     required this.year,
+    // required this.phone,
+    // required this.paint_condition,
   });
 
   late List<String> carImage;
@@ -45,6 +47,7 @@ class ListingGetModals {
   late int mileage;
   late int expire_date;
   late int credit;
+  // late String paint_condition;
   late String car_position;
   late String car_body;
   late String car_type;
@@ -61,9 +64,10 @@ class ListingGetModals {
   late String valyuta_kurs;
   late String valyuta_name;
   late String valyuta_short;
+  // late String phone;
 
   ListingGetModals.fromMap(Map<String, dynamic> map) {
-    carImage =   jsonDecode(map['carImage']).cast<String>();
+    carImage = jsonDecode(map['carImage']).cast<String>();
     engine = map['engine'];
     discount = map['discount'];
     id = map['id'];
@@ -91,10 +95,12 @@ class ListingGetModals {
     valyuta_kurs = map['valyuta_kurs'];
     valyuta_name = map['valyuta_name'];
     valyuta_short = map['valyuta_short'];
+    // phone = map['phone'];
+    // paint_condition = map['paint_condition'];
   }
 
   @override
   String toString() {
-    return 'ListingGetModals(id: $id, activeStatus: $activeStatus, brand: $brand, carImage: $carImage, car_body: $car_body, car_position: $car_position, car_type: $car_type, credit: $credit, description: $description, discount: $discount, district: $district, engine: $engine, expire_date: $expire_date, lat: $lat, long: $long, mileage: $mileage, model: $model, posted_date: $posted_date, price: $price, pulling_side: $pulling_side, region: $region, transmission: $transmission, type_of_fuel: $type_of_fuel, valyuta_kurs: $valyuta_kurs, valyuta_name: $valyuta_name, valyuta_short: $valyuta_short, viewed: $viewed, year: $year)';
+    return 'ListingGetModals(id: $id, activeStatus: $activeStatus, brand: $brand, carImage: $carImage, car_body: $car_body, car_position: $car_position, car_type: $car_type, credit: $credit, description: $description, discount: $discount, district: $district, engine: $engine, expire_date: $expire_date, lat: $lat, long: $long, mileage: $mileage, model: $model, posted_date: $posted_date, price: $price, pulling_side: $pulling_side, region: $region, transmission: $transmission, type_of_fuel: $type_of_fuel, valyuta_kurs: $valyuta_kurs, valyuta_name: $valyuta_name, valyuta_short: $valyuta_short, viewed: $viewed, year: $year, )';
   }
 }

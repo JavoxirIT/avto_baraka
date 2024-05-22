@@ -66,25 +66,7 @@ carCativeCard(context, state) {
                           //         ),
                           //       )
                           //     : const Positioned(child: Text("")),
-                          Positioned(
-                            right: -7.5,
-                            top: 0,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                shape: const CircleBorder(),
-                                backgroundColor: cardFixCardColor,
-                                // padding: const EdgeInsets.all(15.0)\
-                              ),
-                              onPressed: () {},
-                              child: Icon(
-                                FontAwesomeIcons.solidHeart,
-                                color: true
-                                    ? colorRed
-                                    : const Color.fromARGB(255, 83, 83, 83),
-                                size: 14.0,
-                              ),
-                            ),
-                          ),
+
                           Positioned(
                             bottom: 0,
                             right: 0,

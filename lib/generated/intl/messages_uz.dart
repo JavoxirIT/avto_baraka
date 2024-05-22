@@ -35,6 +35,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "avvalViloyatniTanlang":
             MessageLookupByLibrary.simpleMessage("Avval viloyatni tanlang "),
         "bajarish": MessageLookupByLibrary.simpleMessage("Bajarish"),
+        "batafsilMalumot":
+            MessageLookupByLibrary.simpleMessage("Batafsil ma`lumot"),
         "bekorQilingan": MessageLookupByLibrary.simpleMessage("Bekor qilingan"),
         "boshSahifa": MessageLookupByLibrary.simpleMessage("Bosh sahifa"),
         "boshlangichTolov":
@@ -82,7 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "iltimosNomeringizniKiriting": MessageLookupByLibrary.simpleMessage(
             "Iltimos nomeringizni kiriting"),
         "internetAloqasiYoq":
-            MessageLookupByLibrary.simpleMessage("Internet aloqasi yo\'q"),
+            MessageLookupByLibrary.simpleMessage("Internet aloqasi yo`q"),
         "ishlabChiqarilganYili":
             MessageLookupByLibrary.simpleMessage("Ishlab chiqarilgan yili"),
         "kabinet": MessageLookupByLibrary.simpleMessage("Kabinet"),
@@ -100,6 +102,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Kridit summasini kriting"),
         "kriditgaBeriladimi":
             MessageLookupByLibrary.simpleMessage("Kriditga beriladimi?"),
+        "kuzov": MessageLookupByLibrary.simpleMessage("Kuzov turi:"),
         "kuzovTuri": MessageLookupByLibrary.simpleMessage("Kuzov turi"),
         "kuzovTurinitanlang":
             MessageLookupByLibrary.simpleMessage("Kuzov turinitanlang"),
@@ -125,6 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "oldinga": MessageLookupByLibrary.simpleMessage("Oldinga"),
         "orqaga": MessageLookupByLibrary.simpleMessage("Orqaga"),
         "parametrlar": MessageLookupByLibrary.simpleMessage("Parametrlar"),
+        "qidirish": MessageLookupByLibrary.simpleMessage("Qidirish"),
         "qidiruvSozlari":
             MessageLookupByLibrary.simpleMessage("Qidiruv so’zlari"),
         "qoshimchaMalumot":
@@ -132,6 +136,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "rasimgaOlish": MessageLookupByLibrary.simpleMessage("Rasimga olish"),
         "rasmlarniYuklang":
             MessageLookupByLibrary.simpleMessage("Rasmlarni yuklang"),
+        "royhatdanChiqarish":
+            MessageLookupByLibrary.simpleMessage("Ro`yhatdan chiqarish"),
         "saqlash": MessageLookupByLibrary.simpleMessage("Saqlash"),
         "smsKodniKiriting":
             MessageLookupByLibrary.simpleMessage("SMS kodni kiriting"),
@@ -183,13 +189,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "xaritadanJoylashuvniTanlang": MessageLookupByLibrary.simpleMessage(
             "xaritadan joylashuvni tanlang"),
         "yangiElonJoylash":
-            MessageLookupByLibrary.simpleMessage("Yangi e\'lon joylash"),
+            MessageLookupByLibrary.simpleMessage("Yangi e`lon joylash"),
         "yangiElonQoshish":
             MessageLookupByLibrary.simpleMessage("Yangi e`lon qo`shish"),
         "yilDan": MessageLookupByLibrary.simpleMessage("yilDan"),
         "yilGacha": MessageLookupByLibrary.simpleMessage("Yil gacha"),
         "yoq": MessageLookupByLibrary.simpleMessage("Yo`q"),
-        "yoqilgiTuri": MessageLookupByLibrary.simpleMessage("Yoqilg\'i turi"),
+        "yoqilgiTuri": MessageLookupByLibrary.simpleMessage("Yoqilg`i turi"),
         "yoqilgiTuriniTanlang":
             MessageLookupByLibrary.simpleMessage("Yoqilg`i turini tanlang"),
         "yuborish": MessageLookupByLibrary.simpleMessage("Yuborish"),

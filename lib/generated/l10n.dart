@@ -263,7 +263,7 @@ class S {
   /// `Internet aloqasi yo'q`
   String get internetAloqasiYoq {
     return Intl.message(
-      'Internet aloqasi yo\'q',
+      'Internet aloqasi yo`q',
       name: 'internetAloqasiYoq',
       desc: '',
       args: [],
@@ -973,7 +973,7 @@ class S {
   /// `Yangi e'lon joylash`
   String get yangiElonJoylash {
     return Intl.message(
-      'Yangi e\'lon joylash',
+      'Yangi e`lon joylash',
       name: 'yangiElonJoylash',
       desc: '',
       args: [],
@@ -1135,6 +1135,46 @@ class S {
     return Intl.message(
       'Hududni tanlang',
       name: 'hududniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Qidirish`
+  String get qidirish {
+    return Intl.message(
+      'Qidirish',
+      name: 'qidirish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kuzov:`
+  String get kuzov {
+    return Intl.message(
+      'Kuzov:',
+      name: 'kuzov',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Batafsil ma'lumot`
+  String get batafsilMalumot {
+    return Intl.message(
+      'Batafsil ma`lumot',
+      name: 'batafsilMalumot',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ro'yhatdan chiqarish`
+  String get royhatdanChiqarish {
+    return Intl.message(
+      'Ro`yhatdan chiqarish',
+      name: 'royhatdanChiqarish',
       desc: '',
       args: [],
     );

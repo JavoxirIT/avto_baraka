@@ -49,7 +49,7 @@
   "maxsusSozlamalar": "Пользовательские настройки",
   "meningHisobim": "Мой счет",
   "tasdiqlangan": "Подтвержденный",
-  "bekorQilingan": "Отменённые",
+  "bekorQilingan": "Не активные",
   "tanlanganElonlar": "Избранные",
   "qidiruvSozlari": "Поисковые слова",
   "yuborish": "Отправить",
@@ -107,5 +107,9 @@
   "yilGacha": "до ---- года",
   "dan": "--- от",
   "gacha": "--- до",
-  "hududniTanlang": "Выберите облость"
+  "hududniTanlang": "Выберите облость",
+  "qidirish": "Поиск",
+  "kuzov": "Вид кузова:",
+  "batafsilMalumot": "Подробная информация",
+  "royhatdanChiqarish": "Из избранного"
 }

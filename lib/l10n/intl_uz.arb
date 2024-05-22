@@ -1,6 +1,6 @@
 {
   "qoshimchaMalumot": "Qo`shimcha malumot",
-  "yoqilgiTuri": "Yoqilg'i turi",
+  "yoqilgiTuri": "Yoqilg`i turi",
   "yurganMasofasi": "Yurgan masofa",
   "tortuvchiTomon": "Tortuvchi tomon",
   "boyoqHolati": "Bo`yoq holati",
@@ -20,7 +20,7 @@
   "geolokatsiyaniYoqish": "Uskunadan Geolokatsiyani yoqish va foydalanishga ruxsat berish kerak bo’ladi",
   "avtomatikTanlash": "Avtomatik tanlash",
   "tarifniTanlang": "Tarifni tanlang",
-  "internetAloqasiYoq": "Internet aloqasi yo'q",
+  "internetAloqasiYoq": "Internet aloqasi yo`q",
   "sozlamalarniOchisgh": "Sozlamalarni ochisgh",
   "iltimosInternetAloqaniYoqing": "Iltimos internet aloqani yoqing",
   "avvalBankniTanlang": "Avval Bankni tanlang",
@@ -91,7 +91,7 @@
   "kartaMalumotlariniKiriting": "Karta ma`lumotlarini kiriting",
   "elonHolatiniKabitendatNKuzatsangizBoladi": "Elon holatini kabitendat kuzatsangiz bo`ladi",
   "bajarish": "Bajarish",
-  "yangiElonJoylash": "Yangi e'lon joylash",
+  "yangiElonJoylash": "Yangi e`lon joylash",
   "parametrlar": "Parametrlar",
   "chiqarilganYili": "Chiqarilgan yili:",
   "kreditga": "Kreditga:",
@@ -107,5 +107,9 @@
   "yilGacha": "Yil gacha",
   "dan": "--- dan",
   "gacha": "--- gacha",
-  "hududniTanlang": "Hududni tanlang"
+  "hududniTanlang": "Hududni tanlang",
+  "qidirish": "Qidirish",
+  "kuzov": "Kuzov turi:",
+  "batafsilMalumot": "Batafsil ma`lumot",
+  "royhatdanChiqarish": "Ro`yhatdan chiqarish"
 }

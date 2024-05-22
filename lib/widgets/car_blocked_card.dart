@@ -4,6 +4,8 @@ import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevated_button.dart';
 import 'package:avto_baraka/widgets/car_tag_card.dart';
+import 'package:avto_baraka/widgets/dialog.dart';
+import 'package:avto_baraka/widgets/tarif.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -67,25 +69,6 @@ carBlockedCard(context, state) {
                               )
                             : const Positioned(child: Text("")),
                         Positioned(
-                          right: -7.5,
-                          top: 0,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              shape: const CircleBorder(),
-                              backgroundColor: cardFixCardColor,
-                              // padding: const EdgeInsets.all(15.0)\
-                            ),
-                            onPressed: () {},
-                            child: Icon(
-                              FontAwesomeIcons.solidHeart,
-                              color: true
-                                  ? colorRed
-                                  : const Color.fromARGB(255, 83, 83, 83),
-                              size: 14.0,
-                            ),
-                          ),
-                        ),
-                        Positioned(
                           bottom: 0,
                           right: 0,
                           width: 192,
@@ -145,8 +128,17 @@ carBlockedCard(context, state) {
                         style: Theme.of(context).textTheme.bodyMedium),
                     Padding(
                       padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: GridView(
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                          // childAspectRatio: (itemWidth / itemHeight),
+                          childAspectRatio: 1.5,
+                          crossAxisSpacing: 2.0,
+                          mainAxisSpacing: 0,
+                          // mainAxisExtent: ,
+                        ),
                         children: [
                           cardTagCard("${item.year} yil",
                               const Icon(Icons.calendar_month, size: 17.0)),
@@ -197,10 +189,12 @@ carBlockedCard(context, state) {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        dialogBuilder(context, "", Text(""), []);
+                      },
                       style: elevatedButton,
                       child: Text(
-                        "Taxrirlash va qayta yuborish - 1000so’m",
+                        "Taxrirlash va qayta yuborish",
                         style: TextStyle(
                           fontSize: 14.0,
                           color: textColorWhite,

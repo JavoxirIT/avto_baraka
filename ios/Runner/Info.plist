@@ -48,6 +48,8 @@
 		<key>LSApplicationQueriesSchemes</key>
 		<array>
 			<string>tel</string>
+			<string>googlemaps</string>
+			<string>yandexmaps</string>
 		</array>
 		<!-- location -->
 		<!-- <key>NSLocationWhenInUseUsageDescription</key> -->

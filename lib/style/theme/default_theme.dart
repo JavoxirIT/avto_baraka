@@ -12,7 +12,6 @@ ThemeData defaultTheme() {
     dialogTheme: const DialogTheme(
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
-      
     ),
     fontFamily: "Roboto",
     appBarTheme: const AppBarTheme(
@@ -44,7 +43,7 @@ ThemeData defaultTheme() {
           width: 0.5, // Ширина границы
         ),
       ),
-      elevation: 0,
+      elevation: 2,
       // shadowColor: Colors.black,
       color: backgrounColorWhite,
       surfaceTintColor: backgrounColorWhite,
@@ -77,7 +76,7 @@ ThemeData defaultTheme() {
           248, 255, 255, 255), // Задаем прозрачный цвет фона для анимации
     ),
     listTileTheme: const ListTileThemeData(
-      tileColor: Colors.white,
+      tileColor: Color.fromARGB(255, 247, 247, 247),
     ),
     textTheme: TextTheme(
       labelLarge: const TextStyle(

@@ -4,6 +4,7 @@ Card cardTagCard(item, icon) {
   const TextStyle textStyle = TextStyle(fontSize: 10.0);
   return Card(
     elevation: 3.0,
+    
     child: Center(
       child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -13,6 +14,7 @@ Card cardTagCard(item, icon) {
           Text(
             item,
             style: textStyle,
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),

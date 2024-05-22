@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, prefer_typing_uninitialized_variables
 
 part of 'listing_bloc.dart';
 
@@ -36,15 +36,15 @@ class ListingEvantSearch extends ListingEvent {
 
   final String? token;
   final String? lang;
-  final int? region_id;
-  final int? brand_id;
-  final int? model_id;
-  final int? start_year;
-  final int? end_year;
-  final int? start_price;
-  final int? end_price;
-  final int? car_type;
-  final int? valyuta;
+  final region_id;
+  final brand_id;
+  final model_id;
+  final start_year;
+  final end_year;
+  final start_price;
+  final end_price;
+  final car_type;
+  final valyuta;
 
   @override
   List<Object> get props => super.props

@@ -1,4 +1,4 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
+// ignore_for_file: no_leading_underscores_for_local_identifiers, prefer_is_empty
 
 import 'package:avto_baraka/api/models/car_brand.models.dart';
 import 'package:avto_baraka/api/models/car_category_models.dart';
@@ -8,14 +8,19 @@ import 'package:avto_baraka/api/models/valyuta_model.dart';
 import 'package:avto_baraka/api/service/car_service.dart';
 import 'package:avto_baraka/api/service/region_service.dart';
 import 'package:avto_baraka/api/service/valyuta_service.dart';
+import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/http/config.dart';
+import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
+import 'package:avto_baraka/provider/token_provider/token_provider.dart';
 import 'package:avto_baraka/style/announcement_input_decoration.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/utill/validation/validation.dart';
 import 'package:avto_baraka/widgets/carousel/show_modal_bottom_sheat.dart';
 import 'package:avto_baraka/widgets/input.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({Key? key}) : super(key: key);
@@ -36,7 +41,7 @@ class SearchViewState extends State<SearchView> {
   List<CarCategoryModels> categoryList = [];
   List<ValyutaModels> valyutaList = [];
   List<CarModels> carModelList = [];
-  List<RegionModel>? region;
+  List<RegionModel> region = [];
 
   String stateName = "";
   String markName = "";
@@ -48,11 +53,11 @@ class SearchViewState extends State<SearchView> {
     super.initState();
   }
 
-  final _startYear = TextEditingController();
-  final _endYear = TextEditingController();
-  final _valyuta = TextEditingController();
-  final _payStart = TextEditingController();
-  final _payEnd = TextEditingController();
+  final _startYear = TextEditingController(text: "0");
+  final _endYear = TextEditingController(text: "0");
+  final _valyuta = TextEditingController(text: "0");
+  final _payStart = TextEditingController(text: "0");
+  final _payEnd = TextEditingController(text: "0");
 
   @override
   void dispose() {
@@ -66,6 +71,9 @@ class SearchViewState extends State<SearchView> {
 
   @override
   Widget build(BuildContext context) {
+    final languageProvider = Provider.of<LocalProvider>(context);
+    final tokenProvider = Provider.of<TokenProvider>(context);
+
     TextStyle fonmDataTextStyle = const TextStyle(fontSize: 12.0);
     EdgeInsets contentPadding = const EdgeInsets.fromLTRB(20.0, 0, 3.0, 0);
     RoundedRectangleBorder shape = const RoundedRectangleBorder(
@@ -73,7 +81,7 @@ class SearchViewState extends State<SearchView> {
         Radius.circular(15.0),
       ),
     );
-    setState(() {});
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Kerakli e`lonni qidirish"),
@@ -98,16 +106,16 @@ class SearchViewState extends State<SearchView> {
                 tileColor: Colors.black12,
                 onTap: () => showModalBottom(
                     context,
-                    region!.length * 50.0,
+                    region.length * 50.0,
                     [
                       Flexible(
                         child: ListView.builder(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
                           physics: const ScrollPhysics(),
-                          itemCount: region!.length,
+                          itemCount: region.length,
                           itemBuilder: (context, i) {
-                            final el = region![i];
+                            final el = region[i];
                             return Card(
                               shape: shape,
                               semanticContainer: true,
@@ -188,11 +196,13 @@ class SearchViewState extends State<SearchView> {
                       .toList(),
                 ),
               ),
-              sizeBox20,
+              carBrandList.isNotEmpty ? sizeBox20 : const SizedBox(),
               carBrandList.isNotEmpty
                   ? ListTile(
                       title: Text(
-                        markName == "" ? S.of(context).markaniTanlang : markName,
+                        markName == ""
+                            ? S.of(context).markaniTanlang
+                            : markName,
                         style: Theme.of(context).textTheme.displayLarge,
                       ),
                       trailing: Icon(
@@ -256,8 +266,8 @@ class SearchViewState extends State<SearchView> {
                           true,
                           true),
                     )
-                  : sizeBox20,
-              sizeBox20,
+                  : const SizedBox(),
+              carModelList.length != 0 ? sizeBox20 : const SizedBox(),
               carModelList.length != 0
                   ? ListTile(
                       title: Text(
@@ -279,9 +289,9 @@ class SearchViewState extends State<SearchView> {
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
                                 physics: const ScrollPhysics(),
-                                itemCount: carModelList!.length,
+                                itemCount: carModelList.length,
                                 itemBuilder: (context, i) {
-                                  final el = carModelList![i];
+                                  final el = carModelList[i];
                                   return Card(
                                     shape: shape,
                                     semanticContainer: true,
@@ -320,7 +330,7 @@ class SearchViewState extends State<SearchView> {
                           true,
                           true),
                     )
-                  : sizeBox20,
+                  : const SizedBox(),
               sizeBox20,
               SizedBox(
                 width: MediaQuery.of(context).size.width,
@@ -334,15 +344,15 @@ class SearchViewState extends State<SearchView> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    child: input(
-                        _startYear, TextInputType.number, validate, S.of(context).yilDan),
+                    child: input(_startYear, TextInputType.number, validate,
+                        S.of(context).yilDan),
                   ),
                   const SizedBox(
                     width: 10.0,
                   ),
                   Expanded(
-                    child: input(
-                        _endYear, TextInputType.number, validate, S.of(context).yilGacha),
+                    child: input(_endYear, TextInputType.number, validate,
+                        S.of(context).yilGacha),
                   ),
                 ],
               ),
@@ -358,15 +368,15 @@ class SearchViewState extends State<SearchView> {
               Row(
                 children: [
                   Expanded(
-                    child: input(
-                        _payStart, TextInputType.number, validate, S.of(context).dan),
+                    child: input(_payStart, TextInputType.number, validate,
+                        S.of(context).dan),
                   ),
                   const SizedBox(
                     width: 10.0,
                   ),
                   Expanded(
-                    child: input(
-                        _payEnd, TextInputType.number, validate, S.of(context).gacha),
+                    child: input(_payEnd, TextInputType.number, validate,
+                        S.of(context).gacha),
                   ),
                   const SizedBox(
                     width: 10.0,
@@ -399,9 +409,19 @@ class SearchViewState extends State<SearchView> {
                     ),
                   )
                 ],
-              )
+              ),
             ],
           ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => getSearch(
+            token: tokenProvider.token!,
+            lang: languageProvider.locale.languageCode),
+        icon: const Icon(Icons.search),
+        label: Text(
+          S.of(context).qidirish,
+          style: Theme.of(context).textTheme.displaySmall,
         ),
       ),
     );
@@ -412,5 +432,22 @@ class SearchViewState extends State<SearchView> {
     region = await RegionService().getRegions();
     valyutaList = await ValyutaService().getValyuta();
     setState(() {});
+  }
+
+  void getSearch({required String token, required String lang}) {
+    BlocProvider.of<ListingBloc>(context).add(ListingEvantSearch(
+      token: token,
+      lang: lang,
+      brand_id: carBrandValue,
+      car_type: carTypeId,
+      model_id: carModelValue,
+      region_id: regionGroupValue,
+      end_price: int.parse(_payEnd.text),
+      end_year: int.parse(_endYear.text),
+      start_price: int.parse(_payStart.text),
+      start_year: int.parse(_startYear.text),
+      valyuta: int.parse(_valyuta.text),
+    ));
+    Navigator.of(context).pop();
   }
 }

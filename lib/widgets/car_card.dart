@@ -1,18 +1,26 @@
+import 'package:avto_baraka/api/service/listing_service.dart';
+import 'package:avto_baraka/bloc/like/like_bloc.dart';
 import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/http/config.dart';
+import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
+import 'package:avto_baraka/provider/token_provider/token_provider.dart';
 import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/widgets/car_tag_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:provider/provider.dart';
 
 carCard(context, state) {
   onOneCarView(context, item) {
     Navigator.of(context).pushNamed(RouteName.oneCarView, arguments: item);
   }
 
+  final tokenProvider = Provider.of<TokenProvider>(context);
+  // final languageProvider = Provider.of<LocalProvider>(context);
   if (state is ListingStateLoading) {
     return const Center(
       child: CircularProgressIndicator(),
@@ -82,12 +90,17 @@ carCard(context, state) {
                                 backgroundColor: cardFixCardColor,
                                 // padding: const EdgeInsets.all(15.0)\
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                BlocProvider.of<LikeBloc>(context).add(
+                                    LikeEvendSend(
+                                        id: item.id,
+                                        token: tokenProvider.token!));
+                              },
                               child: Icon(
                                 FontAwesomeIcons.solidHeart,
-                                color: true
-                                    ? colorRed
-                                    : const Color.fromARGB(255, 83, 83, 83),
+                                // color: true
+                                //     ? colorRed
+                                //     : const Color.fromARGB(255, 83, 83, 83),
                                 size: 14.0,
                               ),
                             ),

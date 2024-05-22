@@ -85,35 +85,36 @@ class CobinetScreenState extends State<CobinetScreen> {
                     ],
                   ),
                 ),
-                Card(
-                  color: backgrounColor,
-                  elevation: 0,
-                  child: ListTile(
-                    title: Text(
-                      S.of(context).meningHisobim,
-                      style: Theme.of(context).textTheme.bodyLarge,
+                ListTile(
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(15.0),
                     ),
-                    subtitle: Text(
-                      "210 000 so`m",
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w700,
-                          color: iconSelectedColor),
-                    ),
-                    trailing: SizedBox(
-                      width: 50.0,
-                      height: 50.0,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Icon(
-                          Icons.credit_card,
-                          color: iconSelectedColor,
-                          size: 28.0,
-                        ),
+                  ),
+                  title: Text(
+                    S.of(context).meningHisobim,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  subtitle: Text(
+                    "210 000 so`m",
+                    style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w700,
+                        color: iconSelectedColor),
+                  ),
+                  trailing: SizedBox(
+                    width: 50.0,
+                    height: 50.0,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      child: Icon(
+                        Icons.credit_card,
+                        color: iconSelectedColor,
+                        size: 28.0,
                       ),
                     ),
-                    onTap: () {},
                   ),
+                  onTap: () {},
                 ),
               ]),
               pinned: true,

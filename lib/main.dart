@@ -1,4 +1,5 @@
 import 'package:avto_baraka/api/service/listing_service.dart';
+import 'package:avto_baraka/bloc/like/like_bloc.dart';
 import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
 import 'package:avto_baraka/bloc/listing_active/listing_active_bloc.dart';
 import 'package:avto_baraka/bloc/listing_blocked/listing_blocked_bloc.dart';
@@ -47,6 +48,9 @@ void main() async {
           ),
           BlocProvider<ListingBlockedBloc>(
             create: (context) => ListingBlockedBloc(ListingService.servive),
+          ),
+          BlocProvider<LikeBloc>(
+            create: (context) => LikeBloc(ListingService.servive),
           )
         ],
         child: const MyApp(),

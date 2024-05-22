@@ -40,7 +40,7 @@ class Authorization {
         throw Exception('Ошибка ${response.statusCode}');
       }
     } catch (error) {
-      throw Exception('ERROR ${error}');
+      throw Exception('ERROR $error');
     }
   }
 }

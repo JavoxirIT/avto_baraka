@@ -34,7 +34,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "avvalViloyatniTanlang":
             MessageLookupByLibrary.simpleMessage("Сначало выберите регион"),
         "bajarish": MessageLookupByLibrary.simpleMessage("Выполнить"),
-        "bekorQilingan": MessageLookupByLibrary.simpleMessage("Отменённые"),
+        "batafsilMalumot":
+            MessageLookupByLibrary.simpleMessage("Подробная информация"),
+        "bekorQilingan": MessageLookupByLibrary.simpleMessage("Не активные"),
         "boshSahifa": MessageLookupByLibrary.simpleMessage("Главное окно"),
         "boshlangichTolov":
             MessageLookupByLibrary.simpleMessage("Начальная оплата"),
@@ -100,6 +102,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "kriditSummasiniKriting":
             MessageLookupByLibrary.simpleMessage("Введите сумму кредита"),
         "kriditgaBeriladimi": MessageLookupByLibrary.simpleMessage("В кредит?"),
+        "kuzov": MessageLookupByLibrary.simpleMessage("Вид кузова:"),
         "kuzovTuri": MessageLookupByLibrary.simpleMessage("Вид кузова"),
         "kuzovTurinitanlang":
             MessageLookupByLibrary.simpleMessage("Выберите вид кузова"),
@@ -125,6 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "oldinga": MessageLookupByLibrary.simpleMessage("Вперед"),
         "orqaga": MessageLookupByLibrary.simpleMessage("Назад"),
         "parametrlar": MessageLookupByLibrary.simpleMessage("Параметры"),
+        "qidirish": MessageLookupByLibrary.simpleMessage("Поиск"),
         "qidiruvSozlari":
             MessageLookupByLibrary.simpleMessage("Поисковые слова"),
         "qoshimchaMalumot":
@@ -132,6 +136,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "rasimgaOlish": MessageLookupByLibrary.simpleMessage("Открыть камеру"),
         "rasmlarniYuklang":
             MessageLookupByLibrary.simpleMessage("Загрузите изображения"),
+        "royhatdanChiqarish":
+            MessageLookupByLibrary.simpleMessage("Из избранного"),
         "saqlash": MessageLookupByLibrary.simpleMessage("Сохранить"),
         "smsKodniKiriting":
             MessageLookupByLibrary.simpleMessage("Введите код из смс"),
