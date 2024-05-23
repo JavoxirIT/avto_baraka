@@ -51,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "chiqarilganYili":
             MessageLookupByLibrary.simpleMessage("Chiqarilgan yili:"),
         "dan": MessageLookupByLibrary.simpleMessage("--- dan"),
+        "diqqat": MessageLookupByLibrary.simpleMessage("Diqqat!"),
         "dvigatelHajmi": MessageLookupByLibrary.simpleMessage("Dvigatel hajmi"),
         "dvigatelHajminiKiriting":
             MessageLookupByLibrary.simpleMessage("Dvigatel hajmini kiriting"),
@@ -74,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Uskunadan Geolokatsiyani yoqish va foydalanishga ruxsat berish kerak bo’ladi"),
         "geopozitsiyaKabulKilindi":
             MessageLookupByLibrary.simpleMessage("Geopozitsiya kabul kilindi"),
+        "ha": MessageLookupByLibrary.simpleMessage("Ha"),
         "hududniTanlang":
             MessageLookupByLibrary.simpleMessage("Hududni tanlang"),
         "ilojiBor": MessageLookupByLibrary.simpleMessage("Iloji bor"),
@@ -87,6 +89,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Internet aloqasi yo`q"),
         "ishlabChiqarilganYili":
             MessageLookupByLibrary.simpleMessage("Ishlab chiqarilgan yili"),
+        "ishonchingizKomilmi":
+            MessageLookupByLibrary.simpleMessage("Ishonchingiz komilmi?"),
         "kabinet": MessageLookupByLibrary.simpleMessage("Kabinet"),
         "kartaMalumotlariniKiriting": MessageLookupByLibrary.simpleMessage(
             "Karta ma`lumotlarini kiriting"),

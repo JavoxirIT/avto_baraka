@@ -212,6 +212,15 @@ carBlockedCard(context, state) {
       },
     );
   }
+  if (state is ListingBlockedStateNotData) {
+    return Center(
+      child: Text(
+        "Bloklangan e`lon mavjut \n emas",
+        style: Theme.of(context).textTheme.labelLarge,
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
   if (state is ListingBlockedInitial) {
     return const Center(
       child: CircularProgressIndicator(),

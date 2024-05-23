@@ -39,109 +39,46 @@ class CobinetScreenState extends State<CobinetScreen> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-          body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            SliverAppBar(
-              toolbarHeight: 152.0,
-              title: Column(children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        S.of(context).kabinet.toUpperCase(),
-                        style: const TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                      ButtonBar(
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed(RouteName.contactWithAdmin);
-                            },
-                            icon: Icon(
-                              Icons.support_agent,
-                              color: iconSelectedColor,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed(RouteName.settingView);
-                            },
-                            icon: Icon(
-                              Icons.settings_outlined,
-                              color: iconSelectedColor,
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                ListTile(
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(15.0),
-                    ),
-                  ),
-                  title: Text(
-                    S.of(context).meningHisobim,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  subtitle: Text(
-                    "210 000 so`m",
-                    style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w700,
-                        color: iconSelectedColor),
-                  ),
-                  trailing: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: Icon(
-                        Icons.credit_card,
-                        color: iconSelectedColor,
-                        size: 28.0,
-                      ),
-                    ),
-                  ),
-                  onTap: () {},
-                ),
-              ]),
-              pinned: true,
-              floating: true,
-              bottom: TabBar(
-                // tabAlignment: TabAlignment.center,
-                indicatorPadding: const EdgeInsets.symmetric(
-                  horizontal: -10.0,
-                  vertical: 0.0,
-                ),
-                // indicatorColor: iconSelectedColor,
-                indicator: BoxDecoration(
-                  color: iconSelectedColor,
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                // unselectedLabelStyle: Theme.of(context).textTheme.displaySmall,
-                // isScrollable: true,
-                labelStyle: Theme.of(context).textTheme.displaySmall,
-
-                tabs: [
-                  Tab(text: S.of(context).tasdiqlangan),
-                  Tab(text: S.of(context).bekorQilingan),
-                ],
-              ),
+        appBar: AppBar(
+          title: Text(
+            S.of(context).kabinet.toUpperCase(),
+            style: const TextStyle(
+              fontSize: 14.0,
+              fontWeight: FontWeight.w600,
             ),
-          ];
-        },
+            textAlign: TextAlign.left,
+          ),
+          actions: [
+            ButtonBar(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(RouteName.contactWithAdmin);
+                  },
+                  icon: Icon(
+                    Icons.support_agent,
+                    color: iconSelectedColor,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(RouteName.settingView);
+                  },
+                  icon: Icon(
+                    Icons.settings_outlined,
+                    color: iconSelectedColor,
+                  ),
+                ),
+              ],
+            ),
+          ],
+          bottom: TabBar(
+            tabs: <Widget>[
+              Tab(text: S.of(context).tasdiqlangan),
+              Tab(text: S.of(context).bekorQilingan),
+            ],
+          ),
+        ),
         body: TabBarView(
           children: <Widget>[
             BlocBuilder<ListingActiveBloc, ListingActiveState>(
@@ -158,7 +95,7 @@ class CobinetScreenState extends State<CobinetScreen> {
             }),
           ],
         ),
-      )),
+      ),
     );
   }
 }

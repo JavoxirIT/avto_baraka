@@ -1179,6 +1179,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Ishonchingiz komilmi?`
+  String get ishonchingizKomilmi {
+    return Intl.message(
+      'Ishonchingiz komilmi?',
+      name: 'ishonchingizKomilmi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Diqqat!`
+  String get diqqat {
+    return Intl.message(
+      'Diqqat!',
+      name: 'diqqat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ha`
+  String get ha {
+    return Intl.message(
+      'Ha',
+      name: 'ha',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

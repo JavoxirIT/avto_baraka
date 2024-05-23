@@ -77,7 +77,7 @@ class ListingService {
         ),
       );
       if (response.statusCode == 200) {
-        for (var element in response.data) {
+        for (var element in response.data['data']) {
           listingDataList.add(ListingGetModals.fromMap(element));
         }
       } else {
@@ -213,7 +213,7 @@ class ListingService {
         data: {"listing_id": listing_id},
       );
       if (response.statusCode == 200) {
-        debugPrint('LIKED Response: ${response.data}');
+        // debugPrint('LIKED Response: ${response.data}');
         likedStatus = response.data;
       } else {
         debugPrint('LIKED ERORR Response: ${response.statusCode}');
@@ -230,9 +230,9 @@ class ListingService {
   }
 
   Future<List<ListingGetModals>> getLikeList(String lang, String token) async {
-    debugPrint('RESPONSE DATA');
-    listingLikeList.clear();
+    // debugPrint('RESPONSE DATA');
     try {
+      listingLikeList.clear();
       final response = await _dio.get(
         '${_url}favourites/$lang',
         options: Options(
@@ -241,12 +241,9 @@ class ListingService {
       );
 
       if (response.statusCode == 200) {
-        debugPrint('RESPONSE DATA: ${response.data}');
-
         for (var element in response.data) {
           listingLikeList.add(ListingGetModals.fromMap(element));
         }
-        debugPrint('like list: ${listingLikeList.toString()}');
       } else {
         debugPrint('Ошибка при получение LIKE LIST: ${response.statusCode}');
       }

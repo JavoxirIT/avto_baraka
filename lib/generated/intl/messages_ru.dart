@@ -49,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Выберите бренд"),
         "chiqarilganYili": MessageLookupByLibrary.simpleMessage("Год выпуска:"),
         "dan": MessageLookupByLibrary.simpleMessage("--- от"),
+        "diqqat": MessageLookupByLibrary.simpleMessage("Внимание!"),
         "dvigatelHajmi":
             MessageLookupByLibrary.simpleMessage("Объем двигателя"),
         "dvigatelHajminiKiriting":
@@ -75,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "На вашем устройстве необходимо будет включить и разрешить геолокацию"),
         "geopozitsiyaKabulKilindi":
             MessageLookupByLibrary.simpleMessage("Геопозиция определена"),
+        "ha": MessageLookupByLibrary.simpleMessage("ДА"),
         "hududniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите облость"),
         "ilojiBor": MessageLookupByLibrary.simpleMessage("Нет"),
@@ -88,9 +90,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Нет связи с интернетом"),
         "ishlabChiqarilganYili":
             MessageLookupByLibrary.simpleMessage("Год выпуска"),
+        "ishonchingizKomilmi":
+            MessageLookupByLibrary.simpleMessage("Вы уверены?"),
         "kabinet": MessageLookupByLibrary.simpleMessage("Кабинет"),
         "kartaMalumotlariniKiriting": MessageLookupByLibrary.simpleMessage(
-            "Karta ma`lumotlarini kiriting"),
+            "Выберите расположение на карте"),
         "kategoriyalar": MessageLookupByLibrary.simpleMessage("КАТЕГОРИИ"),
         "kechirasiz": MessageLookupByLibrary.simpleMessage("Извините"),
         "kreditKalkulatori":
@@ -194,7 +198,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Добавить обявления"),
         "yilDan": MessageLookupByLibrary.simpleMessage("c ---- года"),
         "yilGacha": MessageLookupByLibrary.simpleMessage("до ---- года"),
-        "yoq": MessageLookupByLibrary.simpleMessage("ДА"),
+        "yoq": MessageLookupByLibrary.simpleMessage("Нет"),
         "yoqilgiTuri": MessageLookupByLibrary.simpleMessage("Вид топлива"),
         "yoqilgiTuriniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите вид топлива"),

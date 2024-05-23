@@ -31,12 +31,14 @@ class ListingGetModals {
     required this.valyuta_short,
     required this.viewed,
     required this.year,
-    // required this.phone,
+    required this.phone,
+    required this.liked,
     // required this.paint_condition,
   });
 
   late List<String> carImage;
-  late double engine;
+  late num engine;
+  late int? liked;
   late int discount;
   late int id;
   late int activeStatus;
@@ -64,7 +66,7 @@ class ListingGetModals {
   late String valyuta_kurs;
   late String valyuta_name;
   late String valyuta_short;
-  // late String phone;
+  late String phone;
 
   ListingGetModals.fromMap(Map<String, dynamic> map) {
     carImage = jsonDecode(map['carImage']).cast<String>();
@@ -95,12 +97,13 @@ class ListingGetModals {
     valyuta_kurs = map['valyuta_kurs'];
     valyuta_name = map['valyuta_name'];
     valyuta_short = map['valyuta_short'];
-    // phone = map['phone'];
+    phone = map['phone'];
+    liked = map['liked'];
     // paint_condition = map['paint_condition'];
   }
 
   @override
   String toString() {
-    return 'ListingGetModals(id: $id, activeStatus: $activeStatus, brand: $brand, carImage: $carImage, car_body: $car_body, car_position: $car_position, car_type: $car_type, credit: $credit, description: $description, discount: $discount, district: $district, engine: $engine, expire_date: $expire_date, lat: $lat, long: $long, mileage: $mileage, model: $model, posted_date: $posted_date, price: $price, pulling_side: $pulling_side, region: $region, transmission: $transmission, type_of_fuel: $type_of_fuel, valyuta_kurs: $valyuta_kurs, valyuta_name: $valyuta_name, valyuta_short: $valyuta_short, viewed: $viewed, year: $year, )';
+    return 'ListingGetModals(id: $id, activeStatus: $activeStatus, brand: $brand, carImage: $carImage, car_body: $car_body, car_position: $car_position, car_type: $car_type, credit: $credit, description: $description, discount: $discount, district: $district, engine: $engine, expire_date: $expire_date, lat: $lat, long: $long, mileage: $mileage, model: $model, posted_date: $posted_date, price: $price, pulling_side: $pulling_side, region: $region, transmission: $transmission, type_of_fuel: $type_of_fuel, valyuta_kurs: $valyuta_kurs, valyuta_name: $valyuta_name, valyuta_short: $valyuta_short, viewed: $viewed, year: $year, phone: $phone, liked: $liked )';
   }
 }

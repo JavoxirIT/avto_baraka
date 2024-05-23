@@ -18,11 +18,11 @@ class LikeEvendSend extends LikeEvent {
 }
 
 class LikeEvendGet extends LikeEvent {
-  const LikeEvendGet({required this.token, required this.lang});
+  const LikeEvendGet( this.lang, this.token);
 
-  final String token;
-  final String lang;
+  final String? lang;
+  final String? token;
 
   @override
-  List<Object> get props => super.props..addAll([lang, token]);
+  List<Object> get props => super.props..addAll([lang!, token!]);
 }

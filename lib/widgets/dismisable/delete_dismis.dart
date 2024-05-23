@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 
 Container deleteDismiss(context) {
   return Container(
-    color: iconSelectedColor,
+    color: const Color.fromARGB(255, 221, 221, 221),
     child: Row(
       children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 10.0),
+        Padding(
+          padding: const EdgeInsets.only(left: 10.0),
           child: Center(
               child: Icon(
             Icons.delete,
-            color: Colors.white,
+            color: iconSelectedColor,
           )),
         ),
         Padding(
@@ -20,8 +20,8 @@ Container deleteDismiss(context) {
           child: Center(
             child: Text(
               S.of(context).royhatdanChiqarish,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: iconSelectedColor,
               ),
             ),
           ),

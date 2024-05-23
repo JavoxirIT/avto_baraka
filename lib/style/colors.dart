@@ -19,3 +19,4 @@ Color cardCashColor = const Color.fromARGB(255, 146, 146, 146);
 Color focusedBorderColor = const Color.fromRGBO(23, 171, 144, 1);
 Color fillColor = const Color.fromRGBO(243, 246, 249, 0);
 Color borderColor = const Color.fromRGBO(23, 171, 144, 0.4);
+Color iconDizLike = const Color(0xFF535353);

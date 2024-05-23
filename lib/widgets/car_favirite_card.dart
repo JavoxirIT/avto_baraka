@@ -1,17 +1,20 @@
-import 'package:avto_baraka/bloc/listing_active/listing_active_bloc.dart';
+import 'package:avto_baraka/bloc/like/like_bloc.dart';
+import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/http/config.dart';
 import 'package:avto_baraka/router/route_name.dart';
-import 'package:avto_baraka/style/clear_button.dart';
 import 'package:avto_baraka/style/colors.dart';
+import 'package:avto_baraka/style/elevated_button.dart';
+import 'package:avto_baraka/style/elevation_button_white.dart';
 import 'package:avto_baraka/widgets/car_tag_card.dart';
 import 'package:avto_baraka/widgets/dismisable/delete_dismis.dart';
 import 'package:avto_baraka/widgets/dismisable/secondary_dismis.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-carFavpriteCard(context, state) {
+carFavpriteCard(context, state, String token, String lang) {
   return ListView.builder(
     itemCount: state.listing.length,
     itemBuilder: (context, i) {
@@ -28,31 +31,54 @@ carFavpriteCard(context, state) {
               key: Key(item.id.toString()),
               confirmDismiss: (DismissDirection direction) async {
                 if (direction == DismissDirection.startToEnd) {
-                  // return await showDialog(
-                  //   context: context,
-                  //   builder: (BuildContext context) {
-                  //     return AlertDialog(
-                  //       title: const Text("Внимание"),
-                  //       content: const Text(
-                  //           "Вы уверены? после удаления данные не восстановить!?"),
-                  //       actions: <Widget>[
-                  //         ElevatedButton(
-                  //             style: clearButton,
-                  //             onPressed: () {},
-                  //             child: const Text("Удалить")),
-                  //         ElevatedButton(
-                  //           onPressed: () => Navigator.of(context).pop(false),
-                  //           child: const Text("Нет"),
-                  //         ),
-                  //       ],
-                  //     );
-                  //   },
-                  // );
+                  return await showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text(
+                          S.of(context).diqqat,
+                          style: Theme.of(context).textTheme.labelLarge,
+                        ),
+                        content: Text(S.of(context).ishonchingizKomilmi),
+                        actions: <Widget>[
+                          ElevatedButton(
+                            style: elevatedButton,
+                            onPressed: () {
+                              BlocProvider.of<LikeBloc>(context)
+                                  .add(LikeEvendSend(
+                                id: item.id,
+                                token: token,
+                              ));
+
+                              BlocProvider.of<LikeBloc>(context).add(
+                                LikeEvendGet(lang, token),
+                              );
+
+                              BlocProvider.of<ListingBloc>(context).add(
+                                ListingEventLoad(
+                                  lang,
+                                  token,
+                                ),
+                              );
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(S.of(context).ha),
+                          ),
+                          ElevatedButton(
+                            style: elevationButtonWhite,
+                            onPressed: () => Navigator.of(context).pop(false),
+                            child: Text(
+                              S.of(context).yoq,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 } else if (direction == DismissDirection.endToStart) {
                   Navigator.of(context)
                       .pushNamed(RouteName.oneCarView, arguments: item);
                 }
-                return null;
               },
               background: deleteDismiss(context),
               secondaryBackground: secondaryDismiss(context),
@@ -62,7 +88,7 @@ carFavpriteCard(context, state) {
                   Stack(
                     children: [
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(4.0),
+                        borderRadius: BorderRadius.circular(8.0),
                         child: Image.network(
                           Config.imageUrl! + item.carImage[0].substring(1),
                           fit: BoxFit.cover,
@@ -71,22 +97,21 @@ carFavpriteCard(context, state) {
                         ),
                       ),
                       Positioned(
-                        right: -7.5,
-                        top: 0,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: const CircleBorder(),
-                            backgroundColor: cardFixCardColor,
-                            // padding: const EdgeInsets.all(15.0)\
+                        right: 5,
+                        top: 5,
+                        child: Container(
+                          width: 40.0,
+                          height: 40.0,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: cardFixCardColor,
                           ),
-                          onPressed: () {},
-                          child: Icon(
-                            FontAwesomeIcons.solidHeart,
-                            color: colorRed,
-                            // color: true
-                            //     ? colorRed
-                            //     : const Color.fromARGB(255, 83, 83, 83),
-                            size: 14.0,
+                          child: Center(
+                            child: Icon(
+                              FontAwesomeIcons.solidHeart,
+                              color: colorRed,
+                              size: 20.0,
+                            ),
                           ),
                         ),
                       ),

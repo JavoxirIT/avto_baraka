@@ -88,14 +88,14 @@
   "tizimdanTolFoy": "Чтобы полноценно пользоваться системой, вам необходимо будет заплатить 12 500 сумов.",
   "xaliEmas": "Оплатить пойже",
   "amalgaOshirish": "Оплатить",
-  "kartaMalumotlariniKiriting": "Karta ma`lumotlarini kiriting",
+  "kartaMalumotlariniKiriting": "Выберите расположение на карте",
   "elonHolatiniKabitendatNKuzatsangizBoladi": "Отслеживать статус объявления  можно в кабитендате",
   "bajarish": "Выполнить",
   "yangiElonJoylash": "Добавть новый объявление",
   "parametrlar": "Параметры",
   "chiqarilganYili": "Год выпуска:",
   "kreditga": "В кредит:",
-  "yoq": "ДА",
+  "yoq": "Нет",
   "ilojiBor": "Нет",
   "sotuvchigaQongiroqQilish": "Позвонить продавцу",
   "tasdiqlanganElonlarMavjutEmas": "Одобренные обявления не найдены",
@@ -111,5 +111,8 @@
   "qidirish": "Поиск",
   "kuzov": "Вид кузова:",
   "batafsilMalumot": "Подробная информация",
-  "royhatdanChiqarish": "Из избранного"
+  "royhatdanChiqarish": "Из избранного",
+  "ishonchingizKomilmi": "Вы уверены?",
+  "diqqat": "Внимание!",
+  "ha": "ДА"
 }

@@ -379,7 +379,7 @@ class OneCarViewState extends State<OneCarView> {
             ),
             OutlinedButton(
               onPressed: () {
-                // call(_carData!.phone);
+                call(_carData!.phone);
               },
               style: oneCaroutlineButton,
               child: Row(

@@ -10,14 +10,6 @@ final ButtonStyle elevatedButton = ElevatedButton.styleFrom(
       Radius.circular(5),
     ),
   ),
-  textStyle: const TextStyle(
-    fontSize: 14.0,
-    fontWeight: FontWeight.w400,
-    fontFamily: "Roboto",
-  ),
-  // shadowColor: const Color.fromARGB(255, 251, 189, 4),
-  // side: const BorderSide(
-  //   color: Color.fromARGB(255, 251, 189, 4),
-  // ),
-  // elevation: 7.0
+  shadowColor: const Color.fromARGB(255, 161, 161, 161),
+  elevation: 7.0,
 );

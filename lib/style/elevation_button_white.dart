@@ -2,7 +2,7 @@ import 'package:avto_baraka/style/colors.dart';
 import 'package:flutter/material.dart';
 
 final ButtonStyle elevationButtonWhite = ElevatedButton.styleFrom(
-  foregroundColor: Colors.white,
+  // foregroundColor: const Color.fromARGB(255, 255, 255, 255),
   backgroundColor: textColorWhite,
   minimumSize: const Size(88, 36),
   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -12,13 +12,11 @@ final ButtonStyle elevationButtonWhite = ElevatedButton.styleFrom(
     ),
   ),
   textStyle: TextStyle(
-      fontSize: 14.0,
-      fontWeight: FontWeight.w400,
-      fontFamily: "Roboto",
-      color: iconSelectedColor),
-  // shadowColor: const Color.fromARGB(255, 251, 189, 4),
-  // side: const BorderSide(
-  //   color: Color.fromARGB(255, 251, 189, 4),
-  // ),
-  // elevation: 7.0
+    fontSize: 14.0,
+    fontWeight: FontWeight.w400,
+    fontFamily: "Roboto",
+    color: iconSelectedColor,
+  ),
+  shadowColor: const Color.fromARGB(255, 161, 161, 161),
+  elevation: 7.0,
 );

@@ -23,6 +23,11 @@ class LikeBloc extends Bloc<LikeEvent, LikeState> {
       final response = await _listingService.onLiked(event.token, event.id);
       if (response != "1") {
         emit(LikeStateUnLiked());
+
+        // await getLikeList(
+        //   LikeEvendGet(event.lang, event.token),
+        //   emit,
+        // );
       } else {
         emit(LikeStateLiked());
       }
@@ -32,10 +37,8 @@ class LikeBloc extends Bloc<LikeEvent, LikeState> {
   }
 
   Future<void> getLikeList(LikeEvendGet event, Emitter<LikeState> emit) async {
-    debugPrint('Like Bloc РАБОТАЕТ');
-
     try {
-      final data = await _listingService.getLikeList(event.lang, event.token);
+      final data = await _listingService.getLikeList(event.lang!, event.token!);
 
       if (data.isEmpty) {
         emit(LikeStateNotData());

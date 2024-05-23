@@ -22,18 +22,20 @@ ThemeData defaultTheme() {
           fontWeight: FontWeight.w600,
           fontFamily: "Roboto"),
     ),
-
-    tabBarTheme: const TabBarTheme(
-      // верхняя часть app bara
-      overlayColor: MaterialStatePropertyAll(Colors.white),
-      dividerHeight: 0.0,
-      labelStyle: TextStyle(
-        fontFamily: "Roboto",
-        fontSize: 14.0,
-        fontWeight: FontWeight.w700,
-      ),
-      labelColor: Colors.white,
+    tabBarTheme: TabBarTheme(
+      indicatorSize: TabBarIndicatorSize.label,
+      indicatorColor: iconSelectedColor,
+      dividerHeight: BorderSide.strokeAlignCenter,
+      labelColor: iconSelectedColor,
+      overlayColor: const MaterialStatePropertyAll(Colors.white),
+      // labelStyle: const TextStyle(
+      //   fontFamily: "Roboto",
+      //   fontSize: 14.0,
+      //   fontWeight: FontWeight.w700,
+      // ),
+      // dividerColor: Colors.blueAccent
     ),
+
     cardTheme: CardTheme(
       // shape: Border.all(width: 1.0, color: const Color.fromARGB(255, 214, 214, 214), )
       shape: RoundedRectangleBorder(
@@ -80,7 +82,10 @@ ThemeData defaultTheme() {
     ),
     textTheme: TextTheme(
       labelLarge: const TextStyle(
-          fontSize: 17.0, fontWeight: FontWeight.w700, letterSpacing: 2.0),
+        fontSize: 17.0,
+        fontWeight: FontWeight.w700,
+        letterSpacing: 2.0,
+      ),
       displayLarge:
           const TextStyle(fontSize: 13.0, fontWeight: FontWeight.w600),
       displayMedium: const TextStyle(
