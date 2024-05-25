@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:avto_baraka/api/models/region_models.dart';
-import 'package:avto_baraka/http/config.dart';
+import 'package:avto_baraka/http_config/config.dart';
 import 'package:dio/dio.dart';
 // import 'package:flutter/material.dart';
 

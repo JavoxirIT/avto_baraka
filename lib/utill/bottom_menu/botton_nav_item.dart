@@ -1,5 +1,5 @@
 import 'package:avto_baraka/generated/l10n.dart';
-import 'package:avto_baraka/widgets/bottom_nav_bar_item.dart';
+import 'package:avto_baraka/utill/bottom_menu/bottom_nav_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

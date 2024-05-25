@@ -7,7 +7,7 @@ import 'package:avto_baraka/api/models/car_paint_condition_models.dart';
 import 'package:avto_baraka/api/models/car_pulling_side_models.dart';
 import 'package:avto_baraka/api/models/car_transmission_models.dart';
 import 'package:avto_baraka/api/service/token_service.dart';
-import 'package:avto_baraka/http/config.dart';
+import 'package:avto_baraka/http_config/config.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +30,7 @@ class CarService {
         '${_url}ltypes',
         options: Options(
           headers: {
-            'Authorization': await await TokenService.service.getLocolToken(),
+            'Authorization': await TokenService.service.getLocolToken(),
           },
         ),
       );

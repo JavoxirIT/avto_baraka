@@ -1,16 +1,4 @@
-import 'package:avto_baraka/bloc/listing_active/listing_active_bloc.dart';
-import 'package:avto_baraka/bloc/listing_blocked/listing_blocked_bloc.dart';
-import 'package:avto_baraka/generated/l10n.dart';
-import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
-import 'package:avto_baraka/provider/token_provider/token_provider.dart';
-import 'package:avto_baraka/router/route_name.dart';
-import 'package:avto_baraka/style/colors.dart';
-import 'package:avto_baraka/widgets/car_active.card.dart';
-import 'package:avto_baraka/widgets/car_blocked_card.dart';
-import 'package:avto_baraka/widgets/padding_layout.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
+import 'package:avto_baraka/screen/imports/imports_cabinet.dart';
 
 class CobinetScreen extends StatefulWidget {
   const CobinetScreen({Key? key}) : super(key: key);

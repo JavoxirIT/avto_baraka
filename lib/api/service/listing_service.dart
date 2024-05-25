@@ -2,7 +2,7 @@
 
 import 'package:avto_baraka/api/models/listing_get_models.dart';
 import 'package:avto_baraka/api/service/token_service.dart';
-import 'package:avto_baraka/http/config.dart';
+import 'package:avto_baraka/http_config/config.dart';
 import 'package:avto_baraka/provider/token_provider/token_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -84,9 +84,9 @@ class ListingService {
         debugPrint('LISTING ERROR: ${response.statusCode}');
       }
     } catch (e) {
-      debugPrint('LISTING ERROR : ${e}');
+      debugPrint('LISTING ERROR : $e');
       if (e is DioException) {
-        if (e.response!.statusCode == 401) {
+        if (e.response?.statusCode == 401) {
           debugPrint('debugPrint: ${401}');
           TokenProvider().removeTokenPreferences(tokenKey);
         }
@@ -114,7 +114,7 @@ class ListingService {
         debugPrint('LISTING ACTIVE ERROR: ${response.statusCode}');
       }
     } catch (e) {
-      debugPrint('CATCH LISTING ACTIVE ERROR : ${e}');
+      debugPrint('CATCH LISTING ACTIVE ERROR : $e');
       if (e is DioException) {
         if (e.response!.statusCode == 401) {
           TokenProvider().removeTokenPreferences(tokenKey);

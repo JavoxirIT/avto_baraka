@@ -1,19 +1,18 @@
 import 'package:avto_baraka/bloc/listing_blocked/listing_blocked_bloc.dart';
-import 'package:avto_baraka/http/config.dart';
-import 'package:avto_baraka/router/route_name.dart';
+import 'package:avto_baraka/http_config/config.dart';
+// import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevated_button.dart';
 import 'package:avto_baraka/widgets/car_tag_card.dart';
 import 'package:avto_baraka/widgets/dialog.dart';
-import 'package:avto_baraka/widgets/tarif.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 carBlockedCard(context, state) {
-  onOneCarView(context, item) {
-    Navigator.of(context).pushNamed(RouteName.oneCarView, arguments: item);
-  }
+  // onOneCarView(context, item) {
+  //   Navigator.of(context).pushNamed(RouteName.oneCarView, arguments: item);
+  // }
 
   debugPrint('state: $state');
 
@@ -190,7 +189,7 @@ carBlockedCard(context, state) {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        dialogBuilder(context, "", Text(""), []);
+                        dialogBuilder(context, "", const Text(""), []);
                       },
                       style: elevatedButton,
                       child: Text(

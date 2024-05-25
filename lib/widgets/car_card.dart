@@ -1,8 +1,7 @@
-import 'package:avto_baraka/api/service/listing_service.dart';
 import 'package:avto_baraka/bloc/like/like_bloc.dart';
 import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
-import 'package:avto_baraka/http/config.dart';
+import 'package:avto_baraka/http_config/config.dart';
 import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
 import 'package:avto_baraka/provider/token_provider/token_provider.dart';
 import 'package:avto_baraka/router/route_name.dart';
@@ -244,7 +243,7 @@ carCard(context, state) {
       child: Text(S.of(context).malumotlarBazasidaXatolik),
     );
   }
-  return const Center(
-    child: CircularProgressIndicator(),
-  );
+  // return const Center(
+  //   child: CircularProgressIndicator(),
+  // );
 }

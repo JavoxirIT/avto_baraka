@@ -1,7 +1,7 @@
-import 'package:avto_baraka/generated/l10n.dart';
+
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/utill/ad_rates.dart';
-import 'package:avto_baraka/widgets/announcement/form_step_title.dart';
+// ignore: unnecessary_import
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

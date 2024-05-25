@@ -1,4 +1,4 @@
-import 'package:avto_baraka/http/config.dart';
+import 'package:avto_baraka/http_config/config.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';

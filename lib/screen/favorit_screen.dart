@@ -1,11 +1,4 @@
-import 'package:avto_baraka/bloc/like/like_bloc.dart';
-import 'package:avto_baraka/generated/l10n.dart';
-import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
-import 'package:avto_baraka/provider/token_provider/token_provider.dart';
-import 'package:avto_baraka/widgets/car_favirite_card.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
+import "package:avto_baraka/screen/imports/imports_favorite.dart";
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
@@ -36,7 +29,7 @@ class FavoriteScreenState extends State<FavoriteScreen> {
         builder: (context, state) {
           if (state is LikeStateNotData) {
             return Center(
-              child: Text("Sida xozircha tanlangan elonlar mavjut emas"),
+              child: Text(S.of(context).tanlanganElonlarMavjutEmas),
             );
           }
           if (state is LikeStateError) {
@@ -48,7 +41,8 @@ class FavoriteScreenState extends State<FavoriteScreen> {
             return Container(
               padding:
                   const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
-              child: carFavpriteCard(context, state, tokenProvider.token!, languageProvider.locale.languageCode),
+              child: carFavpriteCard(context, state, tokenProvider.token!,
+                  languageProvider.locale.languageCode),
             );
           }
           return const Center(

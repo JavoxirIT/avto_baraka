@@ -14,7 +14,7 @@ import 'package:avto_baraka/view/one_car.dart';
 import 'package:avto_baraka/view/search_view.dart';
 import 'package:avto_baraka/view/setting_view/setting_user_view.dart';
 import 'package:avto_baraka/view/setting_view/setting_view.dart';
-import 'package:avto_baraka/widgets/bottom_navigation_menu.dart';
+import 'package:avto_baraka/screen/main_screen.dart';
 
 final routers = {
   RouteName.introduction: (_) => const IntroductionScreen(),

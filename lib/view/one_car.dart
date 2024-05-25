@@ -1,6 +1,6 @@
 import 'package:avto_baraka/api/models/listing_get_models.dart';
 import 'package:avto_baraka/generated/l10n.dart';
-import 'package:avto_baraka/http/config.dart';
+import 'package:avto_baraka/http_config/config.dart';
 import 'package:avto_baraka/observer/launch_map.dart';
 import 'package:avto_baraka/observer/share_route_observer.dart';
 import 'package:avto_baraka/router/route_name.dart';
@@ -20,6 +20,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:share_plus/share_plus.dart';
+// ignore: depend_on_referenced_packages
 import 'package:latlong2/latlong.dart';
 
 class OneCarView extends StatefulWidget {
@@ -93,8 +94,13 @@ class OneCarViewState extends State<OneCarView> {
               radius: 16.0,
               child: IconButton(
                 onPressed: () async {
-                  shareRouteObserver.share(context, _carData, carImageList);
-                  // _onShareXFileFromAssets(context, _carData);
+                  if (_carData != null &&
+                      carImageList != null &&
+                      carImageList.isNotEmpty) {
+                    shareRouteObserver.share(context, _carData, carImageList);
+                  } else {
+                    print('Error: _carData or carImageList is null or empty');
+                  }
                 },
                 icon: Icon(
                   Symbols.share,
@@ -409,8 +415,9 @@ class OneCarViewState extends State<OneCarView> {
     );
   }
 
+  // ignore: unused_element
   void _onShareXFileFromAssets(
-      BuildContext context, ListingGetModals? _carData) async {
+      BuildContext context, ListingGetModals? carData) async {
     final imageUrl = Config.imageUrl! + carImageList[0]['image'].substring(1);
     final box = context.findRenderObject() as RenderBox?;
     final data = await NetworkAssetBundle(Uri.parse(imageUrl)).load('');
@@ -420,16 +427,17 @@ class OneCarViewState extends State<OneCarView> {
       [
         XFile.fromData(
           buffer.asUint8List(data.offsetInBytes, data.lengthInBytes),
-          name: _carData!.model,
+          name: carData!.model,
           mimeType: 'image/png',
         ),
       ],
       text:
-          'Bu rasim Auto Baraka dasturidan yuborilgan\n ${_carData.brand} ${_carData.model} ${_carData.car_position} \n ${_carData.description}',
+          'Bu rasim Auto Baraka dasturidan yuborilgan\n ${carData.brand} ${carData.model} ${carData.car_position} \n ${carData.description}',
       sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
     );
 
     // Вернуться на предыдущий маршрут
+    // ignore: use_build_context_synchronously
     Navigator.of(context).pop();
   }
 

@@ -1209,6 +1209,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Tanlangan e'lonlar mavjut emas`
+  String get tanlanganElonlarMavjutEmas {
+    return Intl.message(
+      'Tanlangan e`lonlar mavjut emas',
+      name: 'tanlanganElonlarMavjutEmas',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

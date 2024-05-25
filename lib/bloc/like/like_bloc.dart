@@ -4,7 +4,6 @@ import 'package:avto_baraka/api/models/listing_get_models.dart';
 import 'package:avto_baraka/api/service/listing_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 
 part 'like_event.dart';
 part 'like_state.dart';

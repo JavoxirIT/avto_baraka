@@ -1,7 +1,7 @@
 import 'package:avto_baraka/bloc/like/like_bloc.dart';
 import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
-import 'package:avto_baraka/http/config.dart';
+import 'package:avto_baraka/http_config/config.dart';
 import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevated_button.dart';
@@ -79,6 +79,7 @@ carFavpriteCard(context, state, String token, String lang) {
                   Navigator.of(context)
                       .pushNamed(RouteName.oneCarView, arguments: item);
                 }
+                return null;
               },
               background: deleteDismiss(context),
               secondaryBackground: secondaryDismiss(context),

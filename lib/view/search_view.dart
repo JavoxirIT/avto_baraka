@@ -10,7 +10,7 @@ import 'package:avto_baraka/api/service/region_service.dart';
 import 'package:avto_baraka/api/service/valyuta_service.dart';
 import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
-import 'package:avto_baraka/http/config.dart';
+import 'package:avto_baraka/http_config/config.dart';
 import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
 import 'package:avto_baraka/provider/token_provider/token_provider.dart';
 import 'package:avto_baraka/style/announcement_input_decoration.dart';

@@ -1,5 +1,5 @@
 import 'package:avto_baraka/api/models/districs_model.dart';
-import 'package:avto_baraka/http/config.dart';
+import 'package:avto_baraka/http_config/config.dart';
 
 class DistrictsService {
   final List<DistrictsModel> list = [];

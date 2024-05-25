@@ -1,5 +1,5 @@
 import 'package:avto_baraka/api/models/send_phone_models.dart';
-import 'package:avto_baraka/http/config.dart';
+import 'package:avto_baraka/http_config/config.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 

@@ -155,6 +155,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "suhbatlar": MessageLookupByLibrary.simpleMessage("Suhbatlar"),
         "tanlanganElonlar":
             MessageLookupByLibrary.simpleMessage("Tanlangan E’lonlar"),
+        "tanlanganElonlarMavjutEmas": MessageLookupByLibrary.simpleMessage(
+            "Tanlangan e`lonlar mavjut emas"),
         "tanlanganlar": MessageLookupByLibrary.simpleMessage("Tanlanganlar"),
         "tanlash": MessageLookupByLibrary.simpleMessage("Tanlash"),
         "tarifniTanlang":

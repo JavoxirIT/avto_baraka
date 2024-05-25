@@ -1,125 +1,155 @@
-import 'package:avto_baraka/api/models/car_category_models.dart';
-import 'package:avto_baraka/api/service/car_service.dart';
-import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
-import 'package:avto_baraka/generated/l10n.dart';
-import 'package:avto_baraka/router/route_name.dart';
-import 'package:avto_baraka/style/elevated_button.dart';
-import 'package:avto_baraka/widgets/car_card.dart';
-import 'package:avto_baraka/widgets/carousel/category_carousel.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:avto_baraka/screen/imports/imports_maim.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+class BottomNavigationMenu extends StatefulWidget {
+  const BottomNavigationMenu({super.key});
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<BottomNavigationMenu> createState() => _BottomNavigationMenuState();
 }
 
-class _MainScreenState extends State<MainScreen> {
-  List<CarCategoryModels> categoryList = [];
+class _BottomNavigationMenuState extends State<BottomNavigationMenu>
+    with SingleTickerProviderStateMixin {
+  List<ConnectivityResult> _connectionStatus = [ConnectivityResult.none];
+  final Connectivity _connectivity = Connectivity();
+  late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
+  int _selectedIndex = 0;
+
+// loading
+  bool showLoadingIndicator = true;
+  late AnimationController _controller;
+  late Animation<double> _animation;
+  late Timer _timer;
 
   @override
   void initState() {
-    getData();
     super.initState();
+    initConnectivity();
+    _connectivitySubscription =
+        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+
+    // ::::::::::::::::::::: loading
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
+
+    _animation = Tween(begin: 1.0, end: 0.0).animate(_controller)
+      ..addListener(() {
+        if (mounted) {
+          setState(() {});
+        }
+      });
+
+    _timer = Timer(const Duration(milliseconds: 2000), () {
+      if (mounted) {
+        _controller.forward();
+      }
+      setState(() {
+        showLoadingIndicator = false;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _connectivitySubscription.cancel();
+    if (mounted) {
+      _controller.dispose();
+    }
+    _timer.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      // initialIndex: 1,
-      length: 1,
-      child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 40.0,
-          leadingWidth: MediaQuery.of(context).size.width / 2.5,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 15.0, bottom: 5.0),
-            child: ElevatedButton(
+    const double size = 18.0;
+    if (_connectionStatus.toString() == [ConnectivityResult.none].toString()) {
+      return const CheckingInternetConnection(title: "Title");
+    }
+    return Stack(
+      children: [
+        Scaffold(
+          body: Center(
+            child: screenList.elementAt(_selectedIndex),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: Container(
+            margin: const EdgeInsets.only(top: 12, left: 10, right: 10),
+            height: 65.0,
+            width: 65.0,
+            child: FloatingActionButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(RouteName.creditBankListScreen);
+                Navigator.of(context).pushNamed(RouteName.announcement);
               },
-              style: elevatedButton,
-              child: Text(
-                S.of(context).kreditKalkulatori,
-                style: Theme.of(context).textTheme.displayMedium,
-                overflow: TextOverflow.ellipsis,
+              backgroundColor: iconSelectedColor,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  width: 3.0,
+                  color: iconSelectedColor,
+                ),
+                borderRadius: BorderRadius.circular(100.0),
+              ),
+              child: const Icon(FontAwesomeIcons.plus,
+                  color: Colors.white, size: 34.0),
+            ),
+          ),
+          bottomNavigationBar:
+              bottomNavItem(_onItemTapped, _selectedIndex, size, context),
+        ),
+        if (showLoadingIndicator)
+          FadeTransition(
+            opacity: _animation,
+            child: Container(
+              decoration: const BoxDecoration(
+                image:
+                    DecorationImage(image: AssetImage(img), fit: BoxFit.cover),
+              ),
+              child: const Center(
+                child: CircularProgressIndicator(),
               ),
             ),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 15.0),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(RouteName.searchView);
-                },
-                icon: const Icon(FontAwesomeIcons.sliders),
-              ),
-            ),
-          ],
-        ),
-        body: BlocBuilder<ListingBloc, ListingState>(
-          builder: (context, state) {
-            if (state is ListingStateNoDataSearch) {
-              WidgetsBinding.instance.addPostFrameCallback(
-                (_) {
-                  showDialog(
-                    context: context,
-                    builder: (_) {
-                      // Future.delayed(const Duration(seconds: 3), () {
-                      //   Navigator.of(context).pop(true);
-                      // });
-                      return AlertDialog(
-                        title: Text(
-                          S.of(context).kechirasiz,
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                        content: Text(
-                          S.of(context).malumotTopilmadi,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                      );
-                    },
-                  );
-                },
-              );
-            }
-
-            return Column(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 10.0, bottom: 0.0, left: 15.0),
-                    child: Text(
-                      S.of(context).kategoriyalar,
-                      style: Theme.of(context).textTheme.displayLarge,
-                    ),
-                  ),
-                ),
-                flutterCarousel(context, categoryList),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                Expanded(
-                    child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: carCard(context, state),
-                ))
-              ],
-            );
-          },
-        ),
-      ),
+      ],
     );
   }
 
-  Future<void> getData() async {
-    categoryList = await CarService().carCategoryLoad();
-    setState(() {});
+  void _onItemTapped(int index) {
+    if (index == 2) {
+      return;
+    }
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future<void> initConnectivity() async {
+    late List<ConnectivityResult> result;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      result = await _connectivity.checkConnectivity();
+    } on PlatformException catch (e) {
+      // developer.log('Couldn\'t check connectivity status', error: e);
+      return;
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) {
+      return Future.value(null);
+    }
+
+    return _updateConnectionStatus(result);
+  }
+
+  Future<void> _updateConnectionStatus(List<ConnectivityResult> result) async {
+    setState(() {
+      _connectionStatus = result;
+    });
+    // ignore: avoid_print
+    // print('Connectivity changed: $_connectionStatus');
   }
 }

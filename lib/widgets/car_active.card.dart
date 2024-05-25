@@ -1,6 +1,6 @@
 import 'package:avto_baraka/bloc/listing_active/listing_active_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
-import 'package:avto_baraka/http/config.dart';
+import 'package:avto_baraka/http_config/config.dart';
 import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/widgets/car_tag_card.dart';

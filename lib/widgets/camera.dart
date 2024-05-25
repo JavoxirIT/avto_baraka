@@ -35,8 +35,10 @@ class _CameraPageState extends State<CameraPage> {
       return null;
     }
     try {
+    
       await _cameraController.setFlashMode(FlashMode.off);
       XFile picture = await _cameraController.takePicture();
+       Navigator.pop(context, picture);
       // Navigator.push(
       //   context,
       //   MaterialPageRoute(
@@ -46,7 +48,7 @@ class _CameraPageState extends State<CameraPage> {
       //   ),
       // );
 
-      Navigator.pop(context, picture);
+     
     } on CameraException catch (e) {
       debugPrint('Error occured while taking picture: $e');
       return null;

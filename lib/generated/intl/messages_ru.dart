@@ -154,6 +154,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Открыть настройки"),
         "suhbatlar": MessageLookupByLibrary.simpleMessage("Сообщения"),
         "tanlanganElonlar": MessageLookupByLibrary.simpleMessage("Избранные"),
+        "tanlanganElonlarMavjutEmas": MessageLookupByLibrary.simpleMessage(
+            "Tanlangan e`lonlar mavjut emas"),
         "tanlanganlar": MessageLookupByLibrary.simpleMessage("Избранные"),
         "tanlash": MessageLookupByLibrary.simpleMessage("Выберите"),
         "tarifniTanlang":
