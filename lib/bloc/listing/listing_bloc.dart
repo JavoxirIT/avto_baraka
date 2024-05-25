@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:avto_baraka/api/models/listing_get_models.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -30,6 +32,8 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
       }
     } on Exception catch (e) {
       emit(ListingStateError(exception: e));
+    } finally {
+      // emit(ListingStateRefresh(complater));
     }
   }
 
@@ -54,13 +58,13 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
       emit(ListingStateLoading());
       if (searchData.isEmpty) {
         emit(ListingStateNoDataSearch());
-         await getListingProvider(
-           ListingEventLoad(
-             event.lang,
-             event.token,
-           ),
-           emit,
-         );
+        await getListingProvider(
+          ListingEventLoad(
+            event.lang,
+            event.token,
+          ),
+          emit,
+        );
       } else {
         emit(ListingStateLoading());
         emit(ListingStateLoad(listing: searchData));

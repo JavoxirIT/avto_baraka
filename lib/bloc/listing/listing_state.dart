@@ -35,3 +35,11 @@ final class ListingStateError extends ListingState {
 }
 
 final class ListingStateNoDataSearch extends ListingState {}
+
+// on refresh
+final class ListingStateRefresh extends ListingState {
+  const ListingStateRefresh(
+    this.complater,
+  );
+  final Completer? complater;
+}

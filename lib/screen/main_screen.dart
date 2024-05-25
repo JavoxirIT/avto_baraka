@@ -30,38 +30,41 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu>
     // ::::::::::::::::::::: loading
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 3),
     );
 
     _animation = Tween(begin: 1.0, end: 0.0).animate(_controller)
       ..addListener(() {
-        if (mounted) {
-          setState(() {});
-        }
+        setState(() {});
       });
 
-    _timer = Timer(const Duration(milliseconds: 2000), () {
-      if (mounted) {
-        _controller.forward();
-      }
-      setState(() {
-        showLoadingIndicator = false;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Timer(const Duration(milliseconds: 3000), () {
+        setState(() {
+          showLoadingIndicator = false;
+        });
       });
     });
+
+    // _timer = Timer(const Duration(milliseconds: 2000), () {
+    //   _controller.forward();
+    //   setState(() {
+    //     showLoadingIndicator = false;
+    //   });
+    // });
   }
 
   @override
   void dispose() {
     _connectivitySubscription.cancel();
-    if (mounted) {
-      _controller.dispose();
-    }
-    _timer.cancel();
+    _controller.dispose();
+    // _timer.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    _controller.forward();
     const double size = 18.0;
     if (_connectionStatus.toString() == [ConnectivityResult.none].toString()) {
       return const CheckingInternetConnection(title: "Title");

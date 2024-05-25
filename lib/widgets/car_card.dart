@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:avto_baraka/bloc/like/like_bloc.dart';
 import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
@@ -6,6 +9,7 @@ import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
 import 'package:avto_baraka/provider/token_provider/token_provider.dart';
 import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
+import 'package:avto_baraka/utill/bs64Image.dart';
 import 'package:avto_baraka/widgets/car_tag_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,15 +57,16 @@ carCard(context, state) {
                         Stack(
                           children: [
                             ClipRRect(
-                              borderRadius: BorderRadius.circular(4.0),
-                              child: Image.network(
-                                Config.imageUrl! +
-                                    item.carImage[0].substring(1),
-                                fit: BoxFit.cover,
-                                width: MediaQuery.of(context).size.width,
-                                height: 200.0,
-                              ),
-                            ),
+                                borderRadius: BorderRadius.circular(4.0),
+                                child: FadeInImage(
+                                  fit: BoxFit.cover,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 200.0,
+                                  placeholder: MemoryImage(base64.decode(
+                                      bs64Image.split(',').last)),
+                                  image: NetworkImage(Config.imageUrl! +
+                                      item.carImage[0].substring(1)),
+                                )),
                             // item['statusTop'] == true
                             //     ? Positioned(
                             //         child: Card(
