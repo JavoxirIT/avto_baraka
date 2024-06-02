@@ -1219,6 +1219,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Habar...`
+  String get habar {
+    return Intl.message(
+      'Habar...',
+      name: 'habar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Qayerdan olamiz?`
+  String get qayerdanOlamiz {
+    return Intl.message(
+      'Qayerdan olamiz?',
+      name: 'qayerdanOlamiz',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Qo'shimcha malumotni kriting`
+  String get qoshimchaMalumotniKriting {
+    return Intl.message(
+      'Qo`shimcha malumotni kriting',
+      name: 'qoshimchaMalumotniKriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yangi xabar`
+  String get yangiXabar {
+    return Intl.message(
+      'Yangi xabar',
+      name: 'yangiXabar',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

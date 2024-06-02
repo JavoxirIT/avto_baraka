@@ -77,6 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "geopozitsiyaKabulKilindi":
             MessageLookupByLibrary.simpleMessage("Геопозиция определена"),
         "ha": MessageLookupByLibrary.simpleMessage("ДА"),
+        "habar": MessageLookupByLibrary.simpleMessage("Сообщение..."),
         "hududniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите облость"),
         "ilojiBor": MessageLookupByLibrary.simpleMessage("Нет"),
@@ -132,11 +133,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "oldinga": MessageLookupByLibrary.simpleMessage("Вперед"),
         "orqaga": MessageLookupByLibrary.simpleMessage("Назад"),
         "parametrlar": MessageLookupByLibrary.simpleMessage("Параметры"),
+        "qayerdanOlamiz": MessageLookupByLibrary.simpleMessage("Что выбераем?"),
         "qidirish": MessageLookupByLibrary.simpleMessage("Поиск"),
         "qidiruvSozlari":
             MessageLookupByLibrary.simpleMessage("Поисковые слова"),
         "qoshimchaMalumot":
             MessageLookupByLibrary.simpleMessage("Дополнительная информация"),
+        "qoshimchaMalumotniKriting":
+            MessageLookupByLibrary.simpleMessage("Дополнительное иформацыя"),
         "rasimgaOlish": MessageLookupByLibrary.simpleMessage("Открыть камеру"),
         "rasmlarniYuklang":
             MessageLookupByLibrary.simpleMessage("Загрузите изображения"),
@@ -198,6 +202,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Добавть новый объявление"),
         "yangiElonQoshish":
             MessageLookupByLibrary.simpleMessage("Добавить обявления"),
+        "yangiXabar": MessageLookupByLibrary.simpleMessage("Yangi xabar"),
         "yilDan": MessageLookupByLibrary.simpleMessage("c ---- года"),
         "yilGacha": MessageLookupByLibrary.simpleMessage("до ---- года"),
         "yoq": MessageLookupByLibrary.simpleMessage("Нет"),

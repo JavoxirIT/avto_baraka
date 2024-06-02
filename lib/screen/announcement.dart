@@ -168,15 +168,18 @@ class AnnouncementState extends State<Announcement> {
           ),
           child: Form(
             key: formKey,
-            child: Stepper(
-              elevation: 0,
-              type: StepperType.horizontal,
-              steps: getSteps(context, shape, contentPadding),
-              currentStep: currentStep,
-              // onStepTapped: onStepTapped,
-              controlsBuilder: (context, details) {
-                return const SizedBox.shrink();
-              },
+            child: GestureDetector(
+              onTap: () => FocusScope.of(context).unfocus(),
+              child: Stepper(
+                elevation: 0,
+                type: StepperType.horizontal,
+                steps: getSteps(context, shape, contentPadding),
+                currentStep: currentStep,
+                // onStepTapped: onStepTapped,
+                controlsBuilder: (context, details) {
+                  return const SizedBox.shrink();
+                },
+              ),
             ),
           ),
         ),
@@ -774,7 +777,7 @@ class AnnouncementState extends State<Announcement> {
               decoration:
                   announcementInputDecoration(S.of(context).qoshimchaMalumot),
               validator: (value) =>
-                  validate(value, "Qo`shimcha malumotni kriting"),
+                  validate(value, S.of(context).qoshimchaMalumotniKriting),
             ),
             //
             SizedBox(
@@ -1052,10 +1055,6 @@ class AnnouncementState extends State<Announcement> {
     if (selectedImages.isNotEmpty) {
       imageFileList.addAll(selectedImages);
     }
-
-    if (kDebugMode) {
-      print("Image List Length:${imageFileList.length}");
-    }
     setState(() {});
   }
 
@@ -1169,7 +1168,7 @@ class AnnouncementState extends State<Announcement> {
   }
 
   sendData() async {
-    debugPrint('Data Send');
+    // debugPrint('Data Send');
 
     responseStatusText = await ListingService.servive.postAutoData(
       {

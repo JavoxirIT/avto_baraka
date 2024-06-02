@@ -79,6 +79,9 @@ dependencies:
   flutter_local_notifications: ^17.1.2
   url_launcher: ^6.2.6
   intl: ^0.18.1
+  flutter_basic_chat_bubble: ^0.2.2+3
+  web_socket_channel: ^2.4.0
+
 
 dev_dependencies:
   flutter_test:
@@ -104,9 +107,6 @@ flutter:
   assets:
     - .env
     - assets/main_image/
-    - assets/category_carousel/
-    - assets/car/
-    - assets/car_brand/
     - assets/bank/
     - assets/loading/
 

@@ -39,14 +39,14 @@ ThemeData defaultTheme() {
     cardTheme: CardTheme(
       // shape: Border.all(width: 1.0, color: const Color.fromARGB(255, 214, 214, 214), )
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(7.0),
+        borderRadius: BorderRadius.circular(12.0),
         side: const BorderSide(
           color: Color.fromARGB(255, 214, 214, 214), // Цвет границы
           width: 0.5, // Ширина границы
         ),
       ),
-      elevation: 2,
-      // shadowColor: Colors.black,
+      elevation: 1,
+      shadowColor: iconSelectedColor,
       color: backgrounColorWhite,
       surfaceTintColor: backgrounColorWhite,
     ),

@@ -28,14 +28,15 @@ class Authorization {
     }
   }
 
-  Future<String> sendphoneAndCode(String phone, String code) async {
+  Future<List> sendphoneAndCode(String phone, String code) async {
     try {
       final response = await _dio.post('${Config.dbMobile}login',
           data: {"phone": phone, "code": code});
       if (response.statusCode == 200) {
         final responseData = response.data;
         final accessToken = responseData["access_token"];
-        return accessToken;
+        final userId = responseData["user_id"];
+        return [accessToken, userId];
       } else {
         throw Exception('Ошибка ${response.statusCode}');
       }

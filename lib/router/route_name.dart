@@ -15,4 +15,6 @@ class RouteName {
   static const firstpayView = "/firstpayView";
   static const fullScreenImage = "/fullScreenImage";
   static const searchView = "/searchView";
+  static const oneChat = "/oneChat";
+  static const chatTwo = "/chatTwo";
 }

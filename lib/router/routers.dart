@@ -3,6 +3,7 @@ import 'package:avto_baraka/screen/announcement.dart';
 import 'package:avto_baraka/screen/chat_screen.dart';
 import 'package:avto_baraka/screen/cobinet_screen.dart';
 import 'package:avto_baraka/screen/introductory_screen.dart';
+import 'package:avto_baraka/view/chat_first/first_chat.dart';
 import 'package:avto_baraka/view/contact_with_admin/contact_with_admin.dart';
 import 'package:avto_baraka/view/credit/credit_%20graphic_view.dart';
 import 'package:avto_baraka/view/credit/credit_first_view.dart';
@@ -11,6 +12,7 @@ import 'package:avto_baraka/view/credit/credit_second_view.dart';
 import 'package:avto_baraka/view/firs_pay_form_view.dart';
 import 'package:avto_baraka/view/full_screen_image.dart';
 import 'package:avto_baraka/view/one_car.dart';
+import 'package:avto_baraka/view/chat/chat.dart';
 import 'package:avto_baraka/view/search_view.dart';
 import 'package:avto_baraka/view/setting_view/setting_user_view.dart';
 import 'package:avto_baraka/view/setting_view/setting_view.dart';
@@ -33,4 +35,6 @@ final routers = {
   RouteName.firstpayView: (_) => const FirstPayFormView(),
   RouteName.fullScreenImage: (_) => const FullScreenImage(),
   RouteName.searchView: (_) => const SearchView(),
+  RouteName.oneChat: (_) => const OneChat(),
+  RouteName.chatTwo: (_) => const FirstChat(),
 };

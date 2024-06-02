@@ -22,6 +22,21 @@
         android:label="Auto Baraka"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+		<!-- flutterlocalnotifications -->
+		<receiver android:name="com.dexterous.flutterlocalnotifications.receivers.ActionReceiver" android:exported="true"/>
+		<!-- flutterlocalnotifications -->
+		<receiver android:name="com.dexterous.flutterlocalnotifications.receivers.DismissedReceiver" android:exported="true">
+			<intent-filter>
+				<action android:name="com.example.your_app.NOTIFICATION_DISMISS" />
+			</intent-filter>
+		</receiver>
+		<!-- flutterlocalnotifications -->
+		<receiver android:name="com.dexterous.flutterlocalnotifications.receivers.ScheduledNotificationReceiver" android:exported="true">
+			<intent-filter>
+				<action android:name="com.example.your_app.NOTIFICATION_SCHEDULE" />
+			</intent-filter>
+		</receiver>
+		<!--  -->
 		<activity
             android:name=".MainActivity"
             android:exported="true"

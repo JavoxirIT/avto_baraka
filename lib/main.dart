@@ -1,10 +1,16 @@
+import 'package:avto_baraka/api/service/chat_servive.dart';
 import 'package:avto_baraka/api/service/listing_service.dart';
+import 'package:avto_baraka/bloc/all_rooms/all_rooms_bloc.dart';
 import 'package:avto_baraka/bloc/like/like_bloc.dart';
 import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
 import 'package:avto_baraka/bloc/listing_active/listing_active_bloc.dart';
 import 'package:avto_baraka/bloc/listing_blocked/listing_blocked_bloc.dart';
+import 'package:avto_baraka/bloc/one_room/one_room_bloc.dart';
+import 'package:avto_baraka/bloc/web_socet_bloc/web_socket_bloc.dart';
+import 'package:avto_baraka/http_config/config.dart';
 import 'package:avto_baraka/observer/share_route_observer.dart';
 import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
+import 'package:avto_baraka/provider/notification_service.dart';
 import 'package:avto_baraka/provider/token_provider/token_provider.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/router/routers.dart';
@@ -22,6 +28,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
+  final notificationService = NotificationService();
+  await notificationService.init();
   SystemChrome.setPreferredOrientations(
     [
       DeviceOrientation.portraitDown,
@@ -34,12 +42,12 @@ void main() async {
 // token
   var tokenProvider = TokenProvider();
   await tokenProvider.fetchTokenLocale();
-
+  final webSocketBloc = WebSocketBloc(notificationService, ChatService.chatService);
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => languageProvider),
-        ChangeNotifierProvider(create: (_) => tokenProvider)
+        ChangeNotifierProvider(create: (_) => tokenProvider),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -54,7 +62,17 @@ void main() async {
           ),
           BlocProvider<LikeBloc>(
             create: (context) => LikeBloc(ListingService.servive),
-          )
+          ),
+          BlocProvider<AllRoomsBloc>(
+            create: (context) => AllRoomsBloc(ChatService.chatService),
+          ),
+          BlocProvider(
+            create: (context) => webSocketBloc,
+          ),
+          BlocProvider<OneRoomBloc>(
+            create: (context) =>
+                OneRoomBloc(ChatService.chatService, webSocketBloc),
+          ),
         ],
         child: const MyApp(),
       ),
@@ -73,35 +91,17 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   String? token;
   @override
   void initState() {
+    final webSocketBloc = BlocProvider.of<WebSocketBloc>(context);
+    webSocketBloc.add(ConnectWebSocket(url: Config.ws!));
     getLocalData();
-    // WidgetsBinding.instance.addObserver(this);
-    // refreshAppState(); // Восстанавливаем состояние при запуске приложения
     super.initState();
   }
-
-  @override
-  void dispose() {
-    // WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
-  // @override
-  // void didChangeAppLifecycleState(AppLifecycleState state) {
-  //   if (state == AppLifecycleState.paused) {
-  //     // Приложение ушло в фон
-  //     print('Приложение ушло в фон');
-  //     // saveAppState();
-  //   } else if (state == AppLifecycleState.resumed) {
-  //     // Приложение вернулось из фона
-  //     print('Приложение вернулось из фона');
-  //     // refreshAppState();
-  //   }
-  // }
 
   @override
   Widget build(context) {
     final providerLanguage = Provider.of<LocalProvider>(context);
     final tokenProvider = Provider.of<TokenProvider>(context);
+
     BlocProvider.of<ListingBloc>(context).add(ListingEventLoad(
         providerLanguage.locale.languageCode, tokenProvider.token));
     return MaterialApp(
@@ -126,28 +126,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           : const IntroductionScreen(),
     );
   }
-
-  // Future<void> saveAppState() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   await prefs.setInt('currentPage', _currentPage);
-  //   print('Состояние приложения сохранено');
-  // }
-
-  // Future<void> refreshAppState() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-
-  //   // Восстанавливаем сохраненное состояние
-  //   int? currentPage = prefs.getInt('currentPage');
-
-  //   // Устанавливаем сохраненное состояние в виджеты
-  //   if (currentPage != null) {
-  //     setState(() {
-  //       _currentPage = currentPage;
-  //     });
-  //   }
-
-  //   print('Состояние приложения восстановлено');
-  // }
 
   Future<void> getLocalData() async {
     final prefs = await SharedPreferences.getInstance();

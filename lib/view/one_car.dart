@@ -99,7 +99,7 @@ class OneCarViewState extends State<OneCarView> {
                       carImageList.isNotEmpty) {
                     shareRouteObserver.share(context, _carData, carImageList);
                   } else {
-                    print('Error: _carData or carImageList is null or empty');
+                    debugPrint('Нет изображения');
                   }
                 },
                 icon: Icon(
@@ -177,8 +177,8 @@ class OneCarViewState extends State<OneCarView> {
                     ),
                     Text(
                       '${_carData!.price.toString()} y.e',
-                      style: const TextStyle(
-                        color: Color(0xFF1D00CE),
+                      style: TextStyle(
+                        color: iconSelectedColor,
                         fontSize: 18.0,
                         fontWeight: FontWeight.w800,
                       ),
@@ -371,17 +371,24 @@ class OneCarViewState extends State<OneCarView> {
               onPress,
               context,
             ),
-            iconButton(
-              const Icon(
-                Symbols.message_rounded,
-                color: Color(0XFF008080),
-                size: 15.0,
+            CircleAvatar(
+              backgroundColor: const Color.fromARGB(22, 0, 128, 128),
+              radius: 16.0,
+              child: IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(
+                    RouteName.chatTwo,
+                    arguments: {
+                      "userId": _carData!.userId,
+                    },
+                  );
+                },
+                icon: const Icon(
+                  Symbols.message_rounded,
+                  color: Color(0XFF008080),
+                  size: 15.0,
+                ),
               ),
-              16.0,
-              // ignore: prefer_const_constructors
-              Color.fromARGB(22, 0, 128, 128),
-              onPress,
-              context,
             ),
             OutlinedButton(
               onPressed: () {

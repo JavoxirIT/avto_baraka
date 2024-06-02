@@ -76,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "geopozitsiyaKabulKilindi":
             MessageLookupByLibrary.simpleMessage("Geopozitsiya kabul kilindi"),
         "ha": MessageLookupByLibrary.simpleMessage("Ha"),
+        "habar": MessageLookupByLibrary.simpleMessage("Habar..."),
         "hududniTanlang":
             MessageLookupByLibrary.simpleMessage("Hududni tanlang"),
         "ilojiBor": MessageLookupByLibrary.simpleMessage("Iloji bor"),
@@ -132,11 +133,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "oldinga": MessageLookupByLibrary.simpleMessage("Oldinga"),
         "orqaga": MessageLookupByLibrary.simpleMessage("Orqaga"),
         "parametrlar": MessageLookupByLibrary.simpleMessage("Parametrlar"),
+        "qayerdanOlamiz":
+            MessageLookupByLibrary.simpleMessage("Qayerdan olamiz?"),
         "qidirish": MessageLookupByLibrary.simpleMessage("Qidirish"),
         "qidiruvSozlari":
             MessageLookupByLibrary.simpleMessage("Qidiruv so’zlari"),
         "qoshimchaMalumot":
             MessageLookupByLibrary.simpleMessage("Additional information"),
+        "qoshimchaMalumotniKriting": MessageLookupByLibrary.simpleMessage(
+            "Qo`shimcha malumotni kriting"),
         "rasimgaOlish": MessageLookupByLibrary.simpleMessage("Rasimga olish"),
         "rasmlarniYuklang":
             MessageLookupByLibrary.simpleMessage("Rasmlarni yuklang"),
@@ -197,6 +202,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Yangi e`lon joylash"),
         "yangiElonQoshish":
             MessageLookupByLibrary.simpleMessage("Yangi e`lon qo`shish"),
+        "yangiXabar": MessageLookupByLibrary.simpleMessage("Yangi xabar"),
         "yilDan": MessageLookupByLibrary.simpleMessage("Yil dan"),
         "yilGacha": MessageLookupByLibrary.simpleMessage("Yil gacha"),
         "yoq": MessageLookupByLibrary.simpleMessage("Yo`q"),

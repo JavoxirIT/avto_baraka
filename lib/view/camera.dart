@@ -85,8 +85,8 @@ class _CameraPageState extends State<CameraPage> {
                 height: MediaQuery.of(context).size.height * 0.20,
                 decoration: const BoxDecoration(
                     borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(24)),
-                    color: Colors.amber),
+                        BorderRadius.vertical(top: Radius.circular(0)),
+                    color: Color.fromARGB(255, 66, 66, 66)),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

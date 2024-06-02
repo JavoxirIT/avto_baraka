@@ -23,7 +23,7 @@ class MainCarouselFormRegistration extends StatefulWidget {
 class MainCarouselFormRegistrationState
     extends State<MainCarouselFormRegistration> {
   late SendPhoneModels responseData;
-  late String accessToken;
+  late List accessTokenData;
 
   final _formKey = GlobalKey<FormState>();
   final phoneNumber = TextEditingController();
@@ -139,11 +139,19 @@ class MainCarouselFormRegistrationState
                     // },
                     onCompleted: (pin) async {
                       // debugPrint('onCompleted: $pin');
-                      accessToken = await Authorization()
+                      accessTokenData = await Authorization()
                           .sendphoneAndCode(phoneNumber.text, pin);
 
-                      tokenProvider.accessToken = accessToken;
-                      tokenProvider.tokenSetLocale(accessToken);
+                      tokenProvider.accessToken = accessTokenData[0];
+                      tokenProvider.accessUserID =
+                          accessTokenData[1].toString();
+
+                      tokenProvider.tokenSetLocale(
+                        accessTokenData[0],
+                      );
+
+                      tokenProvider
+                          .userIdSetLocale(accessTokenData[1].toString());
                     },
                     submittedPinTheme: pinTheme.copyWith(
                       decoration: pinTheme.decoration!.copyWith(

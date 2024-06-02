@@ -45,7 +45,7 @@ carCard(context, state) {
               Card(
                 margin: const EdgeInsets.only(bottom: 22.0),
                 child: Padding(
-                  padding: const EdgeInsets.all(4.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: InkWell(
                     splashColor: splashColor,
                     onTap: () {
@@ -57,7 +57,7 @@ carCard(context, state) {
                         Stack(
                           children: [
                             ClipRRect(
-                                borderRadius: BorderRadius.circular(4.0),
+                                borderRadius: BorderRadius.circular(12.0),
                                 child: FadeInImage(
                                   fit: BoxFit.cover,
                                   width: MediaQuery.of(context).size.width,

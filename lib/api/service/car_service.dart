@@ -6,7 +6,7 @@ import 'package:avto_baraka/api/models/car_models.dart';
 import 'package:avto_baraka/api/models/car_paint_condition_models.dart';
 import 'package:avto_baraka/api/models/car_pulling_side_models.dart';
 import 'package:avto_baraka/api/models/car_transmission_models.dart';
-import 'package:avto_baraka/api/service/token_service.dart';
+import 'package:avto_baraka/api/service/local_memory.dart';
 import 'package:avto_baraka/http_config/config.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +30,7 @@ class CarService {
         '${_url}ltypes',
         options: Options(
           headers: {
-            'Authorization': await TokenService.service.getLocolToken(),
+            'Authorization': await LocalMemory.service.getLocolToken(),
           },
         ),
       );
@@ -54,7 +54,7 @@ class CarService {
         '${_url}brand/$id',
         options: Options(
           headers: {
-            'Authorization': await TokenService.service.getLocolToken(),
+            'Authorization': await LocalMemory.service.getLocolToken(),
           },
         ),
       );
@@ -80,7 +80,7 @@ class CarService {
         '${_url}model/$carTypeId/$id',
         options: Options(
           headers: {
-            'Authorization': await TokenService.service.getLocolToken(),
+            'Authorization': await LocalMemory.service.getLocolToken(),
           },
         ),
       );
@@ -107,7 +107,7 @@ class CarService {
         '${_url}car-body',
         options: Options(
           headers: {
-            'Authorization': await TokenService.service.getLocolToken(),
+            'Authorization': await LocalMemory.service.getLocolToken(),
           },
         ),
       );
@@ -133,7 +133,7 @@ class CarService {
         '${_url}transmission',
         options: Options(
           headers: {
-            'Authorization': await TokenService.service.getLocolToken(),
+            'Authorization': await LocalMemory.service.getLocolToken(),
           },
         ),
       );
@@ -160,7 +160,7 @@ class CarService {
         '${_url}fuels',
         options: Options(
           headers: {
-            'Authorization': await TokenService.service.getLocolToken(),
+            'Authorization': await LocalMemory.service.getLocolToken(),
           },
         ),
       );
@@ -186,7 +186,7 @@ class CarService {
         '${_url}pulling',
         options: Options(
           headers: {
-            'Authorization': await TokenService.service.getLocolToken(),
+            'Authorization': await LocalMemory.service.getLocolToken(),
           },
         ),
       );
@@ -211,7 +211,7 @@ class CarService {
         '${_url}paint-condition',
         options: Options(
           headers: {
-            'Authorization': await TokenService.service.getLocolToken(),
+            'Authorization': await LocalMemory.service.getLocolToken(),
           },
         ),
       );

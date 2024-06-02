@@ -157,8 +157,11 @@ class _MainPageState extends State<IntroductionScreen>
                                     if (tokenProvider.token == null) {
                                       return;
                                     } else {
-                                      Navigator.of(context).pushNamed(
-                                          RouteName.bottomNavigationHomeScreen);
+                                      Navigator.of(context)
+                                          .pushNamedAndRemoveUntil(
+                                        RouteName.bottomNavigationHomeScreen,
+                                        (route) => false,
+                                      );
                                     }
                                   },
                                   child: const Icon(

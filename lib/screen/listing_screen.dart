@@ -110,6 +110,8 @@ class _ListingScreenState extends State<ListingScreen> {
             }
 
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
@@ -127,8 +129,8 @@ class _ListingScreenState extends State<ListingScreen> {
                   height: 10.0,
                 ),
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                     child: carCard(context, state),
                   ),
                 ),

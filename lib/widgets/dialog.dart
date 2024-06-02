@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 dialogBuilder(
-    BuildContext context, title, Widget content, List<Widget> widgets) {
+    BuildContext context, title, [Widget? content, List<Widget>? widgets]) {
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {

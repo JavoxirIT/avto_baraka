@@ -4,6 +4,7 @@ import 'dart:convert';
 class ListingGetModals {
   ListingGetModals({
     required this.id,
+    required this.userId,
     required this.activeStatus,
     required this.brand,
     required this.carImage,
@@ -40,6 +41,7 @@ class ListingGetModals {
   late num engine;
   late int? liked;
   late int discount;
+  late int userId;
   late int id;
   late int activeStatus;
   late int viewed;
@@ -73,6 +75,7 @@ class ListingGetModals {
     engine = map['engine'];
     discount = map['discount'];
     id = map['id'];
+    userId = map['user_id'];
     activeStatus = map['activeStatus'];
     viewed = map['viewed'];
     year = map['year'];
@@ -104,6 +107,6 @@ class ListingGetModals {
 
   @override
   String toString() {
-    return 'ListingGetModals(id: $id, activeStatus: $activeStatus, brand: $brand, carImage: $carImage, car_body: $car_body, car_position: $car_position, car_type: $car_type, credit: $credit, description: $description, discount: $discount, district: $district, engine: $engine, expire_date: $expire_date, lat: $lat, long: $long, mileage: $mileage, model: $model, posted_date: $posted_date, price: $price, pulling_side: $pulling_side, region: $region, transmission: $transmission, type_of_fuel: $type_of_fuel, valyuta_kurs: $valyuta_kurs, valyuta_name: $valyuta_name, valyuta_short: $valyuta_short, viewed: $viewed, year: $year, phone: $phone, liked: $liked )';
+    return 'ListingGetModals(id: $id, activeStatus: $activeStatus, brand: $brand, carImage: $carImage, car_body: $car_body, car_position: $car_position, car_type: $car_type, credit: $credit, description: $description, discount: $discount, district: $district, engine: $engine, expire_date: $expire_date, lat: $lat, long: $long, mileage: $mileage, model: $model, posted_date: $posted_date, price: $price, pulling_side: $pulling_side, region: $region, transmission: $transmission, type_of_fuel: $type_of_fuel, valyuta_kurs: $valyuta_kurs, valyuta_name: $valyuta_name, valyuta_short: $valyuta_short, viewed: $viewed, year: $year, phone: $phone, liked: $liked, user_id: $userId  )';
   }
 }

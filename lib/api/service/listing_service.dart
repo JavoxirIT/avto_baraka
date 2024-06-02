@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:avto_baraka/api/models/listing_get_models.dart';
-import 'package:avto_baraka/api/service/token_service.dart';
+import 'package:avto_baraka/api/service/local_memory.dart';
 import 'package:avto_baraka/http_config/config.dart';
 import 'package:avto_baraka/provider/token_provider/token_provider.dart';
 import 'package:dio/dio.dart';
@@ -50,7 +50,7 @@ class ListingService {
         '${_url}add-listing',
         options: Options(
           headers: {
-            'Authorization': TokenService.service.token,
+            'Authorization': LocalMemory.service.token,
           },
         ),
         data: formData,
@@ -167,7 +167,7 @@ class ListingService {
   ]) async {
     listingDataList.clear();
     var data = {
-      "brand_id": '${brand_id ?? ""}',
+      "brand_id": '${brand_id == -1 ? "" : brand_id}',
       "car_type": '${car_type ?? ""}',
       "end_price": '${end_price ?? ""}',
       "end_year": '${end_year ?? ""}',
@@ -177,6 +177,7 @@ class ListingService {
       "start_year": '${start_year ?? ""}',
       "valyuta": '${valyuta ?? ""}'
     };
+    debugPrint('debugPrint: ${data}');
 
     try {
       final response = await _dio.post(
@@ -186,9 +187,8 @@ class ListingService {
         ),
         data: data,
       );
-
       if (response.statusCode == 200) {
-        for (var element in response.data) {
+        for (var element in response.data['data']) {
           listingDataList.add(ListingGetModals.fromMap(element));
         }
       } else {
