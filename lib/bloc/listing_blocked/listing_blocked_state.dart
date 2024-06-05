@@ -30,3 +30,5 @@ final class ListingBlockedStateError extends ListingBlockedState {
   @override
   List<Object> get props => super.props..add(exception);
 }
+
+final class ListingDeleted extends ListingBlockedState {}

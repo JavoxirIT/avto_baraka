@@ -8,18 +8,29 @@ BottomNavigationBar bottomNavItem(
   return BottomNavigationBar(
     items: [
       bottomNavigationBarItem(
-          Icon(FontAwesomeIcons.bullseye, size: size), S.of(context).elonlar),
+        Icon(FontAwesomeIcons.bullseye, size: size),
+        S.of(context).elonlar,
+      ),
       bottomNavigationBarItem(
-          Icon(FontAwesomeIcons.heartCircleCheck, size: size), S.of(context).tanlanganlar),
+        Icon(
+          FontAwesomeIcons.heartCircleCheck,
+          size: size,
+        ),
+        S.of(context).tanlanganlar,
+      ),
       bottomNavigationBarItem(const Text(""), ""),
+      // chat
       bottomNavigationBarItem(
-          Badge(
-            label: const Text('2'),
-            child: Icon(Icons.messenger_sharp, size: size),
-          ),
-          S.of(context).suhbatlar),
+        Badge(
+          // label: const Text('0'),
+          child: Icon(Icons.messenger_sharp, size: size),
+        ),
+        S.of(context).suhbatlar,
+      ),
       bottomNavigationBarItem(
-          Icon(Icons.airplay_rounded, size: size), S.of(context).kabinet),
+        Icon(Icons.airplay_rounded, size: size),
+        S.of(context).kabinet,
+      ),
     ],
     currentIndex: selectedIndex,
     showUnselectedLabels: true,

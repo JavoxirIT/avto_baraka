@@ -20,6 +20,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
+  static String m0(n) => "Bloklangan e`lon mavjut ${n} emas";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "abtomashinaYiliniKiriting":
@@ -37,11 +39,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "batafsilMalumot":
             MessageLookupByLibrary.simpleMessage("Подробная информация"),
         "bekorQilingan": MessageLookupByLibrary.simpleMessage("Не активные"),
+        "bloklanganElonMavjutNEmas": m0,
         "boshSahifa": MessageLookupByLibrary.simpleMessage("Главное окно"),
         "boshlangichTolov":
             MessageLookupByLibrary.simpleMessage("Начальная оплата"),
         "boshlangichTulovniKiriting":
             MessageLookupByLibrary.simpleMessage("Введите сумму предоплаты"),
+        "boshqaAkauntgaKirish":
+            MessageLookupByLibrary.simpleMessage("Войти в другой аккаунт"),
         "boyoqHolati": MessageLookupByLibrary.simpleMessage("Состояние краски"),
         "boyoqHolatiniKiriting":
             MessageLookupByLibrary.simpleMessage("Выберите состояние окраски"),
@@ -64,6 +69,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "elonlar": MessageLookupByLibrary.simpleMessage("Объявления"),
         "engYaxshiTakliflar":
             MessageLookupByLibrary.simpleMessage("ЛУЧШИЕ ПРЕДЛОЖЕНИЯ"),
+        "eqlonOchirilgandanKeyinMalumotlarniTiklabBolmaydi":
+            MessageLookupByLibrary.simpleMessage(
+                "Данные не восстановить после удаления"),
         "foydalanishShartlari":
             MessageLookupByLibrary.simpleMessage("Условия использования"),
         "gacha": MessageLookupByLibrary.simpleMessage("--- до"),
@@ -87,6 +95,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Пожалуйста, включите подключение к Интернету"),
         "iltimosNomeringizniKiriting": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, введите свой номер"),
+        "iltimosSmsXabarniKutibTuring": MessageLookupByLibrary.simpleMessage(
+            "Пожалуйста ожидайте sms уведомление"),
         "internetAloqasiYoq":
             MessageLookupByLibrary.simpleMessage("Нет связи с интернетом"),
         "ishlabChiqarilganYili":
@@ -130,6 +140,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "narxiniKiriting":
             MessageLookupByLibrary.simpleMessage("Введите стоимость авто"),
         "notugriKod": MessageLookupByLibrary.simpleMessage("Неверный код"),
+        "ochirish": MessageLookupByLibrary.simpleMessage("Удалить"),
         "oldinga": MessageLookupByLibrary.simpleMessage("Вперед"),
         "orqaga": MessageLookupByLibrary.simpleMessage("Назад"),
         "parametrlar": MessageLookupByLibrary.simpleMessage("Параметры"),
@@ -179,6 +190,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "tortuvchiTomon":
             MessageLookupByLibrary.simpleMessage("Ведущая стороно"),
         "tumanlar": MessageLookupByLibrary.simpleMessage("Регионы"),
+        "ushbuElondaHatolikMavjudligiUchunTizimgaJoylanishiBekorQilindi":
+            MessageLookupByLibrary.simpleMessage(
+                "Публикация отменена в связи с наличием ошибки."),
         "uzatishQutisi":
             MessageLookupByLibrary.simpleMessage("Каробка передачи"),
         "uzatishQutisiniTanlang":

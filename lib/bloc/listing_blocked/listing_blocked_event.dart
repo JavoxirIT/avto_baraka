@@ -15,3 +15,20 @@ class ListingBlockedEventLoad extends ListingBlockedEvent {
   @override
   List<Object> get props => super.props..addAll([lang!, token!]);
 }
+
+class ListingDeleteEvent extends ListingBlockedEvent {
+  const ListingDeleteEvent({
+    required this.listingId,
+    required this.token,
+    required this.lang,
+  });
+
+  final int listingId;
+  final String token;
+  final String lang;
+
+  @override
+  List<Object> get props => super.props..addAll([listingId, token, lang]);
+}
+
+

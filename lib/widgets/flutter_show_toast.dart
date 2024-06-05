@@ -1,14 +1,14 @@
-import 'package:avto_baraka/style/colors.dart';
+import 'package:avto_baraka/screen/imports/imports_favorite.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 Future<bool?> flutterShowToast(title) {
   return Fluttertoast.showToast(
-    backgroundColor: iconSelectedColor,
-    textColor: textColorWhite,
+    backgroundColor: Colors.grey,
+    textColor: Colors.white,
     msg: title,
-    timeInSecForIosWeb: 2,
+    timeInSecForIosWeb: 3,
     toastLength: Toast.LENGTH_LONG,
-    gravity: ToastGravity.CENTER,
+    gravity: ToastGravity.TOP,
     fontSize: 16.0,
   );
 }

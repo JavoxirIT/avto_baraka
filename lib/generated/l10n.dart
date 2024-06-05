@@ -1259,6 +1259,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Boshqa akauntga kirish`
+  String get boshqaAkauntgaKirish {
+    return Intl.message(
+      'Boshqa akauntga kirish',
+      name: 'boshqaAkauntgaKirish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `O'chirish`
+  String get ochirish {
+    return Intl.message(
+      'O`chirish',
+      name: 'ochirish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ushbu e’londa - Hatolik mavjudligi uchun tizimga joylanishi bekor qilindi.`
+  String get ushbuElondaHatolikMavjudligiUchunTizimgaJoylanishiBekorQilindi {
+    return Intl.message(
+      'Ushbu e’londa - Hatolik mavjudligi uchun tizimga joylanishi bekor qilindi.',
+      name: 'ushbuElondaHatolikMavjudligiUchunTizimgaJoylanishiBekorQilindi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Iltimos sms xabarni kutib turing`
+  String get iltimosSmsXabarniKutibTuring {
+    return Intl.message(
+      'Iltimos sms xabarni kutib turing',
+      name: 'iltimosSmsXabarniKutibTuring',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Eqlon o'chirilgandan keyin ma'lumotlarni tiklab bo'lmaydi`
+  String get eqlonOchirilgandanKeyinMalumotlarniTiklabBolmaydi {
+    return Intl.message(
+      'Eqlon o`chirilgandan keyin ma`lumotlarni tiklab bo`lmaydi',
+      name: 'eqlonOchirilgandanKeyinMalumotlarniTiklabBolmaydi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bloklangan e'lon mavjut {n} emas`
+  String bloklanganElonMavjutNEmas(Object n) {
+    return Intl.message(
+      'Bloklangan e`lon mavjut $n emas',
+      name: 'bloklanganElonMavjutNEmas',
+      desc: '',
+      args: [n],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

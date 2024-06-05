@@ -1,5 +1,6 @@
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/router/route_name.dart';
+import 'package:avto_baraka/style/sized_box_10.dart';
 import 'package:avto_baraka/widgets/setting_list_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -18,23 +19,50 @@ class SettingView extends StatelessWidget {
           children: [
             settingListTile(
               S.of(context).maxsusSozlamalar,
-              Theme.of(context).textTheme.bodyLarge,
+              Theme.of(context)
+                  .textTheme
+                  .labelMedium!
+                  .copyWith(color: Colors.black54),
               () => Navigator.of(context).pushNamed(RouteName.settingUserView),
             ),
+            sizedBox10,
             settingListTile(
               S.of(context).foydalanishShartlari,
-              Theme.of(context).textTheme.bodyLarge,
+              Theme.of(context)
+                  .textTheme
+                  .labelMedium!
+                  .copyWith(color: Colors.black54),
               () => {},
             ),
+            sizedBox10,
             settingListTile(
               S.of(context).maxfiylikSiyosati,
-              Theme.of(context).textTheme.bodyLarge,
+              Theme.of(context)
+                  .textTheme
+                  .labelMedium!
+                  .copyWith(color: Colors.black54),
               () => {},
             ),
+            sizedBox10,
             settingListTile(
               S.of(context).ilovaHaqida,
-              Theme.of(context).textTheme.bodyLarge,
+              Theme.of(context)
+                  .textTheme
+                  .labelMedium!
+                  .copyWith(color: Colors.black54),
               () => {},
+            ),
+            sizedBox10,
+            settingListTile(
+              S.of(context).boshqaAkauntgaKirish,
+              Theme.of(context).textTheme.labelMedium!.copyWith(
+                    color: Colors.red[300],
+                  ),
+              () => {
+                Navigator.of(context).pushNamed(
+                  RouteName.loginToAnotherAccount,
+                )
+              },
             ),
           ],
         ),

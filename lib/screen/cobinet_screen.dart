@@ -72,13 +72,13 @@ class CobinetScreenState extends State<CobinetScreen> {
             BlocBuilder<ListingActiveBloc, ListingActiveState>(
                 builder: (context, state) {
               return paddingLayout(
-                carCativeCard(context, state),
+                carCativeCard(context, state, tokenProvider.token, providerLanguage.locale.languageCode),
               );
             }),
             BlocBuilder<ListingBlockedBloc, ListingBlockedState>(
                 builder: (context, state) {
               return paddingLayout(
-                carBlockedCard(context, state),
+                carBlockedCard(context, state, tokenProvider.token, providerLanguage.locale.languageCode),
               );
             }),
           ],

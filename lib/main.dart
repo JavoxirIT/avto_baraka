@@ -42,7 +42,8 @@ void main() async {
 // token
   var tokenProvider = TokenProvider();
   await tokenProvider.fetchTokenLocale();
-  final webSocketBloc = WebSocketBloc(notificationService, ChatService.chatService);
+  final webSocketBloc =
+      WebSocketBloc(notificationService, ChatService.chatService);
   runApp(
     MultiProvider(
       providers: [
@@ -124,6 +125,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       home: token != null
           ? const BottomNavigationMenu()
           : const IntroductionScreen(),
+      // home: const IntroductionScreen(),
     );
   }
 
@@ -137,3 +139,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     }
   }
 }
+
+
+
+
+// String aStr = _commingSms.replaceAll(new RegExp(r'[^0-9]'),'');

@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:avto_baraka/screen/imports/imports_announcement.dart';
+import 'package:flutter/services.dart';
 
 class Announcement extends StatefulWidget {
   const Announcement({Key? key}) : super(key: key);
@@ -551,6 +554,7 @@ class AnnouncementState extends State<Announcement> {
               children: [
                 // год автомобиля
                 TextFormField(
+                  maxLength: 4,
                   controller: _carYearValue,
                   keyboardType: TextInputType.number,
                   validator: (value) =>
@@ -727,6 +731,7 @@ class AnnouncementState extends State<Announcement> {
                   ),
                   validator: (value) =>
                       validate(value, S.of(context).narxiniKiriting),
+                  maxLength: 12,
                 ),
                 // VALYUTA
                 DropdownButtonFormField(
@@ -762,6 +767,7 @@ class AnnouncementState extends State<Announcement> {
               decoration: announcementInputDecoration(
                 S.of(context).yurganMasofasi,
               ),
+              maxLength: 7,
               validator: (value) =>
                   validate(value, S.of(context).yurganMasofaniKiriting),
             ),
@@ -778,6 +784,7 @@ class AnnouncementState extends State<Announcement> {
                   announcementInputDecoration(S.of(context).qoshimchaMalumot),
               validator: (value) =>
                   validate(value, S.of(context).qoshimchaMalumotniKriting),
+              maxLength: 100,
             ),
             //
             SizedBox(
@@ -1197,7 +1204,7 @@ class AnnouncementState extends State<Announcement> {
     );
 
     if (responseStatusText == "Unpaid") {
-      dialogBuilder(
+      return (
         context,
         S.of(context).elonSaqlandi,
         Text(
@@ -1221,7 +1228,7 @@ class AnnouncementState extends State<Announcement> {
         ],
       );
     } else if (responseStatusText == "success") {
-      dialogBuilder(
+      return dialogBuilder(
         context,
         S.of(context).elonSaqlandi,
         Text(

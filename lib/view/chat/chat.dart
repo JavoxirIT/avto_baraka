@@ -1,18 +1,16 @@
 // ignore_for_file: unnecessary_null_comparison
-
-import 'package:avto_baraka/provider/token_provider/token_provider.dart';
 import 'package:avto_baraka/screen/imports/imports_cabinet.dart';
 import 'package:avto_baraka/view/chat/import/import_one_chat.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-class OneChat extends StatefulWidget {
-  const OneChat({Key? key}) : super(key: key);
+
+class Chat extends StatefulWidget {
+  const Chat({Key? key}) : super(key: key);
 
   @override
-  OneChatState createState() => OneChatState();
+  ChatState createState() => ChatState();
 }
 
-class OneChatState extends State<OneChat> {
+class ChatState extends State<Chat> {
 //  final int currentUserId;
   final scrollController = ScrollController();
   final TextEditingController _textController = TextEditingController();

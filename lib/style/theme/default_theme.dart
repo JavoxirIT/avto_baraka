@@ -86,6 +86,10 @@ ThemeData defaultTheme() {
         fontWeight: FontWeight.w700,
         letterSpacing: 2.0,
       ),
+      labelMedium: const TextStyle(
+        fontSize: 12.0,
+        fontWeight: FontWeight.w700,
+      ),
       displayLarge:
           const TextStyle(fontSize: 13.0, fontWeight: FontWeight.w600),
       displayMedium: const TextStyle(

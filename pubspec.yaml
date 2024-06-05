@@ -42,19 +42,14 @@ dependencies:
   dots_indicator: ^3.0.0
   material_symbols_icons: ^4.2719.3
   flutter_switch: ^0.3.2
-  flutter_chip_tags: ^2.0.2
   flutter_phone_direct_caller: ^2.1.1
   share_plus: ^7.2.2
   flutter_dotenv: ^5.1.0
   dio: ^5.4.2+1
-  # intl: ^0.19.0
   flutter_localization: ^0.2.0
   multi_dropdown: ^2.1.4
   geolocator: ^11.0.0
   geocoding: ^3.0.0
-  # flutter_map: ^6.1.0
-  # latlng: ^2.0.7
-  #
   get: any
   flutter_osm_plugin: any
   fluttertoast: any
@@ -68,7 +63,6 @@ dependencies:
   flutter_bloc: ^8.1.5
   meta: ^1.10.0
   provider: ^6.1.2
-  pinput: ^4.0.0
   mask_text_input_formatter: ^2.9.0
   flutter_map: ^6.1.0
   flutter_map_location_marker: ^8.0.8
@@ -81,6 +75,9 @@ dependencies:
   intl: ^0.18.1
   flutter_basic_chat_bubble: ^0.2.2+3
   web_socket_channel: ^2.4.0
+  sms_autofill: ^2.3.1
+  permission_handler: ^11.3.1
+
 
 
 dev_dependencies:

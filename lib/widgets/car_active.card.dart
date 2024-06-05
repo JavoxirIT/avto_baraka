@@ -1,18 +1,19 @@
 import 'package:avto_baraka/bloc/listing_active/listing_active_bloc.dart';
-import 'package:avto_baraka/generated/l10n.dart';
+import 'package:avto_baraka/bloc/listing_blocked/listing_blocked_bloc.dart';
 import 'package:avto_baraka/http_config/config.dart';
-import 'package:avto_baraka/router/route_name.dart';
+import 'package:avto_baraka/screen/imports/imports_listing.dart';
 import 'package:avto_baraka/style/colors.dart';
+import 'package:avto_baraka/style/elevation_button_white.dart';
 import 'package:avto_baraka/widgets/car_tag_card.dart';
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:avto_baraka/widgets/dialog.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-carCativeCard(context, state) {
-  onOneCarView(context, item) {
-    Navigator.of(context).pushNamed(RouteName.oneCarView, arguments: item);
-  }
-
+carCativeCard(
+  context,
+  state,
+  token,
+  lang,
+) {
   if (state is ListingActiveStateLoad) {
     return ListView.builder(
       itemCount: state.listing.length,
@@ -28,7 +29,8 @@ carCativeCard(context, state) {
                 child: InkWell(
                   splashColor: splashColor,
                   onTap: () {
-                    onOneCarView(context, item);
+                    Navigator.of(context)
+                        .pushNamed(RouteName.oneCarView, arguments: item);
                   },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -175,6 +177,62 @@ carCativeCard(context, state) {
                             ),
                           ],
                         ),
+                      ),
+                      ButtonBar(
+                        alignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: elevatedButton,
+                            child: Text("Topga chiqarish"),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              dialogBuilder(
+                                context,
+                                S.of(context).diqqat,
+                                Text(S
+                                    .of(context)
+                                    .eqlonOchirilgandanKeyinMalumotlarniTiklabBolmaydi),
+                                [
+                                  ElevatedButton(
+                                    style: elevatedButton,
+                                    onPressed: () {
+                                      BlocProvider.of<ListingActiveBloc>(
+                                              context)
+                                          .add(
+                                        ListingActiveDeleteEvent(
+                                          listingId: item.id,
+                                          token: token,
+                                          lang: lang,
+                                        ),
+                                      );
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text(
+                                      S.of(context).ochirish,
+                                    ),
+                                  ),
+                                  ElevatedButton(
+                                    style: elevationButtonWhite,
+                                    onPressed: () =>
+                                        Navigator.of(context).pop(false),
+                                    child: Text(
+                                      S.of(context).yoq,
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                            style: elevatedButton.copyWith(
+                              backgroundColor:
+                                  MaterialStatePropertyAll(colorRed),
+                            ),
+                            child: Text(
+                              S.of(context).ochirish,
+                            ),
+                          )
+                        ],
                       )
                     ],
                   ),
@@ -196,6 +254,12 @@ carCativeCard(context, state) {
       child: Text(S.of(context).malumotlarBazasidaXatolik),
     );
   }
+  if (state is ListingActiveInitial) {
+    const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
   return const Center(
     child: CircularProgressIndicator(),
   );

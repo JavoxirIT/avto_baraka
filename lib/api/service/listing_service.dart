@@ -56,6 +56,8 @@ class ListingService {
         data: formData,
       );
       if (response.statusCode == 200) {
+        debugPrint('postAutoData: ${response.data}');
+
         statusText = response.data['status'];
       } else {
         debugPrint('rsponse daq request: ${response.statusMessage}');
@@ -257,5 +259,28 @@ class ListingService {
     }
 
     return listingLikeList;
+  }
+
+  // delete LISTING
+  // deletelisting/{id}
+  Future<int> deleteListing(int listingId, String token) async {
+    int responseData = 0;
+    try {
+      final response = await _dio.get('${_url}deletelisting/$listingId',
+          options: Options(headers: {'Authorization': token}));
+      debugPrint('response.data: ${response.data}');
+
+      if (response.statusCode == 200) {
+        responseData = int.parse(response.data);
+      }
+    } catch (e) {
+      debugPrint('ERROR LIKE LIST: $e');
+      if (e is DioException) {
+        if (e.response!.statusCode == 401) {
+          TokenProvider().removeTokenPreferences(tokenKey);
+        }
+      }
+    }
+    return responseData;
   }
 }

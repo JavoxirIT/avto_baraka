@@ -17,4 +17,5 @@ class RouteName {
   static const searchView = "/searchView";
   static const oneChat = "/oneChat";
   static const chatTwo = "/chatTwo";
+  static const loginToAnotherAccount = "/loginToAnotherAccount";
 }

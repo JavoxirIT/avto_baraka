@@ -119,5 +119,11 @@
   "habar": "Сообщение...",
   "qayerdanOlamiz": "Что выбераем?",
   "qoshimchaMalumotniKriting": "Дополнительное иформацыя",
-  "yangiXabar": "Yangi xabar"
+  "yangiXabar": "Yangi xabar",
+  "boshqaAkauntgaKirish": "Войти в другой аккаунт",
+  "ochirish": "Удалить",
+  "ushbuElondaHatolikMavjudligiUchunTizimgaJoylanishiBekorQilindi": "Публикация отменена в связи с наличием ошибки.",
+  "iltimosSmsXabarniKutibTuring": "Пожалуйста ожидайте sms уведомление",
+  "eqlonOchirilgandanKeyinMalumotlarniTiklabBolmaydi": "Данные не восстановить после удаления",
+  "bloklanganElonMavjutNEmas": "Bloklangan e`lon mavjut {n} emas"
 }

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 InputDecoration announcementInputDecoration([label]) {
   return InputDecoration(
-    focusedBorder: formInputBorder,
-    enabledBorder: formInputBorder,
-    floatingLabelBehavior: FloatingLabelBehavior.always,
-    label: Text(label ?? ""),
-  );
+      focusedBorder: formInputBorder,
+      enabledBorder: formInputBorder,
+      floatingLabelBehavior: FloatingLabelBehavior.always,
+      label: Text(label ?? ""),
+      counterText: '');
 }

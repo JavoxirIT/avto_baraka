@@ -15,9 +15,12 @@ ListTile settingListTile(String title, textTheme, fnc) {
       color: iconSelectedColor,
       size: 15.0,
     ),
-    shape: Border(
-      bottom: BorderSide(color: iconSelectedColor, width: 0.1),
-    ),
-    contentPadding: EdgeInsets.zero,
+    shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(32),
+          bottomRight: Radius.circular(32),
+        ),
+        side: BorderSide(color: Colors.white12)),
+    contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
   );
 }

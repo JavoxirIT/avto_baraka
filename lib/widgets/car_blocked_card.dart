@@ -1,20 +1,22 @@
 import 'package:avto_baraka/bloc/listing_blocked/listing_blocked_bloc.dart';
 import 'package:avto_baraka/http_config/config.dart';
+import 'package:avto_baraka/screen/imports/imports_favorite.dart';
 // import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevated_button.dart';
+import 'package:avto_baraka/style/elevation_button_white.dart';
 import 'package:avto_baraka/widgets/car_tag_card.dart';
 import 'package:avto_baraka/widgets/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-carBlockedCard(context, state) {
+import '../generated/l10n.dart';
+
+carBlockedCard(context, state, token, lang) {
   // onOneCarView(context, item) {
   //   Navigator.of(context).pushNamed(RouteName.oneCarView, arguments: item);
   // }
-
-  debugPrint('state: $state');
 
   if (state is ListingBlockedStateLoad) {
     return ListView.builder(
@@ -170,30 +172,68 @@ carBlockedCard(context, state) {
                 ),
                 color: const Color.fromARGB(180, 255, 255, 255),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Center(
-                        heightFactor: 4,
+                        heightFactor: 5,
                         child: Text(
-                          "Ushbu e’lon - Mana bu sabablar bilan tizimga joylanishi bekor qilindi.",
+                          S
+                              .of(context)
+                              .ushbuElondaHatolikMavjudligiUchunTizimgaJoylanishiBekorQilindi,
                           style: TextStyle(
-                            color: colorRed,
+                            color: iconSelectedColor,
                             fontSize: 14.0,
                             fontWeight: FontWeight.w700,
                           ),
                           textAlign: TextAlign.center,
+                          maxLines: 3,
+                          softWrap: true,
                         ),
                       ),
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        dialogBuilder(context, "", const Text(""), []);
+                        dialogBuilder(
+                            context,
+                            S.of(context).diqqat,
+                            Text(S
+                                .of(context)
+                                .eqlonOchirilgandanKeyinMalumotlarniTiklabBolmaydi),
+                            [
+                              ElevatedButton(
+                                style: elevatedButton,
+                                onPressed: () {
+                                  BlocProvider.of<ListingBlockedBloc>(context)
+                                      .add(
+                                    ListingDeleteEvent(
+                                      listingId: item.id,
+                                      token: token,
+                                      lang: lang,
+                                    ),
+                                  );
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text(
+                                  S.of(context).ochirish,
+                                ),
+                              ),
+                              ElevatedButton(
+                                style: elevationButtonWhite,
+                                onPressed: () =>
+                                    Navigator.of(context).pop(false),
+                                child: Text(
+                                  S.of(context).yoq,
+                                ),
+                              ),
+                            ]);
                       },
-                      style: elevatedButton,
+                      style: elevatedButton.copyWith(
+                        backgroundColor: MaterialStatePropertyAll(colorRed),
+                      ),
                       child: Text(
-                        "Taxrirlash va qayta yuborish",
+                        S.of(context).ochirish,
                         style: TextStyle(
                           fontSize: 14.0,
                           color: textColorWhite,
@@ -214,13 +254,19 @@ carBlockedCard(context, state) {
   if (state is ListingBlockedStateNotData) {
     return Center(
       child: Text(
-        "Bloklangan e`lon mavjut \n emas",
+        S.of(context).bloklanganElonMavjutNEmas("\n"),
         style: Theme.of(context).textTheme.labelLarge,
         textAlign: TextAlign.center,
       ),
     );
   }
   if (state is ListingBlockedInitial) {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  if (state is ListingDeleted) {
     return const Center(
       child: CircularProgressIndicator(),
     );

@@ -18,10 +18,6 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
 carCard(context, state) {
-  onOneCarView(context, item) {
-    Navigator.of(context).pushNamed(RouteName.oneCarView, arguments: item);
-  }
-
   final tokenProvider = Provider.of<TokenProvider>(context);
   final languageProvider = Provider.of<LocalProvider>(context);
 
@@ -49,7 +45,10 @@ carCard(context, state) {
                   child: InkWell(
                     splashColor: splashColor,
                     onTap: () {
-                      onOneCarView(context, item);
+                      Navigator.of(context).pushNamed(
+                        RouteName.oneCarView,
+                        arguments: item,
+                      );
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,16 +56,20 @@ carCard(context, state) {
                         Stack(
                           children: [
                             ClipRRect(
-                                borderRadius: BorderRadius.circular(12.0),
-                                child: FadeInImage(
-                                  fit: BoxFit.cover,
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 200.0,
-                                  placeholder: MemoryImage(base64.decode(
-                                      bs64Image.split(',').last)),
-                                  image: NetworkImage(Config.imageUrl! +
-                                      item.carImage[0].substring(1)),
-                                )),
+                              borderRadius: BorderRadius.circular(12.0),
+                              child: FadeInImage(
+                                fit: BoxFit.cover,
+                                width: MediaQuery.of(context).size.width,
+                                height: 200.0,
+                                placeholder: MemoryImage(
+                                  base64.decode(bs64Image.split(',').last),
+                                ),
+                                image: NetworkImage(
+                                  Config.imageUrl! +
+                                      item.carImage[0].substring(1),
+                                ),
+                              ),
+                            ),
                             // item['statusTop'] == true
                             //     ? Positioned(
                             //         child: Card(

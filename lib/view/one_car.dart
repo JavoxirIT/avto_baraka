@@ -1,8 +1,12 @@
 import 'package:avto_baraka/api/models/listing_get_models.dart';
+import 'package:avto_baraka/bloc/like/like_bloc.dart';
+import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/http_config/config.dart';
 import 'package:avto_baraka/observer/launch_map.dart';
 import 'package:avto_baraka/observer/share_route_observer.dart';
+import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
+import 'package:avto_baraka/provider/token_provider/token_provider.dart';
 import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/box_decoration.dart';
 import 'package:avto_baraka/style/colors.dart';
@@ -15,10 +19,12 @@ import 'package:avto_baraka/widgets/one_card_table_row.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 // ignore: depend_on_referenced_packages
 import 'package:latlong2/latlong.dart';
@@ -72,9 +78,11 @@ class OneCarViewState extends State<OneCarView> {
 
   @override
   Widget build(BuildContext context) {
+    final tokenProvider = Provider.of<TokenProvider>(context);
+    final languageProvider = Provider.of<LocalProvider>(context);
     final double height = MediaQuery.of(context).size.height / 3;
     final double heightImage = MediaQuery.of(context).size.height;
-
+    Color likeColor = _carData!.liked != 1 ? iconDizLike : colorRed;
     final carTitle =
         "${_carData!.brand} ${_carData!.model} ${_carData!.car_position}";
     final city = "${_carData!.region} ${_carData!.district}";
@@ -360,16 +368,33 @@ class OneCarViewState extends State<OneCarView> {
               onPress,
               context,
             ),
-            iconButton(
-              const Icon(
-                FontAwesomeIcons.heartCircleCheck,
-                color: Color.fromARGB(218, 255, 0, 0),
-                size: 15.0,
+            CircleAvatar(
+              backgroundColor: const Color.fromARGB(31, 255, 0, 0),
+              child: IconButton(
+                onPressed: () {
+                  BlocProvider.of<LikeBloc>(context).add(
+                    LikeEvendSend(
+                      id: _carData!.id,
+                      token: tokenProvider.token!,
+                    ),
+                  );
+                  BlocProvider.of<ListingBloc>(context).add(
+                    ListingEventLoad(
+                      languageProvider.locale.languageCode,
+                      tokenProvider.token,
+                    ),
+                  );
+
+                  setState(() {
+                    _carData!.liked = _carData!.liked != 1 ? 1 : 0;
+                  });
+                },
+                icon: Icon(
+                  FontAwesomeIcons.heartCircleCheck,
+                  color: likeColor,
+                  size: 15.0,
+                ),
               ),
-              16.0,
-              const Color.fromARGB(31, 255, 0, 0),
-              onPress,
-              context,
             ),
             CircleAvatar(
               backgroundColor: const Color.fromARGB(22, 0, 128, 128),

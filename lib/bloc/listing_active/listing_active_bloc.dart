@@ -9,6 +9,7 @@ part 'listing_active_state.dart';
 class ListingActiveBloc extends Bloc<ListingActiveEvent, ListingActiveState> {
   ListingActiveBloc(this._listingService) : super(ListingActiveInitial()) {
     on<ListingActiveEventLoad>(getActiveListing);
+    on<ListingActiveDeleteEvent>(deleteActiveListing);
   }
 
   final ListingService _listingService;
@@ -22,6 +23,31 @@ class ListingActiveBloc extends Bloc<ListingActiveEvent, ListingActiveState> {
         emit(ListingActiveNotData());
       } else {
         emit(ListingActiveStateLoad(listing: activeListing));
+      }
+    } on Exception catch (e) {
+      emit(ListingActiveStateError(exception: e));
+    }
+  }
+
+  Future<void> deleteActiveListing(
+    ListingActiveDeleteEvent event,
+    Emitter<ListingActiveState> emit,
+  ) async {
+    try {
+      final deteleResponse = await _listingService.deleteListing(
+        event.listingId,
+        event.token,
+      );
+
+      if (deteleResponse == 1) {
+        final activeListing =
+            await _listingService.getActiveDataListing(event.lang, event.token);
+        if (activeListing.isEmpty) {
+          emit(ListingActiveNotData());
+        } else {
+          emit(ListingActiveInitial());
+          emit(ListingActiveStateLoad(listing: activeListing));
+        }
       }
     } on Exception catch (e) {
       emit(ListingActiveStateError(exception: e));
