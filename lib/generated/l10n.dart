@@ -1319,6 +1319,76 @@ class S {
       args: [n],
     );
   }
+
+  /// `Maydinni to'ldiring`
+  String get maydinniToldiring {
+    return Intl.message(
+      'Maydinni to`ldiring',
+      name: 'maydinniToldiring',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notugri format`
+  String get notugriFormat {
+    return Intl.message(
+      'Notugri format',
+      name: 'notugriFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PK amal qilish muddati`
+  String get pkAmalQilishMuddati {
+    return Intl.message(
+      'PK amal qilish muddati',
+      name: 'pkAmalQilishMuddati',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Karta raqamini to'liq kiriting`
+  String get kartaRaqaminiToliqKiriting {
+    return Intl.message(
+      'Karta raqamini to`liq kiriting',
+      name: 'kartaRaqaminiToliqKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Muddatini t'liq kiriting`
+  String get muddatiniTliqKiriting {
+    return Intl.message(
+      'Muddatini t`liq kiriting',
+      name: 'muddatiniTliqKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tasdiqlash uchun manashu {num} ga sms kod yuborildi`
+  String tasdiqlashUchunManashuNumGaSmsKodYuborildi(Object num) {
+    return Intl.message(
+      'Tasdiqlash uchun manashu $num ga sms kod yuborildi',
+      name: 'tasdiqlashUchunManashuNumGaSmsKodYuborildi',
+      desc: '',
+      args: [num],
+    );
+  }
+
+  /// `Kodni yuborsh`
+  String get kodniYuborsh {
+    return Intl.message(
+      'Kodni yuborsh',
+      name: 'kodniYuborsh',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

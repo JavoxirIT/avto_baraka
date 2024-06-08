@@ -8,6 +8,10 @@
 	<uses-permission android:name="android.permission.RECEIVE_SMS"/>
 	<uses-permission android:name="android.permission.READ_SMS"/>
 	<uses-permission android:name="android.permission.INTERNET"/>
+	<!-- fonoviy rejim -->
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 	<queries>
 		<intent>
 			<action android:name="android.intent.action.VIEW" />
@@ -22,7 +26,7 @@
 		</intent>
 	</queries>
 	<application
-        android:label="Auto Baraka"
+        android:label="Avto Baraka"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 		<!-- flutterlocalnotifications -->

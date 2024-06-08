@@ -125,5 +125,12 @@
   "ushbuElondaHatolikMavjudligiUchunTizimgaJoylanishiBekorQilindi": "Ushbu e’londa - Hatolik mavjudligi uchun tizimga joylanishi bekor qilindi.",
   "iltimosSmsXabarniKutibTuring": "Iltimos sms xabarni kutib turing",
   "eqlonOchirilgandanKeyinMalumotlarniTiklabBolmaydi": "Eqlon o`chirilgandan keyin ma`lumotlarni tiklab bo`lmaydi",
-  "bloklanganElonMavjutNEmas": "Bloklangan e`lon mavjut {n} emas"
+  "bloklanganElonMavjutNEmas": "Bloklangan e`lon mavjut {n} emas",
+  "maydinniToldiring": "Maydinni to`ldiring",
+  "notugriFormat": "Notugri format",
+  "pkAmalQilishMuddati": "PK amal qilish muddati",
+  "kartaRaqaminiToliqKiriting": "Karta raqamini to`liq kiriting",
+  "muddatiniTliqKiriting": "Muddatini t`liq kiriting",
+  "tasdiqlashUchunManashuNumGaSmsKodYuborildi": "Tasdiqlash uchun manashu {num} ga sms kod yuborildi",
+  "kodniYuborsh": "Kodni yuborsh"
 }

@@ -1,6 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:avto_baraka/api/service/payments__service.dart';
+import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
 import 'package:avto_baraka/screen/imports/imports_announcement.dart';
+import 'package:avto_baraka/screen/imports/imports_cabinet.dart';
 import 'package:flutter/services.dart';
 
 class Announcement extends StatefulWidget {
@@ -30,7 +33,7 @@ class AnnouncementState extends State<Announcement> {
   List<CarPaintConditionModel> carPaintConditionList = [];
   List<ValyutaModels> valyutaList = [];
   int currentStep = 0;
-
+  String? description;
   String _mapData = "";
   //
   int? oncheckId;
@@ -91,7 +94,7 @@ class AnnouncementState extends State<Announcement> {
   Position? _currentLocation;
   bool servicePosition = false;
   late LocationPermission permission;
-
+  String? escription;
   Future<void> _getCurrentLocation() async {
     servicePosition = await Geolocator.isLocationServiceEnabled();
     if (!servicePosition) {
@@ -140,6 +143,7 @@ class AnnouncementState extends State<Announcement> {
   @override
   initState() {
     super.initState();
+
     loadAllData();
   }
 
@@ -163,6 +167,7 @@ class AnnouncementState extends State<Announcement> {
         Radius.circular(15.0),
       ),
     );
+
     return Scaffold(
         appBar: AppBar(title: Text(S.of(context).elonJoylash)),
         body: Theme(
@@ -1152,7 +1157,9 @@ class AnnouncementState extends State<Announcement> {
             false);
       }
     } else if (currentStep == 6) {
-      sendData();
+      final providerLanguage =
+          Provider.of<LocalProvider>(context, listen: false);
+      sendData(providerLanguage.locale.languageCode);
     } else {
       setState(() {
         currentStep = (currentStep + 1) % getSteps(context).length;
@@ -1174,7 +1181,7 @@ class AnnouncementState extends State<Announcement> {
     setState(() {});
   }
 
-  sendData() async {
+  sendData(lang) async {
     // debugPrint('Data Send');
 
     responseStatusText = await ListingService.servive.postAutoData(
@@ -1202,13 +1209,15 @@ class AnnouncementState extends State<Announcement> {
       },
       imageFileList,
     );
+    debugPrint('responseStatusText: $responseStatusText');
 
     if (responseStatusText == "Unpaid") {
-      return (
+      description = await PaymentsService().paymentDesc(lang);
+      dialogBuilder(
         context,
         S.of(context).elonSaqlandi,
         Text(
-          S.of(context).tizimdanTolFoy,
+          description ?? S.of(context).tizimdanTolFoy,
         ),
         [
           TextButton(
@@ -1228,7 +1237,7 @@ class AnnouncementState extends State<Announcement> {
         ],
       );
     } else if (responseStatusText == "success") {
-      return dialogBuilder(
+      dialogBuilder(
         context,
         S.of(context).elonSaqlandi,
         Text(

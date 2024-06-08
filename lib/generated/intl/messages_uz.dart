@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(n) => "Bloklangan e`lon mavjut ${n} emas";
 
+  static String m1(num) => "Tasdiqlash uchun ${num} raqamiga sms kod yuborildi";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "abtomashinaYiliniKiriting":
@@ -105,8 +107,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "kabinet": MessageLookupByLibrary.simpleMessage("Kabinet"),
         "kartaMalumotlariniKiriting": MessageLookupByLibrary.simpleMessage(
             "Karta ma`lumotlarini kiriting"),
+        "kartaRaqaminiToliqKiriting": MessageLookupByLibrary.simpleMessage(
+            "Karta raqamini to`liq kiriting"),
         "kategoriyalar": MessageLookupByLibrary.simpleMessage("KATEGORIYALAR"),
         "kechirasiz": MessageLookupByLibrary.simpleMessage("Kechirasiz"),
+        "kodniYuborsh": MessageLookupByLibrary.simpleMessage("Kodni yuborsh"),
         "kreditKalkulatori":
             MessageLookupByLibrary.simpleMessage("Kredit Kalkulatori"),
         "kreditMeddatiniTanlang":
@@ -135,15 +140,23 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Maxfiylik siyosati"),
         "maxsusSozlamalar":
             MessageLookupByLibrary.simpleMessage("Maxsus sozlamalar"),
+        "maydinniToldiring":
+            MessageLookupByLibrary.simpleMessage("Maydonni to`ldiring"),
         "meningHisobim": MessageLookupByLibrary.simpleMessage("Mening hisobim"),
+        "muddatiniTliqKiriting":
+            MessageLookupByLibrary.simpleMessage("Muddatini t`oliq kiriting"),
         "narxi": MessageLookupByLibrary.simpleMessage("Narxi"),
         "narxiniKiriting":
             MessageLookupByLibrary.simpleMessage("Narxini kiriting"),
+        "notugriFormat":
+            MessageLookupByLibrary.simpleMessage("Notug`ri format"),
         "notugriKod": MessageLookupByLibrary.simpleMessage("Notugri kod"),
         "ochirish": MessageLookupByLibrary.simpleMessage("O`chirish"),
         "oldinga": MessageLookupByLibrary.simpleMessage("Oldinga"),
         "orqaga": MessageLookupByLibrary.simpleMessage("Orqaga"),
         "parametrlar": MessageLookupByLibrary.simpleMessage("Parametrlar"),
+        "pkAmalQilishMuddati":
+            MessageLookupByLibrary.simpleMessage("PK amal qilish muddati"),
         "qayerdanOlamiz":
             MessageLookupByLibrary.simpleMessage("Qayerdan olamiz?"),
         "qidirish": MessageLookupByLibrary.simpleMessage("Qidirish"),
@@ -180,6 +193,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tasdiqlangan": MessageLookupByLibrary.simpleMessage("Tasdiqlangan"),
         "tasdiqlanganElonlarMavjutEmas": MessageLookupByLibrary.simpleMessage(
             "Tasdiqlangan e`lonlar mavjut emas"),
+        "tasdiqlashUchunManashuNumGaSmsKodYuborildi": m1,
         "telefon": MessageLookupByLibrary.simpleMessage("Telefon"),
         "texnikaTuriniTanlang":
             MessageLookupByLibrary.simpleMessage("Texnika turini tanlang"),

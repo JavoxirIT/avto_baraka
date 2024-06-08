@@ -1,10 +1,12 @@
-String? phoneValidator(String input) {
+import 'package:avto_baraka/screen/imports/imports_listing.dart';
+
+String? phoneValidator(BuildContext context, String input) {
   final phoneExp = RegExp(r'[0-9]');
   if (input == "") {
-    return "Заполните поле";
+    return S.of(context).maydinniToldiring;
   } else if (phoneExp.hasMatch(input)) {
     return null;
   } else {
-    return "Не верный формат номера";
+    return S.of(context).notugriFormat;
   }
 }

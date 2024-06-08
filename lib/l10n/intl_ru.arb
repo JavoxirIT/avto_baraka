@@ -87,7 +87,7 @@
   "yangiElonQoshish": "Добавить обявления",
   "tizimdanTolFoy": "Чтобы полноценно пользоваться системой, вам необходимо будет заплатить 12 500 сумов.",
   "xaliEmas": "Оплатить пойже",
-  "amalgaOshirish": "Оплатить",
+  "amalgaOshirish": "Произвести оплату",
   "kartaMalumotlariniKiriting": "Выберите расположение на карте",
   "elonHolatiniKabitendatNKuzatsangizBoladi": "Отслеживать статус объявления  можно в кабитендате",
   "bajarish": "Выполнить",
@@ -125,5 +125,12 @@
   "ushbuElondaHatolikMavjudligiUchunTizimgaJoylanishiBekorQilindi": "Публикация отменена в связи с наличием ошибки.",
   "iltimosSmsXabarniKutibTuring": "Пожалуйста ожидайте sms уведомление",
   "eqlonOchirilgandanKeyinMalumotlarniTiklabBolmaydi": "Данные не восстановить после удаления",
-  "bloklanganElonMavjutNEmas": "Bloklangan e`lon mavjut {n} emas"
+  "bloklanganElonMavjutNEmas": "Заблокированных {n} объявлений нет",
+  "maydinniToldiring": "Заполните поле",
+  "notugriFormat": "Не верный формат",
+  "pkAmalQilishMuddati": "Срок действия ПК",
+  "kartaRaqaminiToliqKiriting": "Введите полный номер карты",
+  "muddatiniTliqKiriting": "Введите данные правельно",
+  "tasdiqlashUchunManashuNumGaSmsKodYuborildi": "Для подтверждения отправлен sms на номер {num} ",
+  "kodniYuborsh": "Отправить код"
 }

@@ -35,7 +35,7 @@ class MainCarouselFormRegistrationState
   void initState() {
     super.initState();
     getAppSignature();
-    // requestSmsPermission();
+    requestSmsPermission();
     _listenForSmsCode();
   }
 
@@ -44,12 +44,12 @@ class MainCarouselFormRegistrationState
     // debugPrint('РАБОТАЕТ');
   }
 
-  // Future<void> requestSmsPermission() async {
-  //   var status = await Permission.sms.status;
-  //   if (!status.isGranted) {
-  //     await Permission.sms.request();
-  //   }
-  // }
+  Future<void> requestSmsPermission() async {
+    var status = await Permission.sms.status;
+    if (!status.isGranted) {
+      await Permission.sms.request();
+    }
+  }
 
   Future<void> getAppSignature() async {
     _appSignature = await SmsAutoFill().getAppSignature;
@@ -126,7 +126,8 @@ class MainCarouselFormRegistrationState
                               floatingLabelBehavior:
                                   FloatingLabelBehavior.always,
                             ),
-                            validator: (value) => phoneValidator(value!),
+                            validator: (value) =>
+                                phoneValidator(context, value!),
                           ),
                         ),
                       ),

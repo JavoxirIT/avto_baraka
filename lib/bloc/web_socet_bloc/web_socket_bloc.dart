@@ -26,7 +26,7 @@ class WebSocketBloc extends Bloc<WebSocketEvent, WebSocketState> {
     on<ConnectWebSocket>(_onConnectWebSocket);
     on<SendMessage>(_onSendMessage);
     on<ReceiveMessage>(_onReceiveMessage);
-    on<DisconnectWebSocket>(_onDisconnectWebSocket);
+    // on<DisconnectWebSocket>(_onDisconnectWebSocket);
   }
   Stream<WebSocketState> get stateStream => stream; // Поток состояний
 
@@ -71,6 +71,9 @@ class WebSocketBloc extends Bloc<WebSocketEvent, WebSocketState> {
         "roomId": event.roomId
       });
       _channel?.sink.add(dataJson);
+      
+      debugPrint('event.id: ${event.id}');
+      
     } catch (e) {
       debugPrint('WebSocket SendMessage: $e');
     }
@@ -86,8 +89,12 @@ class WebSocketBloc extends Bloc<WebSocketEvent, WebSocketState> {
         imageList: event.imageList,
         roomId: event.roomId,
       ));
+      
+      debugPrint('ReceiveMessage: ${event.id}');
+      
 
       if (event.id == int.parse(LocalMemory.service.userId)) {
+       debugPrint('notificationService');
         notificationService.showNotification(0, "Avto Baraka", event.message);
       }
     } catch (e) {
@@ -95,19 +102,19 @@ class WebSocketBloc extends Bloc<WebSocketEvent, WebSocketState> {
     }
   }
 
-  void _onDisconnectWebSocket(
-      DisconnectWebSocket event, Emitter<WebSocketState> emit) async {
-    try {
-      await _channel?.sink.close(status.goingAway);
-      await _subscription?.cancel();
-      _channel = null;
-      _subscription = null;
-      emit(WebSocketDisconnected());
-    } catch (e) {
-      debugPrint('_onDisconnectWebSocket: Exception - $e');
-      emit(WebSocketError(e.toString()));
-    }
-  }
+  // void _onDisconnectWebSocket(
+  //     DisconnectWebSocket event, Emitter<WebSocketState> emit) async {
+  //   try {
+  //     await _channel?.sink.close(status.goingAway);
+  //     await _subscription?.cancel();
+  //     _channel = null;
+  //     _subscription = null;
+  //     emit(WebSocketDisconnected());
+  //   } catch (e) {
+  //     debugPrint('_onDisconnectWebSocket: Exception - $e');
+  //     emit(WebSocketError(e.toString()));
+  //   }
+  // }
 
   @override
   Future<void> close() {

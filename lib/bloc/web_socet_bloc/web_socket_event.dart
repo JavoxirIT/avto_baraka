@@ -13,7 +13,7 @@ class ConnectWebSocket extends WebSocketEvent {
 }
 
 class SendMessage extends WebSocketEvent {
-  const SendMessage({
+const SendMessage({
     required this.message,
     required this.id,
     required this.currentUserId,

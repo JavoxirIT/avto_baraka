@@ -8,24 +8,27 @@ import 'package:avto_baraka/screen/imports/imports_cabinet.dart';
 import 'package:avto_baraka/view/chat/import/import_chat_bottom_item.dart';
 
 Container chatBottomItItem(
-  BuildContext context,
-  state,
-  OutlineInputBorder borderStyle,
-  textController,
-  onFieldSubmitted,
-  int currentUserId,
-  int roomId,
-) {
+    BuildContext context,
+    state,
+    OutlineInputBorder borderStyle,
+    textController,
+    onFieldSubmitted,
+    int currentUserId,
+    int roomId,
+    int recipientId) {
   PickImage pickImage = PickImage(context: context);
 
   List<XFile> imageFileList = [];
 
-  ChatOneRoomModels? sortedMessages;
+  // ChatOneRoomModels? sortedMessages;
 
-  if (state is OneRoomsLoadState) {
-    sortedMessages =
-        state.listMessage.firstWhere((a) => a.userId != currentUserId);
-  }
+  // if (state is OneRoomsLoadState) {
+  //   if (state.listMessage.isNotEmpty) {
+  //     sortedMessages = state.listMessage.firstWhere(
+  //       (a) => a.userId != currentUserId,
+  //     );
+  //   }
+  // }
 
   return Container(
     decoration: BoxDecoration(
@@ -58,7 +61,7 @@ Container chatBottomItItem(
                         if (imageFileList.isNotEmpty) {
                           BlocProvider.of<OneRoomBloc>(context).add(
                             OneRoomEventUpdate(
-                              userId: sortedMessages!.userId,
+                              userId: recipientId,
                               imageFileList: imageFileList,
                               currentUserId: currentUserId,
                               roomId: roomId,
@@ -88,7 +91,7 @@ Container chatBottomItItem(
                       if (imageFileList.isNotEmpty) {
                         BlocProvider.of<OneRoomBloc>(context).add(
                           OneRoomEventUpdate(
-                            userId: sortedMessages!.userId,
+                            userId: recipientId,
                             imageFileList: imageFileList,
                             currentUserId: currentUserId,
                             roomId: roomId,
@@ -136,7 +139,7 @@ Container chatBottomItItem(
           onPressed: () {
             BlocProvider.of<OneRoomBloc>(context).add(
               OneRoomEventUpdate(
-                userId: sortedMessages!.userId,
+                userId: recipientId,
                 message: textController.text,
                 currentUserId: currentUserId,
                 roomId: roomId,

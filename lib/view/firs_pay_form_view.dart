@@ -1,10 +1,21 @@
+import 'package:avto_baraka/bloc/payment/payment_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
+import 'package:avto_baraka/provider/token_provider/token_provider.dart';
+import 'package:avto_baraka/screen/imports/imports_announcement.dart';
+import 'package:avto_baraka/screen/imports/imports_listing.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevation_button_map.dart';
+import 'package:avto_baraka/style/sized_box_10.dart';
+import 'package:avto_baraka/style/sized_box_20.dart';
 import 'package:avto_baraka/utill/mack/bank_card_mack.dart';
 import 'package:avto_baraka/utill/mack/bank_card_term.dart';
 import 'package:avto_baraka/utill/validation/phone_validator.dart';
+import 'package:avto_baraka/utill/validation/plastic_validate.dart';
+import 'package:avto_baraka/utill/validation/validity_period.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class FirstPayFormView extends StatefulWidget {
   const FirstPayFormView({Key? key}) : super(key: key);
@@ -16,19 +27,21 @@ class FirstPayFormView extends StatefulWidget {
 class FirstPayFormViewPayState extends State<FirstPayFormView> {
   final formKey = GlobalKey<FormState>();
   final _bankCard = TextEditingController();
-  final _pay = TextEditingController();
   final _cardTerm = TextEditingController();
+  final _smsCode = TextEditingController();
 
   @override
   void dispose() {
     _bankCard.dispose();
-    _pay.dispose();
     _cardTerm.dispose();
+    _smsCode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final tokenProvider = Provider.of<TokenProvider>(context);
+
     TextStyle textStyle =
         const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w800);
     TextStyle inputTextStyle =
@@ -42,115 +55,379 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
       borderRadius: const BorderRadius.all(Radius.circular(10.0)),
       borderSide: BorderSide(color: unselectedItemColor, width: 3.0),
     );
-
+    OutlineInputBorder errordBorder = OutlineInputBorder(
+      borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+      borderSide: BorderSide(color: colorRed, width: 3.0),
+    );
     EdgeInsets padding = const EdgeInsets.all(0);
     FloatingLabelBehavior floatingLabelBehavior = FloatingLabelBehavior.always;
     return Scaffold(
       appBar: AppBar(),
-      body: Form(
-        key: formKey,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+      body: BlocBuilder<PaymentBloc, PaymentState>(
+        builder: (context, state) {
+          debugPrint('status state: $state');
+          if (state is PaymentSendDataStatusState) {
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) {
+                if (mounted) {
+                  showDialog(
+                    context: context,
+                    builder: (_) {
+                      return AlertDialog(
+                        title: Text(
+                          state.listData['status'] == "success"
+                              ? "Diqqat"
+                              : "Xatolik",
+                          style: Theme.of(context).textTheme.labelLarge,
+                        ),
+                        content: Text(
+                          S
+                              .of(context)
+                              .tasdiqlashUchunManashuNumGaSmsKodYuborildi(
+                                  state.listData['phone']),
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      );
+                    },
+                  ).then((_) {
+                    if (mounted) {
+                      setState(() {});
+                    }
+                  });
+                  Future.delayed(const Duration(seconds: 2), () {
+                    Navigator.of(context).pop();
+                  });
+                }
+              },
+            );
+          }
+          if (state is PaymentStateSmsSuccuss) {
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) {
+                if (mounted) {
+                  showDialog(
+                    context: context,
+                    builder: (_) {
+                      return AlertDialog(
+                        title: Text(
+                          "Sms kod tasdiqlandi",
+                          style: Theme.of(context).textTheme.labelLarge,
+                        ),
+                        content: Text(
+                          "Amalga oshirish tugmasini bosing",
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      );
+                    },
+                  ).then((_) {
+                    if (mounted) {
+                      setState(() {});
+                    }
+                  });
+                  Future.delayed(const Duration(seconds: 3), () {
+                    Navigator.of(context).pop();
+                  });
+                }
+              },
+            );
+          }
+          if (state is PaymentStatePaySuccess) {
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) {
+                if (mounted) {
+                  showDialog(
+                    context: context,
+                    builder: (_) {
+                      return AlertDialog(
+                        title: Text(
+                          "To`lov muvofaqayatli o`tkazildi",
+                          style: Theme.of(context).textTheme.labelLarge,
+                        ),
+                      );
+                    },
+                  ).then((_) {
+                    if (mounted) {
+                      setState(() {});
+                    }
+                  });
+                  Future.delayed(const Duration(seconds: 3), () {
+                    Navigator.of(context).pushNamed(RouteName.cobinetScreen);
+                  });
+                }
+              },
+            );
+          }
+          if (state is PaymentStatePayError) {
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) {
+                if (mounted) {
+                  showDialog(
+                    context: context,
+                    builder: (_) {
+                      return AlertDialog(
+                        title: Text(
+                          "To`lov amalga oshirilmadi",
+                          style:
+                              Theme.of(context).textTheme.labelLarge!.copyWith(
+                                    color: colorRed,
+                                  ),
+                        ),
+                        content: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushNamed(RouteName.firstpayView);
+                          },
+                          style: elevatedButton.copyWith(
+                            minimumSize: const MaterialStatePropertyAll(
+                              Size(88, 47),
+                            ),
+                          ),
+                          child: Text("Qayta urinib ko`rish"),
+                        ),
+                      );
+                    },
+                  ).then((_) {
+                    if (mounted) {
+                      setState(() {});
+                    }
+                  });
+                }
+              },
+            );
+          }
+
+          return Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 10.0, left: 35.0, right: 35.0, bottom: 50.0),
-                child: Center(
-                  child: Text(
-                    S.of(context).kartaMalumotlariniKiriting,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 18.0,
-                      color: Color(0xFF008080),
-                      fontWeight: FontWeight.w700,
+              Flexible(
+                flex: 1,
+                child: Form(
+                  key: formKey,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 10.0, left: 35.0, right: 35.0, bottom: 50.0),
+                          child: Center(
+                            child: Text(
+                              S.of(context).kartaMalumotlariniKiriting,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 18.0,
+                                color: Color(0xFF008080),
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                        ),
+                        TextFormField(
+                          inputFormatters: [bankCardMask],
+                          controller: _bankCard,
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            label: Text("PK raqami", style: textStyle),
+                            hintText: "**** **** **** ****",
+                            hintStyle: inputTextStyle,
+                            focusedBorder: focusBorder,
+                            enabledBorder: enabledBorder,
+                            errorBorder: errordBorder,
+                            focusedErrorBorder: errordBorder,
+                            contentPadding: padding,
+                            floatingLabelBehavior: floatingLabelBehavior,
+                          ),
+                          style: inputTextStyle,
+                          textAlign: TextAlign.center,
+                          validator: (value) =>
+                              plastikValidate(context, value!),
+                        ),
+                        const SizedBox(
+                          height: 30.0,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: TextFormField(
+                                inputFormatters: [bankCardTerm],
+                                controller: _cardTerm,
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                  label: Text(
+                                    S.of(context).pkAmalQilishMuddati,
+                                    style: textStyle,
+                                  ),
+                                  hintText: "**/**",
+                                  hintStyle: inputTextStyle,
+                                  focusedBorder: focusBorder,
+                                  enabledBorder: enabledBorder,
+                                  errorBorder: errordBorder,
+                                  focusedErrorBorder: errordBorder,
+                                  contentPadding: padding,
+                                  floatingLabelBehavior: floatingLabelBehavior,
+                                ),
+                                style: inputTextStyle,
+                                textAlign: TextAlign.center,
+                                validator: (value) =>
+                                    validityPeriod(context, value!),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            Expanded(
+                              child: ElevatedButton(
+                                onPressed: state is PaymentSendDataCard ||
+                                        state is PaymentStateSmsSuccuss ||
+                                        state is PaymentStateVisualSendBtn
+                                    ? null
+                                    : () {
+                                        if (formKey.currentState!.validate()) {
+                                          BlocProvider.of<PaymentBloc>(context)
+                                              .add(
+                                            PaymentEventSendCard(
+                                              cardNumber: _bankCard.text
+                                                  .replaceAll(" ", ""),
+                                              expireDate: _cardTerm.text
+                                                  .replaceAll("/", ""),
+                                              token: tokenProvider.token!,
+                                            ),
+                                          );
+                                        }
+                                      },
+                                style: elevatedButton.copyWith(
+                                  minimumSize: const MaterialStatePropertyAll(
+                                    Size(0, 47),
+                                  ),
+                                ),
+                                child: Text(
+                                  S.of(context).yuborish,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        // const Spacer(),
+                      ],
                     ),
                   ),
                 ),
               ),
-              TextFormField(
-                inputFormatters: [bankCardMask],
-                controller: _bankCard,
-                keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
-                  label: Text(
-                    "PK raqami",
-                    style: textStyle,
+              if (state is PaymentSendDataCard ||
+                  state is PaymentStateSmsSuccuss ||
+                  state is PaymentStateVisualSendBtn)
+                Flexible(
+                  flex: 1,
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        sizedBoxH20,
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(
+                            S.of(context).smsKodniKiriting,
+                          ),
+                        ),
+                        sizedBox10,
+                        PinFieldAutoFill(
+                          controller: _smsCode,
+                          codeLength: 6,
+                          decoration: BoxLooseDecoration(
+                            strokeColorBuilder:
+                                FixedColorBuilder(unselectedItemColor),
+                            gapSpace: 10.0,
+                            radius: const Radius.circular(5.0),
+                            textStyle: TextStyle(
+                              fontSize: 20,
+                              color: unselectedItemColor,
+                              fontFamily: "Roboto",
+                            ),
+                            bgColorBuilder: const FixedColorBuilder(
+                              Colors.white,
+                            ),
+                          ),
+                          // onCodeChanged: (code) async {
+                          //   if (code!.length == 6) {}
+                          // },
+                        ),
+                        sizedBoxH20,
+                        ElevatedButton(
+                          onPressed: state is PaymentStateSmsSuccuss ||
+                                  state is PaymentStateVisualSendBtn
+                              ? null
+                              : () {
+                                  if (_smsCode.text.length == 6) {
+                                    BlocProvider.of<PaymentBloc>(context).add(
+                                      PaymentEventSmsCode(
+                                        smsCode: _smsCode.text,
+                                        token: tokenProvider.token!,
+                                      ),
+                                    );
+                                  } else {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: Text(
+                                            "Sms kodni to`liq kiriting",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium,
+                                          ),
+                                        );
+                                      },
+                                    );
+                                    Future.delayed(
+                                        const Duration(
+                                          seconds: 2,
+                                        ), () {
+                                      Navigator.of(context).pop();
+                                    });
+                                  }
+                                },
+                          style: elevatedButton.copyWith(
+                            minimumSize: MaterialStatePropertyAll(
+                              Size(MediaQuery.of(context).size.width, 47),
+                            ),
+                          ),
+                          child: Text(
+                            S.of(context).kodniYuborsh,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                  hintText: "_ _ _ _    _ _ _ _    _ _ _ _    _ _ _ _",
-                  focusedBorder: focusBorder,
-                  enabledBorder: enabledBorder,
-                  contentPadding: padding,
-                  floatingLabelBehavior: floatingLabelBehavior,
                 ),
-                style: inputTextStyle,
-                textAlign: TextAlign.center,
-                validator: (value) => phoneValidator(value!),
-              ),
-              const SizedBox(
-                height: 30.0,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller: _pay,
-                      keyboardType: TextInputType.phone,
-                      decoration: InputDecoration(
-                        label: Text(
-                          "Summa",
-                          style: textStyle,
-                        ),
-                        hintText: "10000",
-                        focusedBorder: focusBorder,
-                        enabledBorder: enabledBorder,
-                        contentPadding: padding,
-                        floatingLabelBehavior: floatingLabelBehavior,
-                      ),
-                      style: inputTextStyle,
-                      textAlign: TextAlign.center,
-                      validator: (value) => phoneValidator(value!),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 20.0,
-                  ),
-                  Expanded(
-                    child: TextFormField(
-                      inputFormatters: [bankCardTerm],
-                      controller: _cardTerm,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        label: Text(
-                          "PK amal qilish muddati",
-                          style: textStyle,
-                        ),
-                        focusedBorder: focusBorder,
-                        enabledBorder: enabledBorder,
-                        contentPadding: padding,
-                        floatingLabelBehavior: floatingLabelBehavior,
-                      ),
-                      style: inputTextStyle,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
-              ),
               const Spacer(),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.only(bottom: 30.0),
-                child: OutlinedButton(
-                  onPressed: () {},
-                  style: elevatedButtonMap,
-                  child: Text(S.of(context).bajarish),
-                ),
-              )
+              if (state is PaymentStateVisualSendBtn)
+                Container(
+                  padding: const EdgeInsets.only(
+                      left: 15.0, right: 15.0, bottom: 10.0),
+                  width: MediaQuery.of(context).size.width,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      BlocProvider.of<PaymentBloc>(context).add(
+                        PaymentEventSend(token: tokenProvider.token!),
+                      );
+                    },
+                    style: elevatedButton.copyWith(
+                      minimumSize: const MaterialStatePropertyAll(
+                        Size(88, 47),
+                      ),
+                    ),
+                    child: Text(S.of(context).amalgaOshirish),
+                  ),
+                )
             ],
-          ),
-        ),
+          );
+        },
       ),
     );
   }
 }
+
+
+// 09/28
+// 9860020143046512

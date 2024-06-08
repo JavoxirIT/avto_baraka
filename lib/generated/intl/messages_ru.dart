@@ -20,13 +20,16 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
-  static String m0(n) => "Bloklangan e`lon mavjut ${n} emas";
+  static String m0(n) => "Заблокированных ${n} объявлений нет";
+
+  static String m1(num) => "Для подтверждения отправлен sms на номер ${num} ";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "abtomashinaYiliniKiriting":
             MessageLookupByLibrary.simpleMessage("Введите год автомобиля"),
-        "amalgaOshirish": MessageLookupByLibrary.simpleMessage("Оплатить"),
+        "amalgaOshirish":
+            MessageLookupByLibrary.simpleMessage("Произвести оплату"),
         "avtomatikTanlash":
             MessageLookupByLibrary.simpleMessage("Текущая геопозиция"),
         "avvalBankniTanlang":
@@ -106,8 +109,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "kabinet": MessageLookupByLibrary.simpleMessage("Кабинет"),
         "kartaMalumotlariniKiriting": MessageLookupByLibrary.simpleMessage(
             "Выберите расположение на карте"),
+        "kartaRaqaminiToliqKiriting":
+            MessageLookupByLibrary.simpleMessage("Введите полный номер карты"),
         "kategoriyalar": MessageLookupByLibrary.simpleMessage("КАТЕГОРИИ"),
         "kechirasiz": MessageLookupByLibrary.simpleMessage("Извините"),
+        "kodniYuborsh": MessageLookupByLibrary.simpleMessage("Отправить код"),
         "kreditKalkulatori":
             MessageLookupByLibrary.simpleMessage("Кредитный калькулятор"),
         "kreditMeddatiniTanlang":
@@ -135,15 +141,23 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Палитика конфидециальности"),
         "maxsusSozlamalar":
             MessageLookupByLibrary.simpleMessage("Пользовательские настройки"),
+        "maydinniToldiring":
+            MessageLookupByLibrary.simpleMessage("Заполните поле"),
         "meningHisobim": MessageLookupByLibrary.simpleMessage("Мой счет"),
+        "muddatiniTliqKiriting":
+            MessageLookupByLibrary.simpleMessage("Введите данные правельно"),
         "narxi": MessageLookupByLibrary.simpleMessage("Стоимость авто"),
         "narxiniKiriting":
             MessageLookupByLibrary.simpleMessage("Введите стоимость авто"),
+        "notugriFormat":
+            MessageLookupByLibrary.simpleMessage("Не верный формат"),
         "notugriKod": MessageLookupByLibrary.simpleMessage("Неверный код"),
         "ochirish": MessageLookupByLibrary.simpleMessage("Удалить"),
         "oldinga": MessageLookupByLibrary.simpleMessage("Вперед"),
         "orqaga": MessageLookupByLibrary.simpleMessage("Назад"),
         "parametrlar": MessageLookupByLibrary.simpleMessage("Параметры"),
+        "pkAmalQilishMuddati":
+            MessageLookupByLibrary.simpleMessage("Срок действия ПК"),
         "qayerdanOlamiz": MessageLookupByLibrary.simpleMessage("Что выбераем?"),
         "qidirish": MessageLookupByLibrary.simpleMessage("Поиск"),
         "qidiruvSozlari":
@@ -178,6 +192,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tasdiqlangan": MessageLookupByLibrary.simpleMessage("Подтвержденный"),
         "tasdiqlanganElonlarMavjutEmas": MessageLookupByLibrary.simpleMessage(
             "Одобренные обявления не найдены"),
+        "tasdiqlashUchunManashuNumGaSmsKodYuborildi": m1,
         "telefon": MessageLookupByLibrary.simpleMessage("Телефон"),
         "texnikaTuriniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите тип техники"),

@@ -18,7 +18,7 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu>
   bool showLoadingIndicator = true;
   late AnimationController _controller;
   late Animation<double> _animation;
-  late Timer _timer;
+  // late Timer _timer;
 
   @override
   void initState() {

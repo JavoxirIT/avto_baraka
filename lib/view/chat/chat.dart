@@ -2,7 +2,6 @@
 import 'package:avto_baraka/screen/imports/imports_cabinet.dart';
 import 'package:avto_baraka/view/chat/import/import_one_chat.dart';
 
-
 class Chat extends StatefulWidget {
   const Chat({Key? key}) : super(key: key);
 
@@ -44,6 +43,8 @@ class ChatState extends State<Chat> {
     super.dispose();
   }
 
+  int recipientId = -1;
+  ChatOneRoomModels? sortedMessages;
   @override
   Widget build(BuildContext context) {
     final tokenProvider = Provider.of<TokenProvider>(context);
@@ -61,20 +62,29 @@ class ChatState extends State<Chat> {
       ),
       body: BlocBuilder<OneRoomBloc, OneRoomState>(
         builder: (context, state) {
+          if (state is OneRoomsLoadState) {
+            if (state.listMessage.isNotEmpty) {
+              for (var obj in state.listMessage) {
+                if (obj.userId != currentUserId) {
+                  recipientId = obj.userId;
+                  // debugPrint('User: $recipientId');
+                  break;
+                } else {
+                  recipientId = obj.senderId;
+                  // debugPrint('Sender: $recipientId');
+                  break;
+                }
+              }
+            }
+          }
+
           return Container(
             color: const Color.fromARGB(15, 0, 0, 0),
             child: Column(
               children: [
                 chatList(context, currentUserId),
-                chatBottomItItem(
-                  context,
-                  state,
-                  borderStyle,
-                  _textController,
-                  onFieldSubmitted,
-                  currentUserId,
-                  roomId
-                )
+                chatBottomItItem(context, state, borderStyle, _textController,
+                    onFieldSubmitted, currentUserId, roomId, recipientId)
               ],
             ),
           );

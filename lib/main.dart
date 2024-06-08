@@ -1,3 +1,6 @@
+import 'package:avto_baraka/api/service/payments__service.dart';
+import 'package:avto_baraka/bloc/payment/payment_bloc.dart';
+import 'package:flutter_background/flutter_background.dart';
 import 'package:avto_baraka/api/service/chat_servive.dart';
 import 'package:avto_baraka/api/service/listing_service.dart';
 import 'package:avto_baraka/bloc/all_rooms/all_rooms_bloc.dart';
@@ -28,6 +31,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
+
+  final androidConfig = FlutterBackgroundAndroidConfig(
+    notificationTitle: "App is running in background",
+    notificationText: "Tap to return to the app",
+    notificationImportance: AndroidNotificationImportance.Default,
+  );
+
+  bool hasPermissions = await FlutterBackground.hasPermissions;
+  if (!hasPermissions) {
+    await FlutterBackground.initialize(androidConfig: androidConfig);
+    await FlutterBackground.enableBackgroundExecution();
+  }
+
   final notificationService = NotificationService();
   await notificationService.init();
   SystemChrome.setPreferredOrientations(
@@ -39,7 +55,6 @@ void main() async {
   var languageProvider = LocalProvider();
   await languageProvider.fetchLocale();
 
-// token
   var tokenProvider = TokenProvider();
   await tokenProvider.fetchTokenLocale();
   final webSocketBloc =
@@ -74,6 +89,9 @@ void main() async {
             create: (context) =>
                 OneRoomBloc(ChatService.chatService, webSocketBloc),
           ),
+          BlocProvider(
+            create: (context) => PaymentBloc(PaymentsService.ps),
+          ),
         ],
         child: const MyApp(),
       ),
@@ -100,9 +118,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(context) {
-    final providerLanguage = Provider.of<LocalProvider>(context);
     final tokenProvider = Provider.of<TokenProvider>(context);
-
+    final providerLanguage = Provider.of<LocalProvider>(context);
+    PaymentsService().paymentDesc(providerLanguage.locale.languageCode);
     BlocProvider.of<ListingBloc>(context).add(ListingEventLoad(
         providerLanguage.locale.languageCode, tokenProvider.token));
     return MaterialApp(
@@ -116,16 +134,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       ],
       supportedLocales: S.delegate.supportedLocales,
       locale: providerLanguage.locale,
-      // darkTheme: ThemeData(
-      //   brightness: Brightness.dark,
-      // ),
-
       theme: defaultTheme(),
       routes: routers,
       home: token != null
           ? const BottomNavigationMenu()
           : const IntroductionScreen(),
-      // home: const IntroductionScreen(),
     );
   }
 
@@ -139,8 +152,3 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     }
   }
 }
-
-
-
-
-// String aStr = _commingSms.replaceAll(new RegExp(r'[^0-9]'),'');

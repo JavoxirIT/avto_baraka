@@ -81,6 +81,8 @@ class OneRoomBloc extends Bloc<OneRoomEvent, OneRoomState> {
     Emitter<OneRoomState> emit,
   ) async {
     try {
+      debugPrint('event.userId: ${event.userId}');
+
       ChatOneRoomModels dataJson = await chatService.sendChat(
         userId: event.userId,
         message: event.message,
@@ -95,12 +97,17 @@ class OneRoomBloc extends Bloc<OneRoomEvent, OneRoomState> {
         roomId: event.roomId,
       ));
       if (state is OneRoomsLoadState) {
+        debugPrint('state is OneRoomsLoadState');
         final currentState = state as OneRoomsLoadState;
         List<ChatOneRoomModels> updatedList =
             List.from(currentState.listMessage)..add(dataJson);
 
         emit(OneRoomInitial());
         emit(OneRoomsLoadState(listMessage: updatedList));
+      } else {
+      debugPrint('dataJson.userId: ${dataJson.userId}');
+        final listMessage = await chatService.getChatFirstRoom(dataJson.userId);
+        emit(OneRoomsLoadState(listMessage: listMessage));
       }
     } on Exception catch (e) {
       emit(OneRoomsErrorState(exception: e));
