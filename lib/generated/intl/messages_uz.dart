@@ -22,7 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(n) => "Bloklangan e`lon mavjut ${n} emas";
 
-  static String m1(num) => "Tasdiqlash uchun ${num} raqamiga sms kod yuborildi";
+  static String m1(count) => "${count} e`lon topildi";
+
+  static String m2(num) => "Tasdiqlash uchun ${num} raqamiga sms kod yuborildi";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -30,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Abtomashina yilini kiriting"),
         "amalgaOshirish":
             MessageLookupByLibrary.simpleMessage("Amalga oshirish"),
+        "amalgaOshirishTugmasiniBosing": MessageLookupByLibrary.simpleMessage(
+            "Amalga oshirish tugmasini bosing"),
         "avtomatikTanlash":
             MessageLookupByLibrary.simpleMessage("Avtomatik tanlash"),
         "avvalBankniTanlang":
@@ -57,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Brendni tanlang"),
         "chiqarilganYili":
             MessageLookupByLibrary.simpleMessage("Chiqarilgan yili:"),
+        "countElonTopildi": m1,
         "dan": MessageLookupByLibrary.simpleMessage("--- dan"),
         "diqqat": MessageLookupByLibrary.simpleMessage("Diqqat!"),
         "dvigatelHajmi": MessageLookupByLibrary.simpleMessage("Dvigatel hajmi"),
@@ -157,8 +162,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "parametrlar": MessageLookupByLibrary.simpleMessage("Parametrlar"),
         "pkAmalQilishMuddati":
             MessageLookupByLibrary.simpleMessage("PK amal qilish muddati"),
+        "pkRaqami": MessageLookupByLibrary.simpleMessage("PK raqami"),
         "qayerdanOlamiz":
             MessageLookupByLibrary.simpleMessage("Qayerdan olamiz?"),
+        "qaytaUrinibKorish":
+            MessageLookupByLibrary.simpleMessage("Qayta urinib ko`rish"),
         "qidirish": MessageLookupByLibrary.simpleMessage("Qidirish"),
         "qidiruvSozlari":
             MessageLookupByLibrary.simpleMessage("Qidiruv so’zlari"),
@@ -172,8 +180,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "royhatdanChiqarish":
             MessageLookupByLibrary.simpleMessage("Ro`yhatdan chiqarish"),
         "saqlash": MessageLookupByLibrary.simpleMessage("Saqlash"),
+        "smsKodTasdiqlandi":
+            MessageLookupByLibrary.simpleMessage("Sms kod tasdiqlandi"),
         "smsKodniKiriting":
             MessageLookupByLibrary.simpleMessage("SMS kodni kiriting"),
+        "smsKodniToliqKiriting":
+            MessageLookupByLibrary.simpleMessage("Sms kodni to`liq kiriting"),
+        "sorovingizBoyicha":
+            MessageLookupByLibrary.simpleMessage("So`rovingiz bo`yicha"),
         "sotuvchigaQongiroqQilish": MessageLookupByLibrary.simpleMessage(
             "Sotuvchiga qo’ng’iroq qilish"),
         "sozlamalar": MessageLookupByLibrary.simpleMessage("Sozlamalar"),
@@ -193,14 +207,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "tasdiqlangan": MessageLookupByLibrary.simpleMessage("Tasdiqlangan"),
         "tasdiqlanganElonlarMavjutEmas": MessageLookupByLibrary.simpleMessage(
             "Tasdiqlangan e`lonlar mavjut emas"),
-        "tasdiqlashUchunManashuNumGaSmsKodYuborildi": m1,
+        "tasdiqlashUchunManashuNumGaSmsKodYuborildi": m2,
         "telefon": MessageLookupByLibrary.simpleMessage("Telefon"),
         "texnikaTuriniTanlang":
             MessageLookupByLibrary.simpleMessage("Texnika turini tanlang"),
         "til": MessageLookupByLibrary.simpleMessage("Til"),
         "tizimdanTolFoy": MessageLookupByLibrary.simpleMessage(
             "Tizimdan to’liq foydalanish uchun  12 500 so’m  miqdorida to’lov qilishingiz lozim bo’ladi"),
+        "tolovAmalgaOshirilmadi":
+            MessageLookupByLibrary.simpleMessage("To`lov amalga oshirilmadi"),
         "tolovGrafigi": MessageLookupByLibrary.simpleMessage("To`lov Grafigi"),
+        "tolovMuvofaqayatliOtkazildi": MessageLookupByLibrary.simpleMessage(
+            "To`lov muvofaqayatli o`tkazildi"),
         "tortishTomoniniTanlang":
             MessageLookupByLibrary.simpleMessage("Tortish tomonini tanlang"),
         "tortuvchiTomon":
@@ -227,6 +245,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Xaritada joylashuvi"),
         "xaritadanJoylashuvniTanlang": MessageLookupByLibrary.simpleMessage(
             "xaritadan joylashuvni tanlang"),
+        "xatolik": MessageLookupByLibrary.simpleMessage("Xatolik"),
         "yangiElonJoylash":
             MessageLookupByLibrary.simpleMessage("Yangi e`lon joylash"),
         "yangiElonQoshish":

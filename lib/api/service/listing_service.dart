@@ -56,8 +56,6 @@ class ListingService {
         data: formData,
       );
       if (response.statusCode == 200) {
-        debugPrint('postAutoData: ${response.data}');
-
         statusText = response.data['status'];
       } else {
         debugPrint('rsponse daq request: ${response.statusMessage}');
@@ -69,11 +67,11 @@ class ListingService {
   }
 
   // GET LISTING
-  Future<List<ListingGetModals>> getDataListing(lang, token) async {
+  Future<List<ListingGetModals>> getDataListing(lang, token, int page) async {
     listingDataList.clear();
     try {
       final response = await _dio.post(
-        '${_url}get-listing/$lang',
+        '${_url}get-listing/$lang/?page=$page',
         options: Options(
           headers: {'Authorization': token},
         ),
@@ -86,7 +84,6 @@ class ListingService {
         debugPrint('LISTING ERROR: ${response.statusCode}');
       }
     } catch (e) {
-      debugPrint('LISTING ERROR : $e');
       if (e is DioException) {
         if (e.response?.statusCode == 401) {
           debugPrint('debugPrint: ${401}');

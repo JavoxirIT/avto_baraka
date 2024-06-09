@@ -132,5 +132,15 @@
   "kartaRaqaminiToliqKiriting": "Введите полный номер карты",
   "muddatiniTliqKiriting": "Введите данные правельно",
   "tasdiqlashUchunManashuNumGaSmsKodYuborildi": "Для подтверждения отправлен sms на номер {num} ",
-  "kodniYuborsh": "Отправить код"
+  "kodniYuborsh": "Отправить код",
+  "pkRaqami": "Номер ПК",
+  "qaytaUrinibKorish": "Повтарите попытку",
+  "tolovAmalgaOshirilmadi": "Оплата не произведена",
+  "tolovMuvofaqayatliOtkazildi": "Оплата успешно произведена",
+  "amalgaOshirishTugmasiniBosing": "Нажмите «Выполнить",
+  "smsKodTasdiqlandi": "Смс-код подтвержден",
+  "xatolik": "Ошибка",
+  "smsKodniToliqKiriting": "Введите полный СМС-код",
+  "countElonTopildi": "{count} объявлений",
+  "sorovingizBoyicha": "По ващему запросу"
 }

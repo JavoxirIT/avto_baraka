@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: non_constant_identifier_names, prefer_typing_uninitialized_variables
 
 part of 'listing_bloc.dart';
@@ -10,6 +11,7 @@ sealed class ListingEvent extends Equatable {
   List<Object> get props => [];
 }
 
+// first list load
 class ListingEventLoad extends ListingEvent {
   const ListingEventLoad(this.lang, this.token);
   final String? lang;
@@ -17,6 +19,31 @@ class ListingEventLoad extends ListingEvent {
 
   @override
   List<Object> get props => super.props..addAll([lang!, token!]);
+}
+
+//REFRESH
+class ListingEventRefresh extends ListingEvent {
+  const ListingEventRefresh(this.lang, this.token);
+  final String? lang;
+  final String? token;
+
+  @override
+  List<Object> get props => super.props..addAll([lang!, token!]);
+}
+
+// PAGINATION
+class ListingEventLoadMore extends ListingEvent {
+  const ListingEventLoadMore({
+    required this.lang,
+    required this.token,
+    required this.page,
+  });
+  final String lang;
+  final String token;
+  final int page;
+
+  @override
+  List<Object> get props => super.props..addAll([lang, token, page]);
 }
 
 class ListingEvantSearch extends ListingEvent {

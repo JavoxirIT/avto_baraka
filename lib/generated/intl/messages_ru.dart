@@ -22,7 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(n) => "Заблокированных ${n} объявлений нет";
 
-  static String m1(num) => "Для подтверждения отправлен sms на номер ${num} ";
+  static String m1(count) => "${count} объявлений";
+
+  static String m2(num) => "Для подтверждения отправлен sms на номер ${num} ";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -30,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Введите год автомобиля"),
         "amalgaOshirish":
             MessageLookupByLibrary.simpleMessage("Произвести оплату"),
+        "amalgaOshirishTugmasiniBosing":
+            MessageLookupByLibrary.simpleMessage("Нажмите «Выполнить"),
         "avtomatikTanlash":
             MessageLookupByLibrary.simpleMessage("Текущая геопозиция"),
         "avvalBankniTanlang":
@@ -56,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "brendniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите бренд"),
         "chiqarilganYili": MessageLookupByLibrary.simpleMessage("Год выпуска:"),
+        "countElonTopildi": m1,
         "dan": MessageLookupByLibrary.simpleMessage("--- от"),
         "diqqat": MessageLookupByLibrary.simpleMessage("Внимание!"),
         "dvigatelHajmi":
@@ -158,7 +163,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "parametrlar": MessageLookupByLibrary.simpleMessage("Параметры"),
         "pkAmalQilishMuddati":
             MessageLookupByLibrary.simpleMessage("Срок действия ПК"),
+        "pkRaqami": MessageLookupByLibrary.simpleMessage("Номер ПК"),
         "qayerdanOlamiz": MessageLookupByLibrary.simpleMessage("Что выбераем?"),
+        "qaytaUrinibKorish":
+            MessageLookupByLibrary.simpleMessage("Повтарите попытку"),
         "qidirish": MessageLookupByLibrary.simpleMessage("Поиск"),
         "qidiruvSozlari":
             MessageLookupByLibrary.simpleMessage("Поисковые слова"),
@@ -172,8 +180,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "royhatdanChiqarish":
             MessageLookupByLibrary.simpleMessage("Из избранного"),
         "saqlash": MessageLookupByLibrary.simpleMessage("Сохранить"),
+        "smsKodTasdiqlandi":
+            MessageLookupByLibrary.simpleMessage("Смс-код подтвержден"),
         "smsKodniKiriting":
             MessageLookupByLibrary.simpleMessage("Введите код из смс"),
+        "smsKodniToliqKiriting":
+            MessageLookupByLibrary.simpleMessage("Введите полный СМС-код"),
+        "sorovingizBoyicha":
+            MessageLookupByLibrary.simpleMessage("По ващему запросу"),
         "sotuvchigaQongiroqQilish":
             MessageLookupByLibrary.simpleMessage("Позвонить продавцу"),
         "sozlamalar": MessageLookupByLibrary.simpleMessage("Настройки"),
@@ -192,14 +206,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "tasdiqlangan": MessageLookupByLibrary.simpleMessage("Подтвержденный"),
         "tasdiqlanganElonlarMavjutEmas": MessageLookupByLibrary.simpleMessage(
             "Одобренные обявления не найдены"),
-        "tasdiqlashUchunManashuNumGaSmsKodYuborildi": m1,
+        "tasdiqlashUchunManashuNumGaSmsKodYuborildi": m2,
         "telefon": MessageLookupByLibrary.simpleMessage("Телефон"),
         "texnikaTuriniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите тип техники"),
         "til": MessageLookupByLibrary.simpleMessage("Язык"),
         "tizimdanTolFoy": MessageLookupByLibrary.simpleMessage(
             "Чтобы полноценно пользоваться системой, вам необходимо будет заплатить 12 500 сумов."),
+        "tolovAmalgaOshirilmadi":
+            MessageLookupByLibrary.simpleMessage("Оплата не произведена"),
         "tolovGrafigi": MessageLookupByLibrary.simpleMessage("График оплаты"),
+        "tolovMuvofaqayatliOtkazildi":
+            MessageLookupByLibrary.simpleMessage("Оплата успешно произведена"),
         "tortishTomoniniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите ведущую сторону"),
         "tortuvchiTomon":
@@ -227,6 +245,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Местоположение"),
         "xaritadanJoylashuvniTanlang": MessageLookupByLibrary.simpleMessage(
             "выберите расположение на карте"),
+        "xatolik": MessageLookupByLibrary.simpleMessage("Ошибка"),
         "yangiElonJoylash":
             MessageLookupByLibrary.simpleMessage("Добавть новый объявление"),
         "yangiElonQoshish":

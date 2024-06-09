@@ -132,5 +132,15 @@
   "kartaRaqaminiToliqKiriting": "Karta raqamini to`liq kiriting",
   "muddatiniTliqKiriting": "Muddatini t`liq kiriting",
   "tasdiqlashUchunManashuNumGaSmsKodYuborildi": "Tasdiqlash uchun manashu {num} ga sms kod yuborildi",
-  "kodniYuborsh": "Kodni yuborsh"
+  "kodniYuborsh": "Kodni yuborsh",
+  "pkRaqami": "PK raqami",
+  "qaytaUrinibKorish": "Qayta urinib ko`rish",
+  "tolovAmalgaOshirilmadi": "To`lov amalga oshirilmadi",
+  "tolovMuvofaqayatliOtkazildi": "To`lov muvofaqayatli o`tkazildi",
+  "amalgaOshirishTugmasiniBosing": "Amalga oshirish tugmasini bosing",
+  "smsKodTasdiqlandi": "Sms kod tasdiqlandi",
+  "xatolik": "Xatolik",
+  "smsKodniToliqKiriting": "Sms kodni to`liq kiriting",
+  "countElonTopildi": "{count} e`lon topildi",
+  "sorovingizBoyicha": "So`rovingiz bo`yicha"
 }

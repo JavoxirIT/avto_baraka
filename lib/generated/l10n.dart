@@ -1389,6 +1389,106 @@ class S {
       args: [],
     );
   }
+
+  /// `PK raqami`
+  String get pkRaqami {
+    return Intl.message(
+      'PK raqami',
+      name: 'pkRaqami',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Qayta urinib ko'rish`
+  String get qaytaUrinibKorish {
+    return Intl.message(
+      'Qayta urinib ko`rish',
+      name: 'qaytaUrinibKorish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To'lov amalga oshirilmadi`
+  String get tolovAmalgaOshirilmadi {
+    return Intl.message(
+      'To`lov amalga oshirilmadi',
+      name: 'tolovAmalgaOshirilmadi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To'lov muvofaqayatli o'tkazildi`
+  String get tolovMuvofaqayatliOtkazildi {
+    return Intl.message(
+      'To`lov muvofaqayatli o`tkazildi',
+      name: 'tolovMuvofaqayatliOtkazildi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amalga oshirish tugmasini bosing`
+  String get amalgaOshirishTugmasiniBosing {
+    return Intl.message(
+      'Amalga oshirish tugmasini bosing',
+      name: 'amalgaOshirishTugmasiniBosing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sms kod tasdiqlandi`
+  String get smsKodTasdiqlandi {
+    return Intl.message(
+      'Sms kod tasdiqlandi',
+      name: 'smsKodTasdiqlandi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Xatolik`
+  String get xatolik {
+    return Intl.message(
+      'Xatolik',
+      name: 'xatolik',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sms kodni to'liq kiriting`
+  String get smsKodniToliqKiriting {
+    return Intl.message(
+      'Sms kodni to`liq kiriting',
+      name: 'smsKodniToliqKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count} e'lon topildi`
+  String countElonTopildi(Object count) {
+    return Intl.message(
+      '$count e`lon topildi',
+      name: 'countElonTopildi',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `So'rovingiz bo'yicha`
+  String get sorovingizBoyicha {
+    return Intl.message(
+      'So`rovingiz bo`yicha',
+      name: 'sorovingizBoyicha',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

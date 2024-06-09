@@ -6,8 +6,8 @@ import 'package:avto_baraka/screen/listing_screen.dart';
 import 'package:flutter/material.dart';
 
 const List<Widget> screenList = <Widget>[
-  FirstPayFormView(),
-  // ListingScreen(),
+  // FirstPayFormView(),
+  ListingScreen(),
   FavoriteScreen(),
   SizedBox(),
   ChatScreen(),

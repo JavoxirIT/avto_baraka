@@ -1,6 +1,7 @@
 import 'package:avto_baraka/screen/imports/imports_announcement.dart';
 import 'package:avto_baraka/screen/imports/imports_cabinet.dart';
 import 'package:avto_baraka/screen/imports/imports_listing.dart';
+import 'package:avto_baraka/style/sized_box_10.dart';
 
 class ListingScreen extends StatefulWidget {
   const ListingScreen({Key? key}) : super(key: key);
@@ -61,8 +62,12 @@ class _ListingScreenState extends State<ListingScreen> {
         displacement: 150.0, // Сдвиг индикатора от верхней части экрана
         onRefresh: () async {
           // Отправляем событие для загрузки данных
-          context.read<ListingBloc>().add(ListingEventLoad(
-              providerLanguage.locale.languageCode, tokenProvider.token));
+          context.read<ListingBloc>().add(
+                ListingEventRefresh(
+                  providerLanguage.locale.languageCode,
+                  tokenProvider.token,
+                ),
+              );
           // Используем Completer для завершения refresh-индикатора
           final completer = Completer<void>();
           final subscription =
@@ -108,6 +113,33 @@ class _ListingScreenState extends State<ListingScreen> {
                 },
               );
             }
+            if (state is ListingStateHasDataSearch) {
+              WidgetsBinding.instance.addPostFrameCallback(
+                (_) {
+                  if (mounted) {
+                    showDialog(
+                      context: context,
+                      builder: (_) {
+                        return AlertDialog(
+                          title: Text(
+                            S.of(context).sorovingizBoyicha,
+                            style: Theme.of(context).textTheme.labelLarge,
+                          ),
+                          content: Text(
+                            S.of(context).countElonTopildi(state.count),
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        );
+                      },
+                    ).then((_) {
+                      if (mounted) {
+                        setState(() {}); // Ensure mounted before setState
+                      }
+                    });
+                  }
+                },
+              );
+            }
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -125,9 +157,7 @@ class _ListingScreenState extends State<ListingScreen> {
                   ),
                 ),
                 flutterCarousel(context, categoryList),
-                const SizedBox(
-                  height: 10.0,
-                ),
+                sizedBox10,
                 Expanded(
                   child: Container(
                     padding: const EdgeInsets.only(left: 15.0, right: 15.0),

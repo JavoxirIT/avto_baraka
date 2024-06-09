@@ -10,7 +10,7 @@ export 'package:avto_baraka/view/credit/credit_%20graphic_view.dart';
 export 'package:avto_baraka/view/credit/credit_first_view.dart';
 export 'package:avto_baraka/screen/favorit_screen.dart';
 export 'package:avto_baraka/view/credit/credit_second_view.dart';
-export 'package:avto_baraka/view/firs_pay_form_view.dart';
+export 'package:avto_baraka/view/pay/firs_pay_form_view.dart';
 export 'package:avto_baraka/view/full_screen_image.dart';
 export 'package:avto_baraka/view/login_to_another/login_to_another_account.dart';
 export 'package:avto_baraka/view/one_car.dart';
