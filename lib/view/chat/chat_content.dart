@@ -23,8 +23,8 @@ Container chatContent(
               boxShadow: [
                 BoxShadow(
                   color: isMe
-                  ? iconSelectedColor.withOpacity(0.1)
-                  : unselectedItemColor.withOpacity(0.1),
+                      ? iconSelectedColor.withOpacity(0.1)
+                      : unselectedItemColor.withOpacity(0.1),
                   spreadRadius: 2,
                   blurRadius: 5,
                   offset: const Offset(0, 2),
@@ -40,7 +40,7 @@ Container chatContent(
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge!
-                      .copyWith(color: Color.fromARGB(255, 0, 0, 0)),
+                      .copyWith(color: const Color(0xFF000000)),
                   overflow: TextOverflow.visible,
                   softWrap: true,
                 ),

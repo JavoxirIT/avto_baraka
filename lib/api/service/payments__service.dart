@@ -1,4 +1,5 @@
-import 'package:avto_baraka/api/models/payments_response_card_model.dart';
+import 'package:avto_baraka/api/models/rates_models.dart';
+import 'package:avto_baraka/api/service/local_memory.dart';
 import 'package:avto_baraka/screen/imports/imports_announcement.dart';
 import 'package:dio/dio.dart';
 // import 'package:avto_baraka/http_config/config.dart';
@@ -12,6 +13,8 @@ class PaymentsService {
   Map smsStatus = {};
   Map payStatus = {};
 
+  List<RatesModels> listRates = [];
+
   String description = "";
   Future<String> paymentDesc(lang) async {
     try {
@@ -24,8 +27,8 @@ class PaymentsService {
     }
     return description;
   }
-  // SEND CARD DATA
 
+  // SEND CARD DATA
   Future<Map> sendCardData(
     String cardNumber,
     String expireDate,
@@ -44,9 +47,7 @@ class PaymentsService {
         },
       );
 
-      if (response.statusCode == 200 && response.data is Map) {
-        listPayCardStatus = response.data;
-      }
+      listPayCardStatus = response.data as Map<String, dynamic>;
       debugPrint('CLICK SEND CARD RESPONSE: $response');
     } catch (error) {
       debugPrint('CLICK SEND CARD ERROR: $error');
@@ -84,19 +85,27 @@ class PaymentsService {
     return smsStatus;
   }
 
-  Future<Map> clickPay(
-    String token,
-  ) async {
+  Future<Map> clickPay(String token, int ratesId, int listingId) async {
+    var response;
     try {
-      final response = await _dio.post(
-        '${_url}click-pay',
-        options: Options(
-          headers: {"Authorization": token},
-        ),
-      );
+      if (ratesId != -1 && listingId != -1) {
+        response = await _dio.post(
+          '${_url}click-pay/$ratesId/$listingId',
+          options: Options(
+            headers: {"Authorization": token},
+          ),
+        );
+      } else {
+        response = await _dio.post(
+          '${_url}click-pay',
+          options: Options(
+            headers: {"Authorization": token},
+          ),
+        );
+      }
 
       if (response.statusCode == 200) {
-        debugPrint('click-pay: $response');
+        // debugPrint('click-pay: $response');
 
         payStatus = {"status": response.data['status']};
       } else {
@@ -107,6 +116,33 @@ class PaymentsService {
     }
 
     return payStatus;
+  }
+  // 9860020143046512
+  // 09/28
+
+  // GET DATA RATES
+  Future<List<RatesModels>> getRates() async {
+    var lang = await LocalMemory.service.getLanguageCode();
+    listRates.clear();
+    try {
+      final response = await _dio.get(
+        '${_url}tarif/$lang',
+        options: Options(
+          headers: {"Authorization": await LocalMemory.service.getLocolToken()},
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        for (var obj in response.data) {
+          listRates.add(RatesModels.fromMap(obj));
+        }
+      } else {
+        debugPrint('rates response error: ${response.statusCode}');
+      }
+    } catch (error) {
+      debugPrint('TARIF ERROR: $error');
+    }
+    return listRates;
   }
 }
 // 9860020143046512

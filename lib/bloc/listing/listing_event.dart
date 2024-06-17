@@ -13,37 +13,28 @@ sealed class ListingEvent extends Equatable {
 
 // first list load
 class ListingEventLoad extends ListingEvent {
-  const ListingEventLoad(this.lang, this.token);
-  final String? lang;
-  final String? token;
+  const ListingEventLoad();
 
   @override
-  List<Object> get props => super.props..addAll([lang!, token!]);
+  List<Object> get props => [];
 }
 
 //REFRESH
-class ListingEventRefresh extends ListingEvent {
-  const ListingEventRefresh(this.lang, this.token);
-  final String? lang;
-  final String? token;
-
-  @override
-  List<Object> get props => super.props..addAll([lang!, token!]);
-}
+class ListingEventRefresh extends ListingEvent {}
 
 // PAGINATION
 class ListingEventLoadMore extends ListingEvent {
   const ListingEventLoadMore({
     required this.lang,
     required this.token,
-    required this.page,
+    // required this.page,
   });
   final String lang;
   final String token;
-  final int page;
+  // final int page;
 
   @override
-  List<Object> get props => super.props..addAll([lang, token, page]);
+  List<Object> get props => super.props..addAll([lang, token]);
 }
 
 class ListingEvantSearch extends ListingEvent {
@@ -88,4 +79,17 @@ class ListingEvantSearch extends ListingEvent {
       car_type!,
       valyuta!
     ]);
+}
+
+
+// like
+
+class LikeEvendSend extends ListingEvent {
+  const LikeEvendSend({required this.id, required this.token});
+
+  final int id;
+  final String token;
+
+  @override
+  List<Object> get props => super.props..addAll([id, token]);
 }

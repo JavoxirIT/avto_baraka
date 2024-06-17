@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_null_comparison
 
 import 'package:avto_baraka/provider/token_provider/token_provider.dart';
-import 'package:avto_baraka/view/chat_first/first_chat_bottom_Item.dart';
+import 'package:avto_baraka/view/chat_first/first_chat_bottom_item.dart';
 import 'package:avto_baraka/view/chat_first/first_chat_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_basic_chat_bubble/flutter_basic_chat_bubble.dart';

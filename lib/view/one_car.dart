@@ -79,7 +79,7 @@ class OneCarViewState extends State<OneCarView> {
   @override
   Widget build(BuildContext context) {
     final tokenProvider = Provider.of<TokenProvider>(context);
-    final languageProvider = Provider.of<LocalProvider>(context);
+    // final languageProvider = Provider.of<LocalProvider>(context);
     final double height = MediaQuery.of(context).size.height / 3;
     final double heightImage = MediaQuery.of(context).size.height;
     Color likeColor = _carData!.liked != 1 ? iconDizLike : colorRed;
@@ -103,6 +103,7 @@ class OneCarViewState extends State<OneCarView> {
               child: IconButton(
                 onPressed: () async {
                   if (_carData != null &&
+                      // ignore: unnecessary_null_comparison
                       carImageList != null &&
                       carImageList.isNotEmpty) {
                     shareRouteObserver.share(context, _carData, carImageList);
@@ -256,18 +257,16 @@ class OneCarViewState extends State<OneCarView> {
                           tableRow(S.of(context).dvigatelHajmi,
                               _carData!.engine.toString()),
                           tableRow(S.of(context).yurganMasofasi,
-                              _carData!.mileage.toString()),
+                              '${_carData!.mileage.toString()} km.'),
                           tableRow(S.of(context).uzatishQutisi,
                               _carData!.transmission),
                           tableRow(S.of(context).kuzovTuri, _carData!.car_body),
-                          // tableRow(
-                          //     S.of(context).boyoqHolati, _carData.paintCondition),
                           tableRow(S.of(context).tortuvchiTomon,
                               _carData!.pulling_side),
                           tableRow(S.of(context).yoqilgiTuri,
                               _carData!.type_of_fuel),
-                          // tableRow(S.of(context).boyoqHolati,
-                          //     _carData!.paint_condition),
+                          tableRow(S.of(context).boyoqHolati,
+                              _carData!.paint_condition),
                           tableRow(
                               S.of(context).kreditga,
                               _carData!.credit != 1
@@ -372,17 +371,14 @@ class OneCarViewState extends State<OneCarView> {
               backgroundColor: const Color.fromARGB(31, 255, 0, 0),
               child: IconButton(
                 onPressed: () {
-                  BlocProvider.of<LikeBloc>(context).add(
+                  BlocProvider.of<ListingBloc>(context).add(
                     LikeEvendSend(
                       id: _carData!.id,
                       token: tokenProvider.token!,
                     ),
                   );
                   BlocProvider.of<ListingBloc>(context).add(
-                    ListingEventLoad(
-                      languageProvider.locale.languageCode,
-                      tokenProvider.token,
-                    ),
+                    const ListingEventLoad(),
                   );
 
                   setState(() {

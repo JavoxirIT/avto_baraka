@@ -22,7 +22,7 @@ class SettingView extends StatelessWidget {
               Theme.of(context)
                   .textTheme
                   .labelMedium!
-                  .copyWith(color: Colors.black54),
+                  .copyWith(color: Colors.white),
               () => Navigator.of(context).pushNamed(RouteName.settingUserView),
             ),
             sizedBox10,
@@ -31,7 +31,7 @@ class SettingView extends StatelessWidget {
               Theme.of(context)
                   .textTheme
                   .labelMedium!
-                  .copyWith(color: Colors.black54),
+                  .copyWith(color: Colors.white),
               () => {},
             ),
             sizedBox10,
@@ -40,7 +40,7 @@ class SettingView extends StatelessWidget {
               Theme.of(context)
                   .textTheme
                   .labelMedium!
-                  .copyWith(color: Colors.black54),
+                  .copyWith(color: Colors.white),
               () => {},
             ),
             sizedBox10,
@@ -49,7 +49,7 @@ class SettingView extends StatelessWidget {
               Theme.of(context)
                   .textTheme
                   .labelMedium!
-                  .copyWith(color: Colors.black54),
+                  .copyWith(color: Colors.white),
               () => {},
             ),
             sizedBox10,

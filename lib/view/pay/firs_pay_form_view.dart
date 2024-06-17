@@ -24,12 +24,27 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
   final _cardTerm = TextEditingController();
   final _smsCode = TextEditingController();
 
+  int ratesId = -1;
+  int listingId = -1;
+
   @override
   void dispose() {
     _bankCard.dispose();
     _cardTerm.dispose();
     _smsCode.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    RouteSettings setting = ModalRoute.of(context)!.settings;
+    if (setting.arguments != null) {
+      Map<String, dynamic> arguments =
+          setting.arguments as Map<String, dynamic>;
+      ratesId = arguments['ratesId'];
+      listingId = arguments['listingId'];
+    }
+    super.didChangeDependencies();
   }
 
   @override
@@ -55,6 +70,7 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
     );
     EdgeInsets padding = const EdgeInsets.all(0);
     FloatingLabelBehavior floatingLabelBehavior = FloatingLabelBehavior.always;
+
     return Scaffold(
       appBar: AppBar(),
       body: BlocBuilder<PaymentBloc, PaymentState>(
@@ -73,13 +89,15 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
                               : S.of(context).xatolik,
                           style: Theme.of(context).textTheme.labelLarge,
                         ),
-                        content: Text(
-                          S
-                              .of(context)
-                              .tasdiqlashUchunManashuNumGaSmsKodYuborildi(
-                                  state.listData['phone']),
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
+                        content: state.listData['status'] == "success"
+                            ? Text(
+                                S
+                                    .of(context)
+                                    .tasdiqlashUchunManashuNumGaSmsKodYuborildi(
+                                        state.listData['phone']),
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              )
+                            : Text(state.listData['message']),
                       );
                     },
                   ).then((_) {
@@ -144,7 +162,8 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
                     }
                   });
                   Future.delayed(const Duration(seconds: 3), () {
-                    Navigator.of(context).pushNamed(RouteName.cobinetScreen);
+                    Navigator.of(context).pushNamed(RouteName.mainScreen);
+                    Navigator.of(context).pop();
                   });
                 }
               },
@@ -215,7 +234,11 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
                   child: ElevatedButton(
                     onPressed: () {
                       BlocProvider.of<PaymentBloc>(context).add(
-                        PaymentEventSend(token: tokenProvider.token!),
+                        PaymentEventSend(
+                          token: tokenProvider.token!,
+                          ratesId: ratesId,
+                          listingId: listingId,
+                        ),
                       );
                     },
                     style: elevatedButton.copyWith(

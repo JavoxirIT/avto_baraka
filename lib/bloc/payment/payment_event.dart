@@ -36,10 +36,17 @@ class PaymentEventSmsCode extends PaymentEvent {
 }
 
 class PaymentEventSend extends PaymentEvent {
-  const PaymentEventSend({required this.token});
+  const PaymentEventSend({
+    required this.token,
+    required this.ratesId,
+    required this.listingId,
+  });
 
   final String token;
+  final int? ratesId;
+  final int? listingId;
 
   @override
-  List<Object> get props => [token];
+  List<Object> get props =>
+      super.props..addAll([token, ratesId ?? 0, listingId ?? 0]);
 }

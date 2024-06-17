@@ -3,8 +3,7 @@
 import 'package:avto_baraka/api/service/payments__service.dart';
 import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
 import 'package:avto_baraka/screen/imports/imports_announcement.dart';
-import 'package:avto_baraka/screen/imports/imports_cabinet.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class Announcement extends StatefulWidget {
   const Announcement({Key? key}) : super(key: key);
@@ -372,7 +371,7 @@ class AnnouncementState extends State<Announcement> {
                           width: 10.0,
                         ),
                         Text(
-                          type.nameRu,
+                          type.name,
                           style: const TextStyle(
                               fontSize: 14.0, fontWeight: FontWeight.w600),
                         ),
@@ -1178,7 +1177,9 @@ class AnnouncementState extends State<Announcement> {
     carPullingSideList = await CarService().getCarPullingSide();
     carPaintConditionList = await CarService().getCarPointCondition();
     valyutaList = await ValyutaService().getValyuta();
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   sendData(lang) async {
@@ -1209,7 +1210,7 @@ class AnnouncementState extends State<Announcement> {
       },
       imageFileList,
     );
-    debugPrint('responseStatusText: $responseStatusText');
+    // debugPrint('responseStatusText: $responseStatusText');
 
     if (responseStatusText == "Unpaid") {
       description = await PaymentsService().paymentDesc(lang);
@@ -1240,9 +1241,9 @@ class AnnouncementState extends State<Announcement> {
       dialogBuilder(
         context,
         S.of(context).elonSaqlandi,
-        Text(
-          S.of(context).elonHolatiniKabitendatNKuzatsangizBoladi,
-        ),
+        Text(S
+            .of(context)
+            .elonQabulQilindiAdministratorlarTekshirganidanSongTizimgaJoylanadi),
         [
           TextButton(
               style: TextButton.styleFrom(
@@ -1255,9 +1256,9 @@ class AnnouncementState extends State<Announcement> {
           TextButton(
               style: TextButton.styleFrom(
                   textStyle: Theme.of(context).textTheme.bodyLarge),
-              child: Text(S.of(context).kabinet),
-              onPressed: () =>
-                  Navigator.of(context).pushNamed(RouteName.cobinetScreen)),
+              child: Text(S.of(context).elonlarOynasi),
+              onPressed: () => Navigator.of(context).pushNamedAndRemoveUntil(
+                  RouteName.mainScreen, (route) => false)),
         ],
       );
     }

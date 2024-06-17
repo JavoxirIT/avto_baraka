@@ -24,12 +24,18 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(count) => "${count} объявлений";
 
-  static String m2(num) => "Для подтверждения отправлен sms на номер ${num} ";
+  static String m2(n) => "Неактивных ${n} объявлений нет";
+
+  static String m3(num) => "Для подтверждения отправлен sms на номер ${num} ";
+
+  static String m4(days) => "${days} дня в топе";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "abtomashinaYiliniKiriting":
             MessageLookupByLibrary.simpleMessage("Введите год автомобиля"),
+        "adminTasdiqlashiniKutilmoqda": MessageLookupByLibrary.simpleMessage(
+            "Ожидает одобрения администратора"),
         "amalgaOshirish":
             MessageLookupByLibrary.simpleMessage("Произвести оплату"),
         "amalgaOshirishTugmasiniBosing":
@@ -45,7 +51,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "bajarish": MessageLookupByLibrary.simpleMessage("Выполнить"),
         "batafsilMalumot":
             MessageLookupByLibrary.simpleMessage("Подробная информация"),
-        "bekorQilingan": MessageLookupByLibrary.simpleMessage("Не активные"),
+        "bekorQilingan":
+            MessageLookupByLibrary.simpleMessage("Заблокированные"),
+        "birinchiTolovUsd":
+            MessageLookupByLibrary.simpleMessage("Первая оплата в USD"),
+        "birinchiTolovUzs":
+            MessageLookupByLibrary.simpleMessage("Первая оплата в UZS"),
         "bloklanganElonMavjutNEmas": m0,
         "boshSahifa": MessageLookupByLibrary.simpleMessage("Главное окно"),
         "boshlangichTolov":
@@ -72,14 +83,30 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Отслеживать статус объявления  можно в кабитендате"),
         "elonJoylash":
             MessageLookupByLibrary.simpleMessage("Размещение объявления"),
+        "elonQabulQilindiAdministratorlarTekshirganidanSongTizimgaJoylanadi":
+            MessageLookupByLibrary.simpleMessage(
+                "Объявление принято. Оно будет размещено в системе после проверки администраторами."),
+        "elonQaytaAktivlandi":
+            MessageLookupByLibrary.simpleMessage("Объявление возобновлено"),
         "elonSaqlandi":
             MessageLookupByLibrary.simpleMessage("Обявление сохранено"),
         "elonlar": MessageLookupByLibrary.simpleMessage("Объявления"),
+        "elonlarOynasi":
+            MessageLookupByLibrary.simpleMessage("Окно объявлений"),
+        "elonniAktivlashJarayonidaXatolikYuzBerdi":
+            MessageLookupByLibrary.simpleMessage(
+                "Произошла ошибка при активации объявления"),
+        "elonniOchirildi":
+            MessageLookupByLibrary.simpleMessage("Объявление удалено"),
+        "elonniOchirishdaXatolikYuzBerdi": MessageLookupByLibrary.simpleMessage(
+            "При удалении объявления произошла ошибка"),
         "engYaxshiTakliflar":
             MessageLookupByLibrary.simpleMessage("ЛУЧШИЕ ПРЕДЛОЖЕНИЯ"),
         "eqlonOchirilgandanKeyinMalumotlarniTiklabBolmaydi":
             MessageLookupByLibrary.simpleMessage(
                 "Данные не восстановить после удаления"),
+        "faolBolmaganElonlarMavjutEmas": m2,
+        "faolEmas": MessageLookupByLibrary.simpleMessage("Не активные"),
         "foydalanishShartlari":
             MessageLookupByLibrary.simpleMessage("Условия использования"),
         "gacha": MessageLookupByLibrary.simpleMessage("--- до"),
@@ -112,17 +139,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "ishonchingizKomilmi":
             MessageLookupByLibrary.simpleMessage("Вы уверены?"),
         "kabinet": MessageLookupByLibrary.simpleMessage("Кабинет"),
-        "kartaMalumotlariniKiriting": MessageLookupByLibrary.simpleMessage(
-            "Выберите расположение на карте"),
+        "kartaMalumotlariniKiriting":
+            MessageLookupByLibrary.simpleMessage("Введите данные вашей карты"),
         "kartaRaqaminiToliqKiriting":
             MessageLookupByLibrary.simpleMessage("Введите полный номер карты"),
         "kategoriyalar": MessageLookupByLibrary.simpleMessage("КАТЕГОРИИ"),
         "kechirasiz": MessageLookupByLibrary.simpleMessage("Извините"),
         "kodniYuborsh": MessageLookupByLibrary.simpleMessage("Отправить код"),
         "kreditKalkulatori":
-            MessageLookupByLibrary.simpleMessage("Кредитный калькулятор"),
+            MessageLookupByLibrary.simpleMessage("Посчитать в кредит"),
         "kreditMeddatiniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите срок кредита"),
+        "kreditMuddati": MessageLookupByLibrary.simpleMessage("Срок кредита"),
         "kreditSummasi": MessageLookupByLibrary.simpleMessage("Сумма кредита"),
         "kreditga": MessageLookupByLibrary.simpleMessage("В кредит:"),
         "kriditSummasiniKriting":
@@ -160,11 +188,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "ochirish": MessageLookupByLibrary.simpleMessage("Удалить"),
         "oldinga": MessageLookupByLibrary.simpleMessage("Вперед"),
         "orqaga": MessageLookupByLibrary.simpleMessage("Назад"),
+        "oy": MessageLookupByLibrary.simpleMessage(" мм"),
+        "oylarSoni": MessageLookupByLibrary.simpleMessage("Количество месяцев"),
+        "oylikTolov": MessageLookupByLibrary.simpleMessage("Ежемесячная плата"),
         "parametrlar": MessageLookupByLibrary.simpleMessage("Параметры"),
         "pkAmalQilishMuddati":
             MessageLookupByLibrary.simpleMessage("Срок действия ПК"),
         "pkRaqami": MessageLookupByLibrary.simpleMessage("Номер ПК"),
         "qayerdanOlamiz": MessageLookupByLibrary.simpleMessage("Что выбераем?"),
+        "qaytaAktivlash":
+            MessageLookupByLibrary.simpleMessage("Повторно активировать"),
         "qaytaUrinibKorish":
             MessageLookupByLibrary.simpleMessage("Повтарите попытку"),
         "qidirish": MessageLookupByLibrary.simpleMessage("Поиск"),
@@ -175,6 +208,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "qoshimchaMalumotniKriting":
             MessageLookupByLibrary.simpleMessage("Дополнительное иформацыя"),
         "rasimgaOlish": MessageLookupByLibrary.simpleMessage("Открыть камеру"),
+        "rasmiyIshiBor":
+            MessageLookupByLibrary.simpleMessage("Официально работает"),
+        "rasmiyIshlamaydi":
+            MessageLookupByLibrary.simpleMessage("Официально не работает"),
         "rasmlarniYuklang":
             MessageLookupByLibrary.simpleMessage("Загрузите изображения"),
         "royhatdanChiqarish":
@@ -186,6 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Введите код из смс"),
         "smsKodniToliqKiriting":
             MessageLookupByLibrary.simpleMessage("Введите полный СМС-код"),
+        "som": MessageLookupByLibrary.simpleMessage(" сум"),
         "sorovingizBoyicha":
             MessageLookupByLibrary.simpleMessage("По ващему запросу"),
         "sotuvchigaQongiroqQilish":
@@ -197,16 +235,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Открыть настройки"),
         "suhbatlar": MessageLookupByLibrary.simpleMessage("Сообщения"),
         "tanlanganElonlar": MessageLookupByLibrary.simpleMessage("Избранные"),
-        "tanlanganElonlarMavjutEmas": MessageLookupByLibrary.simpleMessage(
-            "Tanlangan e`lonlar mavjut emas"),
+        "tanlanganElonlarMavjutEmas":
+            MessageLookupByLibrary.simpleMessage("Избранных объявлений нет"),
         "tanlanganlar": MessageLookupByLibrary.simpleMessage("Избранные"),
         "tanlash": MessageLookupByLibrary.simpleMessage("Выберите"),
+        "tariflar": MessageLookupByLibrary.simpleMessage("Тарифы"),
         "tarifniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите тариф"),
-        "tasdiqlangan": MessageLookupByLibrary.simpleMessage("Подтвержденный"),
+        "tasdiqlangan": MessageLookupByLibrary.simpleMessage("Активные"),
         "tasdiqlanganElonlarMavjutEmas": MessageLookupByLibrary.simpleMessage(
             "Одобренные обявления не найдены"),
-        "tasdiqlashUchunManashuNumGaSmsKodYuborildi": m2,
+        "tasdiqlashUchunManashuNumGaSmsKodYuborildi": m3,
         "telefon": MessageLookupByLibrary.simpleMessage("Телефон"),
         "texnikaTuriniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите тип техники"),
@@ -218,6 +257,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tolovGrafigi": MessageLookupByLibrary.simpleMessage("График оплаты"),
         "tolovMuvofaqayatliOtkazildi":
             MessageLookupByLibrary.simpleMessage("Оплата успешно произведена"),
+        "topdaJoylashuvDaysKun": m4,
+        "topgaChiqarish": MessageLookupByLibrary.simpleMessage("В топ"),
         "tortishTomoniniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите ведущую сторону"),
         "tortuvchiTomon":
@@ -250,7 +291,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Добавть новый объявление"),
         "yangiElonQoshish":
             MessageLookupByLibrary.simpleMessage("Добавить обявления"),
-        "yangiXabar": MessageLookupByLibrary.simpleMessage("Yangi xabar"),
+        "yangiXabar": MessageLookupByLibrary.simpleMessage("Новое сообщение"),
+        "yil": MessageLookupByLibrary.simpleMessage(" г"),
         "yilDan": MessageLookupByLibrary.simpleMessage("c ---- года"),
         "yilGacha": MessageLookupByLibrary.simpleMessage("до ---- года"),
         "yoq": MessageLookupByLibrary.simpleMessage("Нет"),

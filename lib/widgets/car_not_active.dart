@@ -1,33 +1,149 @@
 import 'dart:convert';
 
-import 'package:avto_baraka/bloc/listing_active/listing_active_bloc.dart';
+import 'package:avto_baraka/bloc/not_active/not_active_bloc.dart';
 import 'package:avto_baraka/http_config/config.dart';
 import 'package:avto_baraka/screen/imports/imports_listing.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevation_button_white.dart';
-import 'package:avto_baraka/utill/bs_64_image.dart';
 import 'package:avto_baraka/widgets/car_tag_card.dart';
 import 'package:avto_baraka/widgets/dialog.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-class CarActiveCard extends StatelessWidget {
-  const CarActiveCard({
+import '../utill/bs_64_image.dart';
+
+class CarNotActiv extends StatefulWidget {
+  const CarNotActiv({
     Key? key,
     required this.token,
-    required this.lang,
+    required this.languageCode,
   }) : super(key: key);
 
-  final String token;
-  final String lang;
+  final String languageCode;
+  final String? token;
+
+  @override
+  State<CarNotActiv> createState() => _CarNotActivState();
+}
+
+class _CarNotActivState extends State<CarNotActiv> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ListingActiveBloc, ListingActiveState>(
+    return BlocBuilder<NotActiveBloc, NotActiveState>(
         builder: (context, state) {
-      if (state is ListingActiveStateLoad) {
+      if (state is NotActiveStateDeleteError) {
+        WidgetsBinding.instance.addPostFrameCallback(
+          (_) {
+            if (mounted) {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return AlertDialog(
+                    title: Text(
+                      S.of(context).diqqat,
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                    content: Text(
+                      S.of(context).elonniOchirishdaXatolikYuzBerdi,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  );
+                },
+              ).then((_) {
+                if (mounted) {
+                  setState(() {}); // Ensure mounted before setState
+                }
+              });
+            }
+          },
+        );
+      }
+      if (state is NotActiveStateDeleteSuccess) {
+        WidgetsBinding.instance.addPostFrameCallback(
+          (_) {
+            if (mounted) {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return AlertDialog(
+                    title: Text(
+                      S.of(context).diqqat,
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                    content: Text(
+                      S.of(context).elonniOchirildi,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  );
+                },
+              ).then((_) {
+                if (mounted) {
+                  setState(() {}); // Ensure mounted before setState
+                }
+              });
+            }
+          },
+        );
+      }
+      if (state is NotActiveStateActivitySuccess) {
+        WidgetsBinding.instance.addPostFrameCallback(
+          (_) {
+            if (mounted) {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return AlertDialog(
+                    title: Text(
+                      S.of(context).diqqat,
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                    content: Text(
+                      S.of(context).elonQaytaAktivlandi,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  );
+                },
+              ).then((_) {
+                if (mounted) {
+                  setState(() {}); // Ensure mounted before setState
+                }
+              });
+            }
+          },
+        );
+      }
+      if (state is NotActiveStateActivityError) {
+        WidgetsBinding.instance.addPostFrameCallback(
+          (_) {
+            if (mounted) {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return AlertDialog(
+                    title: Text(
+                      S.of(context).diqqat,
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                    content: Text(
+                      S.of(context).elonniAktivlashJarayonidaXatolikYuzBerdi,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  );
+                },
+              ).then((_) {
+                if (mounted) {
+                  setState(() {}); // Ensure mounted before setState
+                }
+              });
+            }
+          },
+        );
+      }
+
+      if (state is NotActiveLoad) {
         return ListView.builder(
-          itemCount: state.listing.length,
+          itemCount: state.list.length,
           itemBuilder: (context, i) {
-            final item = state.listing[i];
+            final item = state.list[i];
             final carTitle = "${item.brand} ${item.model} ${item.car_position}";
             return Stack(
               children: [
@@ -61,28 +177,29 @@ class CarActiveCard extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              item.topStatus == 1
-                                  ? Positioned(
-                                      child: Card(
-                                        color: cardFixCardColor,
-                                        margin: const EdgeInsets.all(4.0),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 24.0,
-                                            vertical: 5.0,
-                                          ),
-                                          child: Text(
-                                            "TOP",
-                                            style: TextStyle(
-                                              color: colorRed,
-                                              fontSize: 14.0,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  : const SizedBox(),
+                              // item['statusTop'] == true
+                              //     ? Positioned(
+                              //         child: Card(
+                              //           color: cardFixCardColor,
+                              //           margin: const EdgeInsets.all(4.0),
+                              //           child: Padding(
+                              //             padding: const EdgeInsets.symmetric(
+                              //               horizontal: 24.0,
+                              //               vertical: 5.0,
+                              //             ),
+                              //             child: Text(
+                              //               "TOP",
+                              //               style: TextStyle(
+                              //                 color: colorRed,
+                              //                 fontSize: 14.0,
+                              //                 fontWeight: FontWeight.w700,
+                              //               ),
+                              //             ),
+                              //           ),
+                              //         ),
+                              //       )
+                              //     : const Positioned(child: Text("")),
+
                               Positioned(
                                 bottom: 0,
                                 right: 0,
@@ -203,54 +320,40 @@ class CarActiveCard extends StatelessWidget {
                             children: [
                               ElevatedButton(
                                 onPressed: () {
-                                  Navigator.of(context).pushNamed(
-                                      RouteName.ratesView,
-                                      arguments: {"listingId": item.id});
-                                },
-                                style: elevatedButton,
-                                child: Text(
-                                  S.of(context).topgaChiqarish,
-                                  style:
-                                      Theme.of(context).textTheme.displayMedium,
-                                ),
-                              ),
-                              ElevatedButton(
-                                onPressed: () {
                                   dialogBuilder(
-                                    context,
-                                    S.of(context).diqqat,
-                                    Text(S
-                                        .of(context)
-                                        .eqlonOchirilgandanKeyinMalumotlarniTiklabBolmaydi),
-                                    [
-                                      ElevatedButton(
-                                        style: elevatedButton,
-                                        onPressed: () {
-                                          BlocProvider.of<ListingActiveBloc>(
-                                                  context)
-                                              .add(
-                                            ListingActiveDeleteEvent(
-                                              listingId: item.id,
-                                              token: token,
-                                              lang: lang,
-                                            ),
-                                          );
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: Text(
-                                          S.of(context).ochirish,
+                                      context,
+                                      S.of(context).diqqat,
+                                      Text(S
+                                          .of(context)
+                                          .eqlonOchirilgandanKeyinMalumotlarniTiklabBolmaydi),
+                                      [
+                                        ElevatedButton(
+                                          style: elevatedButton,
+                                          onPressed: () {
+                                            BlocProvider.of<NotActiveBloc>(
+                                                    context)
+                                                .add(
+                                              NotActiveEventDelete(
+                                                listingId: item.id,
+                                                token: widget.token!,
+                                                lang: widget.languageCode,
+                                              ),
+                                            );
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text(
+                                            S.of(context).ochirish,
+                                          ),
                                         ),
-                                      ),
-                                      ElevatedButton(
-                                        style: elevationButtonWhite,
-                                        onPressed: () =>
-                                            Navigator.of(context).pop(false),
-                                        child: Text(
-                                          S.of(context).yoq,
+                                        ElevatedButton(
+                                          style: elevationButtonWhite,
+                                          onPressed: () =>
+                                              Navigator.of(context).pop(false),
+                                          child: Text(
+                                            S.of(context).yoq,
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  );
+                                      ]);
                                 },
                                 style: elevatedButton.copyWith(
                                   backgroundColor:
@@ -258,10 +361,41 @@ class CarActiveCard extends StatelessWidget {
                                 ),
                                 child: Text(
                                   S.of(context).ochirish,
-                                  style:
-                                      Theme.of(context).textTheme.displayMedium,
+                                  style: TextStyle(
+                                    fontSize: 14.0,
+                                    color: textColorWhite,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                 ),
-                              )
+                              ),
+                              //
+                              item.activeStatus != 1
+                                  ? ElevatedButton(
+                                      onPressed: () {
+                                        BlocProvider.of<NotActiveBloc>(context)
+                                            .add(
+                                          NotActiveEventListingActivating(
+                                            id: item.id,
+                                            token: widget.token!,
+                                            lang: widget.languageCode,
+                                          ),
+                                        );
+                                      },
+                                      style: elevatedButton,
+                                      child: Text(
+                                        S.of(context).qaytaAktivlash,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displayMedium,
+                                      ),
+                                    )
+                                  : Text(
+                                      S
+                                          .of(context)
+                                          .adminTasdiqlashiniKutilmoqda,
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
+                                    ),
                             ],
                           )
                         ],
@@ -274,22 +408,25 @@ class CarActiveCard extends StatelessWidget {
           },
         );
       }
-      if (state is ListingActiveNotData) {
+      if (state is NotActiveStateNotData) {
         return Center(
-          child: Text(S.of(context).tasdiqlanganElonlarMavjutEmas),
+          child: Text(
+            S.of(context).faolBolmaganElonlarMavjutEmas('\n'),
+            style: Theme.of(context).textTheme.labelLarge,
+            textAlign: TextAlign.center,
+          ),
         );
       }
-      if (state is ListingActiveStateError) {
+      if (state is NotActiveStateError) {
         return Center(
           child: Text(S.of(context).malumotlarBazasidaXatolik),
         );
       }
-      if (state is ListingActiveInitial) {
-        const Center(
+      if (state is NotActiveStateLoading) {
+        return const Center(
           child: CircularProgressIndicator(),
         );
       }
-
       return const Center(
         child: CircularProgressIndicator(),
       );

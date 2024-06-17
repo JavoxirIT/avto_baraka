@@ -1489,6 +1489,238 @@ class S {
       args: [],
     );
   }
+
+  /// `Topga chiqarish`
+  String get topgaChiqarish {
+    return Intl.message(
+      'Topga chiqarish',
+      name: 'topgaChiqarish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Topda joylashuv {days} kun`
+  String topdaJoylashuvDaysKun(Object days) {
+    return Intl.message(
+      'Topda joylashuv $days kun',
+      name: 'topdaJoylashuvDaysKun',
+      desc: '',
+      args: [days],
+    );
+  }
+
+  /// `Tariflar`
+  String get tariflar {
+    return Intl.message(
+      'Tariflar',
+      name: 'tariflar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Faol emas`
+  String get faolEmas {
+    return Intl.message(
+      'Faol emas',
+      name: 'faolEmas',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Faol bo'lmagan e'lonlar {n} mavjut emas`
+  String faolBolmaganElonlarMavjutEmas(Object n) {
+    return Intl.message(
+      'Faol bo`lmagan e`lonlar $n mavjut emas',
+      name: 'faolBolmaganElonlarMavjutEmas',
+      desc: '',
+      args: [n],
+    );
+  }
+
+  /// `Qayta aktivlash`
+  String get qaytaAktivlash {
+    return Intl.message(
+      'Qayta aktivlash',
+      name: 'qaytaAktivlash',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E’lon qabul qilindi Administratorlar tekshirganidan so’ng tizimga joylanadi.`
+  String
+      get elonQabulQilindiAdministratorlarTekshirganidanSongTizimgaJoylanadi {
+    return Intl.message(
+      'E’lon qabul qilindi Administratorlar tekshirganidan so’ng tizimga joylanadi.',
+      name:
+          'elonQabulQilindiAdministratorlarTekshirganidanSongTizimgaJoylanadi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E'lonlar oynasi`
+  String get elonlarOynasi {
+    return Intl.message(
+      'E`lonlar oynasi',
+      name: 'elonlarOynasi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Admin tasdiqlashini kutilmoqda`
+  String get adminTasdiqlashiniKutilmoqda {
+    return Intl.message(
+      'Admin tasdiqlashini kutilmoqda',
+      name: 'adminTasdiqlashiniKutilmoqda',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E'lonni o'chirildi`
+  String get elonniOchirildi {
+    return Intl.message(
+      'E`lonni o`chirildi',
+      name: 'elonniOchirildi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E'lonni o'chirishda, xatolik yuz berdi`
+  String get elonniOchirishdaXatolikYuzBerdi {
+    return Intl.message(
+      'E`lonni o`chirishda, xatolik yuz berdi',
+      name: 'elonniOchirishdaXatolikYuzBerdi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E'lonni aktivlash jarayonida xatolik yuz berdi`
+  String get elonniAktivlashJarayonidaXatolikYuzBerdi {
+    return Intl.message(
+      'E`lonni aktivlash jarayonida xatolik yuz berdi',
+      name: 'elonniAktivlashJarayonidaXatolikYuzBerdi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E'lon qayta aktivlandi`
+  String get elonQaytaAktivlandi {
+    return Intl.message(
+      'E`lon qayta aktivlandi',
+      name: 'elonQaytaAktivlandi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rasmiy ishlamaydi`
+  String get rasmiyIshlamaydi {
+    return Intl.message(
+      'Rasmiy ishlamaydi',
+      name: 'rasmiyIshlamaydi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rasmiy ishi bor`
+  String get rasmiyIshiBor {
+    return Intl.message(
+      'Rasmiy ishi bor',
+      name: 'rasmiyIshiBor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kredit muddati`
+  String get kreditMuddati {
+    return Intl.message(
+      'Kredit muddati',
+      name: 'kreditMuddati',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` yil`
+  String get yil {
+    return Intl.message(
+      ' yil',
+      name: 'yil',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oylar soni`
+  String get oylarSoni {
+    return Intl.message(
+      'Oylar soni',
+      name: 'oylarSoni',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` oy`
+  String get oy {
+    return Intl.message(
+      ' oy',
+      name: 'oy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oylik to'lov`
+  String get oylikTolov {
+    return Intl.message(
+      'Oylik to`lov',
+      name: 'oylikTolov',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` so'm`
+  String get som {
+    return Intl.message(
+      ' so`m',
+      name: 'som',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birinchi to'lov usd`
+  String get birinchiTolovUsd {
+    return Intl.message(
+      'Birinchi to`lov usd',
+      name: 'birinchiTolovUsd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birinchi to'lov uzs`
+  String get birinchiTolovUzs {
+    return Intl.message(
+      'Birinchi to`lov uzs',
+      name: 'birinchiTolovUzs',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -159,7 +159,7 @@ class _MainPageState extends State<IntroductionScreen>
                                     } else {
                                       Navigator.of(context)
                                           .pushNamedAndRemoveUntil(
-                                        RouteName.bottomNavigationHomeScreen,
+                                        RouteName.mainScreen,
                                         (route) => false,
                                       );
                                     }

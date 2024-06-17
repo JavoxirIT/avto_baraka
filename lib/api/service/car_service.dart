@@ -24,10 +24,12 @@ class CarService {
   List<CarPaintConditionModel> carPaintConditionList = [];
 
   Future<List<CarCategoryModels>> carCategoryLoad() async {
+    var lang = await LocalMemory.service.getLanguageCode();
+
     categoryList.clear();
     try {
       final response = await _dio.get(
-        '${_url}ltypes',
+        '${_url}ltypes/$lang',
         options: Options(
           headers: {
             'Authorization': await LocalMemory.service.getLocolToken(),
@@ -38,6 +40,7 @@ class CarService {
         for (var element in response.data) {
           categoryList.add(CarCategoryModels.fromMap(element));
         }
+        // debugPrint('categoryList: ${categoryList.toString()}');
       } else {
         debugPrint('Ошибка при получение данных: ${response.statusCode}');
       }

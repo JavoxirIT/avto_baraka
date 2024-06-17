@@ -56,7 +56,7 @@ FlutterCarousel flutterCarousel(
                         const EdgeInsets.only(top: 5.0, left: 0.0, right: 0.0),
                     child: Center(
                       child: Text(
-                        item.nameRu,
+                        item.name,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 12.0,

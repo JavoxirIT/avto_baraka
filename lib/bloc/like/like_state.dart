@@ -9,10 +9,6 @@ sealed class LikeState extends Equatable {
 
 final class LikeInitial extends LikeState {}
 
-final class LikeStateUnLiked extends LikeState {}
-
-final class LikeStateLiked extends LikeState {}
-
 final class LikeStateNotData extends LikeState {}
 
 final class LikeStateData extends LikeState {

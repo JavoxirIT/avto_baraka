@@ -1,8 +1,6 @@
-import 'package:avto_baraka/api/models/payments_response_card_model.dart';
 import 'package:avto_baraka/api/service/payments__service.dart';
 import 'package:avto_baraka/screen/imports/imports_listing.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/physics.dart';
 
 part 'payment_event.dart';
 part 'payment_state.dart';
@@ -57,11 +55,14 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
   Future<void> clickPay(
       PaymentEventSend event, Emitter<PaymentState> emit) async {
     try {
-      final data = await paymentsService.clickPay(event.token);
-      if (data['status'] == "success") {
+      final data = await paymentsService.clickPay(
+          event.token, event.ratesId ?? 0, event.listingId ?? 0);
+      if (data['status'] != null) {
         emit(PaymentStatePaySuccess());
       } else {
         emit(PaymentStatePayError());
+
+        // emit(PaymentInitial());
       }
     } on Exception catch (e) {
       emit(PaymentStatePaySendError(exseption: e));

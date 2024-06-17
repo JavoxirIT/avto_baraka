@@ -5,14 +5,14 @@ Widget stepsNavigation(context, currentStep, onStepCansel, onStepContinue,
     region, district, getSteps) {
   return SafeArea(
     child: Card(
-      elevation: 5,
+      elevation: 0,
       margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0.0),
       ),
-      color: Colors.white,
+      color: Colors.transparent,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 7.0),
+        padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 15.0),
         child: stepControls(context, currentStep, onStepCansel, onStepContinue,
             region, district, getSteps),
       ),

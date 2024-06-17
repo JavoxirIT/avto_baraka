@@ -10,30 +10,10 @@ part 'like_state.dart';
 
 class LikeBloc extends Bloc<LikeEvent, LikeState> {
   LikeBloc(this._listingService) : super(LikeInitial()) {
-    on<LikeEvendSend>(onChangeLike);
     on<LikeEvendGet>(getLikeList);
   }
 
   ListingService _listingService;
-
-  Future<void> onChangeLike(
-      LikeEvendSend event, Emitter<LikeState> emit) async {
-    try {
-      final response = await _listingService.onLiked(event.token, event.id);
-      if (response != "1") {
-        emit(LikeStateUnLiked());
-
-        // await getLikeList(
-        //   LikeEvendGet(event.lang, event.token),
-        //   emit,
-        // );
-      } else {
-        emit(LikeStateLiked());
-      }
-    } on Exception catch (e) {
-      emit(LikeStateError(exception: e));
-    }
-  }
 
   Future<void> getLikeList(LikeEvendGet event, Emitter<LikeState> emit) async {
     try {

@@ -5,29 +5,34 @@ import 'package:flutter/material.dart';
 ThemeData defaultTheme() {
   return ThemeData(
     pageTransitionsTheme: pageTransitions(),
-    colorScheme: ColorScheme.light(primary: iconSelectedColor),
-    scaffoldBackgroundColor: Colors.white,
+    // colorScheme: ColorScheme.light(primary: colorWhite),
+    scaffoldBackgroundColor: Colors.black,
     // /brightness: Brightness.light,
     // primaryColor: Colors.red,
-    dialogTheme: const DialogTheme(
-      backgroundColor: Colors.white,
-      surfaceTintColor: Colors.white,
+    dialogTheme: DialogTheme(
+      backgroundColor: colorWhite,
+      surfaceTintColor: colorWhite,
     ),
     fontFamily: "Roboto",
-    appBarTheme: const AppBarTheme(
-      color: Colors.white,
+    appBarTheme: AppBarTheme(
+      color: Colors.transparent,
       titleTextStyle: TextStyle(
-          color: Colors.black,
-          fontSize: 15.0,
-          fontWeight: FontWeight.w600,
-          fontFamily: "Roboto"),
+        color: colorWhite,
+        fontSize: 15.0,
+        fontWeight: FontWeight.w600,
+        fontFamily: "Roboto",
+      ),
+      actionsIconTheme: IconThemeData(color: colorWhite),
+      iconTheme: IconThemeData(
+        color: colorWhite,
+      ),
     ),
     tabBarTheme: TabBarTheme(
       indicatorSize: TabBarIndicatorSize.label,
       indicatorColor: iconSelectedColor,
       dividerHeight: BorderSide.strokeAlignCenter,
       labelColor: iconSelectedColor,
-      overlayColor: const MaterialStatePropertyAll(Colors.white),
+      overlayColor: MaterialStatePropertyAll(colorWhite),
       // labelStyle: const TextStyle(
       //   fontFamily: "Roboto",
       //   fontSize: 14.0,
@@ -41,13 +46,13 @@ ThemeData defaultTheme() {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
         side: const BorderSide(
-          color: Color.fromARGB(255, 214, 214, 214), // Цвет границы
-          width: 0.5, // Ширина границы
+          // color: Color.fromARGB(255, 214, 214, 214), // Цвет границы
+          width: 0, // Ширина границы
         ),
       ),
-      elevation: 1,
+      // elevation: 1,
       shadowColor: iconSelectedColor,
-      color: backgrounColorWhite,
+      color: cardBlackColor,
       surfaceTintColor: backgrounColorWhite,
     ),
     inputDecorationTheme: InputDecorationTheme(
@@ -59,7 +64,7 @@ ThemeData defaultTheme() {
           fontWeight: FontWeight.w600),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: Colors.white,
+      backgroundColor: colorWhite,
       unselectedLabelStyle: const TextStyle(fontSize: 10.0),
       unselectedItemColor: unselectedItemColor,
       selectedLabelStyle: const TextStyle(fontSize: 10.0),
@@ -67,6 +72,7 @@ ThemeData defaultTheme() {
     ),
     dropdownMenuTheme:
         const DropdownMenuThemeData(textStyle: TextStyle(fontSize: 12.0)),
+
     bottomSheetTheme: const BottomSheetThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -78,8 +84,10 @@ ThemeData defaultTheme() {
           248, 255, 255, 255), // Задаем прозрачный цвет фона для анимации
     ),
     listTileTheme: const ListTileThemeData(
-      tileColor: Color.fromARGB(255, 247, 247, 247),
+      tileColor: Colors.transparent,
+      contentPadding: EdgeInsets.symmetric(vertical: 7.0, horizontal: 15.0),
     ),
+    iconTheme: const IconThemeData(color: Colors.black, size: 18.0),
     textTheme: TextTheme(
       labelLarge: const TextStyle(
         fontSize: 17.0,
@@ -92,13 +100,13 @@ ThemeData defaultTheme() {
       ),
       displayLarge:
           const TextStyle(fontSize: 13.0, fontWeight: FontWeight.w600),
-      displayMedium: const TextStyle(
+      displayMedium: TextStyle(
         fontSize: 12.0,
-        color: Colors.white,
+        color: colorWhite,
       ),
-      displaySmall: const TextStyle(
+      displaySmall: TextStyle(
         fontSize: 12.0,
-        color: Colors.white,
+        color: colorWhite,
         fontWeight: FontWeight.w700,
       ),
       // BODY
@@ -109,12 +117,12 @@ ThemeData defaultTheme() {
       ),
       bodyMedium: TextStyle(
         fontSize: 13.0,
-        color: Colors.black.withOpacity(0.5),
+        color: const Color.fromARGB(255, 253, 253, 253).withOpacity(1),
         fontWeight: FontWeight.w500,
       ),
       bodySmall: const TextStyle(
         fontSize: 10.0,
-        color: Colors.black,
+        color: Color.fromARGB(255, 255, 255, 255),
         fontWeight: FontWeight.w700,
       ),
     ),

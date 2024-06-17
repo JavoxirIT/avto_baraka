@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:avto_baraka/api/models/chat__one_room_data_models.dart';
 import 'package:avto_baraka/api/service/chat_servive.dart';
@@ -81,7 +80,7 @@ class OneRoomBloc extends Bloc<OneRoomEvent, OneRoomState> {
     Emitter<OneRoomState> emit,
   ) async {
     try {
-      debugPrint('event.userId: ${event.userId}');
+      // debugPrint('event.userId: ${event.userId}');
 
       ChatOneRoomModels dataJson = await chatService.sendChat(
         userId: event.userId,
@@ -97,7 +96,7 @@ class OneRoomBloc extends Bloc<OneRoomEvent, OneRoomState> {
         roomId: event.roomId,
       ));
       if (state is OneRoomsLoadState) {
-        debugPrint('state is OneRoomsLoadState');
+        // debugPrint('state is OneRoomsLoadState');
         final currentState = state as OneRoomsLoadState;
         List<ChatOneRoomModels> updatedList =
             List.from(currentState.listMessage)..add(dataJson);
@@ -105,7 +104,7 @@ class OneRoomBloc extends Bloc<OneRoomEvent, OneRoomState> {
         emit(OneRoomInitial());
         emit(OneRoomsLoadState(listMessage: updatedList));
       } else {
-      debugPrint('dataJson.userId: ${dataJson.userId}');
+      // debugPrint('dataJson.userId: ${dataJson.userId}');
         final listMessage = await chatService.getChatFirstRoom(dataJson.userId);
         emit(OneRoomsLoadState(listMessage: listMessage));
       }
@@ -118,7 +117,7 @@ class OneRoomBloc extends Bloc<OneRoomEvent, OneRoomState> {
     OneRoomNotificationEvent event,
     Emitter<OneRoomState> emit,
   ) async {
-    debugPrint('РАБОТАЕТ');
+    // debugPrint('РАБОТАЕТ');
 
     // Ваш код для уведомления
     if (event.userId == int.parse(LocalMemory.service.userId)) {

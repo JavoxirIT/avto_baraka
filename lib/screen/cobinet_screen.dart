@@ -1,4 +1,6 @@
+import 'package:avto_baraka/bloc/not_active/not_active_bloc.dart';
 import 'package:avto_baraka/screen/imports/imports_cabinet.dart';
+import 'package:avto_baraka/widgets/car_not_active.dart';
 
 class CobinetScreen extends StatefulWidget {
   const CobinetScreen({Key? key}) : super(key: key);
@@ -15,17 +17,19 @@ class CobinetScreenState extends State<CobinetScreen> {
 
     BlocProvider.of<ListingActiveBloc>(context).add(
       ListingActiveEventLoad(
-        providerLanguage.locale.languageCode,
-        tokenProvider.token,
-      ),
+          providerLanguage.locale.languageCode, tokenProvider.token),
     );
     BlocProvider.of<ListingBlockedBloc>(context).add(ListingBlockedEventLoad(
       providerLanguage.locale.languageCode,
       tokenProvider.token,
     ));
+    BlocProvider.of<NotActiveBloc>(context).add(NotActiveEventLoad(
+      lang: providerLanguage.locale.languageCode,
+      token: tokenProvider.token!,
+    ));
 
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           title: Text(
@@ -61,27 +65,36 @@ class CobinetScreenState extends State<CobinetScreen> {
             ),
           ],
           bottom: TabBar(
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
             tabs: <Widget>[
               Tab(text: S.of(context).tasdiqlangan),
+              Tab(text: S.of(context).faolEmas),
               Tab(text: S.of(context).bekorQilingan),
             ],
           ),
         ),
-        body: TabBarView(
-          children: <Widget>[
-            BlocBuilder<ListingActiveBloc, ListingActiveState>(
-                builder: (context, state) {
-              return paddingLayout(
-                carCativeCard(context, state, tokenProvider.token, providerLanguage.locale.languageCode),
-              );
-            }),
-            BlocBuilder<ListingBlockedBloc, ListingBlockedState>(
-                builder: (context, state) {
-              return paddingLayout(
-                carBlockedCard(context, state, tokenProvider.token, providerLanguage.locale.languageCode),
-              );
-            }),
-          ],
+        body: Container(
+          padding: const EdgeInsets.only(
+            left: 15.0,
+            right: 15.0,
+          ),
+          child: TabBarView(
+            children: <Widget>[
+              CarActiveCard(
+                token: tokenProvider.token!,
+                lang: providerLanguage.locale.languageCode,
+              ),
+              CarNotActiv(
+                token: tokenProvider.token,
+                languageCode: providerLanguage.locale.languageCode,
+              ),
+              CarBlockedCard(
+                token: tokenProvider.token!,
+                lang: providerLanguage.locale.languageCode,
+              ),
+            ],
+          ),
         ),
       ),
     );

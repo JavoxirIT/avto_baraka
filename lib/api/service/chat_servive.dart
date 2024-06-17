@@ -61,7 +61,7 @@ class ChatService {
       );
       if (response.statusCode == 200) {
         // listChatOneRoom.add(ChatOneRoomModels.fromMap(response.data));
-        debugPrint('Send CMC: ${response}');
+        debugPrint('Send CMC: $response');
         map = ChatOneRoomModels.fromMap(response.data);
       } else {
         debugPrint('debugPrint: $response');

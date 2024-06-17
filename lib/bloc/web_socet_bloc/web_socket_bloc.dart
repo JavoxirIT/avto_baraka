@@ -90,11 +90,11 @@ class WebSocketBloc extends Bloc<WebSocketEvent, WebSocketState> {
         roomId: event.roomId,
       ));
       
-      debugPrint('ReceiveMessage: ${event.id}');
+      // debugPrint('ReceiveMessage: ${event.id}');
       
 
       if (event.id == int.parse(LocalMemory.service.userId)) {
-       debugPrint('notificationService');
+      //  debugPrint('notificationService');
         notificationService.showNotification(0, "Avto Baraka", event.message);
       }
     } catch (e) {

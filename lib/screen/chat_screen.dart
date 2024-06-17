@@ -38,14 +38,14 @@ class ChatScreenState extends State<ChatScreen> {
 
                           return Card(
                             elevation: 0,
-                            color: switchBackgrounColor,
+                            // color: switchBackgrounColor,
                             child: ListTile(
                               // key: chat['id'],
                               leading: SizedBox(
                                 width: 50.0,
                                 height: 50.0,
                                 child: CircleAvatar(
-                                  backgroundColor: Colors.white,
+                                  backgroundColor: elevatedButtonTextColor,
                                   child: ClipOval(
                                     child: chat.messageCount > 0
                                         ? Padding(

@@ -1,7 +1,6 @@
 // import 'package:avto_baraka/bloc/web_socet_bloc/web_socket_bloc.dart';
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:avto_baraka/api/models/chat__one_room_data_models.dart';
 import 'package:avto_baraka/provider/image_provider/pick_image.dart';
 import 'package:avto_baraka/screen/imports/imports_announcement.dart';
 import 'package:avto_baraka/screen/imports/imports_cabinet.dart';

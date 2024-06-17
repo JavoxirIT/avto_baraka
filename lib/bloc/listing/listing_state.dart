@@ -1,30 +1,45 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'listing_bloc.dart';
 
-sealed class ListingState extends Equatable {
-  const ListingState();
+enum ListingStatus { initial, success, failure }
+
+class ListingState extends Equatable {
+  const ListingState({
+    this.status = ListingStatus.initial,
+    this.listing = const <ListingGetModals>[],
+    this.hasReachedMax = false,
+    this.currentPage = 1,
+    this.count = 0,
+  });
+  final ListingStatus status;
+  final List<ListingGetModals> listing;
+  final bool hasReachedMax;
+  final int currentPage;
+  final int count;
+
+  ListingState copyWith({
+    ListingStatus? status,
+    List<ListingGetModals>? listing,
+    bool? hasReachedMax,
+    int? currentPage,
+    int? count,
+  }) {
+    return ListingState(
+      status: status ?? this.status,
+      listing: listing ?? this.listing,
+      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+      currentPage: currentPage ?? this.currentPage,
+      count: count ?? this.count,
+    );
+  }
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [listing, status, hasReachedMax];
 }
 
 final class ListingStateInitial extends ListingState {}
 
 final class ListingStateLoading extends ListingState {}
-
-//
-final class ListingStateLoad extends ListingState {
-  const ListingStateLoad({
-    required this.listing,
-    required this.currentPage,
-    required this.hasReachedMax,
-  });
-  final List<ListingGetModals> listing;
-  final int currentPage;
-  final bool hasReachedMax;
-
-  @override
-  List<Object> get props =>
-      super.props..add([listing, currentPage, hasReachedMax]);
-}
 
 final class ListingStateNoData extends ListingState {}
 
@@ -56,3 +71,7 @@ final class ListingStateRefresh extends ListingState {
   );
   final Completer? complater;
 }
+
+final class ListingStateUnLiked extends ListingState {}
+
+final class ListingStateLiked extends ListingState {}

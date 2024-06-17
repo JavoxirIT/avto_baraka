@@ -1,5 +1,7 @@
 import 'package:avto_baraka/api/service/payments__service.dart';
+import 'package:avto_baraka/bloc/not_active/not_active_bloc.dart';
 import 'package:avto_baraka/bloc/payment/payment_bloc.dart';
+import 'package:avto_baraka/observer/simple_bloc_observer.dart';
 import 'package:flutter_background/flutter_background.dart';
 import 'package:avto_baraka/api/service/chat_servive.dart';
 import 'package:avto_baraka/api/service/listing_service.dart';
@@ -31,7 +33,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
-
+  Bloc.observer = const SimpleBlocObserver();
+  // ignore: prefer_const_constructors
   final androidConfig = FlutterBackgroundAndroidConfig(
     notificationTitle: "App is running in background",
     notificationText: "Tap to return to the app",
@@ -52,10 +55,10 @@ void main() async {
       DeviceOrientation.portraitUp,
     ],
   );
-  var languageProvider = LocalProvider();
+  LocalProvider languageProvider = LocalProvider();
   await languageProvider.fetchLocale();
 
-  var tokenProvider = TokenProvider();
+  TokenProvider tokenProvider = TokenProvider();
   await tokenProvider.fetchTokenLocale();
   final webSocketBloc =
       WebSocketBloc(notificationService, ChatService.chatService);
@@ -68,7 +71,10 @@ void main() async {
       child: MultiBlocProvider(
         providers: [
           BlocProvider<ListingBloc>(
-            create: (context) => ListingBloc(ListingService.servive),
+            create: (context) => ListingBloc(ListingService.servive)
+              ..add(
+                const ListingEventLoad(),
+              ),
           ),
           BlocProvider<ListingActiveBloc>(
             create: (context) => ListingActiveBloc(ListingService.servive),
@@ -83,7 +89,10 @@ void main() async {
             create: (context) => AllRoomsBloc(ChatService.chatService),
           ),
           BlocProvider(
-            create: (context) => webSocketBloc,
+            create: (context) => webSocketBloc
+              ..add(
+                ConnectWebSocket(url: Config.ws!),
+              ),
           ),
           BlocProvider<OneRoomBloc>(
             create: (context) =>
@@ -92,6 +101,9 @@ void main() async {
           BlocProvider(
             create: (context) => PaymentBloc(PaymentsService.ps),
           ),
+          BlocProvider(
+            create: (context) => NotActiveBloc(ListingService.servive),
+          )
         ],
         child: const MyApp(),
       ),
@@ -110,19 +122,16 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   String? token;
   @override
   void initState() {
-    final webSocketBloc = BlocProvider.of<WebSocketBloc>(context);
-    webSocketBloc.add(ConnectWebSocket(url: Config.ws!));
     getLocalData();
     super.initState();
   }
 
   @override
   Widget build(context) {
-    final tokenProvider = Provider.of<TokenProvider>(context);
+    // final tokenProvider = Provider.of<TokenProvider>(context);
     final providerLanguage = Provider.of<LocalProvider>(context);
     PaymentsService().paymentDesc(providerLanguage.locale.languageCode);
-    BlocProvider.of<ListingBloc>(context).add(ListingEventLoad(
-        providerLanguage.locale.languageCode, tokenProvider.token));
+
     return MaterialApp(
       navigatorObservers: [ShareRouteObserver()],
       debugShowCheckedModeBanner: false,
@@ -137,7 +146,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       theme: defaultTheme(),
       routes: routers,
       home: token != null
-          ? const BottomNavigationMenu()
+          ? const MainScreen()
           : const IntroductionScreen(),
     );
   }

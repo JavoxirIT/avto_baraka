@@ -187,7 +187,7 @@ class SearchViewState extends State<SearchView> {
                                       height: 42.0,
                                       width: 42.0,
                                     ),
-                                    Text(element.nameRu)
+                                    Text(element.name)
                                   ],
                                 ),
                               ),

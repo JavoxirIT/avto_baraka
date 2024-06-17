@@ -1,5 +1,4 @@
-// import 'package:avto_baraka/bloc/web_socet_bloc/web_socket_bloc.dart';
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: file_names, use_build_context_synchronously
 
 import 'package:avto_baraka/provider/image_provider/pick_image.dart';
 import 'package:avto_baraka/screen/imports/imports_announcement.dart';

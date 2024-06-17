@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_overrides
+
 import 'package:avto_baraka/api/models/listing_get_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,7 +15,6 @@ class ShareRouteObserver extends NavigatorObserver {
     if (carData == null ||
         carImageList.isEmpty ||
         carImageList[0]['image'] == null) {
-      print('Error: carData or carImageList is null');
       return;
     }
 
@@ -39,7 +40,7 @@ class ShareRouteObserver extends NavigatorObserver {
       navigatorKey.currentState!
           .popUntil((route) => route.settings.name == '/oneCarView');
     } catch (e) {
-      print('Error during sharing: $e');
+      debugPrint('Error during sharing: $e');
     }
   }
 

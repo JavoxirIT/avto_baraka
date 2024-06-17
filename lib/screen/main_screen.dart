@@ -1,18 +1,21 @@
 import 'package:avto_baraka/screen/imports/imports_maim.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
-class BottomNavigationMenu extends StatefulWidget {
-  const BottomNavigationMenu({super.key});
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
 
   @override
-  State<BottomNavigationMenu> createState() => _BottomNavigationMenuState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _BottomNavigationMenuState extends State<BottomNavigationMenu>
+class _MainScreenState extends State<MainScreen>
     with SingleTickerProviderStateMixin {
+  GlobalKey<CurvedNavigationBarState> bottomNavigationKey = GlobalKey();
   List<ConnectivityResult> _connectionStatus = [ConnectivityResult.none];
   final Connectivity _connectivity = Connectivity();
   late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
   int _selectedIndex = 0;
+  final double sizecontainersize = 30.0;
 
 // loading
   bool showLoadingIndicator = true;
@@ -62,44 +65,37 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu>
     super.dispose();
   }
 
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     _controller.forward();
-    const double size = 18.0;
     if (_connectionStatus.toString() == [ConnectivityResult.none].toString()) {
       return const CheckingInternetConnection(title: "Title");
     }
     return Stack(
       children: [
         Scaffold(
+          extendBody: true,
           body: Center(
             child: screenList.elementAt(_selectedIndex),
           ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: Container(
-            margin: const EdgeInsets.only(top: 12, left: 10, right: 10),
-            height: 65.0,
-            width: 65.0,
-            child: FloatingActionButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(RouteName.announcement);
-              },
-              backgroundColor: iconSelectedColor,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  width: 3.0,
-                  color: iconSelectedColor,
-                ),
-                borderRadius: BorderRadius.circular(100.0),
-              ),
-              child: const Icon(FontAwesomeIcons.plus,
-                  color: Colors.white, size: 34.0),
-            ),
+          bottomNavigationBar: CurvedNavigationBar(
+            key: bottomNavigationKey,
+            index: 0,
+            items: curvedNavigationBarItem,
+            color: iconSelectedColor,
+            buttonBackgroundColor: iconSelectedColor,
+            backgroundColor: Colors.transparent,
+            animationCurve: Curves.easeInOut,
+            animationDuration: const Duration(milliseconds: 600),
+            onTap: _onItemTapped,
+            letIndexChange: (index) => true,
           ),
-          bottomNavigationBar:
-              bottomNavItem(_onItemTapped, _selectedIndex, size, context),
         ),
         if (showLoadingIndicator)
           FadeTransition(
@@ -118,29 +114,67 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu>
     );
   }
 
-  void _onItemTapped(int index) {
-    if (index == 2) {
-      return;
-    }
-    setState(() {
-      _selectedIndex = index;
-    });
+  List<Widget> get curvedNavigationBarItem {
+    return <Widget>[
+      _buildNavigationItem(Icons.home, 0),
+      _buildNavigationItem(FontAwesomeIcons.heartCircleCheck, 1),
+      _buildNavigationItem(FontAwesomeIcons.plus, 2),
+      _buildNavigationItemWithBadge(Icons.messenger_sharp, 3),
+      _buildNavigationItem(Icons.airplay_rounded, 4),
+    ];
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
+  Widget _buildNavigationItem(IconData icon, int index) {
+    return Center(
+      child: ClipOval(
+        child: Container(
+          color: Colors.black,
+          width: sizecontainersize,
+          height: sizecontainersize,
+          child: Icon(
+            icon,
+            color: _selectedIndex == index ? Colors.white : iconSelectedColor,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNavigationItemWithBadge(IconData icon, int index) {
+    return ClipOval(
+      child: Container(
+        color: Colors.black,
+        alignment: Alignment.center,
+        width: sizecontainersize,
+        height: sizecontainersize,
+        child: Badge(
+          label: const Text(
+            "0",
+            style: TextStyle(color: Colors.white),
+          ),
+          child: Icon(
+            icon,
+            color: _selectedIndex == index ? Colors.white : iconSelectedColor,
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Сообщения платформы асинхронны, поэтому мы инициализируем их в асинхронном методе.
   Future<void> initConnectivity() async {
     late List<ConnectivityResult> result;
-    // Platform messages may fail, so we use a try/catch PlatformException.
+    // Сообщения платформы могут давать сбои, поэтому мы используем try/catch PlatformException.
     try {
       result = await _connectivity.checkConnectivity();
     } on PlatformException catch (e) {
-      // developer.log('Couldn\'t check connectivity status', error: e);
+      debugPrint('Couldn\'t check connectivity status,  $e');
       return;
     }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
+// Если виджет был удален из дерева, пока асинхронное сообщение платформы
+// находилось в пути, мы хотим отменить ответ, а не вызывать
+// setState для обновления нашего несуществующего внешнего вида.
     if (!mounted) {
       return Future.value(null);
     }

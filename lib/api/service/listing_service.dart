@@ -17,10 +17,12 @@ class ListingService {
   List<ListingGetModals> listingDataList = [];
   List<ListingGetModals> listingActiveDataList = [];
   List<ListingGetModals> listingBlockedDataList = [];
+  List<ListingGetModals> listingNotActivList = [];
   List<ListingGetModals> listingLikeList = [];
   List<MultipartFile> filePaths = [];
   String? likedStatus;
   String statusText = "";
+  String activitesStatusText = "";
 
   Future<String> postAutoData(Map<String, dynamic> listing, imageFile) async {
     filePaths.clear();
@@ -67,17 +69,24 @@ class ListingService {
   }
 
   // GET LISTING
-  Future<List<ListingGetModals>> getDataListing(lang, token, int page) async {
+  Future<List<ListingGetModals>> getDataListing(int page) async {
+    var lang = await LocalMemory.service.getLanguageCode();
+
+    // debugPrint('Page: $page');
+
     listingDataList.clear();
     try {
       final response = await _dio.post(
         '${_url}get-listing/$lang/?page=$page',
         options: Options(
-          headers: {'Authorization': token},
+          headers: {'Authorization': await LocalMemory.service.getLocolToken()},
         ),
       );
       if (response.statusCode == 200) {
         for (var element in response.data['data']) {
+          // debugPrint('response.data: ${response.data['data']}');
+          
+        
           listingDataList.add(ListingGetModals.fromMap(element));
         }
       } else {
@@ -128,7 +137,7 @@ class ListingService {
     listingBlockedDataList.clear();
     try {
       final response = await _dio.post(
-        '${_url}get-deactive/$lang',
+        '${_url}get-block/$lang',
         options: Options(
           headers: {'Authorization': token},
         ),
@@ -149,6 +158,52 @@ class ListingService {
       }
     }
     return listingBlockedDataList;
+  }
+
+  // GET DEACTIVE LISTING
+  Future<List<ListingGetModals>> getNotActiveListing(lang, token) async {
+    listingNotActivList.clear();
+    try {
+      final response = await _dio.post(
+        '${_url}get-deactive/$lang',
+        options: Options(
+          headers: {'Authorization': token},
+        ),
+      );
+      if (response.statusCode == 200) {
+        for (var element in response.data) {
+          listingNotActivList.add(ListingGetModals.fromMap(element));
+        }
+      } else {
+        debugPrint('LISTING NOT ACTIVE ERROR: ${response.statusCode}');
+      }
+    } catch (e) {
+      debugPrint('CATCH LISTING NOT ACTIVE ERROR : $e');
+      if (e is DioException) {
+        if (e.response!.statusCode == 401) {
+          TokenProvider().removeTokenPreferences(tokenKey);
+        }
+      }
+    }
+    return listingNotActivList;
+  }
+
+  // POST ACTIVATING
+  Future<String> postActivating(int id, String token) async {
+    try {
+      final response = await _dio.post(
+        '${_url}activating/$id',
+        options: Options(headers: {"Authorization": token}),
+      );
+      if (response.statusCode == 200) {
+        Map<String, dynamic> map = response.data as Map<String, dynamic>;
+        // debugPrint('RESPONSE: $map');
+        activitesStatusText = map['status'];
+      }
+    } catch (e) {
+      debugPrint('activating error: $e');
+    }
+    return activitesStatusText;
   }
 
   Future<List<ListingGetModals>> getSearchListing(
@@ -176,7 +231,7 @@ class ListingService {
       "start_year": '${start_year ?? ""}',
       "valyuta": '${valyuta ?? ""}'
     };
-    debugPrint('debugPrint: ${data}');
+    debugPrint('debugPrint: $data');
 
     try {
       final response = await _dio.post(
@@ -212,7 +267,7 @@ class ListingService {
         data: {"listing_id": listing_id},
       );
       if (response.statusCode == 200) {
-        // debugPrint('LIKED Response: ${response.data}');
+        debugPrint('LIKED Response: ${response.data}');
         likedStatus = response.data;
       } else {
         debugPrint('LIKED ERORR Response: ${response.statusCode}');
@@ -258,14 +313,13 @@ class ListingService {
     return listingLikeList;
   }
 
-  // delete LISTING
+  // DELETE LISTING
   // deletelisting/{id}
   Future<int> deleteListing(int listingId, String token) async {
     int responseData = 0;
     try {
       final response = await _dio.get('${_url}deletelisting/$listingId',
           options: Options(headers: {'Authorization': token}));
-      debugPrint('response.data: ${response.data}');
 
       if (response.statusCode == 200) {
         responseData = int.parse(response.data);

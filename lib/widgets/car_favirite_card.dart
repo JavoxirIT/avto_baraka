@@ -49,7 +49,7 @@ carFavpriteCard(context, state, String token, String lang) {
                             ElevatedButton(
                               style: elevatedButton,
                               onPressed: () {
-                                BlocProvider.of<LikeBloc>(context)
+                                BlocProvider.of<ListingBloc>(context)
                                     .add(LikeEvendSend(
                                   id: item.id,
                                   token: token,
@@ -57,13 +57,6 @@ carFavpriteCard(context, state, String token, String lang) {
 
                                 BlocProvider.of<LikeBloc>(context).add(
                                   LikeEvendGet(lang, token),
-                                );
-
-                                BlocProvider.of<ListingBloc>(context).add(
-                                  ListingEventLoad(
-                                    lang,
-                                    token,
-                                  ),
                                 );
                                 Navigator.of(context).pop();
                               },
@@ -89,7 +82,7 @@ carFavpriteCard(context, state, String token, String lang) {
                 background: deleteDismiss(context),
                 secondaryBackground: secondaryDismiss(context),
                 child: Container(
-                  padding: EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -115,10 +108,23 @@ carFavpriteCard(context, state, String token, String lang) {
                                 color: cardFixCardColor,
                               ),
                               child: Center(
-                                child: Icon(
-                                  FontAwesomeIcons.solidHeart,
-                                  color: colorRed,
-                                  size: 20.0,
+                                child: IconButton(
+                                  icon: Icon(
+                                    FontAwesomeIcons.solidHeart,
+                                    color: colorRed,
+                                    size: 20.0,
+                                  ),
+                                  onPressed: () {
+                                    BlocProvider.of<ListingBloc>(context)
+                                        .add(LikeEvendSend(
+                                      id: item.id,
+                                      token: token,
+                                    ));
+
+                                    BlocProvider.of<LikeBloc>(context).add(
+                                      LikeEvendGet(lang, token),
+                                    );
+                                  },
                                 ),
                               ),
                             ),
@@ -138,12 +144,17 @@ carFavpriteCard(context, state, String token, String lang) {
                                     Text.rich(
                                       TextSpan(
                                         children: [
-                                          const WidgetSpan(
+                                          WidgetSpan(
                                             child: Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 8.0),
-                                              child: Icon(FontAwesomeIcons.eye,
-                                                  size: 14.0),
+                                              padding: const EdgeInsets.only(
+                                                right: 8.0,
+                                                left: 8.0,
+                                              ),
+                                              child: Icon(
+                                                FontAwesomeIcons.eye,
+                                                size: 14.0,
+                                                color: colorRed,
+                                              ),
                                             ),
                                           ),
                                           TextSpan(
@@ -158,7 +169,7 @@ carFavpriteCard(context, state, String token, String lang) {
                                       ),
                                     ),
                                     Text(
-                                      '${item.price.toString()} y.e',
+                                      '${item.price.toString()} ${item.valyutaShort.toUpperCase()}',
                                       style: const TextStyle(
                                         color: Color(0xFF1D00CE),
                                         fontSize: 18.0,

@@ -1,4 +1,6 @@
-import 'package:avto_baraka/screen/imports/imports_announcement.dart';
+// ignore_for_file: file_names
+
+import 'package:flutter/material.dart';
 
 final ButtonStyle elevatedButtonChat = ElevatedButton.styleFrom(
   foregroundColor: Colors.white,

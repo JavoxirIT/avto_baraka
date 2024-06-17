@@ -24,8 +24,7 @@ class _LoadingViewState extends State<LoadingView>
           Navigator.of(context).pushReplacementNamed(RouteName.introduction);
           return;
         }
-        Navigator.of(context)
-            .pushReplacementNamed(RouteName.bottomNavigationHomeScreen);
+        Navigator.of(context).pushReplacementNamed(RouteName.mainScreen);
       });
     });
     super.initState();
@@ -41,6 +40,9 @@ class _LoadingViewState extends State<LoadingView>
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(img, fit: BoxFit.fill,);
+    return Image.asset(
+      img,
+      fit: BoxFit.fill,
+    );
   }
 }

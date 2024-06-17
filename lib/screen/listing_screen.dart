@@ -13,36 +13,53 @@ class ListingScreen extends StatefulWidget {
 class _ListingScreenState extends State<ListingScreen> {
   String? token;
   List<CarCategoryModels> categoryList = [];
-
+  final _scrollController = ScrollController();
   @override
   void initState() {
     super.initState();
+    _scrollController.addListener(_onScroll);
     getData();
   }
 
   @override
+  void dispose() {
+    _scrollController
+      ..removeListener(_onScroll)
+      ..dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_isBottom) context.read<ListingBloc>().add(const ListingEventLoad());
+  }
+
+  bool get _isBottom {
+    if (!_scrollController.hasClients) return false;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+    return currentScroll >= (maxScroll * 0.9);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // _controller.forward();
-    final providerLanguage = Provider.of<LocalProvider>(context);
-    final tokenProvider = Provider.of<TokenProvider>(context);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 40.0,
         leadingWidth: MediaQuery.of(context).size.width / 2.5,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 15.0, bottom: 5.0),
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(RouteName.creditBankListScreen);
-            },
-            style: elevatedButton,
-            child: Text(
-              S.of(context).kreditKalkulatori,
-              style: Theme.of(context).textTheme.displayMedium,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ),
+        // leading: Padding(
+        //   padding: const EdgeInsets.only(left: 15.0, bottom: 5.0),
+        //   child: ElevatedButton(
+        //     onPressed: () {
+        //       Navigator.of(context).pushNamed(RouteName.creditBankListScreen);
+        //     },
+        //     style: elevatedButton,
+        //     child: Text(
+        //       S.of(context).kreditKalkulatori,
+        //       style: Theme.of(context).textTheme.displayMedium,
+        //       overflow: TextOverflow.ellipsis,
+        //     ),
+        //   ),
+        // ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 15.0),
@@ -62,20 +79,19 @@ class _ListingScreenState extends State<ListingScreen> {
         displacement: 150.0, // Сдвиг индикатора от верхней части экрана
         onRefresh: () async {
           // Отправляем событие для загрузки данных
-          context.read<ListingBloc>().add(
-                ListingEventRefresh(
-                  providerLanguage.locale.languageCode,
-                  tokenProvider.token,
-                ),
-              );
+          context.read<ListingBloc>().add(ListingEventRefresh());
           // Используем Completer для завершения refresh-индикатора
           final completer = Completer<void>();
           final subscription =
               context.read<ListingBloc>().stream.listen((state) {
-            if (state is ListingStateLoad) {
-              completer.complete();
+            if (state.status == ListingStatus.success) {
+              if (!completer.isCompleted) {
+                completer.complete();
+              }
             } else if (state is ListingStateError) {
-              completer.completeError(state.exception);
+              if (!completer.isCompleted) {
+                completer.completeError(state.exception);
+              }
             }
           });
           // Ожидаем завершения или ошибки
@@ -84,89 +100,32 @@ class _ListingScreenState extends State<ListingScreen> {
           await subscription.cancel();
           return completer.future;
         },
-        child: BlocBuilder<ListingBloc, ListingState>(
-          builder: (context, state) {
-            if (state is ListingStateNoDataSearch) {
-              WidgetsBinding.instance.addPostFrameCallback(
-                (_) {
-                  if (mounted) {
-                    showDialog(
-                      context: context,
-                      builder: (_) {
-                        return AlertDialog(
-                          title: Text(
-                            S.of(context).kechirasiz,
-                            style: Theme.of(context).textTheme.labelLarge,
-                          ),
-                          content: Text(
-                            S.of(context).malumotTopilmadi,
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                        );
-                      },
-                    ).then((_) {
-                      if (mounted) {
-                        setState(() {}); // Ensure mounted before setState
-                      }
-                    });
-                  }
-                },
-              );
-            }
-            if (state is ListingStateHasDataSearch) {
-              WidgetsBinding.instance.addPostFrameCallback(
-                (_) {
-                  if (mounted) {
-                    showDialog(
-                      context: context,
-                      builder: (_) {
-                        return AlertDialog(
-                          title: Text(
-                            S.of(context).sorovingizBoyicha,
-                            style: Theme.of(context).textTheme.labelLarge,
-                          ),
-                          content: Text(
-                            S.of(context).countElonTopildi(state.count),
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                        );
-                      },
-                    ).then((_) {
-                      if (mounted) {
-                        setState(() {}); // Ensure mounted before setState
-                      }
-                    });
-                  }
-                },
-              );
-            }
-
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 10.0, bottom: 0.0, left: 15.0),
-                    child: Text(
-                      S.of(context).kategoriyalar,
-                      style: Theme.of(context).textTheme.displayLarge,
-                    ),
-                  ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Padding(
+                padding:
+                    const EdgeInsets.only(top: 10.0, bottom: 0.0, left: 15.0),
+                child: Text(
+                  S.of(context).kategoriyalar,
+                  style: Theme.of(context).textTheme.displayLarge,
                 ),
-                flutterCarousel(context, categoryList),
-                sizedBox10,
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                    child: carCard(context, state),
-                  ),
+              ),
+            ),
+            flutterCarousel(context, categoryList),
+            sizedBox10,
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                child: CarCard(
+                  scrollController: _scrollController,
                 ),
-              ],
-            );
-          },
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -174,6 +133,8 @@ class _ListingScreenState extends State<ListingScreen> {
 
   Future<void> getData() async {
     categoryList = await CarService().carCategoryLoad();
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 }
