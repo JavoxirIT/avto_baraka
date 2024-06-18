@@ -12,14 +12,22 @@ Container chatContent(
           Container(
             width: isTablet(context)
                 ? MediaQuery.of(context).size.width * 0.4
-                : 300.0,
+                : MediaQuery.of(context).size.width / 1.2,
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
             decoration: BoxDecoration(
-              // color: isMe
-              //     ? iconSelectedColor.withOpacity(0.1)
-              //     : unselectedItemColor.withOpacity(0.1),
-              color: Colors.white,
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              color: isMe ? iconSelectedColor : unselectedItemColor,
+              // color: iconSelectedColor,
+              borderRadius: isMe
+                  ? const BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(0),
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10))
+                  : const BorderRadius.only(
+                      bottomLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(10),
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10)),
               boxShadow: [
                 BoxShadow(
                   color: isMe

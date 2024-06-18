@@ -12,6 +12,7 @@ import 'package:avto_baraka/widgets/dismisable/secondary_dismis.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 carFavpriteCard(context, state, String token, String lang) {
@@ -28,7 +29,7 @@ carFavpriteCard(context, state, String token, String lang) {
                   .pushNamed(RouteName.oneCarView, arguments: item);
             },
             child: Card(
-              elevation: 5.0,
+              elevation: 0,
               borderOnForeground: true,
               surfaceTintColor: Colors.amber,
               margin: const EdgeInsets.only(bottom: 22.0),
@@ -105,7 +106,7 @@ carFavpriteCard(context, state, String token, String lang) {
                               height: 40.0,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: cardFixCardColor,
+                                color: iconSelectedColor,
                               ),
                               child: Center(
                                 child: IconButton(
@@ -132,11 +133,15 @@ carFavpriteCard(context, state, String token, String lang) {
                           Positioned(
                             bottom: 0,
                             right: 0,
-                            width: 192,
+                            // width: 192,
                             child: Card(
-                              color: cardFixCardColor,
+                              color: cardBlackColor.withOpacity(0.8),
                               child: Padding(
-                                padding: const EdgeInsets.all(3.0),
+                                padding: const EdgeInsets.only(
+                                    left: 10.0,
+                                    right: 10.0,
+                                    top: 3.0,
+                                    bottom: 3.0),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -161,20 +166,17 @@ carFavpriteCard(context, state, String token, String lang) {
                                             text: item.viewed != 0
                                                 ? item.viewed.toString()
                                                 : "0",
-                                            style: const TextStyle(
-                                                fontSize: 12.0,
-                                                fontWeight: FontWeight.w700),
                                           ),
                                         ],
                                       ),
                                     ),
+                                    const SizedBox(width: 10.0),
                                     Text(
-                                      '${item.price.toString()} ${item.valyutaShort.toUpperCase()}',
-                                      style: const TextStyle(
-                                        color: Color(0xFF1D00CE),
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.w800,
-                                      ),
+                                      NumberFormat.currency(
+                                        locale: "uz-UZ",
+                                        symbol: item.valyutaShort.toUpperCase(),
+                                        decimalDigits: 0,
+                                      ).format(item.price),
                                     ),
                                   ],
                                 ),

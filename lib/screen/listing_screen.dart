@@ -44,22 +44,9 @@ class _ListingScreenState extends State<ListingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text("Avto Baraka".toUpperCase()),
         toolbarHeight: 40.0,
         leadingWidth: MediaQuery.of(context).size.width / 2.5,
-        // leading: Padding(
-        //   padding: const EdgeInsets.only(left: 15.0, bottom: 5.0),
-        //   child: ElevatedButton(
-        //     onPressed: () {
-        //       Navigator.of(context).pushNamed(RouteName.creditBankListScreen);
-        //     },
-        //     style: elevatedButton,
-        //     child: Text(
-        //       S.of(context).kreditKalkulatori,
-        //       style: Theme.of(context).textTheme.displayMedium,
-        //       overflow: TextOverflow.ellipsis,
-        //     ),
-        //   ),
-        // ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 15.0),
@@ -104,22 +91,11 @@ class _ListingScreenState extends State<ListingScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding:
-                    const EdgeInsets.only(top: 10.0, bottom: 0.0, left: 15.0),
-                child: Text(
-                  S.of(context).kategoriyalar,
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
-              ),
-            ),
             flutterCarousel(context, categoryList),
             sizedBox10,
             Expanded(
               child: Container(
-                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                 child: CarCard(
                   scrollController: _scrollController,
                 ),

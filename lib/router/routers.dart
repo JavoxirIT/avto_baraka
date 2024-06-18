@@ -1,5 +1,6 @@
 import 'package:avto_baraka/router/route_impoer.dart';
 
+
 final routers = {
   RouteName.introduction: (_) => const IntroductionScreen(),
   RouteName.mainScreen: (_) => const MainScreen(),
@@ -11,12 +12,13 @@ final routers = {
   RouteName.creditScreen: (_) => const CreditScreen(),
   RouteName.settingView: (_) => const SettingView(),
   RouteName.settingUserView: (_) => const SettingUserView(),
-  RouteName.contactWithAdmin: (_) => const ContactWithAdmin(),
   RouteName.firstpayView: (_) => const FirstPayFormView(),
   RouteName.fullScreenImage: (_) => const FullScreenImage(),
   RouteName.searchView: (_) => const SearchView(),
-  RouteName.oneChat: (_) => const Chat(),
-  RouteName.chatTwo: (_) => const FirstChat(),
+  RouteName.chat: (_) => const Chat(),
+  RouteName.firstChat: (_) => const FirstChat(),
   RouteName.loginToAnotherAccount: (_) => const LoginToAnotherAccount(),
-  RouteName.ratesView: (_) => const RatesView()
+  RouteName.ratesView: (_) => const RatesView(),
+  RouteName.privacyWeb: (_) => const PrivacyWeb(),
+  RouteName.termsConditionWeb: (_) => const TermsConditionWeb()
 };

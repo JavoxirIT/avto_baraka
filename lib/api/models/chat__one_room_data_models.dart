@@ -53,7 +53,7 @@ class ChatOneRoomModels {
 
   @override
   String toString() =>
-      'Send Chat(id: $id, message: $message, file: $file, userId: $userId, date: $date, roomId: $roomId,  status: $status, listImage: $imageList)';
+      'Send Chat(id: $id, message: $message, file: $file, userId: $userId, date: $date, roomId: $roomId,  status: $status, listImage: $imageList, senderId: $senderId)';
 }
 
 // Response ({"id":6,"message":"salom","date":"2024-05-27 13:13:22","file":"[]","room_id":2,"user_id":7,"status":0})

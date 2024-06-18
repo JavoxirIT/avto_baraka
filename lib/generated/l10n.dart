@@ -1721,6 +1721,108 @@ class S {
       args: [],
     );
   }
+
+  /// `Xaritadagi joylashuvi`
+  String get xaritadagiJoylashuvi {
+    return Intl.message(
+      'Xaritadagi joylashuvi',
+      name: 'xaritadagiJoylashuvi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shikoyatingizni kiriting`
+  String get shikoyatingizniKiriting {
+    return Intl.message(
+      'Shikoyatingizni kiriting',
+      name: 'shikoyatingizniKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shikoyat yuborildi`
+  String get shikoyatYuborildi {
+    return Intl.message(
+      'Shikoyat yuborildi',
+      name: 'shikoyatYuborildi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Xabar mavjut emas`
+  String get xabarMavjutEmas {
+    return Intl.message(
+      'Xabar mavjut emas',
+      name: 'xabarMavjutEmas',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kerakli e'lonni qidirish`
+  String get kerakliElonniQidirish {
+    return Intl.message(
+      'Kerakli e`lonni qidirish',
+      name: 'kerakliElonniQidirish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Modelni  tanlang`
+  String get modelniTanlang {
+    return Intl.message(
+      'Modelni  tanlang',
+      name: 'modelniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `O’zingizga kerakli Texnikani qidiring`
+  String get ozingizgaKerakliTexnikaniQidiring {
+    return Intl.message(
+      'O’zingizga kerakli Texnikani qidiring',
+      name: 'ozingizgaKerakliTexnikaniQidiring',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Barcha parametrlari haqida ma’lumot oling`
+  String get barchaParametrlariHaqidaMalumotOling {
+    return Intl.message(
+      'Barcha parametrlari haqida ma’lumot oling',
+      name: 'barchaParametrlariHaqidaMalumotOling',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Qisqa vaqt ichida o’z avtomobilingizga ega bo’ling`
+  String get qisqaVaqtIchidaOzAvtomobilingizgaEgaBoling {
+    return Intl.message(
+      'Qisqa vaqt ichida o’z avtomobilingizga ega bo’ling',
+      name: 'qisqaVaqtIchidaOzAvtomobilingizgaEgaBoling',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BARCHA IMKONIYATLARDAN FOYDALANISH UCHUN TELEFON RAQAMINGIZ ORQALI IDENTIFIKATSIYADAN O’TING.`
+  String
+      get barchaImkoniyatlardanFoydalanishUchunTelefonRaqamingizOrqaliIdentifikatsiyadanOting {
+    return Intl.message(
+      'BARCHA IMKONIYATLARDAN FOYDALANISH UCHUN TELEFON RAQAMINGIZ ORQALI IDENTIFIKATSIYADAN O’TING.',
+      name:
+          'barchaImkoniyatlardanFoydalanishUchunTelefonRaqamingizOrqaliIdentifikatsiyadanOting',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

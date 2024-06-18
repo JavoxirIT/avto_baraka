@@ -1,3 +1,6 @@
+import 'package:avto_baraka/api/models/car_category_models.dart';
+import 'package:avto_baraka/api/service/car_service.dart';
+import 'package:avto_baraka/api/service/chat_servive.dart';
 import 'package:avto_baraka/screen/imports/imports_maim.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -10,17 +13,21 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen>
     with SingleTickerProviderStateMixin {
+  List<CarCategoryModels>? categoryList;
   GlobalKey<CurvedNavigationBarState> bottomNavigationKey = GlobalKey();
   List<ConnectivityResult> _connectionStatus = [ConnectivityResult.none];
   final Connectivity _connectivity = Connectivity();
   late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
-  int _selectedIndex = 0;
+  int? count;
   final double sizecontainersize = 30.0;
+  int _selectedIndex = 0;
 
 // loading
   bool showLoadingIndicator = true;
   late AnimationController _controller;
-  late Animation<double> _animation;
+  // late Animation<double> _animation;
+  late Animation<Offset> _animation;
+  late Future<void> _initialization;
   // late Timer _timer;
 
   @override
@@ -30,31 +37,31 @@ class _MainScreenState extends State<MainScreen>
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
 
-    // ::::::::::::::::::::: loading
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 3),
-    );
+    _initialization = getData();
 
-    _animation = Tween(begin: 1.0, end: 0.0).animate(_controller)
-      ..addListener(() {
-        setState(() {});
-      });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Timer(const Duration(milliseconds: 3000), () {
-        setState(() {
-          showLoadingIndicator = false;
-        });
+    _initialization.then((_) {
+      _controller.forward().then((_) {
+        if (categoryList!.isNotEmpty) {
+          Future.delayed(const Duration(seconds: 6), () {
+            showLoadingIndicator = false;
+          });
+        }
       });
     });
 
-    // _timer = Timer(const Duration(milliseconds: 2000), () {
-    //   _controller.forward();
-    //   setState(() {
-    //     showLoadingIndicator = false;
-    //   });
-    // });
+    // ::::::::::::::::::::: loading
+    _controller = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    );
+
+    _animation = Tween<Offset>(
+      begin: Offset.zero,
+      end: const Offset(0, -1),
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.elasticIn,
+    ));
   }
 
   @override
@@ -85,6 +92,7 @@ class _MainScreenState extends State<MainScreen>
             child: screenList.elementAt(_selectedIndex),
           ),
           bottomNavigationBar: CurvedNavigationBar(
+            height: 55.0,
             key: bottomNavigationKey,
             index: 0,
             items: curvedNavigationBarItem,
@@ -98,15 +106,12 @@ class _MainScreenState extends State<MainScreen>
           ),
         ),
         if (showLoadingIndicator)
-          FadeTransition(
-            opacity: _animation,
+          SlideTransition(
+            position: _animation,
             child: Container(
               decoration: const BoxDecoration(
-                image:
-                    DecorationImage(image: AssetImage(img), fit: BoxFit.cover),
-              ),
-              child: const Center(
-                child: CircularProgressIndicator(),
+                image: DecorationImage(
+                    image: AssetImage(imgBlack), fit: BoxFit.cover),
               ),
             ),
           ),
@@ -147,16 +152,25 @@ class _MainScreenState extends State<MainScreen>
         alignment: Alignment.center,
         width: sizecontainersize,
         height: sizecontainersize,
-        child: Badge(
-          label: const Text(
-            "0",
-            style: TextStyle(color: Colors.white),
-          ),
-          child: Icon(
-            icon,
-            color: _selectedIndex == index ? Colors.white : iconSelectedColor,
-          ),
-        ),
+        child: count != 0
+            ? Badge(
+                backgroundColor: colorWhite,
+                label: Text(
+                  count.toString(),
+                  style: TextStyle(
+                    color: cardBlackColor,
+                  ),
+                ),
+                child: Icon(
+                  icon,
+                  color:
+                      _selectedIndex == index ? colorWhite : iconSelectedColor,
+                ),
+              )
+            : Icon(
+                icon,
+                color: _selectedIndex == index ? colorWhite : iconSelectedColor,
+              ),
       ),
     );
   }
@@ -188,5 +202,13 @@ class _MainScreenState extends State<MainScreen>
     });
     // ignore: avoid_print
     // print('Connectivity changed: $_connectionStatus');
+  }
+
+  Future<void> getData() async {
+    categoryList = await CarService().carCategoryLoad();
+    count = await ChatService.chatService.unreadMessages();
+    if (mounted) {
+      setState(() {});
+    }
   }
 }

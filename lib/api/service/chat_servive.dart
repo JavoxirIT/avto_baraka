@@ -39,17 +39,6 @@ class ChatService {
       if (message != null) {
         formData.fields.add(MapEntry("message", message));
       }
-      // debugPrint('files');
-      // formData.files.forEach((element) {
-      //   debugPrint('key: ${element.key}');
-      //   debugPrint('value: ${element.value}');
-      // });
-      // debugPrint('fields');
-      // formData.fields.forEach((element) {
-      //   debugPrint('key: ${element.key}');
-      //   debugPrint('value: ${element.value}');
-      // });
-
       final response = await _dio.post(
         '${_url}send-message',
         options: Options(
@@ -61,7 +50,7 @@ class ChatService {
       );
       if (response.statusCode == 200) {
         // listChatOneRoom.add(ChatOneRoomModels.fromMap(response.data));
-        debugPrint('Send CMC: $response');
+        // debugPrint('Send CMC: $response');
         map = ChatOneRoomModels.fromMap(response.data);
       } else {
         debugPrint('debugPrint: $response');
@@ -120,7 +109,7 @@ class ChatService {
         for (var element in response.data) {
           listChatOneRoom.add(ChatOneRoomModels.fromMap(element));
         }
-        debugPrint('One Chat rooms: ${response.data}');
+        // debugPrint('One Chat rooms: ${response.data}');
       } else {
         debugPrint('response error: ${response.statusCode}');
       }
@@ -147,7 +136,7 @@ class ChatService {
         for (var element in response.data) {
           listAllRoom.add(ChatAllRoomsModale.fromMap(element));
         }
-        debugPrint('ALL ROOMS: ${response.data}');
+        // debugPrint('ALL ROOMS: ${response.data}');
       } else {
         debugPrint('Error All Rooms : ${response.statusCode}');
       }
@@ -156,6 +145,22 @@ class ChatService {
     }
 
     return listAllRoom;
+  }
+
+  Future unreadMessages() async {
+    final response = await _dio.post(
+      '${_url}unread-messages',
+      options: Options(headers: {
+        "Authorization": await LocalMemory.service.getLocolToken()
+      }),
+    );
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = response.data as Map<String, dynamic>;
+
+      return data["count"];
+    } else {
+      return 0;
+    }
   }
 }
 // Response ({"id":6,"message":"salom","date":"2024-05-27 13:13:22","file":"[]","room_id":2,"user_id":7,"status":0})

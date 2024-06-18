@@ -9,12 +9,13 @@ class RouteName {
   static const creditScreen = "/creditScreen";
   static const settingView = "/settingView";
   static const settingUserView = "/settingUserView";
-  static const contactWithAdmin = "/contactWithAdmin";
   static const firstpayView = "/firstpayView";
   static const fullScreenImage = "/fullScreenImage";
   static const searchView = "/searchView";
-  static const oneChat = "/oneChat";
-  static const chatTwo = "/chatTwo";
+  static const chat = "/oneChat";
+  static const firstChat = "/firstChat";
   static const loginToAnotherAccount = "/loginToAnotherAccount";
   static const ratesView = "/ratesView";
+  static const privacyWeb = "/privacyWeb";
+  static const termsConditionWeb = "/termsConditionWeb";
 }

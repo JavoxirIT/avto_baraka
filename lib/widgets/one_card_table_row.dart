@@ -5,7 +5,7 @@ TableRow tableRow(title, data) {
     children: [
       TableCell(
         child: Padding(
-          padding: const EdgeInsets.only(bottom: 5.0, left: 5.0),
+          padding: const EdgeInsets.all(5.0),
           child: Text(
             title,
             style: const TextStyle(fontSize: 12.0),
@@ -14,7 +14,7 @@ TableRow tableRow(title, data) {
       ),
       TableCell(
         child: Padding(
-          padding: const EdgeInsets.only(bottom: 5.0, right: 5.0),
+          padding: const EdgeInsets.all(5.0),
           child: Text(
             data,
             textAlign: TextAlign.end,

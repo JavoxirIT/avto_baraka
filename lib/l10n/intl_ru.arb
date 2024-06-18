@@ -161,9 +161,19 @@
   "kreditMuddati": "Срок кредита",
   "yil": " г",
   "oylarSoni": "Количество месяцев",
-  "oy": " мм",
+  "oy": " м",
   "oylikTolov": "Ежемесячная плата",
   "som": " сум",
   "birinchiTolovUsd": "Первая оплата в USD",
-  "birinchiTolovUzs": "Первая оплата в UZS"
+  "birinchiTolovUzs": "Первая оплата в UZS",
+  "xaritadagiJoylashuvi": "Располоэжение на карте",
+  "shikoyatingizniKiriting": "Введите вашу жалобу",
+  "shikoyatYuborildi": "Жалоба отправлена! Спасибо, что помогаете улучшить ...",
+  "xabarMavjutEmas": "Сообщение нет",
+  "kerakliElonniQidirish": "Поиск обявления",
+  "modelniTanlang": "Выберите модель",
+  "ozingizgaKerakliTexnikaniQidiring": "Найдите нужную вам технику",
+  "barchaParametrlariHaqidaMalumotOling": "Получите информацию о всех параметрах",
+  "qisqaVaqtIchidaOzAvtomobilingizgaEgaBoling": "Получите свой автомобиль в кратчайшие сроки",
+  "barchaImkoniyatlardanFoydalanishUchunTelefonRaqamingizOrqaliIdentifikatsiyadanOting": "ЗАРЕГИСТРИРУЙТЕСЬ ПО НОМЕРУ ТЕЛЕФОНА, ЧТОБЫ ИСПОЛЬЗОВАТЬ ВСЕ ВОЗМОЖНОСТИ."
 }

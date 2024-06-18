@@ -75,6 +75,7 @@ class _FullScreenImageState extends State<FullScreenImage> {
             )
             .toList(),
         options: CarouselOptions(
+          showIndicator: false,
           autoPlay: false,
           // controller: buttonCarouselController,
           enlargeCenterPage: true,

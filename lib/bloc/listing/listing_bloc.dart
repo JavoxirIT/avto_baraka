@@ -116,16 +116,23 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
         event.valyuta,
       );
       if (searchData.isEmpty) {
+        final listings =
+            await _listingService.getDataListing(state.currentPage);
         emit(ListingStateNoDataSearch());
         await Future.delayed(const Duration(milliseconds: 500));
-        emit(state.copyWith(hasReachedMax: false, listing: state.listing));
+        emit(state.copyWith(
+          hasReachedMax: false,
+          status: ListingStatus.success,
+          listing: listings,
+          currentPage: state.currentPage,
+        ));
       } else {
         emit(ListingStateHasDataSearch(count: searchData.length));
         await Future.delayed(const Duration(milliseconds: 500));
         emit(
           state.copyWith(
             status: ListingStatus.success,
-            listing: List.of(searchData),
+            listing: searchData,
             hasReachedMax: false,
             currentPage: 1,
           ),

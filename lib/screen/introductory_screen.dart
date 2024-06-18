@@ -15,8 +15,7 @@ class _MainPageState extends State<IntroductionScreen>
   bool showLoadingIndicator = true;
 
   late AnimationController _controller;
-  late Animation<double> _animation;
-  late Timer _timer;
+  late Animation<Offset> _animation;
 
   @override
   void initState() {
@@ -24,18 +23,18 @@ class _MainPageState extends State<IntroductionScreen>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 4),
+      duration: const Duration(seconds: 3),
     );
 
-    _animation = Tween(begin: 1.0, end: 0.0).animate(_controller)
-      ..addListener(() {
-        setState(() {});
-      });
-    _timer = Timer(const Duration(milliseconds: 2000), () {
-      if (mounted) {
-        _controller.forward();
-      }
-      setState(() {
+    _animation = Tween<Offset>(
+      begin: Offset.zero,
+      end: const Offset(0, -1),
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.elasticIn,
+    ));
+    _controller.forward().then((_) {
+      Future.delayed(const Duration(seconds: 1), () {
         showLoadingIndicator = false;
       });
     });
@@ -46,7 +45,7 @@ class _MainPageState extends State<IntroductionScreen>
     if (mounted) {
       _controller.dispose();
     }
-    _timer.cancel();
+
     super.dispose();
   }
 
@@ -54,6 +53,9 @@ class _MainPageState extends State<IntroductionScreen>
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height / 2;
     final double heightImage = MediaQuery.of(context).size.height / 5;
+
+    List<Map<String, dynamic>> list = mainCarouselItem(context);
+
     return Scaffold(
       body: SafeArea(
         child: Consumer<TokenProvider>(
@@ -64,7 +66,7 @@ class _MainPageState extends State<IntroductionScreen>
                   children: [
                     Expanded(
                       child: FlutterCarousel(
-                        items: mainCarouselItem
+                        items: list
                             .map(
                               (item) => Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -89,6 +91,7 @@ class _MainPageState extends State<IntroductionScreen>
                             )
                             .toList(),
                         options: CarouselOptions(
+                          showIndicator: false,
                           autoPlay: false,
                           controller: buttonCarouselController,
                           enlargeCenterPage: true,
@@ -123,7 +126,7 @@ class _MainPageState extends State<IntroductionScreen>
                               : ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       shape: const CircleBorder(),
-                                      backgroundColor: const Color(0xff008080),
+                                      backgroundColor: iconSelectedColor,
                                       padding: const EdgeInsets.all(15.0)),
                                   onPressed: () {
                                     buttonCarouselController.previousPage(
@@ -135,13 +138,13 @@ class _MainPageState extends State<IntroductionScreen>
                                       color: Colors.white),
                                 ),
                           DotsIndicator(
-                            dotsCount: mainCarouselItem.length,
+                            dotsCount: list.length,
                             position: _currentPosition,
-                            decorator: const DotsDecorator(
-                              activeColor: Color(0xFF008080),
-                              color: Color(0XFFd9d9d9),
-                              size: Size(15.0, 15.0),
-                              activeSize: Size(15.0, 15.0),
+                            decorator: DotsDecorator(
+                              activeColor: iconSelectedColor,
+                              color: const Color(0XFFd9d9d9),
+                              size: const Size(15.0, 15.0),
+                              activeSize: const Size(15.0, 15.0),
                             ),
                           ),
                           _currentPosition == 3
@@ -191,15 +194,12 @@ class _MainPageState extends State<IntroductionScreen>
                   ],
                 ),
                 if (showLoadingIndicator)
-                  FadeTransition(
-                    opacity: _animation,
+                  SlideTransition(
+                    position: _animation,
                     child: Container(
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage(img), fit: BoxFit.cover),
-                      ),
-                      child: const Center(
-                        child: CircularProgressIndicator(),
+                            image: AssetImage(imgBlack), fit: BoxFit.cover),
                       ),
                     ),
                   )
@@ -218,9 +218,9 @@ class _MainPageState extends State<IntroductionScreen>
         child: Text(
           item['text'],
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 18.0,
-            color: Color(0xFF008080),
+            color: colorWhite,
             fontWeight: FontWeight.w700,
           ),
         ),

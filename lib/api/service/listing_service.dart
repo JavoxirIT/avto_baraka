@@ -85,8 +85,7 @@ class ListingService {
       if (response.statusCode == 200) {
         for (var element in response.data['data']) {
           // debugPrint('response.data: ${response.data['data']}');
-          
-        
+
           listingDataList.add(ListingGetModals.fromMap(element));
         }
       } else {
@@ -267,7 +266,7 @@ class ListingService {
         data: {"listing_id": listing_id},
       );
       if (response.statusCode == 200) {
-        debugPrint('LIKED Response: ${response.data}');
+        // debugPrint('LIKED Response: ${response.data}');
         likedStatus = response.data;
       } else {
         debugPrint('LIKED ERORR Response: ${response.statusCode}');
@@ -314,7 +313,6 @@ class ListingService {
   }
 
   // DELETE LISTING
-  // deletelisting/{id}
   Future<int> deleteListing(int listingId, String token) async {
     int responseData = 0;
     try {
@@ -333,5 +331,32 @@ class ListingService {
       }
     }
     return responseData;
+  }
+
+  //COMPLAINT
+  Future complaint(String desc, int listingId) async {
+    final response = await _dio.post(
+      '${_url}report',
+      options: Options(
+        headers: {
+          'Authorization': await LocalMemory.service.getLocolToken(),
+        },
+      ),
+      data: {"listing_id": listingId, "description": desc},
+    );
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = response.data as Map<String, dynamic>;
+      return data;
+    }
+  }
+
+  // VIEWED
+  Future<void> viewed(int listingId) async {
+    _dio.post(
+      '${_url}viewed/$listingId',
+      options: Options(
+        headers: {"Authorization": await LocalMemory.service.getLocolToken()},
+      ),
+    );
   }
 }

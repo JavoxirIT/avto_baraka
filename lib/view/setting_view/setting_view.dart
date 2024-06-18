@@ -32,7 +32,9 @@ class SettingView extends StatelessWidget {
                   .textTheme
                   .labelMedium!
                   .copyWith(color: Colors.white),
-              () => {},
+              () => {
+                Navigator.of(context).pushNamed(RouteName.termsConditionWeb)
+              },
             ),
             sizedBox10,
             settingListTile(
@@ -41,7 +43,7 @@ class SettingView extends StatelessWidget {
                   .textTheme
                   .labelMedium!
                   .copyWith(color: Colors.white),
-              () => {},
+              () => {Navigator.of(context).pushNamed(RouteName.privacyWeb)},
             ),
             sizedBox10,
             settingListTile(
@@ -52,18 +54,18 @@ class SettingView extends StatelessWidget {
                   .copyWith(color: Colors.white),
               () => {},
             ),
-            sizedBox10,
-            settingListTile(
-              S.of(context).boshqaAkauntgaKirish,
-              Theme.of(context).textTheme.labelMedium!.copyWith(
-                    color: Colors.red[300],
-                  ),
-              () => {
-                Navigator.of(context).pushNamed(
-                  RouteName.loginToAnotherAccount,
-                )
-              },
-            ),
+            // sizedBox10,
+            // settingListTile(
+            //   S.of(context).boshqaAkauntgaKirish,
+            //   Theme.of(context).textTheme.labelMedium!.copyWith(
+            //         color: Colors.red[300],
+            //       ),
+            //   () => {
+            //     Navigator.of(context).pushNamed(
+            //       RouteName.loginToAnotherAccount,
+            //     )
+            //   },
+            // ),
           ],
         ),
       ),

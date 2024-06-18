@@ -28,7 +28,9 @@
 	<application
         android:label="Avto Baraka"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+       
+        >
 		<!-- flutterlocalnotifications -->
 		<receiver android:name="com.dexterous.flutterlocalnotifications.receivers.ActionReceiver" android:exported="true"/>
 		<!-- flutterlocalnotifications -->

@@ -108,7 +108,7 @@ class ChatScreenState extends State<ChatScreen> {
                               //     : ""),
                               onTap: () {
                                 Navigator.of(context).pushNamed(
-                                  RouteName.oneChat,
+                                  RouteName.chat,
                                   arguments: {
                                     "roomId": chat.roomId,
                                   },

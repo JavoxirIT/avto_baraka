@@ -7,7 +7,7 @@ SizedBox onaCardDataTitle(context, title) {
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Text(
         title,
-        style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700),
+        style: Theme.of(context).textTheme.bodyMedium,
       ),
     ),
   );

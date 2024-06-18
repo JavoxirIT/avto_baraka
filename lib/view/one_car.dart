@@ -1,13 +1,11 @@
 import 'package:avto_baraka/api/models/listing_get_models.dart';
-import 'package:avto_baraka/bloc/like/like_bloc.dart';
-import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
-import 'package:avto_baraka/generated/l10n.dart';
+import 'package:avto_baraka/api/service/listing_service.dart';
 import 'package:avto_baraka/http_config/config.dart';
 import 'package:avto_baraka/observer/launch_map.dart';
 import 'package:avto_baraka/observer/share_route_observer.dart';
-import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
 import 'package:avto_baraka/provider/token_provider/token_provider.dart';
-import 'package:avto_baraka/router/route_name.dart';
+import 'package:avto_baraka/screen/imports/imports_listing.dart';
+import 'package:avto_baraka/style/announcement_input_decoration.dart';
 import 'package:avto_baraka/style/box_decoration.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/one_car_outline_button.dart';
@@ -16,17 +14,15 @@ import 'package:avto_baraka/utill/call.dart';
 import 'package:avto_baraka/widgets/icon_button_circle_vatar.dart';
 import 'package:avto_baraka/widgets/one_card_data_title.dart';
 import 'package:avto_baraka/widgets/one_card_table_row.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
-// ignore: depend_on_referenced_packages
 import 'package:latlong2/latlong.dart';
 
 class OneCarView extends StatefulWidget {
@@ -41,6 +37,13 @@ class OneCarViewState extends State<OneCarView> {
   ListingGetModals? _carData;
   final List carImageList = [];
   final List carChipTagList = [];
+  final _complaint = TextEditingController();
+
+  @override
+  void dispose() {
+    _complaint.dispose();
+    super.dispose();
+  }
 
   @override
   void didChangeDependencies() {
@@ -48,33 +51,18 @@ class OneCarViewState extends State<OneCarView> {
 
     if (setting.arguments != null) {
       _carData = setting.arguments as ListingGetModals;
-      // carImageList = _carData.carImage;
-
       for (var i = 0; i < _carData!.carImage.length; i++) {
         carImageList.add({"image": _carData!.carImage[i]});
       }
-      // for (var i = 0; i < _carData.additionalOption.length; i++) {
-      //   carChipTagList.add({"tag": _carData.additionalOption[i]});
-      // }
     }
+
+// viewed
+    ListingService.servive.viewed(_carData!.id);
 
     super.didChangeDependencies();
   }
 
   void onPress(context) {}
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance!.addPostFrameCallback((_) {
-  //     Navigator.of(context).addObserver(shareRouteObserver);
-  //   });
-  // }
-
-  // @override
-  // void dispose() {
-  //   Navigator.of(context).removeObserver(shareRouteObserver);
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -82,23 +70,24 @@ class OneCarViewState extends State<OneCarView> {
     // final languageProvider = Provider.of<LocalProvider>(context);
     final double height = MediaQuery.of(context).size.height / 3;
     final double heightImage = MediaQuery.of(context).size.height;
-    Color likeColor = _carData!.liked != 1 ? iconDizLike : colorRed;
+    Color likeColor = _carData!.liked != 1 ? colorWhite : colorRed;
     final carTitle =
         "${_carData!.brand} ${_carData!.model} ${_carData!.car_position}";
     final city = "${_carData!.region} ${_carData!.district}";
 
     return Scaffold(
+      backgroundColor: cardBlackColor,
       appBar: AppBar(
         title: Text(
           carTitle,
-          // style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyLarge,
           // style: TextStyle(color: textColorViolet),
         ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(left: 5.0, right: 10.0),
             child: CircleAvatar(
-              backgroundColor: backgrounColor,
+              backgroundColor: iconSelectedColor,
               radius: 16.0,
               child: IconButton(
                 onPressed: () async {
@@ -113,7 +102,7 @@ class OneCarViewState extends State<OneCarView> {
                 },
                 icon: Icon(
                   Symbols.share,
-                  color: iconSelectedColor,
+                  color: colorWhite,
                   size: 15.0,
                 ),
               ),
@@ -140,7 +129,8 @@ class OneCarViewState extends State<OneCarView> {
                 )
                 .toList(),
             options: CarouselOptions(
-              autoPlay: false,
+              autoPlay: true,
+              showIndicator: false,
               // controller: buttonCarouselController,
               enlargeCenterPage: true,
               viewportFraction: 1,
@@ -157,38 +147,46 @@ class OneCarViewState extends State<OneCarView> {
           Positioned(
             top: 0,
             right: 5.0,
-            width: 192,
+            // width: 192,
             child: Card(
-              color: cardFixCardColor,
               child: Padding(
-                padding: const EdgeInsets.all(3.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text.rich(
                       TextSpan(
                         children: [
-                          const WidgetSpan(
+                          WidgetSpan(
                             child: Padding(
-                              padding: EdgeInsets.only(right: 8.0),
-                              child: Icon(FontAwesomeIcons.eye, size: 14.0),
+                              padding: const EdgeInsets.only(
+                                right: 8.0,
+                              ),
+                              child: Icon(
+                                FontAwesomeIcons.eye,
+                                size: 14.0,
+                                color: colorRed,
+                              ),
                             ),
                           ),
                           TextSpan(
                             text: _carData!.viewed != 0
                                 ? _carData!.viewed.toString()
                                 : "0",
-                            style: const TextStyle(
-                                fontSize: 12.0, fontWeight: FontWeight.w700),
                           ),
                         ],
                       ),
                     ),
+                    const SizedBox(width: 10.0),
                     Text(
-                      '${_carData!.price.toString()} y.e',
+                      NumberFormat.currency(
+                        locale: "uz-UZ",
+                        symbol: _carData!.valyutaShort,
+                        decimalDigits: 0,
+                      ).format(_carData!.price),
                       style: TextStyle(
                         color: iconSelectedColor,
-                        fontSize: 18.0,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
@@ -209,7 +207,7 @@ class OneCarViewState extends State<OneCarView> {
                     left: 25.0, right: 25.0, top: 10.0, bottom: 100),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  color: Colors.white,
+                  color: cardBlackColor,
                 ),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
@@ -221,20 +219,16 @@ class OneCarViewState extends State<OneCarView> {
                         children: [
                           Text(
                             city,
-                            style: TextStyle(
-                              color: textColorViolet,
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.w700,
-                            ),
+                            style: Theme.of(context).textTheme.bodyMedium,
                           ),
                           iconButton(
                               Icon(
                                 FontAwesomeIcons.locationDot,
-                                color: colorRed,
+                                color: colorWhite,
                                 size: 18.0,
                               ),
                               18.0,
-                              backgrounColor,
+                              colorRed,
                               launchMap,
                               context,
                               [
@@ -246,7 +240,7 @@ class OneCarViewState extends State<OneCarView> {
                       onaCardDataTitle(context, S.of(context).parametrlar),
                       Table(
                         border: TableBorder.all(
-                          color: backgrounColor,
+                          color: iconSelectedColor,
                           borderRadius: const BorderRadius.all(
                             Radius.circular(5.0),
                           ),
@@ -274,20 +268,6 @@ class OneCarViewState extends State<OneCarView> {
                                   : S.of(context).ilojiBor),
                         ],
                       ),
-
-                      // onaCardDataTitle(context, 'Qo’shimcha qulayliklar'),
-                      // SizedBox(
-                      //   width: MediaQuery.of(context).size.width,
-                      //   child: Wrap(
-                      //     direction: Axis.horizontal,
-                      //     alignment: WrapAlignment.start,
-                      //     children: carChipTagList
-                      //         .map(
-                      //           (el) => oneCardChipTag(el.tag),
-                      //         )
-                      //         .toList(),
-                      //   ),
-                      // ),
                       sizedBoxH20,
                       onaCardDataTitle(context, S.of(context).qoshimchaMalumot),
                       SizedBox(
@@ -300,7 +280,8 @@ class OneCarViewState extends State<OneCarView> {
                         ),
                       ),
                       sizedBoxH20,
-                      onaCardDataTitle(context, "Xaritadagi joylashuvi"),
+                      onaCardDataTitle(
+                          context, S.of(context).xaritadagiJoylashuvi),
                       SizedBox(
                         height: 200.0,
                         width: MediaQuery.of(context).size.width,
@@ -351,24 +332,28 @@ class OneCarViewState extends State<OneCarView> {
         ],
       ),
       bottomSheet: BottomAppBar(
-        color: const Color.fromARGB(255, 247, 247, 247),
+        color: iconSelectedColor,
         elevation: 0,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            iconButton(
-              const Icon(
-                FontAwesomeIcons.triangleExclamation,
-                color: Color(0xFFFFC400),
-                size: 15.0,
+            CircleAvatar(
+              backgroundColor: cardBlackColor,
+              radius: 16.0,
+              child: IconButton(
+                onPressed: () {
+                  complaint(context);
+                },
+                icon: Icon(
+                  FontAwesomeIcons.triangleExclamation,
+                  color: colorWhite,
+                  size: 15.0,
+                ),
               ),
-              16.0,
-              const Color(0x2EFFC400),
-              onPress,
-              context,
             ),
             CircleAvatar(
-              backgroundColor: const Color.fromARGB(31, 255, 0, 0),
+              backgroundColor: cardBlackColor,
+              radius: 16.0,
               child: IconButton(
                 onPressed: () {
                   BlocProvider.of<ListingBloc>(context).add(
@@ -393,20 +378,20 @@ class OneCarViewState extends State<OneCarView> {
               ),
             ),
             CircleAvatar(
-              backgroundColor: const Color.fromARGB(22, 0, 128, 128),
+              backgroundColor: cardBlackColor,
               radius: 16.0,
               child: IconButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed(
-                    RouteName.chatTwo,
+                    RouteName.firstChat,
                     arguments: {
                       "userId": _carData!.userId,
                     },
                   );
                 },
-                icon: const Icon(
+                icon: Icon(
                   Symbols.message_rounded,
-                  color: Color(0XFF008080),
+                  color: colorWhite,
                   size: 15.0,
                 ),
               ),
@@ -415,14 +400,15 @@ class OneCarViewState extends State<OneCarView> {
               onPressed: () {
                 call(_carData!.phone);
               },
-              style: oneCaroutlineButton,
+              style: oneCaroutlineButton.copyWith(
+                  backgroundColor: MaterialStatePropertyAll(cardBlackColor)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  const Icon(
+                  Icon(
                     Symbols.phone,
                     size: 16.0,
-                    // color: Color(0xFF001BAB),
+                    color: colorWhite,
                   ),
                   const SizedBox(
                     width: 10.0,
@@ -432,7 +418,7 @@ class OneCarViewState extends State<OneCarView> {
                     style: Theme.of(context)
                         .textTheme
                         .displaySmall
-                        ?.copyWith(color: iconSelectedColor),
+                        ?.copyWith(color: colorWhite),
                   ),
                 ],
               ),
@@ -441,6 +427,83 @@ class OneCarViewState extends State<OneCarView> {
         ),
       ),
     );
+  }
+
+  Future<dynamic> complaint(BuildContext context) {
+    return showCupertinoModalPopup(
+      context: context,
+      builder: (context) {
+        return Dialog.fullscreen(
+          backgroundColor: cardBlackColor,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextFormField(
+                maxLines: 5,
+                keyboardType: TextInputType.multiline,
+                minLines: 5,
+                decoration: announcementInputDecoration(
+                    S.of(context).shikoyatingizniKiriting),
+                maxLength: 100,
+                controller: _complaint,
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        if (_complaint.text.trim() == "") {
+                          return;
+                        } else {
+                          sendComplaint(_complaint.text, _carData!.id);
+                        }
+                      },
+                      style: elevatedButton.copyWith(
+                        backgroundColor:
+                            MaterialStatePropertyAll(iconSelectedColor),
+                      ),
+                      child: Text(S.of(context).yuborish),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void sendComplaint(String complaint, int id) async {
+    final result = await ListingService.servive.complaint(complaint, id);
+    if (mounted) {
+      if (result['status'] == "success") {
+        _complaint.text = "";
+        showDialog(
+          context: context,
+          builder: (context) {
+            return Dialog(
+              insetAnimationDuration: const Duration(seconds: 2),
+              backgroundColor: cardBlackColor,
+              child: Container(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(
+                  S.of(context).shikoyatYuborildi,
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelLarge!
+                      .copyWith(color: colorWhite),
+                ),
+              ),
+            );
+          },
+        );
+      }
+      setState(() {});
+    }
   }
 
   // ignore: unused_element

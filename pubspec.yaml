@@ -1,7 +1,5 @@
 name: avto_baraka
-description: "A new Flutter project."
-# The following line prevents the package from being accidentally published to
-# pub.dev using `flutter pub publish`. This is preferred for private packages.
+description: "application for posting cars for sale"
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
@@ -16,7 +14,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 1.0.1
 
 environment:
   sdk: ">=3.2.3 < 4.0.0"
@@ -82,6 +80,9 @@ dependencies:
   stream_transform: ^2.1.0
   flutter_svg: ^2.0.10+1
   curved_navigation_bar: ^1.0.6
+  webview_flutter: ^4.8.0
+  webview_flutter_android: ^3.16.3
+  webview_flutter_wkwebview: ^3.13.1
 
 dev_dependencies:
   flutter_test:

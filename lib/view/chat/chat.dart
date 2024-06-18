@@ -52,13 +52,13 @@ class ChatState extends State<Chat> {
 
     OutlineInputBorder borderStyle = OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(_borderRadius)),
-      borderSide: const BorderSide(color: Colors.blue, width: 0.2),
+      borderSide:  BorderSide(color: iconSelectedColor, width: 0.2),
     );
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: const Text('Chat'),
+        // title: const Text('Chat'),
       ),
       body: BlocBuilder<OneRoomBloc, OneRoomState>(
         builder: (context, state) {

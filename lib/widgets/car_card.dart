@@ -3,7 +3,6 @@ import 'package:avto_baraka/api/models/listing_get_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:avto_baraka/bloc/like/like_bloc.dart';
 import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/http_config/config.dart';
@@ -42,7 +41,10 @@ class _CarCardState extends State<CarCard> {
                   return AlertDialog(
                     title: Text(
                       S.of(context).kechirasiz,
-                      style: Theme.of(context).textTheme.labelLarge,
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelLarge!
+                          .copyWith(color: colorWhite),
                     ),
                     content: Text(
                       S.of(context).malumotTopilmadi,
@@ -69,7 +71,10 @@ class _CarCardState extends State<CarCard> {
                   return AlertDialog(
                     title: Text(
                       S.of(context).sorovingizBoyicha,
-                      style: Theme.of(context).textTheme.labelLarge,
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelLarge!
+                          .copyWith(color: colorWhite),
                     ),
                     content: Text(
                       S.of(context).countElonTopildi(state.count),
@@ -90,12 +95,12 @@ class _CarCardState extends State<CarCard> {
       switch (state.status) {
         case ListingStatus.failure:
           return Center(
-            child: Text(S.of(context).malumotlatYuklanishidaXatolik),
+            child: Text(S.of(context).malumotlarBazasidaXatolik),
           );
         case ListingStatus.success:
           if (state.listing.isEmpty) {
             return Center(
-              child: Text(S.of(context).malumotlarBazasidaXatolik),
+              child: Text(S.of(context).malumotlatYuklanishidaXatolik),
             );
           }
           return ListView.builder(
@@ -174,7 +179,8 @@ class _CarCardState extends State<CarCard> {
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       shape: const CircleBorder(),
-                                      backgroundColor: cardFixCardColor,
+                                      backgroundColor:
+                                          cardBlackColor.withOpacity(0.5),
                                     ),
                                     onPressed: () {
                                       BlocProvider.of<ListingBloc>(context).add(
@@ -191,7 +197,7 @@ class _CarCardState extends State<CarCard> {
                                     child: Icon(
                                       FontAwesomeIcons.solidHeart,
                                       color: item.liked != 1
-                                          ? iconDizLike
+                                          ? colorWhite
                                           : colorRed,
                                       size: 14.0,
                                     ),
@@ -200,11 +206,12 @@ class _CarCardState extends State<CarCard> {
                                 Positioned(
                                   bottom: 0,
                                   right: 0,
-                                  width: 192,
                                   child: Card(
-                                    color: cardFixCardColor,
+                                    color: cardBlackColor,
+                                    elevation: 0,
                                     child: Padding(
-                                      padding: const EdgeInsets.all(3.0),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 3.0, horizontal: 10.0),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -230,14 +237,11 @@ class _CarCardState extends State<CarCard> {
                                                   text: item.viewed != 0
                                                       ? item.viewed.toString()
                                                       : "0",
-                                                  style: const TextStyle(
-                                                    fontSize: 12.0,
-                                                    fontWeight: FontWeight.w700,
-                                                  ),
                                                 ),
                                               ],
                                             ),
                                           ),
+                                          const SizedBox(width: 10.0),
                                           Text(
                                             NumberFormat.currency(
                                               locale: "uz-UZ",
@@ -267,8 +271,7 @@ class _CarCardState extends State<CarCard> {
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 5.0, bottom: 10.0),
+                              padding: const EdgeInsets.only(top: 5.0),
                               child: GridView(
                                 shrinkWrap: true,
                                 gridDelegate:
@@ -282,6 +285,10 @@ class _CarCardState extends State<CarCard> {
                               ),
                             ),
                             TextButton(
+                              style: const ButtonStyle(
+                                  alignment: Alignment.center,
+                                  padding: MaterialStatePropertyAll(
+                                      EdgeInsets.all(0))),
                               onPressed: () {
                                 Navigator.of(context).pushNamed(
                                   RouteName.creditScreen,
@@ -296,7 +303,6 @@ class _CarCardState extends State<CarCard> {
                                 S.of(context).kreditKalkulatori,
                                 style:
                                     Theme.of(context).textTheme.displayMedium,
-                                textAlign: TextAlign.center,
                                 // textDirection: TextDecoration(),
                               ),
                             )
@@ -310,7 +316,10 @@ class _CarCardState extends State<CarCard> {
             },
           );
         case ListingStatus.initial:
-          return const Center(child: CircularProgressIndicator());
+          return Center(
+              child: CircularProgressIndicator(
+            color: iconSelectedColor,
+          ));
       }
     });
 

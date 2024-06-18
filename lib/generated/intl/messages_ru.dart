@@ -49,6 +49,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "avvalViloyatniTanlang":
             MessageLookupByLibrary.simpleMessage("Сначало выберите регион"),
         "bajarish": MessageLookupByLibrary.simpleMessage("Выполнить"),
+        "barchaImkoniyatlardanFoydalanishUchunTelefonRaqamingizOrqaliIdentifikatsiyadanOting":
+            MessageLookupByLibrary.simpleMessage(
+                "ЗАРЕГИСТРИРУЙТЕСЬ ПО НОМЕРУ ТЕЛЕФОНА, ЧТОБЫ ИСПОЛЬЗОВАТЬ ВСЕ ВОЗМОЖНОСТИ."),
+        "barchaParametrlariHaqidaMalumotOling":
+            MessageLookupByLibrary.simpleMessage(
+                "Получите информацию о всех параметрах"),
         "batafsilMalumot":
             MessageLookupByLibrary.simpleMessage("Подробная информация"),
         "bekorQilingan":
@@ -145,6 +151,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Введите полный номер карты"),
         "kategoriyalar": MessageLookupByLibrary.simpleMessage("КАТЕГОРИИ"),
         "kechirasiz": MessageLookupByLibrary.simpleMessage("Извините"),
+        "kerakliElonniQidirish":
+            MessageLookupByLibrary.simpleMessage("Поиск обявления"),
         "kodniYuborsh": MessageLookupByLibrary.simpleMessage("Отправить код"),
         "kreditKalkulatori":
             MessageLookupByLibrary.simpleMessage("Посчитать в кредит"),
@@ -177,6 +185,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "maydinniToldiring":
             MessageLookupByLibrary.simpleMessage("Заполните поле"),
         "meningHisobim": MessageLookupByLibrary.simpleMessage("Мой счет"),
+        "modelniTanlang":
+            MessageLookupByLibrary.simpleMessage("Выберите модель"),
         "muddatiniTliqKiriting":
             MessageLookupByLibrary.simpleMessage("Введите данные правельно"),
         "narxi": MessageLookupByLibrary.simpleMessage("Стоимость авто"),
@@ -188,9 +198,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "ochirish": MessageLookupByLibrary.simpleMessage("Удалить"),
         "oldinga": MessageLookupByLibrary.simpleMessage("Вперед"),
         "orqaga": MessageLookupByLibrary.simpleMessage("Назад"),
-        "oy": MessageLookupByLibrary.simpleMessage(" мм"),
+        "oy": MessageLookupByLibrary.simpleMessage(" м"),
         "oylarSoni": MessageLookupByLibrary.simpleMessage("Количество месяцев"),
         "oylikTolov": MessageLookupByLibrary.simpleMessage("Ежемесячная плата"),
+        "ozingizgaKerakliTexnikaniQidiring":
+            MessageLookupByLibrary.simpleMessage("Найдите нужную вам технику"),
         "parametrlar": MessageLookupByLibrary.simpleMessage("Параметры"),
         "pkAmalQilishMuddati":
             MessageLookupByLibrary.simpleMessage("Срок действия ПК"),
@@ -203,6 +215,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "qidirish": MessageLookupByLibrary.simpleMessage("Поиск"),
         "qidiruvSozlari":
             MessageLookupByLibrary.simpleMessage("Поисковые слова"),
+        "qisqaVaqtIchidaOzAvtomobilingizgaEgaBoling":
+            MessageLookupByLibrary.simpleMessage(
+                "Получите свой автомобиль в кратчайшие сроки"),
         "qoshimchaMalumot":
             MessageLookupByLibrary.simpleMessage("Дополнительная информация"),
         "qoshimchaMalumotniKriting":
@@ -217,6 +232,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "royhatdanChiqarish":
             MessageLookupByLibrary.simpleMessage("Из избранного"),
         "saqlash": MessageLookupByLibrary.simpleMessage("Сохранить"),
+        "shikoyatYuborildi": MessageLookupByLibrary.simpleMessage(
+            "Жалоба отправлена! Спасибо, что помогаете улучшить ..."),
+        "shikoyatingizniKiriting":
+            MessageLookupByLibrary.simpleMessage("Введите вашу жалобу"),
         "smsKodTasdiqlandi":
             MessageLookupByLibrary.simpleMessage("Смс-код подтвержден"),
         "smsKodniKiriting":
@@ -281,9 +300,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Позиция или версия"),
         "viloyatniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите облость"),
+        "xabarMavjutEmas":
+            MessageLookupByLibrary.simpleMessage("Сообщение нет"),
         "xaliEmas": MessageLookupByLibrary.simpleMessage("Оплатить пойже"),
         "xaritadaJoylashuvi":
             MessageLookupByLibrary.simpleMessage("Местоположение"),
+        "xaritadagiJoylashuvi":
+            MessageLookupByLibrary.simpleMessage("Располоэжение на карте"),
         "xaritadanJoylashuvniTanlang": MessageLookupByLibrary.simpleMessage(
             "выберите расположение на карте"),
         "xatolik": MessageLookupByLibrary.simpleMessage("Ошибка"),

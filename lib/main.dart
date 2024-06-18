@@ -145,9 +145,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       locale: providerLanguage.locale,
       theme: defaultTheme(),
       routes: routers,
-      home: token != null
-          ? const MainScreen()
-          : const IntroductionScreen(),
+      home: token != null ? const MainScreen() : const IntroductionScreen(),
     );
   }
 

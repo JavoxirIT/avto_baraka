@@ -8,6 +8,7 @@ import 'package:avto_baraka/style/elevation_button_white.dart';
 import 'package:avto_baraka/utill/bs_64_image.dart';
 import 'package:avto_baraka/widgets/car_tag_card.dart';
 import 'package:avto_baraka/widgets/dialog.dart';
+import 'package:intl/intl.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class CarActiveCard extends StatelessWidget {
@@ -86,11 +87,11 @@ class CarActiveCard extends StatelessWidget {
                               Positioned(
                                 bottom: 0,
                                 right: 0,
-                                width: 192,
                                 child: Card(
-                                  color: cardFixCardColor,
+                                  color: cardBlackColor,
                                   child: Padding(
-                                    padding: const EdgeInsets.all(3.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10.0, vertical: 3.0),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -104,7 +105,6 @@ class CarActiveCard extends StatelessWidget {
                                                   padding:
                                                       const EdgeInsets.only(
                                                     right: 8.0,
-                                                    left: 8.0,
                                                   ),
                                                   child: Icon(
                                                     FontAwesomeIcons.eye,
@@ -117,16 +117,18 @@ class CarActiveCard extends StatelessWidget {
                                                 text: item.viewed != 0
                                                     ? item.viewed.toString()
                                                     : "0",
-                                                style: const TextStyle(
-                                                    fontSize: 12.0,
-                                                    fontWeight:
-                                                        FontWeight.w700),
                                               ),
                                             ],
                                           ),
                                         ),
+                                        const SizedBox(width: 10.0),
                                         Text(
-                                          '${item.price.toString()} ${item.valyutaShort!.toUpperCase()}',
+                                          NumberFormat.currency(
+                                            locale: "uz-UZ",
+                                            symbol: item.valyutaShort!
+                                                .toUpperCase(),
+                                            decimalDigits: 0,
+                                          ).format(item.price),
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyLarge,

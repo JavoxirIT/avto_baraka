@@ -1,9 +1,11 @@
 // ignore_for_file: unnecessary_null_comparison
 
+// import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/provider/token_provider/token_provider.dart';
+import 'package:avto_baraka/screen/imports/imports_announcement.dart';
 import 'package:avto_baraka/view/chat_first/first_chat_bottom_item.dart';
 import 'package:avto_baraka/view/chat_first/first_chat_content.dart';
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 import 'package:flutter_basic_chat_bubble/flutter_basic_chat_bubble.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -54,7 +56,7 @@ class FirstChatState extends State<FirstChat> {
   Widget build(BuildContext context) {
     OutlineInputBorder borderStyle = OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(_borderRadius)),
-      borderSide: const BorderSide(color: Colors.blue, width: 0.2),
+      borderSide:  BorderSide(color: iconSelectedColor, width: 0.2),
     );
 
     final tokenProvider = Provider.of<TokenProvider>(context);
@@ -63,8 +65,8 @@ class FirstChatState extends State<FirstChat> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: const Text('Chat'),
-      ),
+          // title: const Text('Chat'),
+          ),
       body: BlocBuilder<OneRoomBloc, OneRoomState>(
         builder: (context, state) {
           return Container(
@@ -72,15 +74,8 @@ class FirstChatState extends State<FirstChat> {
             child: Column(
               children: [
                 firstChatList(context, state, currentUserId),
-                firstChatBottomItItem(
-                  context,
-                  state,
-                  borderStyle,
-                  _textController,
-                  onFieldSubmitted,
-                  userId,
-                  currentUserId
-                )
+                firstChatBottomItItem(context, state, borderStyle,
+                    _textController, onFieldSubmitted, userId, currentUserId)
               ],
             ),
           );
@@ -127,12 +122,14 @@ class FirstChatState extends State<FirstChat> {
           }
 
           if (state is OneRoomsNotDataState) {
-            return const Center(
-              child: Text("Xabar mavjut emas"),
+            return Center(
+              child: Text(S.of(context).xabarMavjutEmas),
             );
           }
-          return const Center(
-            child: Text("Xatolik mavjut"),
+          return Center(
+            child: CircularProgressIndicator(
+              color: iconSelectedColor,
+            ),
           );
         },
       ),

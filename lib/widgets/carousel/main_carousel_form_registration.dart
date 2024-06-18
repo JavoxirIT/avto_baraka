@@ -58,11 +58,11 @@ class MainCarouselFormRegistrationState
 
   @override
   void codeUpdated() {
-    debugPrint('codeUpdated called');
+    // debugPrint('codeUpdated called');
     setState(() {
       _code = code;
       smsCode.text = _code!;
-      debugPrint('code: $_code');
+      // debugPrint('code: $_code');
     });
   }
 
@@ -109,15 +109,16 @@ class MainCarouselFormRegistrationState
                             inputFormatters: [phoneMask],
                             controller: phoneNumber,
                             keyboardType: TextInputType.phone,
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               hintText: "+998 (XX) XXX-XX-XX",
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(0.0)),
+                              hintStyle: TextStyle(color: colorWhite),
+                              focusedBorder: const OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                    const Radius.circular(0.0)),
                                 borderSide: BorderSide(
                                     color: Colors.transparent, width: 0.0),
                               ),
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: const OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(0.0)),
                                 borderSide: BorderSide(
@@ -135,7 +136,9 @@ class MainCarouselFormRegistrationState
                       SizedBox(
                         height: 58.0,
                         child: ElevatedButton(
-                          style: elevatedButtonMap,
+                          style: elevatedButtonMap.copyWith(
+                              backgroundColor:
+                                  MaterialStatePropertyAll(iconSelectedColor)),
                           onPressed: () async {
                             if (phoneNumber.text.isEmpty) {
                               flutterShowToast(
@@ -202,7 +205,7 @@ class MainCarouselFormRegistrationState
                       );
                       tokenProvider.userIdSetLocale(userId.toString());
 
-                      debugPrint('accessTokenData: $accessTokenData');
+                      // debugPrint('accessTokenData: $accessTokenData');
                     }
                   },
                 ),

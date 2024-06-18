@@ -74,7 +74,7 @@ class SearchViewState extends State<SearchView> {
     final languageProvider = Provider.of<LocalProvider>(context);
     final tokenProvider = Provider.of<TokenProvider>(context);
 
-    TextStyle fonmDataTextStyle = const TextStyle(fontSize: 12.0);
+    TextStyle fonmDataTextStyle = TextStyle(fontSize: 12.0, color: colorWhite);
     EdgeInsets contentPadding = const EdgeInsets.fromLTRB(20.0, 0, 3.0, 0);
     RoundedRectangleBorder shape = const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(
@@ -84,7 +84,7 @@ class SearchViewState extends State<SearchView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Kerakli e`lonni qidirish"),
+        title: Text(S.of(context).kerakliElonniQidirish),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -96,14 +96,17 @@ class SearchViewState extends State<SearchView> {
               ListTile(
                 title: Text(
                   stateName == "" ? S.of(context).hududniTanlang : stateName,
-                  style: Theme.of(context).textTheme.displayLarge,
+                  style: Theme.of(context)
+                      .textTheme
+                      .displayLarge!
+                      .copyWith(color: colorWhite),
                 ),
                 trailing: Icon(
                   Icons.arrow_forward_ios_outlined,
-                  color: Colors.grey[100],
+                  color: iconSelectedColor,
                 ),
                 shape: shape,
-                tileColor: Colors.black12,
+                tileColor: cardBlackColor,
                 onTap: () => showModalBottom(
                     context,
                     region.length * 50.0,
@@ -120,10 +123,11 @@ class SearchViewState extends State<SearchView> {
                               shape: shape,
                               semanticContainer: true,
                               elevation: 0,
-                              color: backgnColStepCard,
+                              color: cardBlackColor,
                               child: RadioListTile(
+                                activeColor: colorWhite,
                                 tileColor: regionGroupValue == el.id
-                                    ? splashColor
+                                    ? unselectedItemColor
                                     : null,
                                 shape: shape,
                                 contentPadding: contentPadding,
@@ -132,9 +136,10 @@ class SearchViewState extends State<SearchView> {
                                 // splashRadius: 3.0,
                                 title: Text(
                                   el.nameRu,
-                                  style: const TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.w600),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displayLarge!
+                                      .copyWith(color: colorWhite),
                                 ),
                                 value: el.id,
                                 groupValue: regionGroupValue,
@@ -178,7 +183,7 @@ class SearchViewState extends State<SearchView> {
                               child: Card(
                                 color: carTypeId == element.id
                                     ? iconSelectedColor
-                                    : Colors.white,
+                                    : cardBlackColor,
                                 child: Column(
                                   children: [
                                     Image.network(
@@ -203,14 +208,17 @@ class SearchViewState extends State<SearchView> {
                         markName == ""
                             ? S.of(context).markaniTanlang
                             : markName,
-                        style: Theme.of(context).textTheme.displayLarge,
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayLarge!
+                            .copyWith(color: colorWhite),
                       ),
                       trailing: Icon(
                         Icons.arrow_forward_ios_outlined,
-                        color: Colors.grey[100],
+                        color: iconSelectedColor,
                       ),
                       shape: shape,
-                      tileColor: Colors.black12,
+                      tileColor: cardBlackColor,
                       onTap: () => showModalBottom(
                           context,
                           carBrandList.length * 80.0,
@@ -227,20 +235,21 @@ class SearchViewState extends State<SearchView> {
                                     shape: shape,
                                     semanticContainer: true,
                                     elevation: 0,
-                                    color: backgnColStepCard,
                                     child: RadioListTile(
                                       tileColor: carBrandValue == el.id
-                                          ? splashColor
+                                          ? unselectedItemColor
                                           : null,
+                                      activeColor: colorWhite,
                                       shape: shape,
                                       contentPadding: contentPadding,
                                       controlAffinity:
                                           ListTileControlAffinity.trailing,
                                       title: Text(
                                         el.nameRu,
-                                        style: const TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w600),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displayLarge!
+                                            .copyWith(color: colorWhite),
                                       ),
                                       value: el.id,
                                       groupValue: carBrandValue,
@@ -271,15 +280,18 @@ class SearchViewState extends State<SearchView> {
               carModelList.length != 0
                   ? ListTile(
                       title: Text(
-                        carName == "" ? "Modelni  tanlang" : carName,
-                        style: Theme.of(context).textTheme.displayLarge,
+                        carName == "" ? S.of(context).modelniTanlang : carName,
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayLarge!
+                            .copyWith(color: colorWhite),
                       ),
                       trailing: Icon(
                         Icons.arrow_forward_ios_outlined,
-                        color: Colors.grey[100],
+                        color: iconSelectedColor,
                       ),
                       shape: shape,
-                      tileColor: Colors.black12,
+                      tileColor: cardBlackColor,
                       onTap: () => showModalBottom(
                           context,
                           carBrandList.length * 80.0,
@@ -296,10 +308,11 @@ class SearchViewState extends State<SearchView> {
                                     shape: shape,
                                     semanticContainer: true,
                                     elevation: 0,
-                                    color: backgnColStepCard,
+                                    // color: backgnColStepCard,
                                     child: RadioListTile(
+                                      activeColor: colorWhite,
                                       tileColor: carModelValue == el.id
-                                          ? splashColor
+                                          ? unselectedItemColor
                                           : null,
                                       shape: shape,
                                       contentPadding: contentPadding,
@@ -308,9 +321,10 @@ class SearchViewState extends State<SearchView> {
                                       // splashRadius: 3.0,
                                       title: Text(
                                         el.nameRu,
-                                        style: const TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w600),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displayLarge!
+                                            .copyWith(color: colorWhite),
                                       ),
                                       value: el.id,
                                       groupValue: carModelValue,
@@ -360,7 +374,7 @@ class SearchViewState extends State<SearchView> {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Text(
-                  "Narxi",
+                  S.of(context).narxi,
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),
@@ -383,6 +397,7 @@ class SearchViewState extends State<SearchView> {
                   ),
                   Expanded(
                     child: DropdownButtonFormField(
+                      dropdownColor: cardBlackColor,
                       isExpanded: true,
                       borderRadius:
                           const BorderRadius.all(Radius.circular(10.0)),
@@ -415,10 +430,14 @@ class SearchViewState extends State<SearchView> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: iconSelectedColor,
         onPressed: () => getSearch(
             token: tokenProvider.token!,
             lang: languageProvider.locale.languageCode),
-        icon: const Icon(Icons.search),
+        icon: Icon(
+          Icons.search,
+          color: colorWhite,
+        ),
         label: Text(
           S.of(context).qidirish,
           style: Theme.of(context).textTheme.displaySmall,

@@ -45,7 +45,8 @@ class CobinetScreenState extends State<CobinetScreen> {
               children: [
                 IconButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed(RouteName.contactWithAdmin);
+                    Navigator.of(context).pushNamed(RouteName.firstChat,
+                        arguments: {"userId": 0});
                   },
                   icon: Icon(
                     Icons.support_agent,

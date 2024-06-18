@@ -10,7 +10,7 @@ ThemeData defaultTheme() {
     // /brightness: Brightness.light,
     // primaryColor: Colors.red,
     dialogTheme: DialogTheme(
-      backgroundColor: colorWhite,
+      backgroundColor: cardBlackColor,
       surfaceTintColor: colorWhite,
     ),
     fontFamily: "Roboto",
