@@ -43,6 +43,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Amalga oshirish tugmasini bosing"),
         "avtomatikTanlash":
             MessageLookupByLibrary.simpleMessage("Avtomatik tanlash"),
+        "avvalAvtotransportTuriniTanlang": MessageLookupByLibrary.simpleMessage(
+            "Avval avtotransport turini tanlang"),
         "avvalBankniTanlang":
             MessageLookupByLibrary.simpleMessage("Avval Bankni tanlang"),
         "avvalTexnikaTuriniTanlang": MessageLookupByLibrary.simpleMessage(
@@ -145,6 +147,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "kabinet": MessageLookupByLibrary.simpleMessage("Kabinet"),
         "kartaMalumotlariniKiriting": MessageLookupByLibrary.simpleMessage(
             "Karta ma`lumotlarini kiriting"),
+        "kartaMuddatiniTogriKiriting": MessageLookupByLibrary.simpleMessage(
+            "Karta muddatini to`gri kiriting"),
         "kartaRaqaminiToliqKiriting": MessageLookupByLibrary.simpleMessage(
             "Karta raqamini to`liq kiriting"),
         "kategoriyalar": MessageLookupByLibrary.simpleMessage("KATEGORIYALAR"),
@@ -206,6 +210,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pkAmalQilishMuddati":
             MessageLookupByLibrary.simpleMessage("PK amal qilish muddati"),
         "pkRaqami": MessageLookupByLibrary.simpleMessage("PK raqami"),
+        "plastikKartaniMuddatiOtganmi": MessageLookupByLibrary.simpleMessage(
+            "Plastik kartani muddati o`tganmi??"),
         "qayerdanOlamiz":
             MessageLookupByLibrary.simpleMessage("Qayerdan olamiz?"),
         "qaytaAktivlash":
@@ -300,6 +306,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select the version"),
         "viloyatniTanlang":
             MessageLookupByLibrary.simpleMessage("Select Region"),
+        "xabarMavjudEmas":
+            MessageLookupByLibrary.simpleMessage("Xabar mavjud emas"),
         "xabarMavjutEmas":
             MessageLookupByLibrary.simpleMessage("Xabar mavjut emas"),
         "xaliEmas": MessageLookupByLibrary.simpleMessage("Xali emas"),

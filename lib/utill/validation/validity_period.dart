@@ -8,7 +8,7 @@ String? validityPeriod(BuildContext context, String input) {
   if (input.isEmpty) {
     return S.of(context).maydinniToldiring;
   } else if (!cardExpiryExp.hasMatch(input)) {
-    return "Karta muddatini to`gri kiriting";
+    return S.of(context).kartaMuddatiniTogriKiriting;
   } else {
     // Проверка, что срок действия не истек
     final parts = input.split('/');
@@ -20,7 +20,7 @@ String? validityPeriod(BuildContext context, String input) {
 
     if (expiryDate.isBefore(now) ||
         (expiryDate.year == now.year && expiryDate.month < now.month)) {
-      return "Plastik kartani muddati o`tganmi??";
+      return S.of(context).plastikKartaniMuddatiOtganmi;
     }
 
     return null;

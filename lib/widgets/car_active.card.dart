@@ -170,7 +170,7 @@ class CarActiveCard extends StatelessWidget {
                                   Icon(
                                     Icons.calendar_month,
                                     size: 17.0,
-                                    color: iconSelectedColor,
+                                    color: colorEmber,
                                   ),
                                 ),
                                 cardTagCard(
@@ -178,7 +178,7 @@ class CarActiveCard extends StatelessWidget {
                                   Icon(
                                     Symbols.auto_transmission,
                                     size: 17.0,
-                                    color: iconSelectedColor,
+                                    color: colorEmber,
                                   ),
                                 ),
                                 cardTagCard(
@@ -186,7 +186,7 @@ class CarActiveCard extends StatelessWidget {
                                   Icon(
                                     Symbols.gas_meter_sharp,
                                     size: 17.0,
-                                    color: iconSelectedColor,
+                                    color: colorEmber,
                                   ),
                                 ),
                                 cardTagCard(
@@ -194,7 +194,7 @@ class CarActiveCard extends StatelessWidget {
                                   Icon(
                                     Symbols.speed,
                                     size: 17.0,
-                                    color: iconSelectedColor,
+                                    color: colorEmber,
                                   ),
                                 ),
                               ],

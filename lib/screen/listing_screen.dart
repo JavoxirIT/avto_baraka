@@ -54,14 +54,14 @@ class _ListingScreenState extends State<ListingScreen> {
               onPressed: () {
                 Navigator.of(context).pushNamed(RouteName.searchView);
               },
-              icon: Icon(FontAwesomeIcons.sliders, color: iconSelectedColor),
+              icon: Icon(FontAwesomeIcons.sliders, color: colorEmber),
             ),
           ),
         ],
       ),
       body: RefreshIndicator(
         color: Colors.white,
-        backgroundColor: iconSelectedColor,
+        backgroundColor: colorEmber,
         strokeWidth: 3.0, // Толщина линии индикатора
         displacement: 150.0, // Сдвиг индикатора от верхней части экрана
         onRefresh: () async {

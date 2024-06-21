@@ -10,15 +10,14 @@ class ValyutaService {
   static final _url = Config.dbMobile;
 
   List<CreditData> list = [];
-
   List<ValyutaModels> valyutaList = [];
 
   Future<List<ValyutaModels>> getValyuta() async {
+    final lang = await LocalMemory.service.getLanguageCode();
     valyutaList.clear();
-
     try {
       final response = await _dio.post(
-        '${_url}getValyuta',
+        '${_url}getValyuta/$lang',
         options: Options(
           headers: {
             'Authorization': LocalMemory.service.token,
@@ -41,7 +40,10 @@ class ValyutaService {
   }
 
   Future<List<CreditData>> getCreditData(
-      String currency, int type, int bsumma) async {
+    String currency,
+    int type,
+    int bsumma,
+  ) async {
     list.clear();
 
     final response = await _dio.get('${_url}kridet/$currency/$type/$bsumma',

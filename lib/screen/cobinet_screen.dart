@@ -50,7 +50,7 @@ class CobinetScreenState extends State<CobinetScreen> {
                   },
                   icon: Icon(
                     Icons.support_agent,
-                    color: iconSelectedColor,
+                    color: colorEmber,
                   ),
                 ),
                 IconButton(
@@ -59,7 +59,7 @@ class CobinetScreenState extends State<CobinetScreen> {
                   },
                   icon: Icon(
                     Icons.settings_outlined,
-                    color: iconSelectedColor,
+                    color: colorEmber,
                   ),
                 ),
               ],

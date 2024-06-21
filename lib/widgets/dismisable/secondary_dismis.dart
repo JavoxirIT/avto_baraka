@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 Container secondaryDismiss(context) {
   return Container(
-    color: iconSelectedColor,
+    color: colorEmber,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [

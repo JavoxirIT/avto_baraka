@@ -285,7 +285,7 @@ class _CarNotActivState extends State<CarNotActiv> {
                                   Icon(
                                     Icons.calendar_month,
                                     size: 17.0,
-                                    color: iconSelectedColor,
+                                    color: colorEmber,
                                   ),
                                 ),
                                 cardTagCard(
@@ -293,7 +293,7 @@ class _CarNotActivState extends State<CarNotActiv> {
                                   Icon(
                                     Symbols.auto_transmission,
                                     size: 17.0,
-                                    color: iconSelectedColor,
+                                    color: colorEmber,
                                   ),
                                 ),
                                 cardTagCard(
@@ -301,7 +301,7 @@ class _CarNotActivState extends State<CarNotActiv> {
                                   Icon(
                                     Symbols.gas_meter_sharp,
                                     size: 17.0,
-                                    color: iconSelectedColor,
+                                    color: colorEmber,
                                   ),
                                 ),
                                 cardTagCard(
@@ -309,7 +309,7 @@ class _CarNotActivState extends State<CarNotActiv> {
                                   Icon(
                                     Symbols.speed,
                                     size: 17.0,
-                                    color: iconSelectedColor,
+                                    color: colorEmber,
                                   ),
                                 ),
                               ],

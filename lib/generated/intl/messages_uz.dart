@@ -20,11 +20,11 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'uz';
 
-  static String m0(n) => "Bloklangan e`lon mavjut ${n} emas";
+  static String m0(n) => "Bloklangan e’lon mavjud ${n} emas";
 
-  static String m1(count) => "${count} e`lon topildi";
+  static String m1(count) => "${count} e’lon topildi";
 
-  static String m2(n) => "Faol bo`lmagan e`lonlar ${n} mavjut emas";
+  static String m2(n) => "Faol bo’lmagan e’lonlar ${n} mavjud emas";
 
   static String m3(num) => "Tasdiqlash uchun ${num} raqamiga sms kod yuborildi";
 
@@ -33,15 +33,17 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "abtomashinaYiliniKiriting":
-            MessageLookupByLibrary.simpleMessage("Abtomashina yilini kiriting"),
+            MessageLookupByLibrary.simpleMessage("Avtomashina yilini kiriting"),
         "adminTasdiqlashiniKutilmoqda": MessageLookupByLibrary.simpleMessage(
-            "Admin tasdiqlashini kutilmoqda"),
+            "Admin tasdiqlashi kutilmoqda"),
         "amalgaOshirish":
             MessageLookupByLibrary.simpleMessage("Amalga oshirish"),
         "amalgaOshirishTugmasiniBosing": MessageLookupByLibrary.simpleMessage(
             "Amalga oshirish tugmasini bosing"),
         "avtomatikTanlash":
             MessageLookupByLibrary.simpleMessage("Avtomatik tanlash"),
+        "avvalAvtotransportTuriniTanlang": MessageLookupByLibrary.simpleMessage(
+            "Avval avtotransport turini tanlang"),
         "avvalBankniTanlang":
             MessageLookupByLibrary.simpleMessage("Avval Bankni tanlang"),
         "avvalTexnikaTuriniTanlang": MessageLookupByLibrary.simpleMessage(
@@ -51,28 +53,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "bajarish": MessageLookupByLibrary.simpleMessage("Bajarish"),
         "barchaImkoniyatlardanFoydalanishUchunTelefonRaqamingizOrqaliIdentifikatsiyadanOting":
             MessageLookupByLibrary.simpleMessage(
-                "BARCHA IMKONIYATLARDAN FOYDALANISH UCHUN TELEFON RAQAMINGIZ ORQALI IDENTIFIKATSIYADAN O’TING."),
+                "BARCHA IMKONIYATLARDAN FOYDALANISH UCHUN - TELEFON RAQAMINGIZ ORQALI IDENTIFIKATSIYADAN O’TING."),
         "barchaParametrlariHaqidaMalumotOling":
             MessageLookupByLibrary.simpleMessage(
                 "Barcha parametrlari haqida ma’lumot oling"),
         "batafsilMalumot":
-            MessageLookupByLibrary.simpleMessage("Batafsil ma`lumot"),
+            MessageLookupByLibrary.simpleMessage("Batafsil ma’lumot"),
         "bekorQilingan": MessageLookupByLibrary.simpleMessage("Bekor qilingan"),
         "birinchiTolovUsd":
-            MessageLookupByLibrary.simpleMessage("Birinchi to`lov usd"),
+            MessageLookupByLibrary.simpleMessage("Birinchi to’lov usd"),
         "birinchiTolovUzs":
-            MessageLookupByLibrary.simpleMessage("Birinchi to`lov uzs"),
+            MessageLookupByLibrary.simpleMessage("Birinchi to’lov uzs"),
         "bloklanganElonMavjutNEmas": m0,
         "boshSahifa": MessageLookupByLibrary.simpleMessage("Bosh sahifa"),
         "boshlangichTolov":
-            MessageLookupByLibrary.simpleMessage("Boshlang`ich to`lov"),
+            MessageLookupByLibrary.simpleMessage("Boshlang’ich to’lov"),
         "boshlangichTulovniKiriting": MessageLookupByLibrary.simpleMessage(
-            "Boshlang`ich tulovni kiriting"),
+            "Boshlang’ich to’lovni kiriting"),
         "boshqaAkauntgaKirish":
-            MessageLookupByLibrary.simpleMessage("Boshqa akauntga kirish"),
-        "boyoqHolati": MessageLookupByLibrary.simpleMessage("Bo`yoq holati"),
+            MessageLookupByLibrary.simpleMessage("Boshqa akkauntga kirish"),
+        "boyoqHolati": MessageLookupByLibrary.simpleMessage("Bo’yoq holati"),
         "boyoqHolatiniKiriting":
-            MessageLookupByLibrary.simpleMessage("Bo`yoq holatini kiriting"),
+            MessageLookupByLibrary.simpleMessage("Bo’yoq holatini kiriting"),
         "brendniTanlang":
             MessageLookupByLibrary.simpleMessage("Brendni tanlang"),
         "chiqarilganYili":
@@ -85,29 +87,29 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Dvigatel hajmini kiriting"),
         "elonHolatiniKabitendatNKuzatsangizBoladi":
             MessageLookupByLibrary.simpleMessage(
-                "Elon holatini kabitendat kuzatsangiz bo`ladi"),
+                "Elon holatini kabitendan kuzatishingiz mumkin"),
         "elonJoylash": MessageLookupByLibrary.simpleMessage("E’lon joylash"),
         "elonQabulQilindiAdministratorlarTekshirganidanSongTizimgaJoylanadi":
             MessageLookupByLibrary.simpleMessage(
                 "E’lon qabul qilindi Administratorlar tekshirganidan so’ng tizimga joylanadi."),
         "elonQaytaAktivlandi":
-            MessageLookupByLibrary.simpleMessage("E`lon qayta aktivlandi"),
+            MessageLookupByLibrary.simpleMessage("E’lon qayta aktivlandi"),
         "elonSaqlandi": MessageLookupByLibrary.simpleMessage("Elon saqlandi"),
         "elonlar": MessageLookupByLibrary.simpleMessage("E’lonlar"),
         "elonlarOynasi":
-            MessageLookupByLibrary.simpleMessage("E`lonlar oynasi"),
+            MessageLookupByLibrary.simpleMessage("E’lonlar oynasi"),
         "elonniAktivlashJarayonidaXatolikYuzBerdi":
             MessageLookupByLibrary.simpleMessage(
-                "E`lonni aktivlash jarayonida xatolik yuz berdi"),
+                "E’lonni aktivlash jarayonida xatolik yuz berdi"),
         "elonniOchirildi":
-            MessageLookupByLibrary.simpleMessage("E`lonni o`chirildi"),
+            MessageLookupByLibrary.simpleMessage("E’lonni o’chirildi"),
         "elonniOchirishdaXatolikYuzBerdi": MessageLookupByLibrary.simpleMessage(
-            "E`lonni o`chirishda, xatolik yuz berdi"),
+            "E’lonni o’chirishda, xatolik yuz berdi"),
         "engYaxshiTakliflar":
             MessageLookupByLibrary.simpleMessage("ENG YAXSHI TAKLIFLAR"),
         "eqlonOchirilgandanKeyinMalumotlarniTiklabBolmaydi":
             MessageLookupByLibrary.simpleMessage(
-                "Eqlon o`chirilgandan keyin ma`lumotlarni tiklab bo`lmaydi"),
+                "E’lon o’chirilgandan keyin ma’lumotlarni tiklab bo’lmaydi"),
         "faolBolmaganElonlarMavjutEmas": m2,
         "faolEmas": MessageLookupByLibrary.simpleMessage("Faol emas"),
         "foydalanishShartlari":
@@ -117,11 +119,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Gallereyadan tanlash"),
         "geolokachiyadanFoydalanishCheklanganIltimosLokachiyaniYoking":
             MessageLookupByLibrary.simpleMessage(
-                "Geolokachiyadan foydalanish cheklangan, iltimos lokachiyani yoking"),
+                "Geolokatsiyadan foydalanish cheklangan, iltimos lokatsiyani yoqing"),
         "geolokatsiyaniYoqish": MessageLookupByLibrary.simpleMessage(
             "Uskunadan Geolokatsiyani yoqish va foydalanishga ruxsat berish kerak bo’ladi"),
         "geopozitsiyaKabulKilindi":
-            MessageLookupByLibrary.simpleMessage("Geopozitsiya kabul kilindi"),
+            MessageLookupByLibrary.simpleMessage("Geopozitsiya qabul qilindi"),
         "ha": MessageLookupByLibrary.simpleMessage("Ha"),
         "habar": MessageLookupByLibrary.simpleMessage("Habar..."),
         "hududniTanlang":
@@ -136,44 +138,46 @@ class MessageLookup extends MessageLookupByLibrary {
         "iltimosSmsXabarniKutibTuring": MessageLookupByLibrary.simpleMessage(
             "Iltimos sms xabarni kutib turing"),
         "internetAloqasiYoq":
-            MessageLookupByLibrary.simpleMessage("Internet aloqasi yo`q"),
+            MessageLookupByLibrary.simpleMessage("Internet aloqasi yo’q"),
         "ishlabChiqarilganYili":
             MessageLookupByLibrary.simpleMessage("Ishlab chiqarilgan yili"),
         "ishonchingizKomilmi":
             MessageLookupByLibrary.simpleMessage("Ishonchingiz komilmi?"),
         "kabinet": MessageLookupByLibrary.simpleMessage("Kabinet"),
         "kartaMalumotlariniKiriting": MessageLookupByLibrary.simpleMessage(
-            "Karta ma`lumotlarini kiriting"),
+            "Karta ma’lumotlarini kiriting"),
+        "kartaMuddatiniTogriKiriting": MessageLookupByLibrary.simpleMessage(
+            "Karta muddatini to`gri kiriting"),
         "kartaRaqaminiToliqKiriting": MessageLookupByLibrary.simpleMessage(
-            "Karta raqamini to`liq kiriting"),
+            "Karta raqamini to’liq kiriting"),
         "kategoriyalar": MessageLookupByLibrary.simpleMessage("KATEGORIYALAR"),
         "kechirasiz": MessageLookupByLibrary.simpleMessage("Kechirasiz"),
         "kerakliElonniQidirish":
-            MessageLookupByLibrary.simpleMessage("Kerakli e`lonni qidirish"),
-        "kodniYuborsh": MessageLookupByLibrary.simpleMessage("Kodni yuborsh"),
+            MessageLookupByLibrary.simpleMessage("Kerakli e’lonni qidirish"),
+        "kodniYuborsh": MessageLookupByLibrary.simpleMessage("Kodni yuborish"),
         "kreditKalkulatori":
             MessageLookupByLibrary.simpleMessage("Kreditga hisoblash"),
         "kreditMeddatiniTanlang":
-            MessageLookupByLibrary.simpleMessage("Kredit meddatini tanlang"),
+            MessageLookupByLibrary.simpleMessage("Kredit muddatini tanlang"),
         "kreditMuddati": MessageLookupByLibrary.simpleMessage("Kredit muddati"),
         "kreditSummasi": MessageLookupByLibrary.simpleMessage("Kredit summasi"),
         "kreditga": MessageLookupByLibrary.simpleMessage("Kreditga:"),
         "kriditSummasiniKriting":
-            MessageLookupByLibrary.simpleMessage("Kridit summasini kriting"),
+            MessageLookupByLibrary.simpleMessage("Kridit summasini kiriting"),
         "kriditgaBeriladimi":
             MessageLookupByLibrary.simpleMessage("Kriditga beriladimi?"),
         "kuzov": MessageLookupByLibrary.simpleMessage("Kuzov turi:"),
         "kuzovTuri": MessageLookupByLibrary.simpleMessage("Kuzov turi"),
         "kuzovTurinitanlang":
-            MessageLookupByLibrary.simpleMessage("Kuzov turinitanlang"),
+            MessageLookupByLibrary.simpleMessage("Kuzov turini tanlang"),
         "lokatsiyaniTanlang":
             MessageLookupByLibrary.simpleMessage("Lokatsiyani tanlang"),
         "malumotTopilmadi":
-            MessageLookupByLibrary.simpleMessage("Ma`lumot topilmadi"),
+            MessageLookupByLibrary.simpleMessage("Ma’lumot topilmadi"),
         "malumotlarBazasidaXatolik":
             MessageLookupByLibrary.simpleMessage("Malumotlar bazasida xatolik"),
         "malumotlatYuklanishidaXatolik":
-            MessageLookupByLibrary.simpleMessage("E`lon mavjut emas"),
+            MessageLookupByLibrary.simpleMessage("E’lon mavjut emas"),
         "markaniTanlang":
             MessageLookupByLibrary.simpleMessage("Markani tanlang"),
         "maxfiylikSiyosati":
@@ -181,24 +185,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "maxsusSozlamalar":
             MessageLookupByLibrary.simpleMessage("Maxsus sozlamalar"),
         "maydinniToldiring":
-            MessageLookupByLibrary.simpleMessage("Maydonni to`ldiring"),
+            MessageLookupByLibrary.simpleMessage("Maydonni to’ldiring"),
         "meningHisobim": MessageLookupByLibrary.simpleMessage("Mening hisobim"),
         "modelniTanlang":
             MessageLookupByLibrary.simpleMessage("Modelni  tanlang"),
         "muddatiniTliqKiriting":
-            MessageLookupByLibrary.simpleMessage("Muddatini t`oliq kiriting"),
+            MessageLookupByLibrary.simpleMessage("Muddatini t’oliq kiriting"),
         "narxi": MessageLookupByLibrary.simpleMessage("Narxi"),
         "narxiniKiriting":
             MessageLookupByLibrary.simpleMessage("Narxini kiriting"),
         "notugriFormat":
-            MessageLookupByLibrary.simpleMessage("Notug`ri format"),
-        "notugriKod": MessageLookupByLibrary.simpleMessage("Notugri kod"),
-        "ochirish": MessageLookupByLibrary.simpleMessage("O`chirish"),
+            MessageLookupByLibrary.simpleMessage("Noto’g’ri format"),
+        "notugriKod": MessageLookupByLibrary.simpleMessage("Noto’g’ri kod"),
+        "ochirish": MessageLookupByLibrary.simpleMessage("O’chirish"),
         "oldinga": MessageLookupByLibrary.simpleMessage("Oldinga"),
         "orqaga": MessageLookupByLibrary.simpleMessage("Orqaga"),
         "oy": MessageLookupByLibrary.simpleMessage(" oy"),
         "oylarSoni": MessageLookupByLibrary.simpleMessage("Oylar soni"),
-        "oylikTolov": MessageLookupByLibrary.simpleMessage("Oylik to`lov"),
+        "oylikTolov": MessageLookupByLibrary.simpleMessage("Oylik to’lov"),
         "ozingizgaKerakliTexnikaniQidiring":
             MessageLookupByLibrary.simpleMessage(
                 "O’zingizga kerakli Texnikani qidiring"),
@@ -206,12 +210,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "pkAmalQilishMuddati":
             MessageLookupByLibrary.simpleMessage("PK amal qilish muddati"),
         "pkRaqami": MessageLookupByLibrary.simpleMessage("PK raqami"),
+        "plastikKartaniMuddatiOtganmi": MessageLookupByLibrary.simpleMessage(
+            "Plastik kartani muddati o`tganmi??"),
         "qayerdanOlamiz":
             MessageLookupByLibrary.simpleMessage("Qayerdan olamiz?"),
         "qaytaAktivlash":
             MessageLookupByLibrary.simpleMessage("Qayta aktivlash"),
         "qaytaUrinibKorish":
-            MessageLookupByLibrary.simpleMessage("Qayta urinib ko`rish"),
+            MessageLookupByLibrary.simpleMessage("Qayta urinib ko’rish"),
         "qidirish": MessageLookupByLibrary.simpleMessage("Qidirish"),
         "qidiruvSozlari":
             MessageLookupByLibrary.simpleMessage("Qidiruv so’zlari"),
@@ -219,10 +225,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Qisqa vaqt ichida o’z avtomobilingizga ega bo’ling"),
         "qoshimchaMalumot":
-            MessageLookupByLibrary.simpleMessage("Qo`shimcha malumot"),
+            MessageLookupByLibrary.simpleMessage("Qo’shimcha ma’lumot"),
         "qoshimchaMalumotniKriting": MessageLookupByLibrary.simpleMessage(
-            "Qo`shimcha malumotni kriting"),
-        "rasimgaOlish": MessageLookupByLibrary.simpleMessage("Rasimga olish"),
+            "Qo’shimcha ma’lumotni kiriting"),
+        "rasimgaOlish": MessageLookupByLibrary.simpleMessage("Rasmga olish"),
         "rasmiyIshiBor":
             MessageLookupByLibrary.simpleMessage("Rasmiy ishi bor"),
         "rasmiyIshlamaydi":
@@ -230,10 +236,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "rasmlarniYuklang":
             MessageLookupByLibrary.simpleMessage("Rasmlarni yuklang"),
         "royhatdanChiqarish":
-            MessageLookupByLibrary.simpleMessage("Ro`yhatdan chiqarish"),
+            MessageLookupByLibrary.simpleMessage("Ro’yhatdan chiqarish"),
         "saqlash": MessageLookupByLibrary.simpleMessage("Saqlash"),
         "shikoyatYuborildi": MessageLookupByLibrary.simpleMessage(
-            "Shikoyat yuborildi! Yaxshilashga yordam berganingiz uchun tashakkur..."),
+            "Shikoyat yuborildi! Tizimni takomillashtirishda bergan yordamingiz uchun tashakkur..."),
         "shikoyatingizniKiriting":
             MessageLookupByLibrary.simpleMessage("Shikoyatingizni kiriting"),
         "smsKodTasdiqlandi":
@@ -241,22 +247,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "smsKodniKiriting":
             MessageLookupByLibrary.simpleMessage("SMS kodni kiriting"),
         "smsKodniToliqKiriting":
-            MessageLookupByLibrary.simpleMessage("Sms kodni to`liq kiriting"),
-        "som": MessageLookupByLibrary.simpleMessage(" so`m"),
+            MessageLookupByLibrary.simpleMessage("Sms kodni to’liq kiriting"),
+        "som": MessageLookupByLibrary.simpleMessage(" so’m"),
         "sorovingizBoyicha":
-            MessageLookupByLibrary.simpleMessage("So`rovingiz bo`yicha"),
+            MessageLookupByLibrary.simpleMessage("So’rovingiz bo’yicha"),
         "sotuvchigaQongiroqQilish": MessageLookupByLibrary.simpleMessage(
             "Sotuvchiga qo’ng’iroq qilish"),
         "sozlamalar": MessageLookupByLibrary.simpleMessage("Sozlamalar"),
         "sozlamalarniOchisgh":
-            MessageLookupByLibrary.simpleMessage("Sozlamalarni ochisgh"),
+            MessageLookupByLibrary.simpleMessage("Sozlamalarni ochish"),
         "sozlamalarniOchish":
             MessageLookupByLibrary.simpleMessage("Sozlamalarni ochish"),
         "suhbatlar": MessageLookupByLibrary.simpleMessage("Suhbatlar"),
         "tanlanganElonlar":
             MessageLookupByLibrary.simpleMessage("Tanlangan E’lonlar"),
         "tanlanganElonlarMavjutEmas": MessageLookupByLibrary.simpleMessage(
-            "Tanlangan e`lonlar mavjut emas"),
+            "Tanlangan e’lonlar mavjud emas"),
         "tanlanganlar": MessageLookupByLibrary.simpleMessage("Tanlanganlar"),
         "tanlash": MessageLookupByLibrary.simpleMessage("Tanlash"),
         "tariflar": MessageLookupByLibrary.simpleMessage("Tariflar"),
@@ -264,7 +270,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tarifni tanlang"),
         "tasdiqlangan": MessageLookupByLibrary.simpleMessage("Tasdiqlangan"),
         "tasdiqlanganElonlarMavjutEmas": MessageLookupByLibrary.simpleMessage(
-            "Tasdiqlangan e`lonlar mavjut emas"),
+            "Tasdiqlangan e’lonlar mavjut emas"),
         "tasdiqlashUchunManashuNumGaSmsKodYuborildi": m3,
         "telefon": MessageLookupByLibrary.simpleMessage("Telefon"),
         "texnikaTuriniTanlang":
@@ -273,10 +279,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "tizimdanTolFoy": MessageLookupByLibrary.simpleMessage(
             "Tizimdan to’liq foydalanish uchun  12 500 so’m  miqdorida to’lov qilishingiz lozim bo’ladi"),
         "tolovAmalgaOshirilmadi":
-            MessageLookupByLibrary.simpleMessage("To`lov amalga oshirilmadi"),
-        "tolovGrafigi": MessageLookupByLibrary.simpleMessage("To`lov Grafigi"),
+            MessageLookupByLibrary.simpleMessage("To’lov amalga oshirilmadi"),
+        "tolovGrafigi": MessageLookupByLibrary.simpleMessage("To’lov Grafigi"),
         "tolovMuvofaqayatliOtkazildi": MessageLookupByLibrary.simpleMessage(
-            "To`lov muvofaqayatli o`tkazildi"),
+            "To’lov muvaffaqiyatli o’tkazildi"),
         "topdaJoylashuvDaysKun": m4,
         "topgaChiqarish":
             MessageLookupByLibrary.simpleMessage("Topga chiqarish"),
@@ -301,8 +307,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Versiya yoki positsiya"),
         "viloyatniTanlang":
             MessageLookupByLibrary.simpleMessage("Viloyatni tanlang"),
+        "xabarMavjudEmas":
+            MessageLookupByLibrary.simpleMessage("Xabar mavjud emas"),
         "xabarMavjutEmas":
-            MessageLookupByLibrary.simpleMessage("Xabar mavjut emas"),
+            MessageLookupByLibrary.simpleMessage("Xabar mavjud emas"),
         "xaliEmas": MessageLookupByLibrary.simpleMessage("Xali emas"),
         "xaritadaJoylashuvi":
             MessageLookupByLibrary.simpleMessage("Xaritada joylashuvi"),
@@ -312,17 +320,17 @@ class MessageLookup extends MessageLookupByLibrary {
             "xaritadan joylashuvni tanlang"),
         "xatolik": MessageLookupByLibrary.simpleMessage("Xatolik"),
         "yangiElonJoylash":
-            MessageLookupByLibrary.simpleMessage("Yangi e`lon joylash"),
+            MessageLookupByLibrary.simpleMessage("Yangi e’lon joylash"),
         "yangiElonQoshish":
-            MessageLookupByLibrary.simpleMessage("Yangi e`lon qo`shish"),
+            MessageLookupByLibrary.simpleMessage("Yangi e’lon qo’shish"),
         "yangiXabar": MessageLookupByLibrary.simpleMessage("Yangi xabar"),
         "yil": MessageLookupByLibrary.simpleMessage(" yil"),
-        "yilDan": MessageLookupByLibrary.simpleMessage("yilDan"),
+        "yilDan": MessageLookupByLibrary.simpleMessage("yildan"),
         "yilGacha": MessageLookupByLibrary.simpleMessage("Yil gacha"),
-        "yoq": MessageLookupByLibrary.simpleMessage("Yo`q"),
-        "yoqilgiTuri": MessageLookupByLibrary.simpleMessage("Yoqilg`i turi"),
+        "yoq": MessageLookupByLibrary.simpleMessage("Yo’q"),
+        "yoqilgiTuri": MessageLookupByLibrary.simpleMessage("Yoqilg’i turi"),
         "yoqilgiTuriniTanlang":
-            MessageLookupByLibrary.simpleMessage("Yoqilg`i turini tanlang"),
+            MessageLookupByLibrary.simpleMessage("Yoqilg’i turini tanlang"),
         "yuborish": MessageLookupByLibrary.simpleMessage("Yuborish"),
         "yurganMasofaniKiriting":
             MessageLookupByLibrary.simpleMessage("Yurgan masofani kiriting"),

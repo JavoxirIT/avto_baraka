@@ -2,6 +2,8 @@ import 'package:avto_baraka/api/models/chat_all_rooms_models.dart';
 import 'package:avto_baraka/api/models/chat__one_room_data_models.dart';
 import 'package:avto_baraka/api/service/local_memory.dart';
 import 'package:avto_baraka/http_config/config.dart';
+import 'package:avto_baraka/provider/token_provider/token_provider.dart';
+import 'package:avto_baraka/router/redirect_to_login.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -11,6 +13,7 @@ class ChatService {
   static final _dio = Config.dio;
   static final _url = Config.dbMobile;
 
+  final String tokenKey = 'access_token';
   List<ChatOneRoomModels> listChatOneRoom = [];
   List<ChatAllRoomsModale> listAllRoom = [];
   ChatOneRoomModels? map;
@@ -54,9 +57,17 @@ class ChatService {
         map = ChatOneRoomModels.fromMap(response.data);
       } else {
         debugPrint('debugPrint: $response');
+        if (response.statusCode == 401) {
+          TokenProvider().removeTokenPreferences(tokenKey);
+        }
       }
     } catch (e) {
       debugPrint('CHAT SEND ERROR: $e');
+      if (e is DioException) {
+        if (e.response!.statusCode == 401) {
+          TokenProvider().removeTokenPreferences(tokenKey);
+        }
+      }
     }
     return map!;
   }
@@ -79,12 +90,19 @@ class ChatService {
         for (var element in response.data) {
           listChatOneRoom.add(ChatOneRoomModels.fromMap(element));
         }
-        debugPrint('Перый запрос: ${listChatOneRoom.toString()}');
       } else {
         debugPrint('Перый запрос error: ${response.statusCode}');
+        if (response.statusCode == 401) {
+          TokenProvider().removeTokenPreferences(tokenKey);
+        }
       }
     } catch (e) {
       debugPrint('ERROR Перый запрос : $e');
+      if (e is DioException) {
+        if (e.response!.statusCode == 401) {
+          TokenProvider().removeTokenPreferences(tokenKey);
+        }
+      }
     }
 
     return listChatOneRoom;
@@ -112,9 +130,17 @@ class ChatService {
         // debugPrint('One Chat rooms: ${response.data}');
       } else {
         debugPrint('response error: ${response.statusCode}');
+        if (response.statusCode == 401) {
+          TokenProvider().removeTokenPreferences(tokenKey);
+        }
       }
     } catch (e) {
       debugPrint('ERROR CHAT ONE ROOM: $e');
+      if (e is DioException) {
+        if (e.response!.statusCode == 401) {
+          TokenProvider().removeTokenPreferences(tokenKey);
+        }
+      }
     }
 
     return listChatOneRoom;
@@ -139,9 +165,16 @@ class ChatService {
         // debugPrint('ALL ROOMS: ${response.data}');
       } else {
         debugPrint('Error All Rooms : ${response.statusCode}');
+        if (response.statusCode == 401) {
+          TokenProvider().removeTokenPreferences(tokenKey);
+        }
       }
     } catch (e) {
-      debugPrint('ERROR: $e');
+      if (e is DioException) {
+        if (e.response!.statusCode == 401) {
+          TokenProvider().removeTokenPreferences(tokenKey);
+        }
+      }
     }
 
     return listAllRoom;
@@ -159,6 +192,10 @@ class ChatService {
 
       return data["count"];
     } else {
+      if (response.statusCode == 401) {
+        TokenProvider().removeTokenPreferences(tokenKey);
+        redirectToLogin();
+      }
       return 0;
     }
   }

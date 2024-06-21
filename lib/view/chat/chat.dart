@@ -52,14 +52,14 @@ class ChatState extends State<Chat> {
 
     OutlineInputBorder borderStyle = OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(_borderRadius)),
-      borderSide:  BorderSide(color: iconSelectedColor, width: 0.2),
+      borderSide: BorderSide(color: colorEmber, width: 0.2),
     );
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        // title: const Text('Chat'),
-      ),
+          // title: const Text('Chat'),
+          ),
       body: BlocBuilder<OneRoomBloc, OneRoomState>(
         builder: (context, state) {
           if (state is OneRoomsLoadState) {
@@ -132,12 +132,12 @@ class ChatState extends State<Chat> {
           }
 
           if (state is OneRoomsNotDataState) {
-            return const Center(
-              child: Text("Xabar mavjut emas"),
+            return Center(
+              child: Text(S.of(context).xabarMavjudEmas),
             );
           }
           return const Center(
-            child: Text("Xatolik mavjut"),
+            child: CircularProgressIndicator(),
           );
         },
       ),

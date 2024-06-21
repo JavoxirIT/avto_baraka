@@ -29,7 +29,7 @@ class Grabber extends StatelessWidget {
             width: 38.0,
             height: 6.0,
             decoration: BoxDecoration(
-              color: iconSelectedColor,
+              color: colorEmber,
               borderRadius: BorderRadius.circular(8.0),
             ),
           ),

@@ -15,7 +15,7 @@ final ButtonStyle elevationButtonWhite = ElevatedButton.styleFrom(
     fontSize: 14.0,
     fontWeight: FontWeight.w400,
     fontFamily: "Roboto",
-    color: iconSelectedColor,
+    color: colorEmber,
   ),
   shadowColor: const Color.fromARGB(255, 161, 161, 161),
   elevation: 7.0,

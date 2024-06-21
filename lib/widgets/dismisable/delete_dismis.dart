@@ -12,7 +12,7 @@ Container deleteDismiss(context) {
           child: Center(
               child: Icon(
             Icons.delete,
-            color: iconSelectedColor,
+            color: colorEmber,
           )),
         ),
         Padding(
@@ -21,7 +21,7 @@ Container deleteDismiss(context) {
             child: Text(
               S.of(context).royhatdanChiqarish,
               style: TextStyle(
-                color: iconSelectedColor,
+                color: colorEmber,
               ),
             ),
           ),

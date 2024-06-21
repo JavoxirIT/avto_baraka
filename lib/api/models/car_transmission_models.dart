@@ -1,14 +1,14 @@
 class CarTransmissionModels {
-  CarTransmissionModels(
-      {required this.id, required this.nameUz, required this.nameRu});
+  CarTransmissionModels({
+    required this.id,
+    required this.name,
+  });
 
   late int id;
-  late String nameUz;
-  late String nameRu;
+  late String name;
 
   CarTransmissionModels.fromMap(Map<String, dynamic> map) {
     id = map['id'];
-    nameUz = map['nameuz'];
-    nameRu = map['nameru'];
+    name = map['name'];
   }
 }

@@ -87,7 +87,7 @@ class OneCarViewState extends State<OneCarView> {
           Padding(
             padding: const EdgeInsets.only(left: 5.0, right: 10.0),
             child: CircleAvatar(
-              backgroundColor: iconSelectedColor,
+              backgroundColor: colorEmber,
               radius: 16.0,
               child: IconButton(
                 onPressed: () async {
@@ -186,7 +186,7 @@ class OneCarViewState extends State<OneCarView> {
                         decimalDigits: 0,
                       ).format(_carData!.price),
                       style: TextStyle(
-                        color: iconSelectedColor,
+                        color: colorEmber,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
@@ -240,7 +240,7 @@ class OneCarViewState extends State<OneCarView> {
                       onaCardDataTitle(context, S.of(context).parametrlar),
                       Table(
                         border: TableBorder.all(
-                          color: iconSelectedColor,
+                          color: colorEmber,
                           borderRadius: const BorderRadius.all(
                             Radius.circular(5.0),
                           ),
@@ -312,7 +312,7 @@ class OneCarViewState extends State<OneCarView> {
                                           double.parse(_carData!.long)),
                                       child: Icon(
                                         Icons.location_pin,
-                                        color: iconSelectedColor,
+                                        color: colorEmber,
                                         size: 46.0,
                                       ),
                                     ),
@@ -332,7 +332,7 @@ class OneCarViewState extends State<OneCarView> {
         ],
       ),
       bottomSheet: BottomAppBar(
-        color: iconSelectedColor,
+        color: colorEmber,
         elevation: 0,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -463,7 +463,7 @@ class OneCarViewState extends State<OneCarView> {
                       },
                       style: elevatedButton.copyWith(
                         backgroundColor:
-                            MaterialStatePropertyAll(iconSelectedColor),
+                            MaterialStatePropertyAll(colorEmber),
                       ),
                       child: Text(S.of(context).yuborish),
                     ),

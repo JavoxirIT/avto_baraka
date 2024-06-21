@@ -28,7 +28,7 @@ class _MainPageState extends State<IntroductionScreen>
 
     _animation = Tween<Offset>(
       begin: Offset.zero,
-      end: const Offset(0, -1),
+      end: const Offset(0, -3),
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.elasticIn,
@@ -126,7 +126,7 @@ class _MainPageState extends State<IntroductionScreen>
                               : ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       shape: const CircleBorder(),
-                                      backgroundColor: iconSelectedColor,
+                                      backgroundColor: colorEmber,
                                       padding: const EdgeInsets.all(15.0)),
                                   onPressed: () {
                                     buttonCarouselController.previousPage(
@@ -141,7 +141,7 @@ class _MainPageState extends State<IntroductionScreen>
                             dotsCount: list.length,
                             position: _currentPosition,
                             decorator: DotsDecorator(
-                              activeColor: iconSelectedColor,
+                              activeColor: colorEmber,
                               color: const Color(0XFFd9d9d9),
                               size: const Size(15.0, 15.0),
                               activeSize: const Size(15.0, 15.0),
@@ -153,7 +153,7 @@ class _MainPageState extends State<IntroductionScreen>
                                     shape: const CircleBorder(),
                                     backgroundColor: tokenProvider.token == null
                                         ? unselectedItemColor
-                                        : iconSelectedColor,
+                                        : colorEmber,
                                     padding: const EdgeInsets.all(15.0),
                                   ),
                                   onPressed: () {
@@ -175,7 +175,7 @@ class _MainPageState extends State<IntroductionScreen>
                               : ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     shape: const CircleBorder(),
-                                    backgroundColor: iconSelectedColor,
+                                    backgroundColor: colorEmber,
                                     padding: const EdgeInsets.all(15.0),
                                   ),
                                   onPressed: () {
@@ -244,7 +244,7 @@ class _MainPageState extends State<IntroductionScreen>
       child: Text(
         item["image"].toString(),
         style: TextStyle(
-          color: iconSelectedColor,
+          color: colorEmber,
           fontSize: 36.0,
           fontWeight: FontWeight.w700,
         ),

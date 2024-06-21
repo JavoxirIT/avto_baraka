@@ -33,7 +33,7 @@ Container firstChatBottomItItem(
               Row(
                 children: [
                   ElevatedButton(
-                    style: elevatedButton.copyWith(backgroundColor: MaterialStatePropertyAll(iconSelectedColor)),
+                    style: elevatedButton.copyWith(backgroundColor: MaterialStatePropertyAll(colorEmber)),
                     onPressed: () async {
                       imageFileList = await pickImage.gallery();
                       if (imageFileList.isNotEmpty) {
@@ -60,7 +60,7 @@ Container firstChatBottomItItem(
                     width: 10.0,
                   ),
                   ElevatedButton(
-                    style: elevationButtonWhite.copyWith(backgroundColor: MaterialStatePropertyAll(iconSelectedColor)),
+                    style: elevationButtonWhite.copyWith(backgroundColor: MaterialStatePropertyAll(colorEmber)),
                     onPressed: () async {
                       imageFileList = await pickImage.camera();
 
@@ -87,7 +87,7 @@ Container firstChatBottomItItem(
               ),
             );
           },
-          style: elevatedButtonChat.copyWith(backgroundColor: MaterialStatePropertyAll(iconSelectedColor)),
+          style: elevatedButtonChat.copyWith(backgroundColor: MaterialStatePropertyAll(colorEmber)),
           child: const Icon(Icons.attachment_outlined),
         ),
         const SizedBox(
@@ -126,7 +126,7 @@ Container firstChatBottomItItem(
             // onFieldSubmitted();
             textController.clear();
           },
-          style: elevatedButtonChat.copyWith(backgroundColor: MaterialStatePropertyAll(iconSelectedColor)),
+          style: elevatedButtonChat.copyWith(backgroundColor: MaterialStatePropertyAll(colorEmber)),
           child: const Icon(Icons.send),
         ),
       ],

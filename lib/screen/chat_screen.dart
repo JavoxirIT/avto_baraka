@@ -57,14 +57,14 @@ class ChatScreenState extends State<ChatScreen> {
                                               child: Icon(
                                                 Icons.chat,
                                                 size: 25.0,
-                                                color: iconSelectedColor,
+                                                color: colorEmber,
                                               ),
                                             ),
                                           )
                                         : Icon(
                                             Icons.chat,
                                             size: 25.0,
-                                            color: iconSelectedColor,
+                                            color: colorEmber,
                                           ),
                                     // chat.messageCount > 0
                                     //     ? Padding(

@@ -106,7 +106,7 @@ carFavpriteCard(context, state, String token, String lang) {
                               height: 40.0,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: iconSelectedColor,
+                                color: colorEmber,
                               ),
                               child: Center(
                                 child: IconButton(
@@ -215,7 +215,7 @@ carFavpriteCard(context, state, String token, String lang) {
                               Icon(
                                 Icons.calendar_month,
                                 size: 17.0,
-                                color: iconSelectedColor,
+                                color: colorEmber,
                               ),
                             ),
                             cardTagCard(
@@ -223,7 +223,7 @@ carFavpriteCard(context, state, String token, String lang) {
                               Icon(
                                 Symbols.auto_transmission,
                                 size: 17.0,
-                                color: iconSelectedColor,
+                                color: colorEmber,
                               ),
                             ),
                             cardTagCard(
@@ -231,7 +231,7 @@ carFavpriteCard(context, state, String token, String lang) {
                               Icon(
                                 Symbols.gas_meter_sharp,
                                 size: 17.0,
-                                color: iconSelectedColor,
+                                color: colorEmber,
                               ),
                             ),
                             cardTagCard(
@@ -239,7 +239,7 @@ carFavpriteCard(context, state, String token, String lang) {
                               Icon(
                                 Symbols.speed,
                                 size: 17.0,
-                                color: iconSelectedColor,
+                                color: colorEmber,
                               ),
                             ),
                           ],

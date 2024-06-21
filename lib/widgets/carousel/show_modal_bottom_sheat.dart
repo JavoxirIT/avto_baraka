@@ -5,7 +5,7 @@ showModalBottom(context, height, List<Widget> widgets, bool isScrollControlled,
   return showModalBottomSheet(
     isScrollControlled: isScrollControlled,
     showDragHandle: showDragHandle,
-    backgroundColor: iconSelectedColor,
+    backgroundColor: colorEmber,
     context: context,
     builder: (_) {
       return Container(

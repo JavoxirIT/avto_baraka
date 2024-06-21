@@ -53,7 +53,7 @@ class RatesCard extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 2.5,
                   height: 100,
                   decoration: BoxDecoration(
-                    color: iconSelectedColor,
+                    color: colorEmber,
                     borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(70.0),
                         topRight: Radius.circular(10.0)),

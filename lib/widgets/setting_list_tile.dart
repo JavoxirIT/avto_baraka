@@ -12,7 +12,7 @@ ListTile settingListTile(String title, textTheme, fnc) {
     },
     trailing: Icon(
       Icons.arrow_forward_ios,
-      color: iconSelectedColor,
+      color: colorEmber,
       size: 15.0,
     ),
     shape: const RoundedRectangleBorder(

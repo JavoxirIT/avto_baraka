@@ -10,7 +10,7 @@ class BottomLoader extends StatelessWidget {
         height: 25,
         width: 25,
         child: CircularProgressIndicator(
-            strokeWidth: 1.5, color: iconSelectedColor),
+            strokeWidth: 1.5, color: colorEmber),
       ),
     );
   }

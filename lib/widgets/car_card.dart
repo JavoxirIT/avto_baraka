@@ -318,7 +318,7 @@ class _CarCardState extends State<CarCard> {
         case ListingStatus.initial:
           return Center(
               child: CircularProgressIndicator(
-            color: iconSelectedColor,
+            color: colorEmber,
           ));
       }
     });
@@ -347,7 +347,7 @@ class _CarCardState extends State<CarCard> {
         Icon(
           Icons.calendar_month,
           size: 17.0,
-          color: iconSelectedColor,
+          color: colorEmber,
         ),
       ),
       cardTagCard(
@@ -355,7 +355,7 @@ class _CarCardState extends State<CarCard> {
         Icon(
           Symbols.auto_transmission,
           size: 17.0,
-          color: iconSelectedColor,
+          color: colorEmber,
         ),
       ),
       cardTagCard(
@@ -363,7 +363,7 @@ class _CarCardState extends State<CarCard> {
         Icon(
           Symbols.gas_meter_sharp,
           size: 17.0,
-          color: iconSelectedColor,
+          color: colorEmber,
         ),
       ),
       cardTagCard(
@@ -371,7 +371,7 @@ class _CarCardState extends State<CarCard> {
         Icon(
           Symbols.speed,
           size: 17.0,
-          color: iconSelectedColor,
+          color: colorEmber,
         ),
       ),
     ];

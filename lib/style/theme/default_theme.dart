@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 ThemeData defaultTheme() {
   return ThemeData(
     pageTransitionsTheme: pageTransitions(),
+
     // colorScheme: ColorScheme.light(primary: colorWhite),
     scaffoldBackgroundColor: Colors.black,
     // /brightness: Brightness.light,
@@ -29,9 +30,9 @@ ThemeData defaultTheme() {
     ),
     tabBarTheme: TabBarTheme(
       indicatorSize: TabBarIndicatorSize.label,
-      indicatorColor: iconSelectedColor,
+      indicatorColor: colorEmber,
       dividerHeight: BorderSide.strokeAlignCenter,
-      labelColor: iconSelectedColor,
+      labelColor: colorEmber,
       overlayColor: MaterialStatePropertyAll(colorWhite),
       // labelStyle: const TextStyle(
       //   fontFamily: "Roboto",
@@ -51,7 +52,7 @@ ThemeData defaultTheme() {
         ),
       ),
       // elevation: 1,
-      shadowColor: iconSelectedColor,
+      shadowColor: colorEmber,
       color: cardBlackColor,
       surfaceTintColor: backgrounColorWhite,
     ),
@@ -59,16 +60,17 @@ ThemeData defaultTheme() {
       errorStyle: const TextStyle(fontSize: 10.0),
       hintStyle: const TextStyle(fontSize: 12.0, color: Colors.black),
       labelStyle: TextStyle(
-          color: iconSelectedColor,
-          fontSize: 14.0,
-          fontWeight: FontWeight.w600),
+        color: colorEmber,
+        fontSize: 14.0,
+        fontWeight: FontWeight.w400,
+      ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: colorWhite,
       unselectedLabelStyle: const TextStyle(fontSize: 10.0),
       unselectedItemColor: unselectedItemColor,
       selectedLabelStyle: const TextStyle(fontSize: 10.0),
-      selectedItemColor: iconSelectedColor,
+      selectedItemColor: colorEmber,
     ),
     dropdownMenuTheme:
         const DropdownMenuThemeData(textStyle: TextStyle(fontSize: 12.0)),
@@ -112,7 +114,7 @@ ThemeData defaultTheme() {
       // BODY
       bodyLarge: TextStyle(
         fontSize: 14.0,
-        color: iconSelectedColor,
+        color: colorEmber,
         fontWeight: FontWeight.w700,
       ),
       bodyMedium: TextStyle(

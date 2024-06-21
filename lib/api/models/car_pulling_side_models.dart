@@ -1,17 +1,14 @@
 class CarPullingSideModels {
   CarPullingSideModels({
     required this.id,
-    required this.nameRu,
-    required this.nameUZ,
+    required this.name,
   });
 
   late int id;
-  late String nameUZ;
-  late String nameRu;
+  late String name;
 
   CarPullingSideModels.fromMap(Map<String, dynamic> map) {
     id = map['id'];
-    nameUZ = map['nameuz'];
-    nameRu = map['nameru'];
+    name = map['name'];
   }
 }

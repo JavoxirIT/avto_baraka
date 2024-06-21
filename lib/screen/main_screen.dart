@@ -57,7 +57,7 @@ class _MainScreenState extends State<MainScreen>
 
     _animation = Tween<Offset>(
       begin: Offset.zero,
-      end: const Offset(0, -1),
+      end: const Offset(0, -3),
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.elasticIn,
@@ -96,8 +96,8 @@ class _MainScreenState extends State<MainScreen>
             key: bottomNavigationKey,
             index: 0,
             items: curvedNavigationBarItem,
-            color: iconSelectedColor,
-            buttonBackgroundColor: iconSelectedColor,
+            color: colorEmber,
+            buttonBackgroundColor: colorEmber,
             backgroundColor: Colors.transparent,
             animationCurve: Curves.easeInOut,
             animationDuration: const Duration(milliseconds: 600),
@@ -138,7 +138,7 @@ class _MainScreenState extends State<MainScreen>
           height: sizecontainersize,
           child: Icon(
             icon,
-            color: _selectedIndex == index ? Colors.white : iconSelectedColor,
+            color: _selectedIndex == index ? Colors.white : colorEmber,
           ),
         ),
       ),
@@ -164,12 +164,12 @@ class _MainScreenState extends State<MainScreen>
                 child: Icon(
                   icon,
                   color:
-                      _selectedIndex == index ? colorWhite : iconSelectedColor,
+                      _selectedIndex == index ? colorWhite : colorEmber,
                 ),
               )
             : Icon(
                 icon,
-                color: _selectedIndex == index ? colorWhite : iconSelectedColor,
+                color: _selectedIndex == index ? colorWhite : colorEmber,
               ),
       ),
     );

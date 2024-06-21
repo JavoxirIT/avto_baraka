@@ -56,7 +56,7 @@ class FirstChatState extends State<FirstChat> {
   Widget build(BuildContext context) {
     OutlineInputBorder borderStyle = OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(_borderRadius)),
-      borderSide:  BorderSide(color: iconSelectedColor, width: 0.2),
+      borderSide:  BorderSide(color: colorEmber, width: 0.2),
     );
 
     final tokenProvider = Provider.of<TokenProvider>(context);
@@ -128,7 +128,7 @@ class FirstChatState extends State<FirstChat> {
           }
           return Center(
             child: CircularProgressIndicator(
-              color: iconSelectedColor,
+              color: colorEmber,
             ),
           );
         },

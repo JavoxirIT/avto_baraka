@@ -182,7 +182,7 @@ class CarBlockedCard extends StatelessWidget {
                                   .of(context)
                                   .ushbuElondaHatolikMavjudligiUchunTizimgaJoylanishiBekorQilindi,
                               style: TextStyle(
-                                color: iconSelectedColor,
+                                color: colorEmber,
                                 fontSize: 14.0,
                                 fontWeight: FontWeight.w700,
                               ),

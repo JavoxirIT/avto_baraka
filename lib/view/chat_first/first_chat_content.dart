@@ -16,7 +16,7 @@ Container firstChatContent(
             // constraints: BoxConstraints(minWidth: 100, maxWidth: 200),
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
             decoration: BoxDecoration(
-              color: isMe ? iconSelectedColor : unselectedItemColor,
+              color: isMe ? colorEmber : unselectedItemColor,
               borderRadius: isMe
                   ? const BorderRadius.only(
                       bottomLeft: Radius.circular(10),
@@ -31,7 +31,7 @@ Container firstChatContent(
               boxShadow: [
                 BoxShadow(
                   color: isMe
-                      ? iconSelectedColor.withOpacity(0.1)
+                      ? colorEmber.withOpacity(0.1)
                       : unselectedItemColor.withOpacity(0.1),
                   spreadRadius: 2,
                   blurRadius: 5,

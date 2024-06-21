@@ -1823,6 +1823,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Avval avtotransport turini tanlang`
+  String get avvalAvtotransportTuriniTanlang {
+    return Intl.message(
+      'Avval avtotransport turini tanlang',
+      name: 'avvalAvtotransportTuriniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Karta muddatini to'gri kiriting`
+  String get kartaMuddatiniTogriKiriting {
+    return Intl.message(
+      'Karta muddatini to`gri kiriting',
+      name: 'kartaMuddatiniTogriKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plastik kartani muddati o'tganmi??`
+  String get plastikKartaniMuddatiOtganmi {
+    return Intl.message(
+      'Plastik kartani muddati o`tganmi??',
+      name: 'plastikKartaniMuddatiOtganmi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Xabar mavjud emas`
+  String get xabarMavjudEmas {
+    return Intl.message(
+      'Xabar mavjud emas',
+      name: 'xabarMavjudEmas',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

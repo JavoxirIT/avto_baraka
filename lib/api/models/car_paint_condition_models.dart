@@ -1,17 +1,14 @@
 class CarPaintConditionModel {
   CarPaintConditionModel({
     required this.id,
-    required this.nameUZ,
-    required this.nameRu,
+    required this.name,
   });
 
   late int id;
-  late String nameUZ;
-  late String nameRu;
+  late String name;
 
   CarPaintConditionModel.fromMap(Map<String, dynamic> map) {
     id = map['id'];
-    nameUZ = map['nameuz'];
-    nameRu = map['nameru'];
+    name = map['name'];
   }
 }

@@ -4,10 +4,9 @@ import 'package:avto_baraka/style/elevated_button.dart';
 import 'package:avto_baraka/style/elevation_button_white.dart';
 import 'package:flutter/material.dart';
 
-Row stepControls(context, currentStep, onStepCansel, onStepContinue, region,
-    districts, getSteps) {
+Row stepControls(context, currentStep, onStepCansel, onStepContinue, getSteps) {
   TextStyle textStyle = TextStyle(
-      fontSize: 16.0, fontWeight: FontWeight.w600, color: iconSelectedColor);
+      fontSize: 16.0, fontWeight: FontWeight.w600, color: colorEmber);
   TextStyle textStyle2 = const TextStyle(
       fontSize: 16.0, fontWeight: FontWeight.w600, color: Colors.white);
   final isLastStep = currentStep == getSteps(context).length - 1;
@@ -25,7 +24,7 @@ Row stepControls(context, currentStep, onStepCansel, onStepContinue, region,
               children: [
                 Icon(
                   Icons.arrow_back_ios,
-                  color: iconSelectedColor,
+                  color: colorEmber,
                 ),
                 Text(
                   S.of(context).orqaga,
@@ -40,7 +39,8 @@ Row stepControls(context, currentStep, onStepCansel, onStepContinue, region,
       ),
       Expanded(
         child: ElevatedButton(
-          style: elevatedButton,
+          style: elevatedButton.copyWith(
+              backgroundColor: MaterialStatePropertyAll(colorEmber)),
           onPressed: onStepContinue,
           child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,

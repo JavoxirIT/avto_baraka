@@ -138,7 +138,7 @@ class MainCarouselFormRegistrationState
                         child: ElevatedButton(
                           style: elevatedButtonMap.copyWith(
                               backgroundColor:
-                                  MaterialStatePropertyAll(iconSelectedColor)),
+                                  MaterialStatePropertyAll(colorEmber)),
                           onPressed: () async {
                             if (phoneNumber.text.isEmpty) {
                               flutterShowToast(

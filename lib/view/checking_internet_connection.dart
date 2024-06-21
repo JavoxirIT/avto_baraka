@@ -86,7 +86,7 @@ class _CheckingInternetConnectionState
         ),
         centerTitle: true,
         elevation: 4,
-        backgroundColor: iconSelectedColor,
+        backgroundColor: colorEmber,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -105,7 +105,7 @@ class _CheckingInternetConnectionState
           ),
           const SizedBox(height: 20.0),
           ElevatedButton(
-            style: elevatedButtonMap.copyWith(backgroundColor: MaterialStatePropertyAll(iconSelectedColor)),
+            style: elevatedButtonMap.copyWith(backgroundColor: MaterialStatePropertyAll(colorEmber)),
             child: Text(S.of(context).sozlamalarniOchisgh),
             onPressed: () =>
                 AppSettings.openAppSettings(type: AppSettingsType.device),

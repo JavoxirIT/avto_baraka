@@ -2,6 +2,7 @@ import 'package:avto_baraka/api/service/payments__service.dart';
 import 'package:avto_baraka/bloc/not_active/not_active_bloc.dart';
 import 'package:avto_baraka/bloc/payment/payment_bloc.dart';
 import 'package:avto_baraka/observer/simple_bloc_observer.dart';
+import 'package:avto_baraka/router/navigator_key.dart';
 import 'package:flutter_background/flutter_background.dart';
 import 'package:avto_baraka/api/service/chat_servive.dart';
 import 'package:avto_baraka/api/service/listing_service.dart';
@@ -133,6 +134,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     PaymentsService().paymentDesc(providerLanguage.locale.languageCode);
 
     return MaterialApp(
+      navigatorKey: navigatorKey,
       navigatorObservers: [ShareRouteObserver()],
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const <LocalizationsDelegate<dynamic>>[

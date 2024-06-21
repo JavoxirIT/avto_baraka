@@ -2,8 +2,9 @@ import 'package:avto_baraka/screen/imports/imports_announcement.dart';
 
 Color unselectedItemColor = const Color(0xFF8D8D8D);
 Color colorWhite = Colors.white;
+Color colorEmber = const Color(0xFFDAA908);
+Color cardBlackColor = const Color.fromARGB(255, 44, 44, 44);
 // Color iconSelectedColor = const Color(0xFF008080);
-Color iconSelectedColor = Color.fromARGB(255, 218, 169, 8);
 Color splashColor = const Color(0xFF008080).withOpacity(0.3);
 Color cardFixCardColor = const Color(0xDDFFFFFF);
 Color colorRed = const Color(0xFFD40000);
@@ -22,4 +23,3 @@ Color focusedBorderColor = const Color.fromRGBO(23, 171, 144, 1);
 Color fillColor = const Color.fromRGBO(243, 246, 249, 0);
 Color borderColor = const Color.fromRGBO(23, 171, 144, 0.4);
 Color iconDizLike = const Color(0xFF535353);
-Color cardBlackColor = const Color.fromARGB(255, 44, 44, 44);

@@ -6,6 +6,7 @@ import 'package:avto_baraka/api/models/car_models.dart';
 import 'package:avto_baraka/api/models/region_models.dart';
 import 'package:avto_baraka/api/models/valyuta_model.dart';
 import 'package:avto_baraka/api/service/car_service.dart';
+import 'package:avto_baraka/api/service/local_memory.dart';
 import 'package:avto_baraka/api/service/region_service.dart';
 import 'package:avto_baraka/api/service/valyuta_service.dart';
 import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
@@ -103,7 +104,7 @@ class SearchViewState extends State<SearchView> {
                 ),
                 trailing: Icon(
                   Icons.arrow_forward_ios_outlined,
-                  color: iconSelectedColor,
+                  color: colorEmber,
                 ),
                 shape: shape,
                 tileColor: cardBlackColor,
@@ -135,7 +136,7 @@ class SearchViewState extends State<SearchView> {
                                     ListTileControlAffinity.trailing,
                                 // splashRadius: 3.0,
                                 title: Text(
-                                  el.nameRu,
+                                  el.name,
                                   style: Theme.of(context)
                                       .textTheme
                                       .displayLarge!
@@ -146,7 +147,7 @@ class SearchViewState extends State<SearchView> {
                                 onChanged: (value) {
                                   setState(() {
                                     regionGroupValue = value!;
-                                    stateName = el.nameRu;
+                                    stateName = el.name;
                                   });
                                   Navigator.of(context).pop();
                                 },
@@ -182,7 +183,7 @@ class SearchViewState extends State<SearchView> {
                               },
                               child: Card(
                                 color: carTypeId == element.id
-                                    ? iconSelectedColor
+                                    ? colorEmber
                                     : cardBlackColor,
                                 child: Column(
                                   children: [
@@ -215,7 +216,7 @@ class SearchViewState extends State<SearchView> {
                       ),
                       trailing: Icon(
                         Icons.arrow_forward_ios_outlined,
-                        color: iconSelectedColor,
+                        color: colorEmber,
                       ),
                       shape: shape,
                       tileColor: cardBlackColor,
@@ -245,7 +246,7 @@ class SearchViewState extends State<SearchView> {
                                       controlAffinity:
                                           ListTileControlAffinity.trailing,
                                       title: Text(
-                                        el.nameRu,
+                                        el.name,
                                         style: Theme.of(context)
                                             .textTheme
                                             .displayLarge!
@@ -256,7 +257,7 @@ class SearchViewState extends State<SearchView> {
                                       onChanged: (value) async {
                                         setState(() {
                                           carBrandValue = value!;
-                                          markName = el.nameRu;
+                                          markName = el.name;
                                         });
                                         Navigator.of(context).pop();
                                         carModelList =
@@ -288,7 +289,7 @@ class SearchViewState extends State<SearchView> {
                       ),
                       trailing: Icon(
                         Icons.arrow_forward_ios_outlined,
-                        color: iconSelectedColor,
+                        color: colorEmber,
                       ),
                       shape: shape,
                       tileColor: cardBlackColor,
@@ -320,7 +321,7 @@ class SearchViewState extends State<SearchView> {
                                           ListTileControlAffinity.trailing,
                                       // splashRadius: 3.0,
                                       title: Text(
-                                        el.nameRu,
+                                        el.name,
                                         style: Theme.of(context)
                                             .textTheme
                                             .displayLarge!
@@ -331,7 +332,7 @@ class SearchViewState extends State<SearchView> {
                                       onChanged: (value) {
                                         setState(() {
                                           carModelValue = value!;
-                                          carName = el.nameRu;
+                                          carName = el.name;
                                         });
                                         Navigator.of(context).pop();
                                       },
@@ -407,7 +408,7 @@ class SearchViewState extends State<SearchView> {
                             (valyuta) => DropdownMenuItem(
                               value: valyuta.id,
                               child: Text(
-                                valyuta.nameru,
+                                valyuta.name,
                                 style: fonmDataTextStyle,
                               ),
                             ),
@@ -430,7 +431,7 @@ class SearchViewState extends State<SearchView> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: iconSelectedColor,
+        backgroundColor: colorEmber,
         onPressed: () => getSearch(
             token: tokenProvider.token!,
             lang: languageProvider.locale.languageCode),
