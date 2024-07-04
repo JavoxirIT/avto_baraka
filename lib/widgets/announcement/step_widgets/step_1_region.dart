@@ -1,4 +1,3 @@
-import 'package:avto_baraka/api/service/local_memory.dart';
 import 'package:avto_baraka/screen/imports/imports_announcement.dart';
 
 class Region extends StatefulWidget {

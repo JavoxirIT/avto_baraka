@@ -60,8 +60,9 @@ final class ListingStateHasDataSearch extends ListingState {
   const ListingStateHasDataSearch({required this.count});
 
   final int count;
+
   @override
-  List<Object> get props => super.props..add([count]);
+  List<Object> get props => super.props..add(count);
 }
 
 // on refresh

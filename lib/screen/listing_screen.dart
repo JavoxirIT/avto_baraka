@@ -67,6 +67,7 @@ class _ListingScreenState extends State<ListingScreen> {
         onRefresh: () async {
           // Отправляем событие для загрузки данных
           context.read<ListingBloc>().add(ListingEventRefresh());
+
           // Используем Completer для завершения refresh-индикатора
           final completer = Completer<void>();
           final subscription =

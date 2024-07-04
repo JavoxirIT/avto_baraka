@@ -6,7 +6,7 @@ import 'package:avto_baraka/screen/imports/imports_listing.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevation_button_white.dart';
 import 'package:avto_baraka/utill/bs_64_image.dart';
-import 'package:avto_baraka/widgets/car_tag_card.dart';
+import 'package:avto_baraka/widgets/car_card/car_tag_card.dart';
 import 'package:avto_baraka/widgets/dialog.dart';
 import 'package:intl/intl.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -50,6 +50,7 @@ class CarActiveCard extends StatelessWidget {
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(12.0),
                                 child: FadeInImage(
+                                  imageSemanticLabel: "image auto",
                                   fit: BoxFit.cover,
                                   width: MediaQuery.of(context).size.width,
                                   height: 200.0,
@@ -237,6 +238,9 @@ class CarActiveCard extends StatelessWidget {
                                               lang: lang,
                                             ),
                                           );
+                                          BlocProvider.of<ListingBloc>(context)
+                                              .add(
+                                                  const ListingEventAddListing());
                                           Navigator.of(context).pop();
                                         },
                                         child: Text(

@@ -1,4 +1,6 @@
 // import 'package:avto_baraka/screen/imports/imports_announcement.dart';
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/style/box_decoration.dart';

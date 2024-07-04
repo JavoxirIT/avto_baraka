@@ -10,6 +10,11 @@ ThemeData defaultTheme() {
     scaffoldBackgroundColor: Colors.black,
     // /brightness: Brightness.light,
     // primaryColor: Colors.red,
+    scrollbarTheme: const ScrollbarThemeData().copyWith(
+      thumbColor: MaterialStateProperty.all(colorEmber),
+      thickness: const MaterialStatePropertyAll(5.0),
+      trackVisibility: const MaterialStatePropertyAll(true),
+    ),
     dialogTheme: DialogTheme(
       backgroundColor: cardBlackColor,
       surfaceTintColor: colorWhite,

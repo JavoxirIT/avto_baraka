@@ -15,10 +15,10 @@ class CarTypeSelection extends StatefulWidget {
   final ValueChanged<List<CarBrandsModels>> onCarBrandListUpdated;
 
   @override
-  _CarTypeSelectionState createState() => _CarTypeSelectionState();
+  CarTypeSelectionState createState() => CarTypeSelectionState();
 }
 
-class _CarTypeSelectionState extends State<CarTypeSelection> {
+class CarTypeSelectionState extends State<CarTypeSelection> {
   late int carTypeGroupValue;
   late List<CarBrandsModels> carBrandList;
 

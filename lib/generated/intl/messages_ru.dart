@@ -4,7 +4,7 @@
 // function name.
 
 // Ignore issues from commonly used lints in this file.
-// ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
+// ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new, avoid_types_as_parameter_names
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
@@ -26,9 +26,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(n) => "Неактивных ${n} объявлений нет";
 
-  static String m3(num) => "Для подтверждения отправлен sms на номер ${num} ";
+  static String m3(n) =>
+      "СМС-код отправлен для подтверждения! ${n} Пожалуйста, подождите";
 
-  static String m4(days) => "${days} дня в топе";
+  static String m4(n) => "«Код подтвержден!${n}Нажмите кнопку, чтобы войти»";
+
+  static String m5(num) => "Для подтверждения отправлен sms на номер ${num} ";
+
+  static String m6(days) => "${days} дня в топе";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -42,8 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Нажмите «Выполнить"),
         "avtomatikTanlash":
             MessageLookupByLibrary.simpleMessage("Текущая геопозиция"),
-        "avvalAvtotransportTuriniTanlang": MessageLookupByLibrary.simpleMessage(
-            "Сначала выберите тип транспортного средства"),
+        "avvalAvtotransportTuriniTanlang":
+            MessageLookupByLibrary.simpleMessage("Список моделей пуст"),
         "avvalBankniTanlang":
             MessageLookupByLibrary.simpleMessage("Сначала выберите банк"),
         "avvalTexnikaTuriniTanlang": MessageLookupByLibrary.simpleMessage(
@@ -98,6 +103,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Объявление возобновлено"),
         "elonSaqlandi":
             MessageLookupByLibrary.simpleMessage("Обявление сохранено"),
+        "elonSaqlanmadi":
+            MessageLookupByLibrary.simpleMessage("Ошибка при сохранения"),
         "elonlar": MessageLookupByLibrary.simpleMessage("Объявления"),
         "elonlarOynasi":
             MessageLookupByLibrary.simpleMessage("Перейти в окно объявлений"),
@@ -134,12 +141,34 @@ class MessageLookup extends MessageLookupByLibrary {
         "ilojiBor": MessageLookupByLibrary.simpleMessage("Нет"),
         "ilovaHaqida": MessageLookupByLibrary.simpleMessage("О приложении"),
         "iltimos": MessageLookupByLibrary.simpleMessage("Пожалуйста"),
+        "iltimosAvtomashinaBrendniTanlang":
+            MessageLookupByLibrary.simpleMessage(
+                "Пожалуйста, выберите марку автомобиля"),
+        "iltimosAvtomashinaModeliniTanlang":
+            MessageLookupByLibrary.simpleMessage(
+                "Пожалуйста, выберите модель автомобиля"),
+        "iltimosAvtomashinaTuriniTanlang": MessageLookupByLibrary.simpleMessage(
+            "Пожалуйста, выберите тип транспортного средства"),
+        "iltimosFotosuratKiriting": MessageLookupByLibrary.simpleMessage(
+            "Пожалуйста, добавьте изображение"),
         "iltimosInternetAloqaniYoqing": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, включите подключение к Интернету"),
+        "iltimosKutibTuring":
+            MessageLookupByLibrary.simpleMessage("Пожалуйста, подождите"),
+        "iltimosLocatsiyaniKiritingAvtomatikTanlashTugmasiniBosing":
+            MessageLookupByLibrary.simpleMessage(
+                "Пожалуйста, введите местоположение, нажмите кнопку автоматического выбора"),
+        "iltimosMalumotlarniToliqKiriting":
+            MessageLookupByLibrary.simpleMessage(
+                "Пожалуйста, введите информацию полностью"),
         "iltimosNomeringizniKiriting": MessageLookupByLibrary.simpleMessage(
-            "Пожалуйста, введите свой номер"),
+            "Пожалуйста, введите свой номер телефона"),
         "iltimosSmsXabarniKutibTuring": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста ожидайте sms уведомление"),
+        "iltimosTumanniTanlang":
+            MessageLookupByLibrary.simpleMessage("Пожалуйста, выберите район"),
+        "iltimosViloyatniTanlang":
+            MessageLookupByLibrary.simpleMessage("Пожалуйста, выберите регион"),
         "internetAloqasiYoq":
             MessageLookupByLibrary.simpleMessage("Нет связи с интернетом"),
         "ishlabChiqarilganYili":
@@ -157,6 +186,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "kechirasiz": MessageLookupByLibrary.simpleMessage("Извините"),
         "kerakliElonniQidirish":
             MessageLookupByLibrary.simpleMessage("Поиск обявления"),
+        "kiritilmagan": MessageLookupByLibrary.simpleMessage("Kiritilmagan"),
         "kodniYuborsh": MessageLookupByLibrary.simpleMessage("Отправить код"),
         "kreditKalkulatori":
             MessageLookupByLibrary.simpleMessage("Посчитать в кредит"),
@@ -245,10 +275,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Введите вашу жалобу"),
         "smsKodTasdiqlandi":
             MessageLookupByLibrary.simpleMessage("Смс-код подтвержден"),
+        "smsKodTasdiqlashgaYuborildiNIltimosKutibTuring": m3,
         "smsKodniKiriting":
             MessageLookupByLibrary.simpleMessage("Введите код из смс"),
         "smsKodniToliqKiriting":
             MessageLookupByLibrary.simpleMessage("Введите полный СМС-код"),
+        "smskodTasdiqlandindaturgaKirishUchunTugmaniBosing": m4,
         "som": MessageLookupByLibrary.simpleMessage(" сум"),
         "sorovingizBoyicha":
             MessageLookupByLibrary.simpleMessage("По ващему запросу"),
@@ -271,8 +303,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "tasdiqlangan": MessageLookupByLibrary.simpleMessage("Активные"),
         "tasdiqlanganElonlarMavjutEmas": MessageLookupByLibrary.simpleMessage(
             "Одобренные обявления не найдены"),
-        "tasdiqlashUchunManashuNumGaSmsKodYuborildi": m3,
+        "tasdiqlashUchunManashuNumGaSmsKodYuborildi": m5,
         "telefon": MessageLookupByLibrary.simpleMessage("Телефон"),
+        "telefonRaqamizniToliqKiriting": MessageLookupByLibrary.simpleMessage(
+            "Введите свой полный номер телефона"),
         "texnikaTuriniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите тип техники"),
         "til": MessageLookupByLibrary.simpleMessage("Язык"),
@@ -283,7 +317,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tolovGrafigi": MessageLookupByLibrary.simpleMessage("График оплаты"),
         "tolovMuvofaqayatliOtkazildi":
             MessageLookupByLibrary.simpleMessage("Оплата успешно произведена"),
-        "topdaJoylashuvDaysKun": m4,
+        "topdaJoylashuvDaysKun": m6,
         "topgaChiqarish": MessageLookupByLibrary.simpleMessage("В топ"),
         "tortishTomoniniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите ведущую сторону"),

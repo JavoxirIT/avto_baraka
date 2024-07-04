@@ -18,7 +18,7 @@ class _MainScreenState extends State<MainScreen>
   List<ConnectivityResult> _connectionStatus = [ConnectivityResult.none];
   final Connectivity _connectivity = Connectivity();
   late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
-  int? count;
+  int count = -1;
   final double sizecontainersize = 30.0;
   int _selectedIndex = 0;
 
@@ -152,7 +152,7 @@ class _MainScreenState extends State<MainScreen>
         alignment: Alignment.center,
         width: sizecontainersize,
         height: sizecontainersize,
-        child: count != 0
+        child: count > 0
             ? Badge(
                 backgroundColor: colorWhite,
                 label: Text(

@@ -11,7 +11,7 @@ import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/utill/bs_64_image.dart';
 import 'package:avto_baraka/widgets/bottom_loader.dart';
-import 'package:avto_baraka/widgets/car_tag_card.dart';
+import 'package:avto_baraka/widgets/car_card/car_tag_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:intl/intl.dart';
@@ -139,6 +139,7 @@ class _CarCardState extends State<CarCard> {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(12.0),
                                   child: FadeInImage(
+                                    imageSemanticLabel: "image auto",
                                     fit: BoxFit.cover,
                                     width: MediaQuery.of(context).size.width,
                                     height: 200.0,

@@ -1,5 +1,4 @@
 import 'package:avto_baraka/api/models/districs_model.dart';
-import 'package:avto_baraka/api/service/districts_service.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:flutter/material.dart';

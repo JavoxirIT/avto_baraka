@@ -2,7 +2,6 @@ import 'package:avto_baraka/api/models/credit_models.dart';
 import 'package:avto_baraka/screen/imports/imports_announcement.dart';
 import 'package:avto_baraka/style/sized_box_20.dart';
 import 'package:avto_baraka/view/credit/credit_table.dart';
-import 'package:sms_autofill/sms_autofill.dart';
 
 class CreditScreen extends StatefulWidget {
   const CreditScreen({Key? key}) : super(key: key);

@@ -6,7 +6,6 @@ import 'package:avto_baraka/api/models/car_models.dart';
 import 'package:avto_baraka/api/models/region_models.dart';
 import 'package:avto_baraka/api/models/valyuta_model.dart';
 import 'package:avto_baraka/api/service/car_service.dart';
-import 'package:avto_baraka/api/service/local_memory.dart';
 import 'package:avto_baraka/api/service/region_service.dart';
 import 'package:avto_baraka/api/service/valyuta_service.dart';
 import 'package:avto_baraka/bloc/listing/listing_bloc.dart';

@@ -3,7 +3,7 @@ import 'package:avto_baraka/bloc/not_active/not_active_bloc.dart';
 import 'package:avto_baraka/bloc/payment/payment_bloc.dart';
 import 'package:avto_baraka/observer/simple_bloc_observer.dart';
 import 'package:avto_baraka/router/navigator_key.dart';
-import 'package:flutter_background/flutter_background.dart';
+// import 'package:flutter_background/flutter_background.dart';
 import 'package:avto_baraka/api/service/chat_servive.dart';
 import 'package:avto_baraka/api/service/listing_service.dart';
 import 'package:avto_baraka/bloc/all_rooms/all_rooms_bloc.dart';
@@ -35,18 +35,20 @@ void main() async {
   await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = const SimpleBlocObserver();
-  // ignore: prefer_const_constructors
-  final androidConfig = FlutterBackgroundAndroidConfig(
-    notificationTitle: "App is running in background",
-    notificationText: "Tap to return to the app",
-    notificationImportance: AndroidNotificationImportance.Default,
-  );
 
-  bool hasPermissions = await FlutterBackground.hasPermissions;
-  if (!hasPermissions) {
-    await FlutterBackground.initialize(androidConfig: androidConfig);
-    await FlutterBackground.enableBackgroundExecution();
-  }
+  // const androidConfig = FlutterBackgroundAndroidConfig(
+  //   notificationTitle: "Ilova fonda ishlayapti",
+  //   notificationText: "Ilovaga qaytish uchun bosing",
+  //   notificationImportance: AndroidNotificationImportance.Default,
+  //   notificationIcon:
+  //       AndroidResource(name: 'background_icon', defType: 'drawable'),
+  // );
+
+  // bool hasPermissions = await FlutterBackground.hasPermissions;
+  // if (!hasPermissions) {
+  //   await FlutterBackground.initialize(androidConfig: androidConfig);
+  //   await FlutterBackground.enableBackgroundExecution();
+  // }
 
   final notificationService = NotificationService();
   await notificationService.init();
@@ -90,11 +92,8 @@ void main() async {
             create: (context) => AllRoomsBloc(ChatService.chatService),
           ),
           BlocProvider(
-            create: (context) => webSocketBloc
-              ..add(
-                ConnectWebSocket(url: Config.ws!),
-              ),
-          ),
+              create: (context) =>
+                  webSocketBloc..add(ConnectWebSocket(url: Config.ws!))),
           BlocProvider<OneRoomBloc>(
             create: (context) =>
                 OneRoomBloc(ChatService.chatService, webSocketBloc),
@@ -123,6 +122,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   String? token;
   @override
   void initState() {
+    BlocProvider.of<WebSocketBloc>(context)
+        .add(ConnectWebSocket(url: Config.ws!));
     getLocalData();
     super.initState();
   }
@@ -131,7 +132,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Widget build(context) {
     // final tokenProvider = Provider.of<TokenProvider>(context);
     final providerLanguage = Provider.of<LocalProvider>(context);
-    PaymentsService().paymentDesc(providerLanguage.locale.languageCode);
+    PaymentsService().paymentDesc();
 
     return MaterialApp(
       navigatorKey: navigatorKey,

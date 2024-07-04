@@ -4,9 +4,7 @@ import 'package:avto_baraka/api/models/listing_get_models.dart';
 import 'package:avto_baraka/api/service/local_memory.dart';
 import 'package:avto_baraka/http_config/config.dart';
 import 'package:avto_baraka/provider/token_provider/token_provider.dart';
-import 'package:avto_baraka/router/navigator_key.dart';
 import 'package:avto_baraka/router/redirect_to_login.dart';
-import 'package:avto_baraka/screen/introductory_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -60,13 +58,29 @@ class ListingService {
         ),
         data: formData,
       );
+         debugPrint('POST listing: $response');
       if (response.statusCode == 200) {
+        debugPrint('pesponse listing: $response');
+
         statusText = response.data['status'];
       } else {
-        debugPrint('rsponse daq request: ${response.statusMessage}');
+        debugPrint('response bad request: ${response.statusMessage}');
+        if (response.statusCode == 422) {
+          statusText = "Unprocessable";
+        }
       }
     } catch (e) {
       debugPrint('Ошибка при отправки данных: ${e.toString()}');
+      if (e is DioException) {
+        if (e.response?.statusCode == 422) {
+          statusText = "Unprocessable";
+          debugPrint('422: ${e.response?.data}');
+        }
+        if (e.response?.statusCode == 500) {
+          debugPrint('500: ${e.response?.data}');
+          statusText = "serverError";
+        }
+      }
     }
     return statusText;
   }

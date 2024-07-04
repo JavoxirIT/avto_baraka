@@ -19,6 +19,13 @@ class ListingEventLoad extends ListingEvent {
   List<Object> get props => [];
 }
 
+class ListingEventAddListing extends ListingEvent {
+  const ListingEventAddListing();
+
+  @override
+  List<Object> get props => [];
+}
+
 //REFRESH
 class ListingEventRefresh extends ListingEvent {}
 
@@ -80,7 +87,6 @@ class ListingEvantSearch extends ListingEvent {
       valyuta!
     ]);
 }
-
 
 // like
 

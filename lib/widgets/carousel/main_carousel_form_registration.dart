@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:avto_baraka/widgets/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sms_autofill/sms_autofill.dart';
@@ -9,8 +12,8 @@ import 'package:avto_baraka/style/elevation_button_map.dart';
 import 'package:avto_baraka/style/sized_box_20.dart';
 import 'package:avto_baraka/utill/phone_mask/phone_mask.dart';
 import 'package:avto_baraka/utill/validation/phone_validator.dart';
-import 'package:avto_baraka/widgets/flutter_show_toast.dart';
 import 'package:avto_baraka/generated/l10n.dart';
+import 'package:toastification/toastification.dart';
 
 class MainCarouselFormRegistration extends StatefulWidget {
   const MainCarouselFormRegistration({Key? key}) : super(key: key);
@@ -37,6 +40,8 @@ class MainCarouselFormRegistrationState
     getAppSignature();
     requestSmsPermission();
     _listenForSmsCode();
+     var data = SmsAutoFill().hint;
+    data.then((value) => phoneNumber.text = value!);
   }
 
   void _listenForSmsCode() async {
@@ -114,7 +119,8 @@ class MainCarouselFormRegistrationState
                               hintStyle: TextStyle(color: colorWhite),
                               focusedBorder: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
-                                    const Radius.circular(0.0)),
+                                  Radius.circular(0.0),
+                                ),
                                 borderSide: BorderSide(
                                     color: Colors.transparent, width: 0.0),
                               ),
@@ -137,20 +143,25 @@ class MainCarouselFormRegistrationState
                         height: 58.0,
                         child: ElevatedButton(
                           style: elevatedButtonMap.copyWith(
-                              backgroundColor:
-                                  MaterialStatePropertyAll(colorEmber)),
+                            backgroundColor:
+                                MaterialStatePropertyAll(colorEmber),
+                          ),
                           onPressed: () async {
-                            if (phoneNumber.text.isEmpty) {
-                              flutterShowToast(
-                                  S.of(context).iltimosNomeringizniKiriting);
+                            final validate =
+                                phoneValidator(context, phoneNumber.text);
+
+                            if (validate == null) {
+                              toast(
+                                context,
+                                S.of(context).iltimosSmsXabarniKutibTuring,
+                                colorEmber,
+                                ToastificationType.info,
+                              );
+                              responseData = await Authorization()
+                                  .postNumber(phoneNumber.text, _appSignature);
+                            } else {
                               return;
                             }
-
-                            flutterShowToast(
-                              S.of(context).iltimosSmsXabarniKutibTuring,
-                            );
-                            responseData = await Authorization()
-                                .postNumber(phoneNumber.text, _appSignature);
                           },
                           child: Text(
                             S.of(context).yuborish,
@@ -187,25 +198,46 @@ class MainCarouselFormRegistrationState
                       Colors.white,
                     ),
                   ),
+                  
                   onCodeChanged: (code) async {
+                    final currentContext = context;
                     if (code!.length == 6) {
                       setState(() {
                         _code = code;
                       });
-
+                      toast(
+                        context,
+                        S
+                            .of(context)
+                            .smsKodTasdiqlashgaYuborildiNIltimosKutibTuring(
+                                '\n'),
+                        colorEmber,
+                        ToastificationType.info,
+                      );
                       accessTokenData = await Authorization()
                           .sendphoneAndCode(phoneNumber.text, code);
-                      final accessToken = accessTokenData!["access_token"];
-                      final userId = accessTokenData!["user_id"];
 
-                      tokenProvider.accessToken = accessToken;
-                      tokenProvider.accessUserID = userId.toString();
-                      tokenProvider.tokenSetLocale(
-                        accessToken,
-                      );
-                      tokenProvider.userIdSetLocale(userId.toString());
+                      if (accessTokenData!["access_token"] != null &&
+                          accessTokenData!["user_id"] != null) {
+                        toast(
+                          currentContext,
+                          S
+                              .of(context)
+                              .smskodTasdiqlandindaturgaKirishUchunTugmaniBosing(
+                                  '\n'),
+                          colorEmber,
+                          ToastificationType.info,
+                        );
+                        final accessToken = accessTokenData!["access_token"];
+                        final userId = accessTokenData!["user_id"];
 
-                      // debugPrint('accessTokenData: $accessTokenData');
+                        tokenProvider.accessToken = accessToken;
+                        tokenProvider.accessUserID = userId.toString();
+                        tokenProvider.tokenSetLocale(
+                          accessToken,
+                        );
+                        tokenProvider.userIdSetLocale(userId.toString());
+                      }
                     }
                   },
                 ),

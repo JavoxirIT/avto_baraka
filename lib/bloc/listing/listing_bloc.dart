@@ -14,6 +14,7 @@ import 'package:stream_transform/stream_transform.dart';
 part 'listing_event.dart';
 part 'listing_state.dart';
 
+int postLimit = 20;
 const throttleDuration = Duration(milliseconds: 100);
 
 EventTransformer<E> throttleDroppable<E>(Duration duration) {
@@ -29,14 +30,15 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
     on<ListingEvantSearch>(getSearchData);
     on<ListingEventRefresh>(getRefresh);
     on<LikeEvendSend>(onChangeLike);
+    on<ListingEventAddListing>(addListing);
   }
 
   final ListingService _listingService;
 
   Future<void> getOneListing(
-      ListingEventLoad event, Emitter<ListingState> emit) async {
-    // debugPrint('ISHLADI');
-
+    ListingEventLoad event,
+    Emitter<ListingState> emit,
+  ) async {
     int page = 1;
     if (state.hasReachedMax) return;
 
@@ -51,20 +53,41 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
           currentPage: page + 1,
         ));
       }
-      final listings = await _listingService.getDataListing(state.currentPage);
-      // if (listings.isEmpty) return;
-      emit(listings.isEmpty
-          ? state.copyWith(hasReachedMax: false, listing: state.listing)
-          : state.copyWith(
-              status: ListingStatus.success,
-              listing: List.of(state.listing)..addAll(listings),
-              hasReachedMax: false,
-              currentPage: state.currentPage + 1,
-            ));
+
+      if (state.listing.length >= 10) {
+        final listings =
+            await _listingService.getDataListing(state.currentPage);
+        // if (listings.isEmpty) return;
+        if (listings.isEmpty) {
+          emit(state.copyWith(
+              hasReachedMax: true, listing: List.of(state.listing)));
+        } else {
+          emit(state.copyWith(
+            status: ListingStatus.success,
+            listing: List.of(state.listing)..addAll(listings),
+            hasReachedMax: false,
+            currentPage: state.currentPage + 1,
+          ));
+        }
+      }
     } on Exception catch (_) {
       // emit(ListingStateError(exception: e));
       emit(state.copyWith(status: ListingStatus.failure));
     }
+  }
+
+  Future<void> addListing(
+    ListingEventAddListing event,
+    Emitter<ListingState> emit,
+  ) async {
+    final listings = await _listingService.getDataListing(1);
+    emit(state.copyWith(status: ListingStatus.initial));
+    emit(state.copyWith(
+      status: ListingStatus.success,
+      listing: listings,
+      hasReachedMax: false,
+      currentPage: state.currentPage,
+    ));
   }
 
 // REFRESH

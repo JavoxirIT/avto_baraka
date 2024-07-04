@@ -5,11 +5,11 @@ import 'package:avto_baraka/http_config/config.dart';
 import 'package:avto_baraka/screen/imports/imports_listing.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevation_button_white.dart';
-import 'package:avto_baraka/widgets/car_tag_card.dart';
+import 'package:avto_baraka/widgets/car_card/car_tag_card.dart';
 import 'package:avto_baraka/widgets/dialog.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-import '../utill/bs_64_image.dart';
+import '../../utill/bs_64_image.dart';
 
 class CarNotActiv extends StatefulWidget {
   const CarNotActiv({
@@ -165,6 +165,7 @@ class _CarNotActivState extends State<CarNotActiv> {
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(12.0),
                                 child: FadeInImage(
+                                  imageSemanticLabel: "image auto",
                                   fit: BoxFit.cover,
                                   width: MediaQuery.of(context).size.width,
                                   height: 200.0,
@@ -379,6 +380,10 @@ class _CarNotActivState extends State<CarNotActiv> {
                                             token: widget.token!,
                                             lang: widget.languageCode,
                                           ),
+                                        );
+                                        BlocProvider.of<ListingBloc>(context)
+                                            .add(
+                                          const ListingEventAddListing(),
                                         );
                                       },
                                       style: elevatedButton,

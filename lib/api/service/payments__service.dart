@@ -16,7 +16,8 @@ class PaymentsService {
   List<RatesModels> listRates = [];
 
   String description = "";
-  Future<String> paymentDesc(lang) async {
+  Future<String> paymentDesc() async {
+    final lang = await LocalMemory.service.getLanguageCode();
     try {
       final response = await _dio.get('${_url}user-active-desc/$lang');
       if (response.statusCode == 200) {
@@ -86,6 +87,7 @@ class PaymentsService {
   }
 
   Future<Map> clickPay(String token, int ratesId, int listingId) async {
+    // ignore: prefer_typing_uninitialized_variables
     var response;
     try {
       if (ratesId != -1 && listingId != -1) {

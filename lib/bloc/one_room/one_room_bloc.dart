@@ -27,6 +27,8 @@ class OneRoomBloc extends Bloc<OneRoomEvent, OneRoomState> {
     // Подписываемся на состояния WebSocketBloc
     webSocketStateSubscription = socket.stream.listen((state) {
       if (state is WebSocketMessageReceived) {
+        debugPrint('WebSocketMessageReceived: $state');
+
         add(OneRoomNotificationEvent(
           roomId: state.roomId,
           userId: state.id,
@@ -104,7 +106,7 @@ class OneRoomBloc extends Bloc<OneRoomEvent, OneRoomState> {
         emit(OneRoomInitial());
         emit(OneRoomsLoadState(listMessage: updatedList));
       } else {
-      // debugPrint('dataJson.userId: ${dataJson.userId}');
+        // debugPrint('dataJson.userId: ${dataJson.userId}');
         final listMessage = await chatService.getChatFirstRoom(dataJson.userId);
         emit(OneRoomsLoadState(listMessage: listMessage));
       }
@@ -117,7 +119,7 @@ class OneRoomBloc extends Bloc<OneRoomEvent, OneRoomState> {
     OneRoomNotificationEvent event,
     Emitter<OneRoomState> emit,
   ) async {
-    // debugPrint('РАБОТАЕТ');
+    debugPrint('_onOneRoomNotificationEvent');
 
     // Ваш код для уведомления
     if (event.userId == int.parse(LocalMemory.service.userId)) {

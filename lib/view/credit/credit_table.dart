@@ -1,6 +1,6 @@
 import 'package:avto_baraka/api/models/credit_models.dart';
 import 'package:avto_baraka/generated/l10n.dart';
-import 'package:avto_baraka/widgets/one_card_table_row.dart';
+import 'package:avto_baraka/widgets/car_card/one_card_table_row.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 

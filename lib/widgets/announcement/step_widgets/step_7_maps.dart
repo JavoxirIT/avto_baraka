@@ -2,6 +2,8 @@ import 'package:app_settings/app_settings.dart';
 import 'package:avto_baraka/screen/imports/imports_announcement.dart';
 import 'package:avto_baraka/screen/imports/imports_listing.dart';
 import 'package:avto_baraka/style/sized_box_10.dart';
+import 'package:avto_baraka/widgets/toast.dart';
+import 'package:toastification/toastification.dart';
 
 class Maps extends StatefulWidget {
   const Maps({
@@ -18,6 +20,7 @@ class Maps extends StatefulWidget {
 }
 
 class MapsState extends State<Maps> {
+  bool viewMap = false;
   final MapController _mapController = MapController();
   late LatLng _currentPosition;
   String _mapData = "";
@@ -63,7 +66,7 @@ class MapsState extends State<Maps> {
               ),
             ),
             OutlinedButton(
-              style: elevatedButton!.copyWith(
+              style: elevatedButton.copyWith(
                 backgroundColor: MaterialStatePropertyAll(
                   colorEmber,
                 ),
@@ -72,8 +75,18 @@ class MapsState extends State<Maps> {
                 ),
               ),
               onPressed: () async {
+                toast(
+                  context,
+                  S.of(context).iltimosKutibTuring,
+                  colorEmber,
+                  ToastificationType.info,
+                );
                 _getCurrentLocation();
                 await _getAddressFromCoordinates();
+
+                setState(() {
+                  viewMap = true;
+                });
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,63 +105,66 @@ class MapsState extends State<Maps> {
         sizedBox10,
         SizedBox(
           height: screenHeight / 2, // Пример ограничения высоты
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.0),
-              border: Border.all(
-                width: 1.0,
-                color: colorEmber,
-              ),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(15.0),
-              child: FlutterMap(
-                mapController: _mapController,
-                options: MapOptions(
-                  initialCenter: _currentPosition,
-                  initialZoom: 16.0,
-                  onTap: (tapPosition, point) => {
-                    setState(() {
-                      _currentPosition = point;
-                      widget.onCurrentPosition(point);
-                    })
-                  },
-                  onMapReady: () {
-                    _mapController.mapEventStream.listen((MapEvent event) {
-                      if (event is MapEventMoveEnd) {
-                        setState(() {
-                          _currentPosition = _mapController.camera.center;
-                          widget
-                              .onCurrentPosition(_mapController.camera.center);
-                        });
-                      }
-                    });
-                  },
-                ),
-                children: [
-                  TileLayer(
-                    urlTemplate:
-                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    userAgentPackageName: 'com.example.app',
+          child: !viewMap
+              ? const SizedBox()
+              : Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    border: Border.all(
+                      width: 1.0,
+                      color: colorEmber,
+                    ),
                   ),
-                  MarkerLayer(
-                    markers: [
-                      Marker(
-                        width: 80.0,
-                        height: 80.0,
-                        point: _currentPosition,
-                        child: Icon(
-                          Icons.location_pin,
-                          color: colorEmber,
-                          size: 46.0,
-                        ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: FlutterMap(
+                      mapController: _mapController,
+                      options: MapOptions(
+                        initialCenter: _currentPosition,
+                        initialZoom: 16.0,
+                        onTap: (tapPosition, point) => {
+                          setState(() {
+                            _currentPosition = point;
+                            widget.onCurrentPosition(point);
+                          })
+                        },
+                        onMapReady: () {
+                          _mapController.mapEventStream
+                              .listen((MapEvent event) {
+                            if (event is MapEventMoveEnd) {
+                              setState(() {
+                                _currentPosition = _mapController.camera.center;
+                                widget.onCurrentPosition(
+                                    _mapController.camera.center);
+                              });
+                            }
+                          });
+                        },
                       ),
-                    ],
+                      children: [
+                        TileLayer(
+                          urlTemplate:
+                              'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                          userAgentPackageName: 'com.example.app',
+                        ),
+                        MarkerLayer(
+                          markers: [
+                            Marker(
+                              width: 80.0,
+                              height: 80.0,
+                              point: _currentPosition,
+                              child: Icon(
+                                Icons.location_pin,
+                                color: colorEmber,
+                                size: 46.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            ),
-          ),
+                ),
         ),
       ],
     );

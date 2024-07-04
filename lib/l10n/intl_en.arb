@@ -179,5 +179,19 @@
   "avvalAvtotransportTuriniTanlang": "Avval avtotransport turini tanlang",
   "kartaMuddatiniTogriKiriting": "Karta muddatini to`gri kiriting",
   "plastikKartaniMuddatiOtganmi": "Plastik kartani muddati o`tganmi??",
-  "xabarMavjudEmas": "Xabar mavjud emas"
+  "xabarMavjudEmas": "Xabar mavjud emas",
+  "elonSaqlanmadi": "E`lon saqlanmadi",
+  "iltimosMalumotlarniToliqKiriting": "Iltimos Ma`lumotlarni to`liq kiriting",
+  "smsKodTasdiqlashgaYuborildiNIltimosKutibTuring": "Sms kod tasdiqlashga yuborildi! {n} Iltimos kutib turing",
+  "telefonRaqamizniToliqKiriting": "Telefon raqamizni to`liq kiriting",
+  "smskodTasdiqlandindaturgaKirishUchunTugmaniBosing": "Sms-kod tasdiqlandi!{n}Daturga kirish uchun tugmani bosing",
+  "iltimosKutibTuring": "Iltimos kutib turing",
+  "iltimosFotosuratKiriting": "Iltimos fotosurat kiriting",
+  "iltimosLocatsiyaniKiritingAvtomatikTanlashTugmasiniBosing": "Iltimos locatsiyani kiriting, avtomatik tanlash tugmasini bosing",
+  "iltimosAvtomashinaModeliniTanlang": "Iltimos avtomashina modelini tanlang",
+  "iltimosAvtomashinaBrendniTanlang": "Iltimos avtomashina brendni tanlang",
+  "iltimosAvtomashinaTuriniTanlang": "Iltimos avtomashina turini tanlang",
+  "iltimosTumanniTanlang": "Iltimos tumanni tanlang",
+  "iltimosViloyatniTanlang": "Iltimos viloyatni tanlang",
+  "kiritilmagan": "Kiritilmagan"
 }

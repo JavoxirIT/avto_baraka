@@ -28,7 +28,7 @@ class _FullScreenImageState extends State<FullScreenImage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: colorEmber,
+        backgroundColor: cardBlackColor,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: FlutterCarousel(
@@ -41,7 +41,7 @@ class _FullScreenImageState extends State<FullScreenImage> {
                 maxScale: PhotoViewComputedScale.covered * 2.0,
                 initialScale: PhotoViewComputedScale.contained,
                 backgroundDecoration: BoxDecoration(
-                  color: colorEmber,
+                  color: cardBlackColor,
                 ),
                 loadingBuilder: (BuildContext context, ImageChunkEvent? chunk) {
                   return chunk == null

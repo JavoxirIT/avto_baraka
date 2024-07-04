@@ -72,6 +72,11 @@ class ChatService {
     return map!;
   }
 
+//  if (imageFileList != null) {
+//       imageFileList.forEach((element) {
+//         debugPrint('debugPrint: ${element.path}');
+//       });
+//     }
 // Первый запрос на чат
   Future<List<ChatOneRoomModels>> getChatFirstRoom(int id) async {
     listChatOneRoom.clear();

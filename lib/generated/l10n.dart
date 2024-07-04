@@ -1863,6 +1863,146 @@ class S {
       args: [],
     );
   }
+
+  /// `E'lon saqlanmadi`
+  String get elonSaqlanmadi {
+    return Intl.message(
+      'E`lon saqlanmadi',
+      name: 'elonSaqlanmadi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Iltimos Ma'lumotlarni to'liq kiriting`
+  String get iltimosMalumotlarniToliqKiriting {
+    return Intl.message(
+      'Iltimos Ma`lumotlarni to`liq kiriting',
+      name: 'iltimosMalumotlarniToliqKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sms kod tasdiqlashga yuborildi! {n} Iltimos kutib turing`
+  String smsKodTasdiqlashgaYuborildiNIltimosKutibTuring(Object n) {
+    return Intl.message(
+      'Sms kod tasdiqlashga yuborildi! $n Iltimos kutib turing',
+      name: 'smsKodTasdiqlashgaYuborildiNIltimosKutibTuring',
+      desc: '',
+      args: [n],
+    );
+  }
+
+  /// `Telefon raqamizni to'liq kiriting`
+  String get telefonRaqamizniToliqKiriting {
+    return Intl.message(
+      'Telefon raqamizni to`liq kiriting',
+      name: 'telefonRaqamizniToliqKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sms-kod tasdiqlandi!{n}Daturga kirish uchun tugmani bosing`
+  String smskodTasdiqlandindaturgaKirishUchunTugmaniBosing(Object n) {
+    return Intl.message(
+      'Sms-kod tasdiqlandi!${n}Daturga kirish uchun tugmani bosing',
+      name: 'smskodTasdiqlandindaturgaKirishUchunTugmaniBosing',
+      desc: '',
+      args: [n],
+    );
+  }
+
+  /// `Iltimos kutib turing`
+  String get iltimosKutibTuring {
+    return Intl.message(
+      'Iltimos kutib turing',
+      name: 'iltimosKutibTuring',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Iltimos fotosurat kiriting`
+  String get iltimosFotosuratKiriting {
+    return Intl.message(
+      'Iltimos fotosurat kiriting',
+      name: 'iltimosFotosuratKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Iltimos locatsiyani kiriting, avtomatik tanlash tugmasini bosing`
+  String get iltimosLocatsiyaniKiritingAvtomatikTanlashTugmasiniBosing {
+    return Intl.message(
+      'Iltimos locatsiyani kiriting, avtomatik tanlash tugmasini bosing',
+      name: 'iltimosLocatsiyaniKiritingAvtomatikTanlashTugmasiniBosing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Iltimos avtomashina modelini tanlang`
+  String get iltimosAvtomashinaModeliniTanlang {
+    return Intl.message(
+      'Iltimos avtomashina modelini tanlang',
+      name: 'iltimosAvtomashinaModeliniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Iltimos avtomashina brendni tanlang`
+  String get iltimosAvtomashinaBrendniTanlang {
+    return Intl.message(
+      'Iltimos avtomashina brendni tanlang',
+      name: 'iltimosAvtomashinaBrendniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Iltimos avtomashina turini tanlang`
+  String get iltimosAvtomashinaTuriniTanlang {
+    return Intl.message(
+      'Iltimos avtomashina turini tanlang',
+      name: 'iltimosAvtomashinaTuriniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Iltimos tumanni tanlang`
+  String get iltimosTumanniTanlang {
+    return Intl.message(
+      'Iltimos tumanni tanlang',
+      name: 'iltimosTumanniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Iltimos viloyatni tanlang`
+  String get iltimosViloyatniTanlang {
+    return Intl.message(
+      'Iltimos viloyatni tanlang',
+      name: 'iltimosViloyatniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kiritilmagan`
+  String get kiritilmagan {
+    return Intl.message(
+      'Kiritilmagan',
+      name: 'kiritilmagan',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

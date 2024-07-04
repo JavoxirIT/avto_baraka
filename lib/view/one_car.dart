@@ -12,8 +12,8 @@ import 'package:avto_baraka/style/one_car_outline_button.dart';
 import 'package:avto_baraka/style/sized_box_20.dart';
 import 'package:avto_baraka/utill/call.dart';
 import 'package:avto_baraka/widgets/icon_button_circle_vatar.dart';
-import 'package:avto_baraka/widgets/one_card_data_title.dart';
-import 'package:avto_baraka/widgets/one_card_table_row.dart';
+import 'package:avto_baraka/widgets/car_card/one_card_data_title.dart';
+import 'package:avto_baraka/widgets/car_card/one_card_table_row.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -23,7 +23,7 @@ import 'package:intl/intl.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:latlong2/latlong.dart' as latLang;
 
 class OneCarView extends StatefulWidget {
   const OneCarView({Key? key}) : super(key: key);
@@ -120,6 +120,7 @@ class OneCarViewState extends State<OneCarView> {
                         RouteName.fullScreenImage,
                         arguments: carImageList),
                     child: Image.network(
+                      semanticLabel: "image auto",
                       Config.imageUrl! + item['image'].substring(1),
                       fit: BoxFit.cover,
                       height: heightImage,
@@ -292,7 +293,7 @@ class OneCarViewState extends State<OneCarView> {
                             child: FlutterMap(
                               // mapController: _mapController,
                               options: MapOptions(
-                                initialCenter: LatLng(
+                                initialCenter: latLang.LatLng(
                                     double.parse(_carData!.lat),
                                     double.parse(_carData!.long)),
                                 initialZoom: 16.0,
@@ -308,7 +309,8 @@ class OneCarViewState extends State<OneCarView> {
                                     Marker(
                                       width: 80.0,
                                       height: 80.0,
-                                      point: LatLng(double.parse(_carData!.lat),
+                                      point: latLang.LatLng(
+                                          double.parse(_carData!.lat),
                                           double.parse(_carData!.long)),
                                       child: Icon(
                                         Icons.location_pin,
@@ -462,8 +464,7 @@ class OneCarViewState extends State<OneCarView> {
                         }
                       },
                       style: elevatedButton.copyWith(
-                        backgroundColor:
-                            MaterialStatePropertyAll(colorEmber),
+                        backgroundColor: MaterialStatePropertyAll(colorEmber),
                       ),
                       child: Text(S.of(context).yuborish),
                     ),

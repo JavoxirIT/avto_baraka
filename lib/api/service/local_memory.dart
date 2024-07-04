@@ -16,7 +16,7 @@ class LocalMemory {
     if (saveData.isEmpty) {
       debugPrint('Токен не найден');
     } else {
-      debugPrint('TokenService saveData: $saveData');
+      // debugPrint('TokenService saveData: $saveData');
       token = saveData;
     }
     return saveData;
@@ -29,7 +29,7 @@ class LocalMemory {
     if (saveuSerId.isEmpty) {
       debugPrint('ID не найден');
     } else {
-      debugPrint('TokenService saveuSerId: $saveuSerId');
+      // debugPrint('TokenService saveuSerId: $saveuSerId');
       userId = saveuSerId;
     }
     return userId;
@@ -42,7 +42,7 @@ class LocalMemory {
       if (savedLangCode.isEmpty) {
         debugPrint('TokenService ERROR');
       } else {
-        debugPrint('TokenService savedLangCode: $savedLangCode');
+        // debugPrint('TokenService savedLangCode: $savedLangCode');
         languageCode = savedLangCode;
       }
     } catch (e) {

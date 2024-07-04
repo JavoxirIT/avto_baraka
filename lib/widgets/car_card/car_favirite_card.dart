@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:avto_baraka/bloc/like/like_bloc.dart';
 import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
@@ -6,7 +8,8 @@ import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevated_button.dart';
 import 'package:avto_baraka/style/elevation_button_white.dart';
-import 'package:avto_baraka/widgets/car_tag_card.dart';
+import 'package:avto_baraka/utill/bs_64_image.dart';
+import 'package:avto_baraka/widgets/car_card/car_tag_card.dart';
 import 'package:avto_baraka/widgets/dismisable/delete_dismis.dart';
 import 'package:avto_baraka/widgets/dismisable/secondary_dismis.dart';
 import 'package:flutter/material.dart';
@@ -90,12 +93,18 @@ carFavpriteCard(context, state, String token, String lang) {
                       Stack(
                         children: [
                           ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(
-                              Config.imageUrl! + item.carImage[0].substring(1),
+                            borderRadius: BorderRadius.circular(12.0),
+                            child: FadeInImage(
+                              imageSemanticLabel: "image auto",
                               fit: BoxFit.cover,
                               width: MediaQuery.of(context).size.width,
                               height: 200.0,
+                              placeholder: MemoryImage(
+                                base64.decode(bs64Image.split(',').last),
+                              ),
+                              image: NetworkImage(
+                                '${Config.imageUrl!}${item.carImage[0].substring(1)}',
+                              ),
                             ),
                           ),
                           Positioned(

@@ -7,7 +7,7 @@ import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevated_button.dart';
 import 'package:avto_baraka/style/elevation_button_white.dart';
 import 'package:avto_baraka/utill/bs_64_image.dart';
-import 'package:avto_baraka/widgets/car_tag_card.dart';
+import 'package:avto_baraka/widgets/car_card/car_tag_card.dart';
 import 'package:avto_baraka/widgets/dialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -49,6 +49,7 @@ class CarBlockedCard extends StatelessWidget {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(12.0),
                               child: FadeInImage(
+                                imageSemanticLabel: "image auto",
                                 fit: BoxFit.cover,
                                 width: MediaQuery.of(context).size.width,
                                 height: 200.0,
@@ -255,17 +256,13 @@ class CarBlockedCard extends StatelessWidget {
         return Center(
           child: Text(
             S.of(context).bloklanganElonMavjutNEmas("\n"),
-            style: Theme.of(context).textTheme.labelLarge,
+            style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                  color: colorWhite,
+                ),
             textAlign: TextAlign.center,
           ),
         );
       }
-      if (state is ListingBlockedInitial) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-
       if (state is ListingDeleted) {
         return const Center(
           child: CircularProgressIndicator(),

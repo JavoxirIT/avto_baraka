@@ -1,6 +1,6 @@
 import 'package:avto_baraka/bloc/not_active/not_active_bloc.dart';
 import 'package:avto_baraka/screen/imports/imports_cabinet.dart';
-import 'package:avto_baraka/widgets/car_not_active.dart';
+import 'package:avto_baraka/widgets/car_card/car_not_active.dart';
 
 class CobinetScreen extends StatefulWidget {
   const CobinetScreen({Key? key}) : super(key: key);

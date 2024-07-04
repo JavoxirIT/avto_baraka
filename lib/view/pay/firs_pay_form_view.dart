@@ -242,10 +242,10 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
                       );
                     },
                     style: elevatedButton.copyWith(
-                      minimumSize: const MaterialStatePropertyAll(
-                        Size(88, 47),
-                      ),
-                    ),
+                        minimumSize: const MaterialStatePropertyAll(
+                          Size(88, 47),
+                        ),
+                        backgroundColor: MaterialStatePropertyAll(colorEmber)),
                     child: Text(S.of(context).amalgaOshirish),
                   ),
                 )
@@ -325,10 +325,10 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
                     }
                   },
             style: elevatedButton.copyWith(
-              minimumSize: MaterialStatePropertyAll(
-                Size(MediaQuery.of(context).size.width, 47),
-              ),
-            ),
+                minimumSize: MaterialStatePropertyAll(
+                  Size(MediaQuery.of(context).size.width, 47),
+                ),
+                backgroundColor: MaterialStatePropertyAll(colorEmber)),
             child: Text(
               S.of(context).kodniYuborsh,
             ),
@@ -442,10 +442,10 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
                             }
                           },
                     style: elevatedButton.copyWith(
-                      minimumSize: const MaterialStatePropertyAll(
-                        Size(0, 47),
-                      ),
-                    ),
+                        minimumSize: const MaterialStatePropertyAll(
+                          Size(0, 47),
+                        ),
+                        backgroundColor: MaterialStatePropertyAll(colorEmber)),
                     child: Text(
                       S.of(context).yuborish,
                     ),

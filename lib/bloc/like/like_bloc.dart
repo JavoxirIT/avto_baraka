@@ -19,6 +19,7 @@ class LikeBloc extends Bloc<LikeEvent, LikeState> {
     try {
       final data = await _listingService.getLikeList(event.lang!, event.token!);
 
+      emit(LikeInitial());
       if (data.isEmpty) {
         emit(LikeStateNotData());
       } else {
