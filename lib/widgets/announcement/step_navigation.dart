@@ -2,15 +2,12 @@
 import 'package:avto_baraka/api/service/listing_service.dart';
 import 'package:avto_baraka/api/service/payments__service.dart';
 import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
-// import 'package:avto_baraka/generated/l10n.dart';
-// import 'package:avto_baraka/router/route_name.dart';
+import 'package:avto_baraka/provider/keyboard_provider.dart';
 import 'package:avto_baraka/screen/imports/imports_cabinet.dart';
-// import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevated_button.dart';
 import 'package:avto_baraka/style/elevation_button_white.dart';
 import 'package:avto_baraka/widgets/announcement/variables.dart';
 import 'package:avto_baraka/widgets/toast.dart';
-// import 'package:flutter/material.dart';
 import 'package:toastification/toastification.dart';
 
 class StepsNavigation extends StatelessWidget {
@@ -54,7 +51,12 @@ class StepsNavigation extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     style: elevationButtonWhite,
-                    onPressed: onStepCansel,
+                    onPressed: () {
+                      onStepCansel();
+                      Provider.of<KeyboardVisibilityController>(context,
+                              listen: false)
+                          .hideKeyboard(context);
+                    },
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -81,6 +83,9 @@ class StepsNavigation extends StatelessWidget {
                   onPressed: disabledButton
                       ? null
                       : () async {
+                          Provider.of<KeyboardVisibilityController>(context,
+                                  listen: false)
+                              .hideKeyboard(context);
                           if (currentStep == 0 && regionGroupValue < 0) {
                             toast(
                               context,

@@ -1,8 +1,10 @@
 import 'package:avto_baraka/api/models/car_category_models.dart';
 import 'package:avto_baraka/api/service/car_service.dart';
 import 'package:avto_baraka/api/service/chat_servive.dart';
+import 'package:avto_baraka/provider/keyboard_provider.dart';
 import 'package:avto_baraka/screen/imports/imports_maim.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -88,8 +90,14 @@ class _MainScreenState extends State<MainScreen>
       children: [
         Scaffold(
           extendBody: true,
-          body: Center(
-            child: screenList.elementAt(_selectedIndex),
+          body: GestureDetector(
+            onTap: () {
+              Provider.of<KeyboardVisibilityController>(context, listen: false)
+                  .hideKeyboard(context);
+            },
+            child: Center(
+              child: screenList.elementAt(_selectedIndex),
+            ),
           ),
           bottomNavigationBar: CurvedNavigationBar(
             height: 55.0,
@@ -163,8 +171,7 @@ class _MainScreenState extends State<MainScreen>
                 ),
                 child: Icon(
                   icon,
-                  color:
-                      _selectedIndex == index ? colorWhite : colorEmber,
+                  color: _selectedIndex == index ? colorWhite : colorEmber,
                 ),
               )
             : Icon(

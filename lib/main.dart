@@ -1,35 +1,4 @@
-import 'package:avto_baraka/api/service/payments__service.dart';
-import 'package:avto_baraka/bloc/not_active/not_active_bloc.dart';
-import 'package:avto_baraka/bloc/payment/payment_bloc.dart';
-import 'package:avto_baraka/observer/simple_bloc_observer.dart';
-import 'package:avto_baraka/router/navigator_key.dart';
-// import 'package:flutter_background/flutter_background.dart';
-import 'package:avto_baraka/api/service/chat_servive.dart';
-import 'package:avto_baraka/api/service/listing_service.dart';
-import 'package:avto_baraka/bloc/all_rooms/all_rooms_bloc.dart';
-import 'package:avto_baraka/bloc/like/like_bloc.dart';
-import 'package:avto_baraka/bloc/listing/listing_bloc.dart';
-import 'package:avto_baraka/bloc/listing_active/listing_active_bloc.dart';
-import 'package:avto_baraka/bloc/listing_blocked/listing_blocked_bloc.dart';
-import 'package:avto_baraka/bloc/one_room/one_room_bloc.dart';
-import 'package:avto_baraka/bloc/web_socet_bloc/web_socket_bloc.dart';
-import 'package:avto_baraka/http_config/config.dart';
-import 'package:avto_baraka/observer/share_route_observer.dart';
-import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
-import 'package:avto_baraka/provider/notification_service.dart';
-import 'package:avto_baraka/provider/token_provider/token_provider.dart';
-import 'package:avto_baraka/generated/l10n.dart';
-import 'package:avto_baraka/router/routers.dart';
-import 'package:avto_baraka/screen/introductory_screen.dart';
-import 'package:avto_baraka/style/theme/default_theme.dart';
-import 'package:avto_baraka/screen/main_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import "package:avto_baraka/main_import.dart";
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -70,6 +39,9 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => languageProvider),
         ChangeNotifierProvider(create: (_) => tokenProvider),
+        ChangeNotifierProvider(
+          create: (context) => KeyboardVisibilityController(),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [

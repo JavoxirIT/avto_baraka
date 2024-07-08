@@ -75,20 +75,17 @@ class AnnouncementState extends State<Announcement> {
           ),
           child: Form(
             key: formKey,
-            child: GestureDetector(
-              onTap: () => FocusScope.of(context).unfocus(),
-              child: Stepper(
-                margin: const EdgeInsets.all(0),
-                connectorThickness: 0,
-                elevation: 0,
-                type: StepperType.horizontal,
-                steps: getSteps(context),
-                currentStep: currentStep,
-                // onStepTapped: onStepTapped,
-                controlsBuilder: (context, details) {
-                  return const SizedBox.shrink();
-                },
-              ),
+            child: Stepper(
+              margin: const EdgeInsets.all(0),
+              connectorThickness: 0,
+              elevation: 0,
+              type: StepperType.horizontal,
+              steps: getSteps(context),
+              currentStep: currentStep,
+              // onStepTapped: onStepTapped,
+              controlsBuilder: (context, details) {
+                return const SizedBox.shrink();
+              },
             ),
           ),
         ),

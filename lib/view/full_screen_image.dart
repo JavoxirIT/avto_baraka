@@ -45,8 +45,8 @@ class _FullScreenImageState extends State<FullScreenImage> {
                 ),
                 loadingBuilder: (BuildContext context, ImageChunkEvent? chunk) {
                   return chunk == null
-                      ? const Center(
-                          child: CircularProgressIndicator(),
+                      ? Center(
+                          child: CircularProgressIndicator(color: colorEmber),
                         )
                       : Center(
                           child: CircularProgressIndicator(
