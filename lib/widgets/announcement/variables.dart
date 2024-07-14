@@ -1,5 +1,7 @@
 import 'package:avto_baraka/screen/imports/imports_announcement.dart';
 
+// bool dataSendingStatusIndicator = false;
+
 List<DistrictsModel> districts = [];
 List<CarCategoryModels> categoryList = [];
 List<CarBrandsModels> carBrandList = [];

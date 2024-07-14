@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:avto_baraka/main_import.dart';
+import 'package:avto_baraka/provider/send_listing_provider.dart';
 import 'package:avto_baraka/screen/imports/imports_announcement.dart';
 import 'package:avto_baraka/widgets/announcement/step_widgets/step_1_region.dart';
 import 'package:avto_baraka/widgets/announcement/step_widgets/step_2_district.dart';
@@ -28,22 +30,22 @@ class AnnouncementState extends State<Announcement> {
   //
   int? oncheckId;
 
-  // @override
-  // void dispose() {
-  //   carYearValue.dispose();
-  //   bodyType.dispose();
-  //   engineValue.dispose();
-  //   transmissionValue.dispose();
-  //   pullingSideValue.dispose();
-  //   mileageValue.dispose();
-  //   descriptionValue.dispose();
-  //   typeOfFuelValue.dispose();
-  //   carPosition.dispose();
-  //   price.dispose();
-  //   valyuta.dispose();
-  //   paintConditionValue.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    carYearValue.dispose();
+    bodyType.dispose();
+    engineValue.dispose();
+    transmissionValue.dispose();
+    pullingSideValue.dispose();
+    mileageValue.dispose();
+    descriptionValue.dispose();
+    typeOfFuelValue.dispose();
+    carPosition.dispose();
+    price.dispose();
+    valyuta.dispose();
+    paintConditionValue.dispose();
+    super.dispose();
+  }
 
   @override
   initState() {
@@ -65,36 +67,53 @@ class AnnouncementState extends State<Announcement> {
   TextStyle fonmDataTextStyle = const TextStyle(fontSize: 12.0);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text(S.of(context).elonJoylash)),
-        body: Theme(
-          data: Theme.of(context).copyWith(
-            colorScheme: ColorScheme.light(primary: colorEmber),
-            cardColor: cardBlackColor,
-            canvasColor: cardBlackColor,
-          ),
-          child: Form(
-            key: formKey,
-            child: Stepper(
-              margin: const EdgeInsets.all(0),
-              connectorThickness: 0,
-              elevation: 0,
-              type: StepperType.horizontal,
-              steps: getSteps(context),
+    return Consumer<SendListingProvider>(
+        builder: (context, sendListingProvider, _) {
+      return Stack(
+        children: [
+          Scaffold(
+            appBar: AppBar(title: Text(S.of(context).elonJoylash)),
+            body: Theme(
+              data: Theme.of(context).copyWith(
+                colorScheme: ColorScheme.light(primary: colorEmber),
+                cardColor: cardBlackColor,
+                canvasColor: cardBlackColor,
+              ),
+              child: Form(
+                key: formKey,
+                child: Stepper(
+                  margin: const EdgeInsets.all(0),
+                  connectorThickness: 0,
+                  elevation: 0,
+                  type: StepperType.horizontal,
+                  steps: getSteps(context),
+                  currentStep: currentStep,
+                  // onStepTapped: onStepTapped,
+                  controlsBuilder: (context, details) {
+                    return const SizedBox.shrink();
+                  },
+                ),
+              ),
+            ),
+            bottomNavigationBar: StepsNavigation(
               currentStep: currentStep,
-              // onStepTapped: onStepTapped,
-              controlsBuilder: (context, details) {
-                return const SizedBox.shrink();
-              },
+              onStepCansel: onStepCansel,
+              onStepContinue: onStepContinue,
+              getSteps: getSteps,
+              onBackForm: onBackForm,
             ),
           ),
-        ),
-        bottomNavigationBar: StepsNavigation(
-            currentStep: currentStep,
-            onStepCansel: onStepCansel,
-            onStepContinue: onStepContinue,
-            getSteps: getSteps,
-            onBackForm: onBackForm));
+          if (sendListingProvider.getDataSendingStatusIndicator)
+            Container(
+              height: MediaQuery.of(context).size.height,
+              color: cardBlackColor.withOpacity(0.9),
+              child: Center(
+                child: CircularProgressIndicator(color: colorEmber),
+              ),
+            )
+        ],
+      );
+    });
   }
 
   List<Step> getSteps(BuildContext context) {

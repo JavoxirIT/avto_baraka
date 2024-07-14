@@ -1,4 +1,5 @@
 import "package:avto_baraka/main_import.dart";
+import "package:avto_baraka/provider/send_listing_provider.dart";
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -39,6 +40,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => languageProvider),
         ChangeNotifierProvider(create: (_) => tokenProvider),
+        ChangeNotifierProvider(create: (_) => SendListingProvider()),
         ChangeNotifierProvider(
           create: (context) => KeyboardVisibilityController(),
         ),

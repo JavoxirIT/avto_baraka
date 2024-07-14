@@ -49,7 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "avtomatikTanlash":
             MessageLookupByLibrary.simpleMessage("Avtomatik tanlash"),
         "avvalAvtotransportTuriniTanlang":
-            MessageLookupByLibrary.simpleMessage("Ma`lumot mavjut emas"),
+            MessageLookupByLibrary.simpleMessage("Ma`lumot mavjud emas"),
         "avvalBankniTanlang":
             MessageLookupByLibrary.simpleMessage("Avval Bankni tanlang"),
         "avvalTexnikaTuriniTanlang": MessageLookupByLibrary.simpleMessage(
@@ -208,7 +208,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "malumotlarBazasidaXatolik":
             MessageLookupByLibrary.simpleMessage("Malumotlar bazasida xatolik"),
         "malumotlatYuklanishidaXatolik":
-            MessageLookupByLibrary.simpleMessage("E’lon mavjut emas"),
+            MessageLookupByLibrary.simpleMessage("E’lon mavjud emas"),
         "markaniTanlang":
             MessageLookupByLibrary.simpleMessage("Markani tanlang"),
         "maxfiylikSiyosati":
@@ -303,7 +303,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tarifni tanlang"),
         "tasdiqlangan": MessageLookupByLibrary.simpleMessage("Tasdiqlangan"),
         "tasdiqlanganElonlarMavjutEmas": MessageLookupByLibrary.simpleMessage(
-            "Tasdiqlangan e’lonlar mavjut emas"),
+            "Tasdiqlangan e’lonlar mavjud emas"),
         "tasdiqlashUchunManashuNumGaSmsKodYuborildi": m5,
         "telefon": MessageLookupByLibrary.simpleMessage("Telefon"),
         "telefonRaqamizniToliqKiriting": MessageLookupByLibrary.simpleMessage(

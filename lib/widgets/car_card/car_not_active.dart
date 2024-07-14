@@ -417,7 +417,7 @@ class _CarNotActivState extends State<CarNotActiv> {
         return Center(
           child: Text(
             S.of(context).faolBolmaganElonlarMavjutEmas('\n'),
-            style: Theme.of(context).textTheme.labelLarge,
+            style: Theme.of(context).textTheme.labelLarge!.copyWith(color: colorWhite),
             textAlign: TextAlign.center,
           ),
         );

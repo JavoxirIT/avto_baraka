@@ -282,7 +282,13 @@ class CarActiveCard extends StatelessWidget {
       }
       if (state is ListingActiveNotData) {
         return Center(
-          child: Text(S.of(context).tasdiqlanganElonlarMavjutEmas),
+          child: Text(
+            S.of(context).tasdiqlanganElonlarMavjutEmas,
+            style: Theme.of(context)
+                .textTheme
+                .labelLarge!
+                .copyWith(color: colorWhite),
+          ),
         );
       }
       if (state is ListingActiveStateError) {

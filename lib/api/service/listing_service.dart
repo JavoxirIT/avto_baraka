@@ -58,7 +58,7 @@ class ListingService {
         ),
         data: formData,
       );
-         debugPrint('POST listing: $response');
+      debugPrint('POST listing: $response');
       if (response.statusCode == 200) {
         debugPrint('pesponse listing: $response');
 

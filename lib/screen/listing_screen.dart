@@ -44,7 +44,8 @@ class _ListingScreenState extends State<ListingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Avto Baraka".toUpperCase()),
+        title: Text("Avto Baraka".toUpperCase(),
+            style: TextStyle(color: colorEmber)),
         toolbarHeight: 40.0,
         leadingWidth: MediaQuery.of(context).size.width / 2.5,
         actions: [

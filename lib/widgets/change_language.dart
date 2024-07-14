@@ -36,10 +36,12 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
             }
           },
           child: Container(
-            width: MediaQuery.of(context).size.width * 0.21,
+            width: MediaQuery.of(context).size.width * 0.25,
             margin: const EdgeInsets.only(right: 10.0),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30), color: colorEmber),
+              borderRadius: BorderRadius.circular(30),
+              color: colorEmber,
+            ),
             child: Padding(
               padding: const EdgeInsets.all(3.0),
               child: Row(
