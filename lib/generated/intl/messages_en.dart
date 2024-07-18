@@ -49,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Amalga oshirish tugmasini bosing"),
         "avtomatikTanlash":
             MessageLookupByLibrary.simpleMessage("Avtomatik tanlash"),
+        "avvalAvtomashinaNarxiniKiriting": MessageLookupByLibrary.simpleMessage(
+            "Avval avtomashina narxini kiriting"),
         "avvalAvtotransportTuriniTanlang": MessageLookupByLibrary.simpleMessage(
             "Avval avtotransport turini tanlang"),
         "avvalBankniTanlang":
@@ -185,6 +187,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "kechirasiz": MessageLookupByLibrary.simpleMessage("Kechirasiz"),
         "kerakliElonniQidirish":
             MessageLookupByLibrary.simpleMessage("Kerakli e`lonni qidirish"),
+        "keyinroqQaytaUrinibKoring": MessageLookupByLibrary.simpleMessage(
+            "Keyinroq qayta urinib ko`ring"),
         "kiritilmagan": MessageLookupByLibrary.simpleMessage("Kiritilmagan"),
         "kodniYuborsh": MessageLookupByLibrary.simpleMessage("Kodni yuborsh"),
         "kreditKalkulatori":
@@ -226,6 +230,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "narxi": MessageLookupByLibrary.simpleMessage("Narxi"),
         "narxiniKiriting":
             MessageLookupByLibrary.simpleMessage("Narxini kiriting"),
+        "narxiniOzgartirish":
+            MessageLookupByLibrary.simpleMessage("Narxini o`zgartirish"),
+        "narxniOzgartirishdaXatolik": MessageLookupByLibrary.simpleMessage(
+            "Narxni o`zgartirishda xatolik"),
         "notugriFormat": MessageLookupByLibrary.simpleMessage("Notugri format"),
         "notugriKod": MessageLookupByLibrary.simpleMessage("Notugri kod"),
         "ochirish": MessageLookupByLibrary.simpleMessage("O`chirish"),
@@ -357,6 +365,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Yangi e`lon joylash"),
         "yangiElonQoshish":
             MessageLookupByLibrary.simpleMessage("Yangi e`lon qo`shish"),
+        "yangiMarxniKiriting":
+            MessageLookupByLibrary.simpleMessage("Yangi marxni kiriting"),
         "yangiXabar": MessageLookupByLibrary.simpleMessage("Yangi xabar"),
         "yil": MessageLookupByLibrary.simpleMessage(" yil"),
         "yilDan": MessageLookupByLibrary.simpleMessage("Yil dan"),

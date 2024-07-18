@@ -162,7 +162,7 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
                     }
                   });
                   Future.delayed(const Duration(seconds: 3), () {
-                    Navigator.of(context).pushNamed(RouteName.mainScreen);
+                    Navigator.of(context).pushNamed(RouteName.cobinetScreen);
                     Navigator.of(context).pop();
                   });
                 }

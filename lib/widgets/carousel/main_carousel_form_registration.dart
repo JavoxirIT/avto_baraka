@@ -40,8 +40,12 @@ class MainCarouselFormRegistrationState
     getAppSignature();
     requestSmsPermission();
     _listenForSmsCode();
-     var data = SmsAutoFill().hint;
-    data.then((value) => phoneNumber.text = value!);
+    var data = SmsAutoFill().hint;
+    data.then((value) {
+      if (value != null) {
+        phoneNumber.text = value;
+      }
+    });
   }
 
   void _listenForSmsCode() async {
@@ -198,7 +202,6 @@ class MainCarouselFormRegistrationState
                       Colors.white,
                     ),
                   ),
-                  
                   onCodeChanged: (code) async {
                     final currentContext = context;
                     if (code!.length == 6) {

@@ -47,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Нажмите «Выполнить"),
         "avtomatikTanlash":
             MessageLookupByLibrary.simpleMessage("Текущая геопозиция"),
+        "avvalAvtomashinaNarxiniKiriting": MessageLookupByLibrary.simpleMessage(
+            "Сначала введите цену автомобиля"),
         "avvalAvtotransportTuriniTanlang":
             MessageLookupByLibrary.simpleMessage("Список моделей пуст"),
         "avvalBankniTanlang":
@@ -186,7 +188,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "kechirasiz": MessageLookupByLibrary.simpleMessage("Извините"),
         "kerakliElonniQidirish":
             MessageLookupByLibrary.simpleMessage("Поиск обявления"),
-        "kiritilmagan": MessageLookupByLibrary.simpleMessage("Kiritilmagan"),
+        "keyinroqQaytaUrinibKoring": MessageLookupByLibrary.simpleMessage(
+            "Пожалуйста, повторите попытку позже"),
+        "kiritilmagan": MessageLookupByLibrary.simpleMessage("Не введино"),
         "kodniYuborsh": MessageLookupByLibrary.simpleMessage("Отправить код"),
         "kreditKalkulatori":
             MessageLookupByLibrary.simpleMessage("Посчитать в кредит"),
@@ -227,6 +231,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "narxi": MessageLookupByLibrary.simpleMessage("Стоимость авто"),
         "narxiniKiriting":
             MessageLookupByLibrary.simpleMessage("Введите стоимость авто"),
+        "narxiniOzgartirish":
+            MessageLookupByLibrary.simpleMessage("Изменить стоимость"),
+        "narxniOzgartirishdaXatolik":
+            MessageLookupByLibrary.simpleMessage("Ошибка при изменении цены"),
         "notugriFormat":
             MessageLookupByLibrary.simpleMessage("Не верный формат"),
         "notugriKod": MessageLookupByLibrary.simpleMessage("Неверный код"),
@@ -357,6 +365,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Добавить ещё объявления"),
         "yangiElonQoshish":
             MessageLookupByLibrary.simpleMessage("Добавить обявления"),
+        "yangiMarxniKiriting":
+            MessageLookupByLibrary.simpleMessage("Введите новую цену"),
         "yangiXabar": MessageLookupByLibrary.simpleMessage("Новое сообщение"),
         "yil": MessageLookupByLibrary.simpleMessage(" г"),
         "yilDan": MessageLookupByLibrary.simpleMessage("c ---- года"),

@@ -1,17 +1,23 @@
 import 'dart:convert';
 
 import 'package:avto_baraka/bloc/listing_active/listing_active_bloc.dart';
-import 'package:avto_baraka/http_config/config.dart';
+// import 'package:avto_baraka/http_config/config.dart';
+import 'package:avto_baraka/screen/imports/imports_announcement.dart';
 import 'package:avto_baraka/screen/imports/imports_listing.dart';
-import 'package:avto_baraka/style/colors.dart';
+// import 'package:avto_baraka/style/box_decoration.dart';
+// import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/elevation_button_white.dart';
+// import 'package:avto_baraka/style/one_car_outline_button.dart';
+import 'package:avto_baraka/style/sized_box_20.dart';
 import 'package:avto_baraka/utill/bs_64_image.dart';
 import 'package:avto_baraka/widgets/car_card/car_tag_card.dart';
-import 'package:avto_baraka/widgets/dialog.dart';
+import 'package:avto_baraka/widgets/toast.dart';
+// import 'package:avto_baraka/widgets/dialog.dart';
 import 'package:intl/intl.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:toastification/toastification.dart';
 
-class CarActiveCard extends StatelessWidget {
+class CarActiveCard extends StatefulWidget {
   const CarActiveCard({
     Key? key,
     required this.token,
@@ -20,10 +26,47 @@ class CarActiveCard extends StatelessWidget {
 
   final String token;
   final String lang;
+
+  @override
+  State<CarActiveCard> createState() => _CarActiveCardState();
+}
+
+class _CarActiveCardState extends State<CarActiveCard> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ListingActiveBloc, ListingActiveState>(
         builder: (context, state) {
+      if (state is ListingActiveStateNotUpdatePrice) {
+        WidgetsBinding.instance.addPostFrameCallback(
+          (_) {
+            if (mounted) {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return AlertDialog(
+                    title: Text(
+                      S.of(context).narxniOzgartirishdaXatolik,
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelLarge!
+                          .copyWith(color: colorWhite),
+                    ),
+                    content: Text(
+                      S.of(context).keyinroqQaytaUrinibKoring,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  );
+                },
+              ).then((_) {
+                if (mounted) {
+                  setState(() {}); // Ensure mounted before setState
+                }
+              });
+            }
+          },
+        );
+      }
+
       if (state is ListingActiveStateLoad) {
         return ListView.builder(
           itemCount: state.listing.length,
@@ -201,9 +244,23 @@ class CarActiveCard extends StatelessWidget {
                               ],
                             ),
                           ),
-                          ButtonBar(
-                            alignment: MainAxisAlignment.end,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            // alignment: MainAxisAlignment.end,
+                            // overflowButtonSpacing: 5.0,
                             children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  changePriceModal(context, item.id,
+                                      widget.lang, widget.token);
+                                },
+                                style: elevatedButton,
+                                child: Text(
+                                  S.of(context).narxiniOzgartirish,
+                                  style:
+                                      Theme.of(context).textTheme.displayMedium,
+                                ),
+                              ),
                               ElevatedButton(
                                 onPressed: () {
                                   Navigator.of(context).pushNamed(
@@ -234,8 +291,8 @@ class CarActiveCard extends StatelessWidget {
                                               .add(
                                             ListingActiveDeleteEvent(
                                               listingId: item.id,
-                                              token: token,
-                                              lang: lang,
+                                              token: widget.token,
+                                              lang: widget.lang,
                                             ),
                                           );
                                           BlocProvider.of<ListingBloc>(context)
@@ -306,5 +363,97 @@ class CarActiveCard extends StatelessWidget {
         child: CircularProgressIndicator(),
       );
     });
+  }
+
+  Future<dynamic> changePriceModal(
+    BuildContext context,
+    int id,
+    String lang,
+    String token,
+  ) {
+    TextEditingController priceValue = TextEditingController();
+    return showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (BuildContext context) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: SingleChildScrollView(
+            child: Container(
+              height: 300,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadiusDirectional.only(
+                  topEnd: Radius.circular(15.0),
+                  topStart: Radius.circular(15.0),
+                ),
+                border: Border.all(
+                  width: 1.0,
+                  // color: backgrounColorWhite,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.3),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+                color: cardBlackColor,
+              ),
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  Text(
+                    S.of(context).yangiMarxniKiriting,
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge!
+                        .copyWith(color: colorWhite),
+                  ),
+                  sizedBoxH20,
+                  TextFormField(
+                    controller: priceValue,
+                    decoration: announcementInputDecoration(),
+                    keyboardType: TextInputType.number,
+                  ),
+                  sizedBoxH20,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: ElevatedButton(
+                      style: elevatedButton.copyWith(
+                        minimumSize: MaterialStateProperty.all(
+                          const Size(double.infinity, 50),
+                        ),
+                      ),
+                      onPressed: () {
+                        if (priceValue.text != "") {
+                          BlocProvider.of<ListingActiveBloc>(context).add(
+                            ListingAvtiveChangePriceEvent(
+                              id: id,
+                              value: priceValue.text,
+                              lang: lang,
+                              token: token,
+                            ),
+                          );
+                          // Navigator.of(context).pop(false);
+                        } else {
+                          toast(context, S.of(context).avvalAvtomashinaNarxiniKiriting,
+                              colorRed, ToastificationType.error, 2);
+                        }
+                      },
+                      child: Text(
+                        S.of(context).saqlash,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }

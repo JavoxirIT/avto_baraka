@@ -30,3 +30,19 @@ class ListingActiveDeleteEvent extends ListingActiveEvent {
   @override
   List<Object> get props => super.props..addAll([listingId, token, lang]);
 }
+
+class ListingAvtiveChangePriceEvent extends ListingActiveEvent {
+  const ListingAvtiveChangePriceEvent({
+    required this.id,
+    required this.value,
+    required this.lang,
+    required this.token,
+  });
+  final int id;
+  final String value;
+  final String lang;
+  final String token;
+
+  @override
+  List<Object> get props => super.props..addAll([id]);
+}

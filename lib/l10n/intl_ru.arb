@@ -193,5 +193,10 @@
   "iltimosAvtomashinaTuriniTanlang": "Пожалуйста, выберите тип транспортного средства",
   "iltimosTumanniTanlang": "Пожалуйста, выберите район",
   "iltimosViloyatniTanlang": "Пожалуйста, выберите регион",
-  "kiritilmagan": "Kiritilmagan"
+  "kiritilmagan": "Не введино",
+  "avvalAvtomashinaNarxiniKiriting": "Сначала введите цену автомобиля",
+  "yangiMarxniKiriting": "Введите новую цену",
+  "keyinroqQaytaUrinibKoring": "Пожалуйста, повторите попытку позже",
+  "narxniOzgartirishdaXatolik": "Ошибка при изменении цены",
+  "narxiniOzgartirish": "Изменить стоимость"
 }

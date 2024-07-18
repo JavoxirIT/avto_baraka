@@ -1,6 +1,5 @@
 import 'package:avto_baraka/api/models/listing_get_models.dart';
-import 'package:avto_baraka/api/service/listing_service.dart';
-import 'package:bloc/bloc.dart';
+import 'package:avto_baraka/main_import.dart';
 import 'package:equatable/equatable.dart';
 
 part 'listing_active_event.dart';
@@ -10,6 +9,7 @@ class ListingActiveBloc extends Bloc<ListingActiveEvent, ListingActiveState> {
   ListingActiveBloc(this._listingService) : super(ListingActiveInitial()) {
     on<ListingActiveEventLoad>(getActiveListing);
     on<ListingActiveDeleteEvent>(deleteActiveListing);
+    on<ListingAvtiveChangePriceEvent>(changePrice);
   }
 
   final ListingService _listingService;
@@ -45,12 +45,45 @@ class ListingActiveBloc extends Bloc<ListingActiveEvent, ListingActiveState> {
         if (activeListing.isEmpty) {
           emit(ListingActiveNotData());
         } else {
-          emit(ListingActiveInitial());
+          // emit(ListingActiveInitial());
           emit(ListingActiveStateLoad(listing: activeListing));
         }
       }
     } on Exception catch (e) {
       emit(ListingActiveStateError(exception: e));
+    }
+  }
+
+  Future<void> changePrice(ListingAvtiveChangePriceEvent event,
+      Emitter<ListingActiveState> emit) async {
+    try {
+      final response = await _listingService.changePrice(event.id, event.value);
+
+      if (response == 1) {
+        if (state is ListingActiveStateLoad) {
+          final currentState = state as ListingActiveStateLoad;
+          var oneElementIndex = currentState.listing
+              .indexWhere((element) => element.id == event.id);
+          if (oneElementIndex != -1) {
+            var updatedElement = currentState.listing[oneElementIndex].copyWith(
+              price: int.parse(event.value),
+            );
+            List<ListingGetModals> updatedList =
+                List.from(currentState.listing);
+            updatedList[oneElementIndex] = updatedElement;
+
+            emit(ListingActiveStateLoad(listing: updatedList));
+            await _listingService.getDataListing(1);
+          }
+        }
+      } else {
+        emit(ListingActiveStateNotUpdatePrice());
+        final activeListing =
+            await _listingService.getActiveDataListing(event.lang, event.token);
+        emit(ListingActiveStateLoad(listing: activeListing));
+      }
+    } on Exception catch (exseption) {
+      debugPrint('$exseption');
     }
   }
 }

@@ -2003,6 +2003,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Avval avtomashina narxini kiriting`
+  String get avvalAvtomashinaNarxiniKiriting {
+    return Intl.message(
+      'Avval avtomashina narxini kiriting',
+      name: 'avvalAvtomashinaNarxiniKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yangi marxni kiriting`
+  String get yangiMarxniKiriting {
+    return Intl.message(
+      'Yangi marxni kiriting',
+      name: 'yangiMarxniKiriting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Keyinroq qayta urinib ko'ring`
+  String get keyinroqQaytaUrinibKoring {
+    return Intl.message(
+      'Keyinroq qayta urinib ko`ring',
+      name: 'keyinroqQaytaUrinibKoring',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Narxni o'zgartirishda xatolik`
+  String get narxniOzgartirishdaXatolik {
+    return Intl.message(
+      'Narxni o`zgartirishda xatolik',
+      name: 'narxniOzgartirishdaXatolik',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Narxini o'zgartirish`
+  String get narxiniOzgartirish {
+    return Intl.message(
+      'Narxini o`zgartirish',
+      name: 'narxiniOzgartirish',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

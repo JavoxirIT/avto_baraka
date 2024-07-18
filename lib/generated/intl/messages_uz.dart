@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Amalga oshirish tugmasini bosing"),
         "avtomatikTanlash":
             MessageLookupByLibrary.simpleMessage("Avtomatik tanlash"),
+        "avvalAvtomashinaNarxiniKiriting": MessageLookupByLibrary.simpleMessage(
+            "Avval avtomashina narxini kiriting"),
         "avvalAvtotransportTuriniTanlang":
             MessageLookupByLibrary.simpleMessage("Ma`lumot mavjud emas"),
         "avvalBankniTanlang":
@@ -184,6 +186,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "kechirasiz": MessageLookupByLibrary.simpleMessage("Kechirasiz"),
         "kerakliElonniQidirish":
             MessageLookupByLibrary.simpleMessage("Kerakli e’lonni qidirish"),
+        "keyinroqQaytaUrinibKoring": MessageLookupByLibrary.simpleMessage(
+            "Keyinroq qayta urinib ko`ring"),
         "kiritilmagan": MessageLookupByLibrary.simpleMessage("Kiritilmagan"),
         "kodniYuborsh": MessageLookupByLibrary.simpleMessage("Kodni yuborish"),
         "kreditKalkulatori":
@@ -225,6 +229,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "narxi": MessageLookupByLibrary.simpleMessage("Narxi"),
         "narxiniKiriting":
             MessageLookupByLibrary.simpleMessage("Narxini kiriting"),
+        "narxiniOzgartirish":
+            MessageLookupByLibrary.simpleMessage("Narxini o`zgartirish"),
+        "narxniOzgartirishdaXatolik": MessageLookupByLibrary.simpleMessage(
+            "Narxni o`zgartirishda xatolik"),
         "notugriFormat":
             MessageLookupByLibrary.simpleMessage("Noto’g’ri format"),
         "notugriKod": MessageLookupByLibrary.simpleMessage("Noto’g’ri kod"),
@@ -358,6 +366,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Yangi e’lon joylash"),
         "yangiElonQoshish":
             MessageLookupByLibrary.simpleMessage("Yangi e’lon qo’shish"),
+        "yangiMarxniKiriting":
+            MessageLookupByLibrary.simpleMessage("Yangi narxni kiriting"),
         "yangiXabar": MessageLookupByLibrary.simpleMessage("Yangi xabar"),
         "yil": MessageLookupByLibrary.simpleMessage(" yil"),
         "yilDan": MessageLookupByLibrary.simpleMessage("yildan"),

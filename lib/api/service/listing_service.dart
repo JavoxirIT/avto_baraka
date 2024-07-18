@@ -375,12 +375,29 @@ class ListingService {
   }
 
   // VIEWED
-  Future<void> viewed(int listingId) async {
+  Future<void> viewed(
+    int listingId,
+  ) async {
     _dio.post(
       '${_url}viewed/$listingId',
       options: Options(
         headers: {"Authorization": await LocalMemory.service.getLocolToken()},
       ),
     );
+  }
+
+  Future<int> changePrice(int id, value) async {
+    int resault = 0;
+    final response = await _dio.post('${_url}change-price/$id',
+        options: Options(
+          headers: {"Authorization": await LocalMemory.service.getLocolToken()},
+        ),
+        data: {"price": value});
+
+    if (response.statusCode == 200) {
+      resault = int.parse(response.data);
+    }
+
+    return resault;
   }
 }
