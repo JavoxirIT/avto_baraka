@@ -16,7 +16,7 @@ class LocalMemory {
     if (saveData.isEmpty) {
       debugPrint('Токен не найден');
     } else {
-      // debugPrint('TokenService saveData: $saveData');
+       debugPrint('TokenService saveData: $saveData');
       token = saveData;
     }
     return saveData;

@@ -188,6 +188,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "kechirasiz": MessageLookupByLibrary.simpleMessage("Извините"),
         "kerakliElonniQidirish":
             MessageLookupByLibrary.simpleMessage("Поиск обявления"),
+        "keyingiOynagaOtishUchunPastgiOngTugmaniBosing":
+            MessageLookupByLibrary.simpleMessage(
+                "Нажмите правую нижнюю кнопку, чтобы просмотреть следующую страницу."),
         "keyinroqQaytaUrinibKoring": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, повторите попытку позже"),
         "kiritilmagan": MessageLookupByLibrary.simpleMessage("Не введино"),

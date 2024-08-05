@@ -18,10 +18,12 @@ class Authorization {
         // final responseModel = SendPhoneModels.fromJson(responseData);
         return message;
       } else {
-        throw Exception('Не удалось загрузить данные: ${response.statusCode}');
+        return "error";
+        // throw Exception('Не удалось загрузить данные: ${response.statusCode}');
       }
     } catch (error) {
-      throw Exception('Не удалось загрузить данные: $error');
+      return "error";
+      // throw Exception('Не удалось загрузить данные: $error');
     }
   }
 

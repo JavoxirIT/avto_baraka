@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:async';
+
 import 'package:avto_baraka/widgets/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -29,6 +31,10 @@ class MainCarouselFormRegistrationState
   Map? accessTokenData;
   late String _appSignature;
   String? _code;
+
+  bool isDisabled = true;
+  int _start = 60; // Таймер на 60 секунд
+  Timer? _timer;
 
   final _formKey = GlobalKey<FormState>();
   final phoneNumber = TextEditingController();
@@ -65,6 +71,29 @@ class MainCarouselFormRegistrationState
     // debugPrint('App Signature: $_appSignature');
   }
 
+  void _startTimer() {
+    _start = 60;
+    if (_timer != null) {
+      _timer!.cancel();
+    }
+    _timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (timer) {
+        setState(
+          () {
+            if (_start == 0 || _code != null) {
+              timer.cancel();
+              isDisabled =
+                  true; // Разблокировать кнопку после истечения времени
+            } else {
+              _start--;
+            }
+          },
+        );
+      },
+    );
+  }
+
   @override
   void codeUpdated() {
     // debugPrint('codeUpdated called');
@@ -78,7 +107,11 @@ class MainCarouselFormRegistrationState
   @override
   void dispose() {
     phoneNumber.dispose();
+    // smsCode.dispose();
     SmsAutoFill().unregisterListener();
+    if (_timer != null) {
+      _timer!.cancel();
+    }
     super.dispose();
   }
 
@@ -102,7 +135,7 @@ class MainCarouselFormRegistrationState
                 Container(
                   padding: const EdgeInsets.all(4.0),
                   foregroundDecoration: BoxDecoration(
-                    border: Border.all(width: 1.0, color: elevatedButtonColor),
+                    border: Border.all(width: 1.0, color: colorEmber),
                     borderRadius: const BorderRadius.all(
                       Radius.circular(10.0),
                     ),
@@ -147,28 +180,43 @@ class MainCarouselFormRegistrationState
                         height: 58.0,
                         child: ElevatedButton(
                           style: elevatedButtonMap.copyWith(
-                            backgroundColor:
-                                MaterialStatePropertyAll(colorEmber),
+                            backgroundColor: isDisabled
+                                ? MaterialStatePropertyAll(colorEmber)
+                                : MaterialStatePropertyAll(unselectedItemColor),
                           ),
-                          onPressed: () async {
-                            final validate =
-                                phoneValidator(context, phoneNumber.text);
+                          onPressed: isDisabled
+                              ? () async {
+                                  final validate =
+                                      phoneValidator(context, phoneNumber.text);
 
-                            if (validate == null) {
-                              toast(
-                                context,
-                                S.of(context).iltimosSmsXabarniKutibTuring,
-                                colorEmber,
-                                ToastificationType.info,
-                              );
-                              responseData = await Authorization()
-                                  .postNumber(phoneNumber.text, _appSignature);
-                            } else {
-                              return;
-                            }
-                          },
+                                  if (validate == null) {
+                                    setState(() {
+                                      isDisabled = false;
+                                    });
+                                    _startTimer();
+                                    toast(
+                                      context,
+                                      S
+                                          .of(context)
+                                          .iltimosSmsXabarniKutibTuring,
+                                      colorEmber,
+                                      ToastificationType.info,
+                                    );
+                                    responseData = await Authorization()
+                                        .postNumber(
+                                            phoneNumber.text, _appSignature);
+                                    // if (responseData != "error") {
+                                    //   setState(() {
+                                    //     isDisabled = true;
+                                    //   });
+                                    // }
+                                  } else {
+                                    return;
+                                  }
+                                }
+                              : null,
                           child: Text(
-                            S.of(context).yuborish,
+                            isDisabled ? S.of(context).yuborish : '$_start',
                             style: Theme.of(context).textTheme.displaySmall,
                           ),
                         ),
@@ -186,20 +234,23 @@ class MainCarouselFormRegistrationState
                 ),
                 sizedBoxH20,
                 PinFieldAutoFill(
+                  cursor: Cursor(
+                    width: 1,
+                    height: 30,
+                    color: colorEmber,
+                    radius: const Radius.circular(1),
+                    enabled: true,
+                  ),
                   controller: TextEditingController(text: _code),
                   codeLength: 6,
                   decoration: BoxLooseDecoration(
-                    strokeColorBuilder:
-                        const FixedColorBuilder(Color(0xFF008080)),
+                    strokeColorBuilder: FixedColorBuilder(colorEmber),
                     gapSpace: 10.0,
                     radius: const Radius.circular(5.0),
-                    textStyle: const TextStyle(
+                    textStyle: TextStyle(
                       fontSize: 20,
-                      color: Colors.black,
+                      color: colorWhite,
                       fontFamily: "Roboto",
-                    ),
-                    bgColorBuilder: const FixedColorBuilder(
-                      Colors.white,
                     ),
                   ),
                   onCodeChanged: (code) async {

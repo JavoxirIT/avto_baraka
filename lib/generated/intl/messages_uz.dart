@@ -186,6 +186,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "kechirasiz": MessageLookupByLibrary.simpleMessage("Kechirasiz"),
         "kerakliElonniQidirish":
             MessageLookupByLibrary.simpleMessage("Kerakli e’lonni qidirish"),
+        "keyingiOynagaOtishUchunPastgiOngTugmaniBosing":
+            MessageLookupByLibrary.simpleMessage(
+                "Keyingi oynaga o`tish uchun pastgi o`ng tugmani bosing"),
         "keyinroqQaytaUrinibKoring": MessageLookupByLibrary.simpleMessage(
             "Keyinroq qayta urinib ko`ring"),
         "kiritilmagan": MessageLookupByLibrary.simpleMessage("Kiritilmagan"),

@@ -1,6 +1,8 @@
 import 'package:avto_baraka/screen/imports/imports_introductory.dart';
 import 'package:avto_baraka/widgets/change_language.dart';
 
+import '../generated/l10n.dart';
+
 class IntroductionScreen extends StatefulWidget {
   const IntroductionScreen({super.key});
   @override
@@ -73,17 +75,20 @@ class _MainPageState extends State<IntroductionScreen>
                           .map(
                             (item) => ListView(
                               children: [
-                                Center(
-                                  child: item["image"] is int
-                                      ? fourthcard(context, item)
-                                      : item["image"] is Widget
-                                          ? item["image"]
-                                          : Image.asset(
-                                              item["image"],
-                                              fit: BoxFit.contain,
-                                              height: heightImage,
-                                              semanticLabel: "image",
-                                            ),
+                                Semantics(
+                                label: S.of(context).keyingiOynagaOtishUchunPastgiOngTugmaniBosing,
+                                  child: Center(
+                                    child: item["image"] is int
+                                        ? fourthcard(context, item)
+                                        : item["image"] is Widget
+                                            ? item["image"]
+                                            : Image.asset(
+                                                item["image"],
+                                                fit: BoxFit.contain,
+                                                height: heightImage,
+                                                semanticLabel: "image",
+                                              ),
+                                  ),
                                 ),
                                 const SizedBox(
                                   height: 30.0,

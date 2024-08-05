@@ -2053,6 +2053,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Keyingi oynaga o'tish uchun pastgi o'ng tugmani bosing`
+  String get keyingiOynagaOtishUchunPastgiOngTugmaniBosing {
+    return Intl.message(
+      'Keyingi oynaga o`tish uchun pastgi o`ng tugmani bosing',
+      name: 'keyingiOynagaOtishUchunPastgiOngTugmaniBosing',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
