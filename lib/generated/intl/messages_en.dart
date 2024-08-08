@@ -90,6 +90,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Chiqarilgan yili:"),
         "countElonTopildi": m1,
         "dan": MessageLookupByLibrary.simpleMessage("--- dan"),
+        "deviceSimNotSuported": MessageLookupByLibrary.simpleMessage(
+            "Устройство не поддерживает SIM-карты, перехват SMS отключен."),
         "diqqat": MessageLookupByLibrary.simpleMessage("Diqqat!"),
         "dvigatelHajmi": MessageLookupByLibrary.simpleMessage("Motor size"),
         "dvigatelHajminiKiriting":

@@ -2063,6 +2063,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Устройство не поддерживает SIM-карты, перехват SMS отключен.`
+  String get deviceSimNotSuported {
+    return Intl.message(
+      'Устройство не поддерживает SIM-карты, перехват SMS отключен.',
+      name: 'deviceSimNotSuported',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

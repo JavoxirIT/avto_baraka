@@ -264,12 +264,16 @@ class CarBlockedCard extends StatelessWidget {
         );
       }
       if (state is ListingDeleted) {
-        return const Center(
-          child: CircularProgressIndicator(),
+        return Center(
+          child: CircularProgressIndicator(
+            color: colorEmber,
+          ),
         );
       }
-      return const Center(
-        child: CircularProgressIndicator(),
+      return Center(
+        child: CircularProgressIndicator(
+          color: colorEmber,
+        ),
       );
     });
   }

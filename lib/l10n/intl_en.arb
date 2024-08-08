@@ -199,5 +199,6 @@
   "keyinroqQaytaUrinibKoring": "Keyinroq qayta urinib ko`ring",
   "narxniOzgartirishdaXatolik": "Narxni o`zgartirishda xatolik",
   "narxiniOzgartirish": "Narxini o`zgartirish",
-  "keyingiOynagaOtishUchunPastgiOngTugmaniBosing": "Keyingi oynaga o`tish uchun pastgi o`ng tugmani bosing"
+  "keyingiOynagaOtishUchunPastgiOngTugmaniBosing": "Keyingi oynaga o`tish uchun pastgi o`ng tugmani bosing",
+  "deviceSimNotSuported": "Устройство не поддерживает SIM-карты, перехват SMS отключен."
 }

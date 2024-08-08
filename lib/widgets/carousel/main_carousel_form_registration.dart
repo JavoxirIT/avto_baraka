@@ -17,6 +17,8 @@ import 'package:avto_baraka/utill/validation/phone_validator.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:toastification/toastification.dart';
 
+import 'package:flutter/services.dart';
+
 class MainCarouselFormRegistration extends StatefulWidget {
   const MainCarouselFormRegistration({Key? key}) : super(key: key);
 
@@ -30,7 +32,7 @@ class MainCarouselFormRegistrationState
   late String responseData;
   Map? accessTokenData;
   late String _appSignature;
-  String? _code;
+  // String? _code;
 
   bool isDisabled = true;
   int _start = 60; // Таймер на 60 секунд
@@ -38,20 +40,48 @@ class MainCarouselFormRegistrationState
 
   final _formKey = GlobalKey<FormState>();
   final phoneNumber = TextEditingController();
-  final smsCode = TextEditingController();
-
+  final _code = TextEditingController();
+  bool hasSimCard = false;
   @override
   void initState() {
     super.initState();
     getAppSignature();
-    requestSmsPermission();
-    _listenForSmsCode();
-    var data = SmsAutoFill().hint;
-    data.then((value) {
-      if (value != null) {
-        phoneNumber.text = value;
-      }
-    });
+    checkSimCardAndInitialize();
+  }
+
+  Future<void> checkSimCardAndInitialize() async {
+    hasSimCard =
+        await hasSimCardCheck(); // Предполагается, что вы реализовали этот метод
+    if (hasSimCard) {
+      requestSmsPermission();
+      _listenForSmsCode();
+      var data = SmsAutoFill().hint;
+      data.then((value) {
+        if (value != null) {
+          phoneNumber.text = value;
+        }
+      });
+    } else {
+      // toast(
+      //   context,
+      //   S.of(context).deviceSimNotSuported,
+      //   colorEmber,
+      //   ToastificationType.error,
+      // );
+    }
+  }
+
+  Future<bool> hasSimCardCheck() async {
+    // Здесь вызов платформенного метода для проверки SIM-карты
+    // Например:
+    const platform = MethodChannel('com.autobaraka.auto_baraka/simcheck');
+    try {
+      final bool result = await platform.invokeMethod('hasSimCard');
+      return result;
+    } on PlatformException catch (e) {
+      debugPrint("Не удалось получить статус SIM-карты: '${e.message}'.");
+      return false;
+    }
   }
 
   void _listenForSmsCode() async {
@@ -61,6 +91,8 @@ class MainCarouselFormRegistrationState
 
   Future<void> requestSmsPermission() async {
     var status = await Permission.sms.status;
+    debugPrint('$status');
+
     if (!status.isGranted) {
       await Permission.sms.request();
     }
@@ -81,7 +113,7 @@ class MainCarouselFormRegistrationState
       (timer) {
         setState(
           () {
-            if (_start == 0 || _code != null) {
+            if (_start == 0 || _code.text != "") {
               timer.cancel();
               isDisabled =
                   true; // Разблокировать кнопку после истечения времени
@@ -98,8 +130,8 @@ class MainCarouselFormRegistrationState
   void codeUpdated() {
     // debugPrint('codeUpdated called');
     setState(() {
-      _code = code;
-      smsCode.text = _code!;
+      _code.text = code!;
+      // smsCode.text = _code!;
       // debugPrint('code: $_code');
     });
   }
@@ -241,7 +273,7 @@ class MainCarouselFormRegistrationState
                     radius: const Radius.circular(1),
                     enabled: true,
                   ),
-                  controller: TextEditingController(text: _code),
+                  controller: _code,
                   codeLength: 6,
                   decoration: BoxLooseDecoration(
                     strokeColorBuilder: FixedColorBuilder(colorEmber),
@@ -253,47 +285,50 @@ class MainCarouselFormRegistrationState
                       fontFamily: "Roboto",
                     ),
                   ),
-                  onCodeChanged: (code) async {
-                    final currentContext = context;
-                    if (code!.length == 6) {
-                      setState(() {
-                        _code = code;
-                      });
-                      toast(
-                        context,
-                        S
-                            .of(context)
-                            .smsKodTasdiqlashgaYuborildiNIltimosKutibTuring(
-                                '\n'),
-                        colorEmber,
-                        ToastificationType.info,
-                      );
-                      accessTokenData = await Authorization()
-                          .sendphoneAndCode(phoneNumber.text, code);
+                  onCodeChanged: phoneNumber.text != ""
+                      ? (code) async {
+                          final currentContext = context;
+                          if (code!.length == 6) {
+                            setState(() {
+                              _code.text = code;
+                            });
+                            toast(
+                              context,
+                              S
+                                  .of(context)
+                                  .smsKodTasdiqlashgaYuborildiNIltimosKutibTuring(
+                                      '\n'),
+                              colorEmber,
+                              ToastificationType.info,
+                            );
+                            // request
+                            accessTokenData = await Authorization()
+                                .sendphoneAndCode(phoneNumber.text, code);
+                            if (accessTokenData!["access_token"] != null &&
+                                accessTokenData!["user_id"] != null) {
+                              toast(
+                                currentContext,
+                                S
+                                    .of(context)
+                                    .smskodTasdiqlandindaturgaKirishUchunTugmaniBosing(
+                                        '\n'),
+                                colorEmber,
+                                ToastificationType.info,
+                              );
+                              final accessToken =
+                                  accessTokenData!["access_token"];
+                              final userId = accessTokenData!["user_id"];
 
-                      if (accessTokenData!["access_token"] != null &&
-                          accessTokenData!["user_id"] != null) {
-                        toast(
-                          currentContext,
-                          S
-                              .of(context)
-                              .smskodTasdiqlandindaturgaKirishUchunTugmaniBosing(
-                                  '\n'),
-                          colorEmber,
-                          ToastificationType.info,
-                        );
-                        final accessToken = accessTokenData!["access_token"];
-                        final userId = accessTokenData!["user_id"];
-
-                        tokenProvider.accessToken = accessToken;
-                        tokenProvider.accessUserID = userId.toString();
-                        tokenProvider.tokenSetLocale(
-                          accessToken,
-                        );
-                        tokenProvider.userIdSetLocale(userId.toString());
-                      }
-                    }
-                  },
+                              tokenProvider.accessToken = accessToken;
+                              tokenProvider.accessUserID = userId.toString();
+                              tokenProvider.tokenSetLocale(
+                                accessToken,
+                              );
+                              tokenProvider.userIdSetLocale(userId.toString());
+                            }
+                          }
+                        }
+                      : null,
                 ),
               ],
             ),

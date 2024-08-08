@@ -199,5 +199,6 @@
   "keyinroqQaytaUrinibKoring": "Пожалуйста, повторите попытку позже",
   "narxniOzgartirishdaXatolik": "Ошибка при изменении цены",
   "narxiniOzgartirish": "Изменить стоимость",
-  "keyingiOynagaOtishUchunPastgiOngTugmaniBosing": "Нажмите правую нижнюю кнопку, чтобы просмотреть следующую страницу."
+  "keyingiOynagaOtishUchunPastgiOngTugmaniBosing": "Нажмите правую нижнюю кнопку, чтобы просмотреть следующую страницу.",
+  "deviceSimNotSuported": "Устройство не поддерживает SIM-карты, перехват SMS отключен."
 }

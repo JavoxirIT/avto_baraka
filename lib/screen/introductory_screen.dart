@@ -1,6 +1,5 @@
 import 'package:avto_baraka/screen/imports/imports_introductory.dart';
 import 'package:avto_baraka/widgets/change_language.dart';
-
 import '../generated/l10n.dart';
 
 class IntroductionScreen extends StatefulWidget {

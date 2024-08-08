@@ -354,13 +354,17 @@ class _CarActiveCardState extends State<CarActiveCard> {
         );
       }
       if (state is ListingActiveInitial) {
-        const Center(
-          child: CircularProgressIndicator(),
+        Center(
+          child: CircularProgressIndicator(
+            color: colorEmber,
+          ),
         );
       }
 
-      return const Center(
-        child: CircularProgressIndicator(),
+      return Center(
+        child: CircularProgressIndicator(
+          color: colorEmber,
+        ),
       );
     });
   }
@@ -439,8 +443,12 @@ class _CarActiveCardState extends State<CarActiveCard> {
                           );
                           // Navigator.of(context).pop(false);
                         } else {
-                          toast(context, S.of(context).avvalAvtomashinaNarxiniKiriting,
-                              colorRed, ToastificationType.error, 2);
+                          toast(
+                              context,
+                              S.of(context).avvalAvtomashinaNarxiniKiriting,
+                              colorRed,
+                              ToastificationType.error,
+                              2);
                         }
                       },
                       child: Text(

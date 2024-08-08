@@ -417,7 +417,10 @@ class _CarNotActivState extends State<CarNotActiv> {
         return Center(
           child: Text(
             S.of(context).faolBolmaganElonlarMavjutEmas('\n'),
-            style: Theme.of(context).textTheme.labelLarge!.copyWith(color: colorWhite),
+            style: Theme.of(context)
+                .textTheme
+                .labelLarge!
+                .copyWith(color: colorWhite),
             textAlign: TextAlign.center,
           ),
         );
@@ -428,12 +431,16 @@ class _CarNotActivState extends State<CarNotActiv> {
         );
       }
       if (state is NotActiveStateLoading) {
-        return const Center(
-          child: CircularProgressIndicator(),
+        return Center(
+          child: CircularProgressIndicator(
+            color: colorEmber,
+          ),
         );
       }
-      return const Center(
-        child: CircularProgressIndicator(),
+      return Center(
+        child: CircularProgressIndicator(
+          color: colorEmber,
+        ),
       );
     });
   }

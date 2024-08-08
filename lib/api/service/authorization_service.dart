@@ -10,6 +10,7 @@ class Authorization {
     try {
       final response = await _dio.post('${Config.dbMobile}get-code',
           data: {"phone": number, "code": appSignature});
+// debugPrint('debugPrint: ${response}');
 
       if (response.statusCode == 200) {
         final responseData = response.data;
