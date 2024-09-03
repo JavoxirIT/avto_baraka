@@ -45,7 +45,7 @@ class CreditScreenState extends State<CreditScreen> {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               trailing: Radio(
-                fillColor: MaterialStatePropertyAll(colorWhite),
+                fillColor: WidgetStatePropertyAll(colorWhite),
                 value: 2,
                 groupValue: groupValue,
                 onChanged: (value) {
@@ -66,7 +66,7 @@ class CreditScreenState extends State<CreditScreen> {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               trailing: Radio(
-                fillColor: MaterialStatePropertyAll(colorWhite),
+                fillColor: WidgetStatePropertyAll(colorWhite),
                 value: 3,
                 groupValue: groupValue,
                 onChanged: (value) {

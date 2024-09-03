@@ -105,7 +105,7 @@ class _CheckingInternetConnectionState
           ),
           const SizedBox(height: 20.0),
           ElevatedButton(
-            style: elevatedButtonMap.copyWith(backgroundColor: MaterialStatePropertyAll(colorEmber)),
+            style: elevatedButtonMap.copyWith(backgroundColor: WidgetStatePropertyAll(colorEmber)),
             child: Text(S.of(context).sozlamalarniOchisgh),
             onPressed: () =>
                 AppSettings.openAppSettings(type: AppSettingsType.device),

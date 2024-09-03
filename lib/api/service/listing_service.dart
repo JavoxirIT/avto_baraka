@@ -89,7 +89,7 @@ class ListingService {
   Future<List<ListingGetModals>> getDataListing(int page) async {
     var lang = await LocalMemory.service.getLanguageCode();
 
-    // debugPrint('Page: $page');
+    // debugPrint('Page: ${await LocalMemory.service.getLocolToken()}');
 
     listingDataList.clear();
     try {
@@ -106,7 +106,7 @@ class ListingService {
           listingDataList.add(ListingGetModals.fromMap(element));
         }
       } else {
-        debugPrint('LISTING ERROR: ${response.statusCode}');
+        // debugPrint('LISTING ERROR: ${response.statusCode}');
         if (response.statusCode == 401) {
           TokenProvider().removeTokenPreferences(tokenKey);
           redirectToLogin();
@@ -227,19 +227,17 @@ class ListingService {
   }
 
   // SEARCH
-  Future<List<ListingGetModals>> getSearchListing(
-    lang,
-    token, [
-    int? brand_id,
-    int? car_type,
-    int? end_price,
-    int? end_year,
-    int? model_id,
-    int? region_id,
-    int? start_price,
-    int? start_year,
-    int? valyuta,
-  ]) async {
+  Future<List<ListingGetModals>> getSearchListing(lang, token,
+      [int? brand_id,
+      int? car_type,
+      int? end_price,
+      int? end_year,
+      int? model_id,
+      int? region_id,
+      int? start_price,
+      int? start_year,
+      int? valyuta,
+      int? ltype_id]) async {
     listingDataList.clear();
     var data = {
       "brand_id": '${brand_id == -1 ? "" : brand_id}',
@@ -250,9 +248,10 @@ class ListingService {
       "region_id": '${region_id ?? ""}',
       "start_price": '${start_price ?? ""}',
       "start_year": '${start_year ?? ""}',
-      "valyuta": '${valyuta ?? ""}'
+      "valyuta": '${valyuta ?? ""}',
+      "ltype_id": '${ltype_id ?? ""}'
     };
-    debugPrint('debugPrint: $data');
+    // debugPrint('getSearchListing: $data');
 
     try {
       final response = await _dio.post(

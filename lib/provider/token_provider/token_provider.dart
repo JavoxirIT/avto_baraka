@@ -65,7 +65,6 @@ class TokenProvider extends ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove(key);
     debugPrint('token removed');
-
     notifyListeners();
   }
 }

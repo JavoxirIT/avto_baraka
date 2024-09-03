@@ -1,4 +1,5 @@
 import "package:avto_baraka/screen/imports/imports_favorite.dart";
+import "package:avto_baraka/style/colors.dart";
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
@@ -29,7 +30,13 @@ class FavoriteScreenState extends State<FavoriteScreen> {
         builder: (context, state) {
           if (state is LikeStateNotData) {
             return Center(
-              child: Text(S.of(context).tanlanganElonlarMavjutEmas),
+              child: Text(
+                S.of(context).tanlanganElonlarMavjutEmas,
+                style: Theme.of(context)
+                    .textTheme
+                    .labelLarge!
+                    .copyWith(color: colorWhite),
+              ),
             );
           }
           if (state is LikeStateError) {
@@ -41,12 +48,16 @@ class FavoriteScreenState extends State<FavoriteScreen> {
             return Container(
               padding:
                   const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
-              child: carFavpriteCard(context, state, tokenProvider.token!,
-                  languageProvider.locale.languageCode),
+              child: CarFavoriteCard(
+                  state: state,
+                  token: tokenProvider.token!,
+                  lang: languageProvider.locale.languageCode),
             );
           }
-          return const Center(
-            child: CircularProgressIndicator(),
+          return Center(
+            child: CircularProgressIndicator(
+              color: colorEmber,
+            ),
           );
         },
       ),

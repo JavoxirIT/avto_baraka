@@ -120,7 +120,7 @@
   "qayerdanOlamiz": "Qayerdan olamiz?",
   "qoshimchaMalumotniKriting": "Qo’shimcha ma’lumotni kiriting",
   "yangiXabar": "Yangi xabar",
-  "boshqaAkauntgaKirish": "Boshqa akkauntga kirish",
+  "boshqaAkauntgaKirish": "Akkauntdan chiqish",
   "ochirish": "O’chirish",
   "ushbuElondaHatolikMavjudligiUchunTizimgaJoylanishiBekorQilindi": "Ushbu e’londa - Hatolik mavjudligi uchun tizimga joylanishi bekor qilindi.",
   "iltimosSmsXabarniKutibTuring": "Iltimos sms xabarni kutib turing",
@@ -200,5 +200,8 @@
   "narxniOzgartirishdaXatolik": "Narxni o`zgartirishda xatolik",
   "narxiniOzgartirish": "Narxini o`zgartirish",
   "keyingiOynagaOtishUchunPastgiOngTugmaniBosing": "Keyingi oynaga o`tish uchun pastgi o`ng tugmani bosing",
-  "deviceSimNotSuported": "Qurilma SIM-kartalarni qo'llab-quvvatlamaydi, SMS ushlash o'chirilgan."
+  "deviceSimNotSuported": "Qurilma SIM-kartalarni qo'llab-quvvatlamaydi, SMS ushlash o'chirilgan.",
+  "boshqaNameAvtomobillariOrasidaNarxDarajasi": "Boshqa {name} avtomobillari orasida narx darajasi",
+  "xabarlarMavjutEmas": "Xabarlar mavjut emas",
+  "akkauntniOchirish": "Akkauntni o`chirish"
 }

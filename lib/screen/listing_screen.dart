@@ -1,6 +1,5 @@
-import 'package:avto_baraka/screen/imports/imports_announcement.dart';
-import 'package:avto_baraka/screen/imports/imports_cabinet.dart';
 import 'package:avto_baraka/screen/imports/imports_listing.dart';
+import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/sized_box_10.dart';
 
 class ListingScreen extends StatefulWidget {
@@ -93,7 +92,7 @@ class _ListingScreenState extends State<ListingScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            flutterCarousel(context, categoryList),
+            CategoryCarousel(categoryList: categoryList),
             sizedBox10,
             Expanded(
               child: Container(

@@ -316,7 +316,7 @@ class _CarNotActivState extends State<CarNotActiv> {
                               ],
                             ),
                           ),
-                          ButtonBar(
+                          OverflowBar(
                             alignment: MainAxisAlignment.end,
                             children: [
                               ElevatedButton(
@@ -358,7 +358,7 @@ class _CarNotActivState extends State<CarNotActiv> {
                                 },
                                 style: elevatedButton.copyWith(
                                   backgroundColor:
-                                      MaterialStatePropertyAll(colorRed),
+                                      WidgetStatePropertyAll(colorRed),
                                 ),
                                 child: Text(
                                   S.of(context).ochirish,

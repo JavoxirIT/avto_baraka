@@ -2073,6 +2073,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Boshqa {name} avtomobillari orasida narx darajasi`
+  String boshqaNameAvtomobillariOrasidaNarxDarajasi(Object name) {
+    return Intl.message(
+      'Boshqa $name avtomobillari orasida narx darajasi',
+      name: 'boshqaNameAvtomobillariOrasidaNarxDarajasi',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Xabarlar mavjut emas`
+  String get xabarlarMavjutEmas {
+    return Intl.message(
+      'Xabarlar mavjut emas',
+      name: 'xabarlarMavjutEmas',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Akkauntni o'chirish`
+  String get akkauntniOchirish {
+    return Intl.message(
+      'Akkauntni o`chirish',
+      name: 'akkauntniOchirish',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

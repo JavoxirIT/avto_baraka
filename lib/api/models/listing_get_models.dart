@@ -2,43 +2,49 @@
 import 'dart:convert';
 
 class ListingGetModals {
-  ListingGetModals(
-      {required this.id,
-      required this.userId,
-      required this.activeStatus,
-      required this.brand,
-      required this.carImage,
-      required this.car_body,
-      required this.car_position,
-      required this.car_type,
-      required this.credit,
-      required this.description,
-      required this.discount,
-      required this.district,
-      required this.engine,
-      required this.expire_date,
-      required this.lat,
-      required this.long,
-      required this.mileage,
-      required this.model,
-      required this.posted_date,
-      required this.price,
-      required this.pulling_side,
-      required this.region,
-      required this.transmission,
-      required this.type_of_fuel,
-      required this.valyuta_kurs,
-      required this.valyuta_name,
-      required this.valyuta_short,
-      required this.viewed,
-      required this.year,
-      required this.phone,
-      required this.liked,
-      required this.paint_condition,
-      required this.modelImg,
-      required this.topStatus,
-      required this.valyutaShort});
+  ListingGetModals({
+    required this.id,
+    required this.userId,
+    required this.activeStatus,
+    required this.brand,
+    required this.carImage,
+    required this.car_body,
+    required this.car_position,
+    required this.car_type,
+    required this.credit,
+    required this.description,
+    required this.discount,
+    required this.district,
+    required this.engine,
+    required this.expire_date,
+    required this.lat,
+    required this.long,
+    required this.mileage,
+    required this.model,
+    required this.posted_date,
+    required this.price,
+    required this.pulling_side,
+    required this.region,
+    required this.transmission,
+    required this.type_of_fuel,
+    required this.valyuta_kurs,
+    required this.valyuta_name,
+    required this.valyuta_short,
+    required this.viewed,
+    required this.year,
+    required this.phone,
+    required this.liked,
+    required this.paint_condition,
+    required this.modelImg,
+    required this.topStatus,
+    required this.valyutaShort,
+    required this.price_foiz,
+    required this.min_price,
+    required this.max_price,
+  });
 
+  late int min_price;
+  late int max_price;
   late List<String> carImage;
   late num engine;
   late int? liked;
@@ -74,8 +80,11 @@ class ListingGetModals {
   late String modelImg;
   late int? topStatus;
   late String? valyutaShort;
+  late String price_foiz;
 
   ListingGetModals.fromMap(Map<String, dynamic> map) {
+    min_price = map['min_price'];
+    max_price = map['max_price'];
     carImage = jsonDecode(map['carImage']).cast<String>();
     engine = map['engine'];
     discount = map['discount'];
@@ -111,9 +120,12 @@ class ListingGetModals {
     modelImg = map['model_img'];
     topStatus = map['topStatus'];
     valyutaShort = map['valyuta_short'];
+    price_foiz = map['price_foiz'];
   }
 
   ListingGetModals copyWith({
+    int? min_price,
+    int? max_price,
     int? id,
     int? userId,
     int? activeStatus,
@@ -149,8 +161,11 @@ class ListingGetModals {
     String? modelImg,
     int? topStatus,
     String? valyutaShort,
+    String? price_foiz,
   }) {
     return ListingGetModals(
+      min_price: min_price ?? this.min_price,
+      max_price: max_price ?? this.max_price,
       id: id ?? this.id,
       userId: userId ?? this.userId,
       activeStatus: activeStatus ?? this.activeStatus,
@@ -186,11 +201,12 @@ class ListingGetModals {
       modelImg: modelImg ?? this.modelImg,
       topStatus: topStatus ?? this.topStatus,
       valyutaShort: valyutaShort ?? this.valyutaShort,
+      price_foiz: price_foiz ?? this.price_foiz,
     );
   }
 
   @override
   String toString() {
-    return 'ListingGetModals(id: $id, activeStatus: $activeStatus, brand: $brand, carImage: $carImage, car_body: $car_body, car_position: $car_position, car_type: $car_type, credit: $credit, description: $description, discount: $discount, district: $district, engine: $engine, expire_date: $expire_date, lat: $lat, long: $long, mileage: $mileage, model: $model, posted_date: $posted_date, price: $price, pulling_side: $pulling_side, region: $region, transmission: $transmission, type_of_fuel: $type_of_fuel, valyuta_kurs: $valyuta_kurs, valyuta_name: $valyuta_name, valyuta_short: $valyuta_short, viewed: $viewed, year: $year, phone: $phone, liked: $liked, user_id: $userId, paint_condition: $paint_condition, model_img: $modelImg, topStatus: $topStatus, valyutaShort: $valyutaShort )';
+    return 'ListingGetModals(id: $id, activeStatus: $activeStatus, brand: $brand, carImage: $carImage, car_body: $car_body, car_position: $car_position, car_type: $car_type, credit: $credit, description: $description, discount: $discount, district: $district, engine: $engine, expire_date: $expire_date, lat: $lat, long: $long, mileage: $mileage, model: $model, posted_date: $posted_date, price: $price, pulling_side: $pulling_side, region: $region, transmission: $transmission, type_of_fuel: $type_of_fuel, valyuta_kurs: $valyuta_kurs, valyuta_name: $valyuta_name, valyuta_short: $valyuta_short, viewed: $viewed, year: $year, phone: $phone, liked: $liked, user_id: $userId, paint_condition: $paint_condition, model_img: $modelImg, topStatus: $topStatus, valyutaShort: $valyutaShort, price_foiz: $price_foiz, min_price: $min_price, max_price: $max_price)';
   }
 }

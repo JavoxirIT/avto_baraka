@@ -1,4 +1,5 @@
-import 'package:avto_baraka/screen/imports/imports_announcement.dart';
+import 'package:flutter/material.dart' hide CarouselController;
+import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/widgets/carousel/main_carousel_form_registration.dart';
 
 List<Map<String, dynamic>> mainCarouselItem(BuildContext context) {

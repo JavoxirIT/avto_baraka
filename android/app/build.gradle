@@ -1,7 +1,9 @@
 plugins {
     id "com.android.application"
-    id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    id 'org.jetbrains.kotlin.android'
+    // id "com.google.gms.google-services"
+    // id "com.google.firebase.crashlytics"
 }
 
 def localProperties = new Properties()
@@ -36,6 +38,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
     }
 
     kotlinOptions {
@@ -49,28 +52,17 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.autobaraka.auto_baraka"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        // minSdkVersion flutter.minSdkVersion
         minSdkVersion 21
-        // minSdkVersion 19
         targetSdkVersion 34
         // targetSdkVersion flutter.targetSdkVersion
         // versionCode flutterVersionCode.toInteger()
         // versionName flutterVersionName
-        versionCode 8
-        versionName "0.1"
+        versionCode 12
+        versionName "1.1.0"
         // 
         multiDexEnabled true
         ndk {
             debugSymbolLevel 'FULL'
-        }
-    }
-
-    buildTypes {
-         release {
-            minifyEnabled true 
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
      signingConfigs {
@@ -110,5 +102,6 @@ dependencies {
 	implementation "com.android.support:multidex:1.0.3"
 	implementation 'com.google.firebase:firebase-messaging:23.0.0'
 	implementation 'com.google.android.gms:play-services-location:19.0.1'
+	coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
 	
 }

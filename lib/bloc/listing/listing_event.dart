@@ -57,8 +57,10 @@ class ListingEvantSearch extends ListingEvent {
     this.end_price,
     this.car_type,
     this.valyuta,
+    this.ltype_id,
   });
 
+  final int? ltype_id;
   final String? token;
   final String? lang;
   final region_id;
@@ -84,7 +86,8 @@ class ListingEvantSearch extends ListingEvent {
       start_price!,
       end_price!,
       car_type!,
-      valyuta!
+      valyuta!,
+      ltype_id!
     ]);
 }
 

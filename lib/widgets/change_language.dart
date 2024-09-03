@@ -1,5 +1,5 @@
 import 'package:avto_baraka/provider/language_provider/locale_provider.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide CarouselController;
 import 'package:provider/provider.dart';
 
 import '../style/colors.dart';

@@ -2,6 +2,7 @@ import 'package:avto_baraka/api/models/listing_get_models.dart';
 import 'package:avto_baraka/api/service/listing_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 part 'not_active_event.dart';
 part 'not_active_state.dart';
@@ -23,6 +24,7 @@ class NotActiveBloc extends Bloc<NotActiveEvent, NotActiveState> {
       emit(NotActiveStateLoading());
       final data =
           await listingService.getNotActiveListing(event.lang, event.token);
+      debugPrint('NotActiveStateLoading: $data');
 
       if (data.isEmpty) {
         emit(NotActiveStateNotData());

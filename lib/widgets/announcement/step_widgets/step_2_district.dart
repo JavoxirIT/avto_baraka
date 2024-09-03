@@ -40,13 +40,16 @@ class DistrictState extends State<District> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('widget.regionGroupValue: ${widget.regionGroupValue}');
+    debugPrint('widget.districts: ${widget.districts}');
+
     EdgeInsets contentPadding = const EdgeInsets.fromLTRB(20.0, 0, 3.0, 0);
     RoundedRectangleBorder shape = const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(
         Radius.circular(15.0),
       ),
     );
-    return widget.districts == null || widget.regionGroupValue < 0
+    return widget.districts.isEmpty || widget.regionGroupValue < 0
         ? SizedBox(
             height: MediaQuery.of(context).size.height / 2,
             child: Center(
@@ -62,18 +65,20 @@ class DistrictState extends State<District> {
               formStepsTitle(S.of(context).tumanlar, context),
               StatefulBuilder(
                 builder: (BuildContext context, StateSetter setState) {
-                  final element = widget.districts
-                      .where((i) => i.regionId == widget.regionGroupValue)
-                      .toList();
+                  // debugPrint('widget.districts: ${widget.districts}');
+
+                  // final element = widget.districts
+                  //     .where((i) => i.regionId == widget.regionGroupValue)
+                  //     .toList();
 
                   return Flexible(
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       physics: const ScrollPhysics(),
-                      itemCount: element.length,
+                      itemCount: widget.districts.length,
                       itemBuilder: (context, index) {
-                        final el = element[index];
+                        final el = widget.districts[index];
                         return Card(
                           shape: shape,
                           elevation: 0,

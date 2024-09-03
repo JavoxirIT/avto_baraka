@@ -162,8 +162,10 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
                     }
                   });
                   Future.delayed(const Duration(seconds: 3), () {
-                    Navigator.of(context).pushNamed(RouteName.cobinetScreen);
-                    Navigator.of(context).pop();
+                    if (mounted) {
+                      Navigator.of(context).pushNamed(RouteName.cobinetScreen);
+                      Navigator.of(context).pop();
+                    }
                   });
                 }
               },
@@ -190,7 +192,7 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
                                 .pushNamed(RouteName.firstpayView);
                           },
                           style: elevatedButton.copyWith(
-                            minimumSize: const MaterialStatePropertyAll(
+                            minimumSize: const WidgetStatePropertyAll(
                               Size(88, 47),
                             ),
                           ),
@@ -242,10 +244,10 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
                       );
                     },
                     style: elevatedButton.copyWith(
-                        minimumSize: const MaterialStatePropertyAll(
+                        minimumSize: const WidgetStatePropertyAll(
                           Size(88, 47),
                         ),
-                        backgroundColor: MaterialStatePropertyAll(colorEmber)),
+                        backgroundColor: WidgetStatePropertyAll(colorEmber)),
                     child: Text(S.of(context).amalgaOshirish),
                   ),
                 )
@@ -320,15 +322,17 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
                           const Duration(
                             seconds: 2,
                           ), () {
-                        Navigator.of(context).pop();
+                        if (mounted) {
+                          Navigator.of(context).pop();
+                        }
                       });
                     }
                   },
             style: elevatedButton.copyWith(
-                minimumSize: MaterialStatePropertyAll(
+                minimumSize: WidgetStatePropertyAll(
                   Size(MediaQuery.of(context).size.width, 47),
                 ),
-                backgroundColor: MaterialStatePropertyAll(colorEmber)),
+                backgroundColor: WidgetStatePropertyAll(colorEmber)),
             child: Text(
               S.of(context).kodniYuborsh,
             ),
@@ -442,10 +446,10 @@ class FirstPayFormViewPayState extends State<FirstPayFormView> {
                             }
                           },
                     style: elevatedButton.copyWith(
-                        minimumSize: const MaterialStatePropertyAll(
+                        minimumSize: const WidgetStatePropertyAll(
                           Size(0, 47),
                         ),
-                        backgroundColor: MaterialStatePropertyAll(colorEmber)),
+                        backgroundColor: WidgetStatePropertyAll(colorEmber)),
                     child: Text(
                       S.of(context).yuborish,
                     ),

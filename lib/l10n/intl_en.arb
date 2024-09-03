@@ -200,5 +200,8 @@
   "narxniOzgartirishdaXatolik": "Narxni o`zgartirishda xatolik",
   "narxiniOzgartirish": "Narxini o`zgartirish",
   "keyingiOynagaOtishUchunPastgiOngTugmaniBosing": "Keyingi oynaga o`tish uchun pastgi o`ng tugmani bosing",
-  "deviceSimNotSuported": "Устройство не поддерживает SIM-карты, перехват SMS отключен."
+  "deviceSimNotSuported": "Устройство не поддерживает SIM-карты, перехват SMS отключен.",
+  "boshqaNameAvtomobillariOrasidaNarxDarajasi": "Boshqa {name} avtomobillari orasida narx darajasi",
+  "xabarlarMavjutEmas": "Xabarlar mavjut emas",
+  "akkauntniOchirish": "Akkauntni o`chirish"
 }

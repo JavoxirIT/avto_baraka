@@ -29,7 +29,7 @@ class CarService {
 
   Future<List<CarCategoryModels>> carCategoryLoad() async {
     var lang = await LocalMemory.service.getLanguageCode();
-
+    
     categoryList.clear();
     try {
       final response = await _dio.get(

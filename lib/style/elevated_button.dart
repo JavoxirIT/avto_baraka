@@ -1,5 +1,4 @@
 import 'package:avto_baraka/screen/imports/imports_announcement.dart';
-import 'package:flutter/material.dart';
 
 final ButtonStyle elevatedButton = ElevatedButton.styleFrom(
   foregroundColor: Colors.white,

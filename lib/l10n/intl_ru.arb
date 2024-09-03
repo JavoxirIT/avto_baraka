@@ -120,7 +120,7 @@
   "qayerdanOlamiz": "Что выбераем?",
   "qoshimchaMalumotniKriting": "Дополнительное информация",
   "yangiXabar": "Новое сообщение",
-  "boshqaAkauntgaKirish": "Войти в другой аккаунт",
+  "boshqaAkauntgaKirish": "Выйти из аккаунта",
   "ochirish": "Удалить",
   "ushbuElondaHatolikMavjudligiUchunTizimgaJoylanishiBekorQilindi": "Публикация отменена в связи с наличием ошибки.",
   "iltimosSmsXabarniKutibTuring": "Пожалуйста ожидайте sms уведомление",
@@ -200,5 +200,8 @@
   "narxniOzgartirishdaXatolik": "Ошибка при изменении цены",
   "narxiniOzgartirish": "Изменить стоимость",
   "keyingiOynagaOtishUchunPastgiOngTugmaniBosing": "Нажмите правую нижнюю кнопку, чтобы просмотреть следующую страницу.",
-  "deviceSimNotSuported": "Устройство не поддерживает SIM-карты, перехват SMS отключен."
+  "deviceSimNotSuported": "Устройство не поддерживает SIM-карты, перехват SMS отключен.",
+  "boshqaNameAvtomobillariOrasidaNarxDarajasi": "Ценовая степень среди других автомашин {name}",
+  "xabarlarMavjutEmas": "Нет сообщений",
+  "akkauntniOchirish": "Удалить аккаунт"
 }

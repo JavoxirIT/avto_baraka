@@ -87,7 +87,7 @@ class _StepsNavigationState extends State<StepsNavigation> {
                   Expanded(
                     child: ElevatedButton(
                       style: elevatedButton.copyWith(
-                        backgroundColor: MaterialStatePropertyAll(colorEmber),
+                        backgroundColor: WidgetStatePropertyAll(colorEmber),
                       ),
                       onPressed: () async {
                         Provider.of<KeyboardVisibilityController>(context,

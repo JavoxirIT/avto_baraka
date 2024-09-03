@@ -6,7 +6,7 @@ class DistrictsService {
   final List<DistrictsModel> list = [];
 
   Future<List<DistrictsModel>> getDistricts(int id) async {
-    debugPrint('widget.regionGroupValue: $id');
+    // debugPrint('widget.regionGroupValue: $id');
     final lang = await LocalMemory.service.getLanguageCode();
     list.clear();
     final response = await Config.dio.post(
@@ -15,6 +15,9 @@ class DistrictsService {
         headers: {"Authorization": await LocalMemory.service.getLocolToken()},
       ),
     );
+
+    
+    
     final data = response.data;
     for (var elements in data) {
       list.add(DistrictsModel.fromMap(elements));

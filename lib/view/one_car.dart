@@ -58,6 +58,7 @@ class OneCarViewState extends State<OneCarView> {
 
 // viewed
     ListingService.servive.viewed(_carData!.id);
+    // debugPrint('_carData: $_carData');
 
     super.didChangeDependencies();
   }
@@ -112,7 +113,7 @@ class OneCarViewState extends State<OneCarView> {
       ),
       body: Stack(
         children: [
-          FlutterCarousel(
+         FlutterCarousel(
             items: carImageList
                 .map(
                   (item) => GestureDetector(
@@ -270,6 +271,24 @@ class OneCarViewState extends State<OneCarView> {
                         ],
                       ),
                       sizedBoxH20,
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: Text(
+                          S
+                              .of(context)
+                              .boshqaNameAvtomobillariOrasidaNarxDarajasi(
+                                  _carData!.model),
+                        ),
+                      ),
+                      sizedBoxH20,
+                      PriceIndicator(
+                        currentPercent: double.parse(_carData!.price_foiz),
+                        image: _carData!.modelImg,
+                        maxPrice: _carData!.max_price,
+                        minPrice: _carData!.min_price,
+                        price: _carData!.price,
+                      ),
+                      sizedBoxH20,
                       onaCardDataTitle(context, S.of(context).qoshimchaMalumot),
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
@@ -324,7 +343,7 @@ class OneCarViewState extends State<OneCarView> {
                             ),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -403,7 +422,7 @@ class OneCarViewState extends State<OneCarView> {
                 call(_carData!.phone);
               },
               style: oneCaroutlineButton.copyWith(
-                  backgroundColor: MaterialStatePropertyAll(cardBlackColor)),
+                  backgroundColor: WidgetStatePropertyAll(cardBlackColor)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -464,7 +483,7 @@ class OneCarViewState extends State<OneCarView> {
                         }
                       },
                       style: elevatedButton.copyWith(
-                        backgroundColor: MaterialStatePropertyAll(colorEmber),
+                        backgroundColor: WidgetStatePropertyAll(colorEmber),
                       ),
                       child: Text(S.of(context).yuborish),
                     ),
@@ -547,5 +566,94 @@ class OneCarViewState extends State<OneCarView> {
       case TargetPlatform.fuchsia:
         return false;
     }
+  }
+}
+
+class PriceIndicator extends StatelessWidget {
+  const PriceIndicator({
+    super.key,
+    required this.minPrice,
+    required this.maxPrice,
+    required this.currentPercent,
+    required this.image,
+    required this.price,
+  });
+
+  final int minPrice;
+  final int maxPrice;
+  final double currentPercent;
+  final String image;
+  final int price;
+
+  @override
+  Widget build(BuildContext context) {
+    // double percent = (currentPercent - 100) / 100;
+    double percent = (300 / 100) * currentPercent;
+    // print('currentPercent: $currentPercent');
+    // print('WIDTH: ${MediaQuery.of(context).size.width}');
+    // print('data: $percent');
+
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 150,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            height: 5.0,
+            width: 300.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              gradient: const LinearGradient(
+                colors: [Colors.green, Colors.yellow, Colors.red],
+              ),
+            ),
+          ),
+          Positioned(
+            right: percent,
+            top: 0.0,
+            child: Column(
+              children: [
+                Image.network(
+                  semanticLabel: "image auto",
+                  Config.imageUrl! + image,
+                  fit: BoxFit.cover,
+                  width: 60.0,
+                ),
+                Text(
+                  '$price',
+                  style: TextStyle(
+                    color: colorEmber,
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Icon(
+                  Icons.arrow_drop_down,
+                  size: 20,
+                  color: colorEmber,
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            left: 0,
+            top: 67.0,
+            child: Text(
+              '$minPrice',
+              style: const TextStyle(color: Colors.green, fontSize: 10),
+            ),
+          ),
+          Positioned(
+            right: 0,
+            top: 66.0,
+            child: Text(
+              '$maxPrice',
+              style: const TextStyle(color: Colors.red, fontSize: 10),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

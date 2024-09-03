@@ -137,6 +137,7 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
         event.start_price,
         event.start_year,
         event.valyuta,
+        event.ltype_id
       );
       if (searchData.isEmpty) {
         final listings =
@@ -230,6 +231,9 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
               modelImg: el.modelImg,
               topStatus: el.topStatus,
               valyutaShort: el.valyutaShort,
+              price_foiz: el.price_foiz,
+              min_price: el.min_price,
+              max_price: el.max_price,
             );
           }
           return el;
@@ -273,6 +277,9 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
               modelImg: el.modelImg,
               topStatus: el.topStatus,
               valyutaShort: el.valyutaShort,
+              price_foiz: el.price_foiz,
+              min_price: el.min_price,
+              max_price: el.max_price,
             );
           }
           return el;

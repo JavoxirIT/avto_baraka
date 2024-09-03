@@ -22,19 +22,22 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(n) => "Bloklangan e’lon mavjud ${n} emas";
 
-  static String m1(count) => "${count} e’lon topildi";
+  static String m1(name) =>
+      "Boshqa ${name} avtomobillari orasida narx darajasi";
 
-  static String m2(n) => "Faol bo’lmagan e’lonlar ${n} mavjud emas";
+  static String m2(count) => "${count} e’lon topildi";
 
-  static String m3(n) =>
-      "Sms kod tasdiqlashga yuborildi! ${n} Iltimos kutib turing";
+  static String m3(n) => "Faol bo’lmagan e’lonlar ${n} mavjud emas";
 
   static String m4(n) =>
+      "Sms kod tasdiqlashga yuborildi! ${n} Iltimos kutib turing";
+
+  static String m5(n) =>
       "Sms-kod tasdiqlandi!${n}Daturga kirish uchun tugmani bosing";
 
-  static String m5(num) => "Tasdiqlash uchun ${num} raqamiga sms kod yuborildi";
+  static String m6(num) => "Tasdiqlash uchun ${num} raqamiga sms kod yuborildi";
 
-  static String m6(days) => "Topda joylashuv ${days} kun";
+  static String m7(days) => "Topda joylashuv ${days} kun";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -42,6 +45,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Avtomashina yilini kiriting"),
         "adminTasdiqlashiniKutilmoqda": MessageLookupByLibrary.simpleMessage(
             "Admin tasdiqlashi kutilmoqda"),
+        "akkauntniOchirish":
+            MessageLookupByLibrary.simpleMessage("Akkauntni o`chirish"),
         "amalgaOshirish":
             MessageLookupByLibrary.simpleMessage("Amalga oshirish"),
         "amalgaOshirishTugmasiniBosing": MessageLookupByLibrary.simpleMessage(
@@ -79,7 +84,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "boshlangichTulovniKiriting": MessageLookupByLibrary.simpleMessage(
             "Boshlang’ich to’lovni kiriting"),
         "boshqaAkauntgaKirish":
-            MessageLookupByLibrary.simpleMessage("Boshqa akkauntga kirish"),
+            MessageLookupByLibrary.simpleMessage("Akkauntdan chiqish"),
+        "boshqaNameAvtomobillariOrasidaNarxDarajasi": m1,
         "boyoqHolati": MessageLookupByLibrary.simpleMessage("Bo’yoq holati"),
         "boyoqHolatiniKiriting":
             MessageLookupByLibrary.simpleMessage("Bo’yoq holatini kiriting"),
@@ -87,7 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Brendni tanlang"),
         "chiqarilganYili":
             MessageLookupByLibrary.simpleMessage("Chiqarilgan yili:"),
-        "countElonTopildi": m1,
+        "countElonTopildi": m2,
         "dan": MessageLookupByLibrary.simpleMessage("--- dan"),
         "deviceSimNotSuported": MessageLookupByLibrary.simpleMessage(
             "Qurilma SIM-kartalarni qo\'llab-quvvatlamaydi, SMS ushlash o\'chirilgan."),
@@ -122,7 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "eqlonOchirilgandanKeyinMalumotlarniTiklabBolmaydi":
             MessageLookupByLibrary.simpleMessage(
                 "E’lon o’chirilgandan keyin ma’lumotlarni tiklab bo’lmaydi"),
-        "faolBolmaganElonlarMavjutEmas": m2,
+        "faolBolmaganElonlarMavjutEmas": m3,
         "faolEmas": MessageLookupByLibrary.simpleMessage("Faol emas"),
         "foydalanishShartlari":
             MessageLookupByLibrary.simpleMessage("Foydalanish shartlari"),
@@ -288,12 +294,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Shikoyatingizni kiriting"),
         "smsKodTasdiqlandi":
             MessageLookupByLibrary.simpleMessage("Sms kod tasdiqlandi"),
-        "smsKodTasdiqlashgaYuborildiNIltimosKutibTuring": m3,
+        "smsKodTasdiqlashgaYuborildiNIltimosKutibTuring": m4,
         "smsKodniKiriting":
             MessageLookupByLibrary.simpleMessage("SMS kodni kiriting"),
         "smsKodniToliqKiriting":
             MessageLookupByLibrary.simpleMessage("Sms kodni to’liq kiriting"),
-        "smskodTasdiqlandindaturgaKirishUchunTugmaniBosing": m4,
+        "smskodTasdiqlandindaturgaKirishUchunTugmaniBosing": m5,
         "som": MessageLookupByLibrary.simpleMessage(" so’m"),
         "sorovingizBoyicha":
             MessageLookupByLibrary.simpleMessage("So’rovingiz bo’yicha"),
@@ -317,7 +323,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tasdiqlangan": MessageLookupByLibrary.simpleMessage("Tasdiqlangan"),
         "tasdiqlanganElonlarMavjutEmas": MessageLookupByLibrary.simpleMessage(
             "Tasdiqlangan e’lonlar mavjud emas"),
-        "tasdiqlashUchunManashuNumGaSmsKodYuborildi": m5,
+        "tasdiqlashUchunManashuNumGaSmsKodYuborildi": m6,
         "telefon": MessageLookupByLibrary.simpleMessage("Telefon"),
         "telefonRaqamizniToliqKiriting": MessageLookupByLibrary.simpleMessage(
             "Telefon raqamizni to`liq kiriting"),
@@ -331,7 +337,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tolovGrafigi": MessageLookupByLibrary.simpleMessage("To’lov Grafigi"),
         "tolovMuvofaqayatliOtkazildi": MessageLookupByLibrary.simpleMessage(
             "To’lov muvaffaqiyatli o’tkazildi"),
-        "topdaJoylashuvDaysKun": m6,
+        "topdaJoylashuvDaysKun": m7,
         "topgaChiqarish":
             MessageLookupByLibrary.simpleMessage("Topga chiqarish"),
         "tortishTomoniniTanlang":
@@ -359,6 +365,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Xabar mavjud emas"),
         "xabarMavjutEmas":
             MessageLookupByLibrary.simpleMessage("Xabar mavjud emas"),
+        "xabarlarMavjutEmas":
+            MessageLookupByLibrary.simpleMessage("Xabarlar mavjut emas"),
         "xaliEmas": MessageLookupByLibrary.simpleMessage("Xali emas"),
         "xaritadaJoylashuvi":
             MessageLookupByLibrary.simpleMessage("Xaritada joylashuvi"),

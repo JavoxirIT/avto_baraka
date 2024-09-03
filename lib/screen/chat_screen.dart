@@ -1,3 +1,4 @@
+import 'package:avto_baraka/api/service/chat_servive.dart';
 import 'package:avto_baraka/bloc/all_rooms/all_rooms_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
 import 'package:avto_baraka/router/route_name.dart';
@@ -17,6 +18,7 @@ class ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     BlocProvider.of<AllRoomsBloc>(context).add(AllRoomEventLoad());
+    getUnread();
     super.initState();
   }
 
@@ -123,8 +125,8 @@ class ChatScreenState extends State<ChatScreen> {
             );
           }
           if (state is AllRoomsNotData) {
-            return const Center(
-              child: Text("Xabarlar mavjut emas"),
+            return Center(
+              child: Text(S.of(context).xabarlarMavjutEmas),
             );
           }
           return const Center(
@@ -133,5 +135,12 @@ class ChatScreenState extends State<ChatScreen> {
         },
       )),
     );
+  }
+
+  Future<void> getUnread() async {
+    ChatService.chatService.unreadMessages();
+    if (mounted) {
+      setState(() {});
+    }
   }
 }

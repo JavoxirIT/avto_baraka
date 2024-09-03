@@ -287,9 +287,11 @@ class _CarCardState extends State<CarCard> {
                             ),
                             TextButton(
                               style: const ButtonStyle(
-                                  alignment: Alignment.center,
-                                  padding: MaterialStatePropertyAll(
-                                      EdgeInsets.all(0))),
+                                alignment: Alignment.center,
+                                padding: WidgetStatePropertyAll(
+                                  EdgeInsets.all(0),
+                                ),
+                              ),
                               onPressed: () {
                                 Navigator.of(context).pushNamed(
                                   RouteName.creditScreen,

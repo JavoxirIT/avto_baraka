@@ -231,7 +231,7 @@ class CarBlockedCard extends StatelessWidget {
                                 ]);
                           },
                           style: elevatedButton.copyWith(
-                            backgroundColor: MaterialStatePropertyAll(colorRed),
+                            backgroundColor: WidgetStatePropertyAll(colorRed),
                           ),
                           child: Text(
                             S.of(context).ochirish,

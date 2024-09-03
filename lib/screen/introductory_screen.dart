@@ -1,6 +1,8 @@
 import 'package:avto_baraka/screen/imports/imports_introductory.dart';
 import 'package:avto_baraka/widgets/change_language.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import '../generated/l10n.dart';
+// import 'package:flutter_carousel_widget/flutter_carousel_widget.dart' as flutter_carousel;
 
 class IntroductionScreen extends StatefulWidget {
   const IntroductionScreen({super.key});
@@ -75,7 +77,9 @@ class _MainPageState extends State<IntroductionScreen>
                             (item) => ListView(
                               children: [
                                 Semantics(
-                                label: S.of(context).keyingiOynagaOtishUchunPastgiOngTugmaniBosing,
+                                  label: S
+                                      .of(context)
+                                      .keyingiOynagaOtishUchunPastgiOngTugmaniBosing,
                                   child: Center(
                                     child: item["image"] is int
                                         ? fourthcard(context, item)

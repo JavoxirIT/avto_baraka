@@ -319,7 +319,7 @@ class FormItemState extends State<FormItem> {
                   scale: 1.5,
                   child: Checkbox(
                     checkColor: colorEmber,
-                    fillColor: MaterialStatePropertyAll(colorWhite),
+                    fillColor: WidgetStatePropertyAll(colorWhite),
                     value: creditCheckBoxValue,
                     onChanged: (value) {
                       setState(() {

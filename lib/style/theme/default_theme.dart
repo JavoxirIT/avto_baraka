@@ -11,9 +11,9 @@ ThemeData defaultTheme() {
     // /brightness: Brightness.light,
     // primaryColor: Colors.red,
     scrollbarTheme: const ScrollbarThemeData().copyWith(
-      thumbColor: MaterialStateProperty.all(colorEmber),
-      thickness: const MaterialStatePropertyAll(5.0),
-      trackVisibility: const MaterialStatePropertyAll(true),
+      thumbColor: WidgetStateProperty.all(colorEmber),
+      thickness: const WidgetStatePropertyAll(5.0),
+      trackVisibility: const WidgetStatePropertyAll(true),
     ),
     dialogTheme: DialogTheme(
       backgroundColor: cardBlackColor,
@@ -38,7 +38,7 @@ ThemeData defaultTheme() {
       indicatorColor: colorEmber,
       dividerHeight: BorderSide.strokeAlignCenter,
       labelColor: colorEmber,
-      overlayColor: MaterialStatePropertyAll(colorWhite),
+      overlayColor: WidgetStatePropertyAll(colorWhite),
       // labelStyle: const TextStyle(
       //   fontFamily: "Roboto",
       //   fontSize: 14.0,

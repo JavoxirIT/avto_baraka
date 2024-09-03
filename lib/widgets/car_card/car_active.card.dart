@@ -317,7 +317,7 @@ class _CarActiveCardState extends State<CarActiveCard> {
                                 },
                                 style: elevatedButton.copyWith(
                                   backgroundColor:
-                                      MaterialStatePropertyAll(colorRed),
+                                      WidgetStatePropertyAll(colorRed),
                                 ),
                                 child: Text(
                                   S.of(context).ochirish,
@@ -427,8 +427,8 @@ class _CarActiveCardState extends State<CarActiveCard> {
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
                       style: elevatedButton.copyWith(
-                        minimumSize: MaterialStateProperty.all(
-                          const Size(double.infinity, 50),
+                        minimumSize: const WidgetStatePropertyAll(
+                          Size(double.infinity, 50),
                         ),
                       ),
                       onPressed: () {

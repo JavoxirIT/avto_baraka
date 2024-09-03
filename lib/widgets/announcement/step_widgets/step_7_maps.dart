@@ -67,10 +67,10 @@ class MapsState extends State<Maps> {
             ),
             OutlinedButton(
               style: elevatedButton.copyWith(
-                backgroundColor: MaterialStatePropertyAll(
+                backgroundColor: WidgetStatePropertyAll(
                   colorEmber,
                 ),
-                textStyle: MaterialStatePropertyAll(
+                textStyle: WidgetStatePropertyAll(
                   TextStyle(color: colorWhite, fontSize: 14.0),
                 ),
               ),

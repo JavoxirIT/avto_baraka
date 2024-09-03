@@ -31,6 +31,12 @@ class AnnouncementState extends State<Announcement> {
   int? oncheckId;
 
   @override
+  initState() {
+    loadAllData();
+    super.initState();
+  }
+
+  @override
   void dispose() {
     carYearValue.dispose();
     bodyType.dispose();
@@ -45,12 +51,6 @@ class AnnouncementState extends State<Announcement> {
     valyuta.dispose();
     paintConditionValue.dispose();
     super.dispose();
-  }
-
-  @override
-  initState() {
-    loadAllData();
-    super.initState();
   }
 
   void onBackForm() {
@@ -253,7 +253,13 @@ class AnnouncementState extends State<Announcement> {
   }
 
   Future<void> loadData(int id) async {
+    // debugPrint('Запрос данных');
+    // debugPrint('Запрос по id:  $id');
+    // debugPrint('Запрос данных2:  $districts');
+
     districts = await DistrictsService().getDistricts(id);
+
+    // debugPrint('данные: $districts');
   }
 
   void onCurrentPosition(LatLng value) {

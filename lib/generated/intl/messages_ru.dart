@@ -22,18 +22,20 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(n) => "Заблокированных ${n} объявлений нет";
 
-  static String m1(count) => "${count} объявлений";
+  static String m1(name) => "Ценовая степень среди других автомашин ${name}";
 
-  static String m2(n) => "Неактивных ${n} объявлений нет";
+  static String m2(count) => "${count} объявлений";
 
-  static String m3(n) =>
+  static String m3(n) => "Неактивных ${n} объявлений нет";
+
+  static String m4(n) =>
       "СМС-код отправлен для подтверждения! ${n} Пожалуйста, подождите";
 
-  static String m4(n) => "«Код подтвержден!${n}Нажмите кнопку, чтобы войти»";
+  static String m5(n) => "«Код подтвержден!${n}Нажмите кнопку, чтобы войти»";
 
-  static String m5(num) => "Для подтверждения отправлен sms на номер ${num} ";
+  static String m6(num) => "Для подтверждения отправлен sms на номер ${num} ";
 
-  static String m6(days) => "${days} дня в топе";
+  static String m7(days) => "${days} дня в топе";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -41,6 +43,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Введите год автомобиля"),
         "adminTasdiqlashiniKutilmoqda": MessageLookupByLibrary.simpleMessage(
             "Ожидает одобрения администратора"),
+        "akkauntniOchirish":
+            MessageLookupByLibrary.simpleMessage("Удалить аккаунт"),
         "amalgaOshirish":
             MessageLookupByLibrary.simpleMessage("Произвести оплату"),
         "amalgaOshirishTugmasiniBosing":
@@ -79,14 +83,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "boshlangichTulovniKiriting":
             MessageLookupByLibrary.simpleMessage("Введите сумму предоплаты"),
         "boshqaAkauntgaKirish":
-            MessageLookupByLibrary.simpleMessage("Войти в другой аккаунт"),
+            MessageLookupByLibrary.simpleMessage("Выйти из аккаунта"),
+        "boshqaNameAvtomobillariOrasidaNarxDarajasi": m1,
         "boyoqHolati": MessageLookupByLibrary.simpleMessage("Состояние краски"),
         "boyoqHolatiniKiriting":
             MessageLookupByLibrary.simpleMessage("Выберите состояние окраски"),
         "brendniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите бренд"),
         "chiqarilganYili": MessageLookupByLibrary.simpleMessage("Год выпуска:"),
-        "countElonTopildi": m1,
+        "countElonTopildi": m2,
         "dan": MessageLookupByLibrary.simpleMessage("--- от"),
         "deviceSimNotSuported": MessageLookupByLibrary.simpleMessage(
             "Устройство не поддерживает SIM-карты, перехват SMS отключен."),
@@ -124,7 +129,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "eqlonOchirilgandanKeyinMalumotlarniTiklabBolmaydi":
             MessageLookupByLibrary.simpleMessage(
                 "Данные не восстановить после удаления"),
-        "faolBolmaganElonlarMavjutEmas": m2,
+        "faolBolmaganElonlarMavjutEmas": m3,
         "faolEmas": MessageLookupByLibrary.simpleMessage("Не активные"),
         "foydalanishShartlari":
             MessageLookupByLibrary.simpleMessage("Условия использования"),
@@ -288,12 +293,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Введите вашу жалобу"),
         "smsKodTasdiqlandi":
             MessageLookupByLibrary.simpleMessage("Смс-код подтвержден"),
-        "smsKodTasdiqlashgaYuborildiNIltimosKutibTuring": m3,
+        "smsKodTasdiqlashgaYuborildiNIltimosKutibTuring": m4,
         "smsKodniKiriting":
             MessageLookupByLibrary.simpleMessage("Введите код из смс"),
         "smsKodniToliqKiriting":
             MessageLookupByLibrary.simpleMessage("Введите полный СМС-код"),
-        "smskodTasdiqlandindaturgaKirishUchunTugmaniBosing": m4,
+        "smskodTasdiqlandindaturgaKirishUchunTugmaniBosing": m5,
         "som": MessageLookupByLibrary.simpleMessage(" сум"),
         "sorovingizBoyicha":
             MessageLookupByLibrary.simpleMessage("По ващему запросу"),
@@ -316,7 +321,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tasdiqlangan": MessageLookupByLibrary.simpleMessage("Активные"),
         "tasdiqlanganElonlarMavjutEmas": MessageLookupByLibrary.simpleMessage(
             "Одобренные обявления не найдены"),
-        "tasdiqlashUchunManashuNumGaSmsKodYuborildi": m5,
+        "tasdiqlashUchunManashuNumGaSmsKodYuborildi": m6,
         "telefon": MessageLookupByLibrary.simpleMessage("Телефон"),
         "telefonRaqamizniToliqKiriting": MessageLookupByLibrary.simpleMessage(
             "Введите свой полный номер телефона"),
@@ -330,7 +335,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tolovGrafigi": MessageLookupByLibrary.simpleMessage("График оплаты"),
         "tolovMuvofaqayatliOtkazildi":
             MessageLookupByLibrary.simpleMessage("Оплата успешно произведена"),
-        "topdaJoylashuvDaysKun": m6,
+        "topdaJoylashuvDaysKun": m7,
         "topgaChiqarish": MessageLookupByLibrary.simpleMessage("В топ"),
         "tortishTomoniniTanlang":
             MessageLookupByLibrary.simpleMessage("Выберите ведущую сторону"),
@@ -358,6 +363,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Нет доступных сообщений"),
         "xabarMavjutEmas":
             MessageLookupByLibrary.simpleMessage("Сообщение нет"),
+        "xabarlarMavjutEmas":
+            MessageLookupByLibrary.simpleMessage("Нет сообщений"),
         "xaliEmas": MessageLookupByLibrary.simpleMessage("Оплатить позже"),
         "xaritadaJoylashuvi":
             MessageLookupByLibrary.simpleMessage("Местоположение"),

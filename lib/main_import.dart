@@ -24,7 +24,7 @@ export 'package:avto_baraka/router/routers.dart';
 export 'package:avto_baraka/screen/introductory_screen.dart';
 export 'package:avto_baraka/style/theme/default_theme.dart';
 export 'package:avto_baraka/screen/main_screen.dart';
-export 'package:flutter/material.dart';
+export 'package:flutter/material.dart' hide CarouselController;
 export 'package:flutter/services.dart';
 export 'package:flutter_dotenv/flutter_dotenv.dart';
 export 'package:flutter_localizations/flutter_localizations.dart';
