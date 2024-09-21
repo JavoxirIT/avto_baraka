@@ -33,11 +33,11 @@ class WebSocketBloc extends Bloc<WebSocketEvent, WebSocketState> {
   void _onConnectWebSocket(
       ConnectWebSocket event, Emitter<WebSocketState> emit) async {
     emit(WebSocketConnecting());
-    debugPrint('Connecting to WebSocket: ${event.url}');
+    // debugPrint('Connecting to WebSocket: ${event.url}');
 
     try {
       _channel = WebSocketChannel.connect(Uri.parse(event.url));
-       debugPrint('WebSocket connected successfully');
+      //  debugPrint('WebSocket connected successfully');
       _subscription = _channel!.stream.listen((data) {
         final message = jsonDecode(data);
 
@@ -49,16 +49,16 @@ class WebSocketBloc extends Bloc<WebSocketEvent, WebSocketState> {
             imageList: message['imageFileList'] ?? [],
             roomId: message['roomId']));
       }, onDone: () {
-        debugPrint('_onConnectWebSocket: Connection closed');
+        // debugPrint('_onConnectWebSocket: Connection closed');
         add(DisconnectWebSocket());
       }, onError: (error) {
-        debugPrint('_onConnectWebSocket: Error - $error');
+        // debugPrint('_onConnectWebSocket: Error - $error');
         add(DisconnectWebSocket());
       });
 
       emit(WebSocketConnected());
     } catch (e) {
-      debugPrint('_onConnectWebSocket: Exception - $e');
+      // debugPrint('_onConnectWebSocket: Exception - $e');
       emit(WebSocketError(e.toString()));
     }
   }

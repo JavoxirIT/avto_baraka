@@ -96,8 +96,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   String? token;
   @override
   void initState() {
-    BlocProvider.of<WebSocketBloc>(context)
-        .add(ConnectWebSocket(url: Config.ws!));
+    // BlocProvider.of<WebSocketBloc>(context)
+    //     .add(ConnectWebSocket(url: Config.ws!));
     getLocalData();
     super.initState();
   }

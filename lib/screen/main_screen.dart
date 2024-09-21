@@ -26,9 +26,9 @@ class _MainScreenState extends State<MainScreen>
 
 // loading
   bool showLoadingIndicator = true;
-  late AnimationController _controller;
+  // late AnimationController _controller;
   // late Animation<double> _animation;
-  late Animation<Offset> _animation;
+  // late Animation<Offset> _animation;
   late Future<void> _initialization;
   // late Timer _timer;
 
@@ -38,38 +38,38 @@ class _MainScreenState extends State<MainScreen>
     initConnectivity();
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+    getData();
+    // _initialization = getData();
 
-    _initialization = getData();
+    // _initialization.then((_) {
+    //   _controller.forward().then((_) {
+    //     if (categoryList!.isNotEmpty) {
+    //       Future.delayed(const Duration(seconds: 6), () {
+    //         showLoadingIndicator = false;
+    //       });
+    //     }
+    //   });
+    // });
 
-    _initialization.then((_) {
-      _controller.forward().then((_) {
-        if (categoryList!.isNotEmpty) {
-          Future.delayed(const Duration(seconds: 6), () {
-            showLoadingIndicator = false;
-          });
-        }
-      });
-    });
+    // // ::::::::::::::::::::: loading
+    // _controller = AnimationController(
+    //   duration: const Duration(seconds: 3),
+    //   vsync: this,
+    // );
 
-    // ::::::::::::::::::::: loading
-    _controller = AnimationController(
-      duration: const Duration(seconds: 3),
-      vsync: this,
-    );
-
-    _animation = Tween<Offset>(
-      begin: Offset.zero,
-      end: const Offset(0, -3),
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.elasticIn,
-    ));
+    // _animation = Tween<Offset>(
+    //   begin: Offset.zero,
+    //   end: const Offset(0, -3),
+    // ).animate(CurvedAnimation(
+    //   parent: _controller,
+    //   curve: Curves.elasticIn,
+    // ));
   }
 
   @override
   void dispose() {
     _connectivitySubscription.cancel();
-    _controller.dispose();
+    // _controller.dispose();
     // _timer.cancel();
     super.dispose();
   }
@@ -82,49 +82,50 @@ class _MainScreenState extends State<MainScreen>
 
   @override
   Widget build(BuildContext context) {
-    _controller.forward();
-    if (_connectionStatus.toString() == [ConnectivityResult.none].toString()) {
-      return const CheckingInternetConnection(title: "Title");
-    }
-    return Stack(
-      children: [
-        Scaffold(
-          extendBody: true,
-          body: GestureDetector(
-            onTap: () {
-              Provider.of<KeyboardVisibilityController>(context, listen: false)
-                  .hideKeyboard(context);
-            },
-            child: Center(
-              child: screenList.elementAt(_selectedIndex),
-            ),
-          ),
-          bottomNavigationBar: CurvedNavigationBar(
-            height: 55.0,
-            key: bottomNavigationKey,
-            index: 0,
-            items: curvedNavigationBarItem,
-            color: colorEmber,
-            buttonBackgroundColor: colorEmber,
-            backgroundColor: Colors.transparent,
-            animationCurve: Curves.easeInOut,
-            animationDuration: const Duration(milliseconds: 600),
-            onTap: _onItemTapped,
-            letIndexChange: (index) => true,
-          ),
-        ),
-        if (showLoadingIndicator)
-          SlideTransition(
-            position: _animation,
-            child: Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(imgBlack), fit: BoxFit.cover),
+    // _controller.forward();
+
+    return _connectionStatus.toString() == [ConnectivityResult.none].toString()
+        ? const CheckingInternetConnection(title: "Title")
+        : Stack(
+            children: [
+              Scaffold(
+                extendBody: true,
+                body: GestureDetector(
+                  onTap: () {
+                    Provider.of<KeyboardVisibilityController>(context,
+                            listen: false)
+                        .hideKeyboard(context);
+                  },
+                  child: Center(
+                    child: screenList.elementAt(_selectedIndex),
+                  ),
+                ),
+                bottomNavigationBar: CurvedNavigationBar(
+                  height: 55.0,
+                  key: bottomNavigationKey,
+                  index: 0,
+                  items: curvedNavigationBarItem,
+                  color: colorEmber,
+                  buttonBackgroundColor: colorEmber,
+                  backgroundColor: Colors.transparent,
+                  animationCurve: Curves.easeInOut,
+                  animationDuration: const Duration(milliseconds: 600),
+                  onTap: _onItemTapped,
+                  letIndexChange: (index) => true,
+                ),
               ),
-            ),
-          ),
-      ],
-    );
+              // if (showLoadingIndicator)
+              //   SlideTransition(
+              //     position: _animation,
+              //     child: Container(
+              //       decoration: const BoxDecoration(
+              //         image: DecorationImage(
+              //             image: AssetImage(imgBlack), fit: BoxFit.cover),
+              //       ),
+              //     ),
+              //   ),
+            ],
+          );
   }
 
   List<Widget> get curvedNavigationBarItem {
@@ -203,7 +204,7 @@ class _MainScreenState extends State<MainScreen>
     return _updateConnectionStatus(result);
   }
 
-  Future<void> _updateConnectionStatus(List<ConnectivityResult> result) async {
+  _updateConnectionStatus(List<ConnectivityResult> result) {
     setState(() {
       _connectionStatus = result;
     });

@@ -18,36 +18,36 @@ class _MainPageState extends State<IntroductionScreen>
   bool onNextPage = false;
   bool showLoadingIndicator = true;
 
-  late AnimationController _controller;
-  late Animation<Offset> _animation;
+  // late AnimationController _controller;
+  // late Animation<Offset> _animation;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 3),
-    );
+    // _controller = AnimationController(
+    //   vsync: this,
+    //   duration: const Duration(seconds: 3),
+    // );
 
-    _animation = Tween<Offset>(
-      begin: Offset.zero,
-      end: const Offset(0, -3),
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.elasticIn,
-    ));
-    _controller.forward().then((_) {
-      Future.delayed(const Duration(seconds: 1), () {
-        showLoadingIndicator = false;
-      });
-    });
+    // _animation = Tween<Offset>(
+    //   begin: Offset.zero,
+    //   end: const Offset(0, -3),
+    // ).animate(CurvedAnimation(
+    //   parent: _controller,
+    //   curve: Curves.elasticIn,
+    // ));
+    // _controller.forward().then((_) {
+    //   Future.delayed(const Duration(seconds: 1), () {
+    //     showLoadingIndicator = false;
+    //   });
+    // });
   }
 
   @override
   void dispose() {
     if (mounted) {
-      _controller.dispose();
+      // _controller.dispose();
     }
 
     super.dispose();
@@ -204,18 +204,18 @@ class _MainPageState extends State<IntroductionScreen>
                   ),
                 ],
               ),
-              if (showLoadingIndicator)
-                SlideTransition(
-                  position: _animation,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(imgBlack),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                )
+              // if (showLoadingIndicator)
+              //   SlideTransition(
+              //     position: _animation,
+              //     child: Container(
+              //       decoration: const BoxDecoration(
+              //         image: DecorationImage(
+              //           image: AssetImage(imgBlack),
+              //           fit: BoxFit.cover,
+              //         ),
+              //       ),
+              //     ),
+              //   )
             ],
           );
         },
