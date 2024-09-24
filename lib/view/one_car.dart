@@ -24,6 +24,8 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:latlong2/latlong.dart' as latLang;
+import 'dart:io';
+
 
 class OneCarView extends StatefulWidget {
   const OneCarView({Key? key}) : super(key: key);
@@ -419,7 +421,14 @@ class OneCarViewState extends State<OneCarView> {
             ),
             OutlinedButton(
               onPressed: () {
-                call(_carData!.phone);
+                
+                if (Platform.isAndroid) {
+    // Код для Android
+                  call(_carData!.phone);
+                } else if (Platform.isIOS) {
+    // Код для iOS
+                  callIos(_carData!.phone);
+                }
               },
               style: oneCaroutlineButton.copyWith(
                   backgroundColor: WidgetStatePropertyAll(cardBlackColor)),

@@ -23,7 +23,7 @@ class Announcement extends StatefulWidget {
 class AnnouncementState extends State<Announcement> {
   int currentStep = 0;
 
-  var controller = Get.put(MainStateControllee());
+  // var controller = Get.put(MainStateControllee());
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   DateTime date = DateTime.now();
 
