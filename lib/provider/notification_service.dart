@@ -30,6 +30,7 @@ class NotificationService {
   }
 
   Future<void> showNotification(int id, String title, String body) async {
+   print("Showing notification: $title - $body");
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
       'your_channel_id',

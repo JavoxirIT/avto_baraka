@@ -10,7 +10,7 @@ import 'package:avto_baraka/http_config/config.dart';
 class ShareRouteObserver extends NavigatorObserver {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-  void share(BuildContext context, ListingGetModals? carData,
+  void share(BuildContext context, ListingGetModels? carData,
       List<dynamic> carImageList) async {
     if (carData == null ||
         carImageList.isEmpty ||

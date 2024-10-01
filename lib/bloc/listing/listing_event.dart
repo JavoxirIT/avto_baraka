@@ -63,32 +63,32 @@ class ListingEvantSearch extends ListingEvent {
   final int? ltype_id;
   final String? token;
   final String? lang;
-  final region_id;
-  final brand_id;
-  final model_id;
-  final start_year;
-  final end_year;
-  final start_price;
-  final end_price;
-  final car_type;
-  final valyuta;
+  final int? region_id;
+  final int? brand_id;
+  final int? model_id;
+  final int? start_year;
+  final int? end_year;
+  final int? start_price;
+  final int? end_price;
+  final int? car_type;
+  final int? valyuta;
 
-  @override
-  List<Object> get props => super.props
-    ..addAll([
-      token!,
-      lang!,
-      region_id!,
-      brand_id!,
-      model_id!,
-      start_year!,
-      end_year!,
-      start_price!,
-      end_price!,
-      car_type!,
-      valyuta!,
-      ltype_id!
-    ]);
+  // @override
+  // List<Object> get props => super.props
+  //   ..addAll([
+  //     token!,
+  //     lang!,
+  //     region_id!,
+  //     brand_id!,
+  //     model_id!,
+  //     start_year!,
+  //     end_year!,
+  //     start_price!,
+  //     end_price!,
+  //     car_type!,
+  //     valyuta!,
+  //     ltype_id!
+  //   ]);
 }
 
 // like

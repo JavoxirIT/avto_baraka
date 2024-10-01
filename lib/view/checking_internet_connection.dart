@@ -73,7 +73,7 @@ class _CheckingInternetConnectionState
       _connectionStatus = result;
     });
     // ignore: avoid_print
-    print('Connectivity changed: $_connectionStatus');
+    // print('Connectivity changed: $_connectionStatus');
   }
 
   @override

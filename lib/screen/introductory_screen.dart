@@ -18,41 +18,6 @@ class _MainPageState extends State<IntroductionScreen>
   bool onNextPage = false;
   bool showLoadingIndicator = true;
 
-  // late AnimationController _controller;
-  // late Animation<Offset> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-
-    // _controller = AnimationController(
-    //   vsync: this,
-    //   duration: const Duration(seconds: 3),
-    // );
-
-    // _animation = Tween<Offset>(
-    //   begin: Offset.zero,
-    //   end: const Offset(0, -3),
-    // ).animate(CurvedAnimation(
-    //   parent: _controller,
-    //   curve: Curves.elasticIn,
-    // ));
-    // _controller.forward().then((_) {
-    //   Future.delayed(const Duration(seconds: 1), () {
-    //     showLoadingIndicator = false;
-    //   });
-    // });
-  }
-
-  @override
-  void dispose() {
-    if (mounted) {
-      // _controller.dispose();
-    }
-
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height / 2;

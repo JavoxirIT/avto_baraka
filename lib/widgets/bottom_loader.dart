@@ -1,16 +1,17 @@
-import 'package:avto_baraka/screen/imports/imports_announcement.dart';
+import 'package:flutter/material.dart';
 
 class BottomLoader extends StatelessWidget {
-  const BottomLoader({super.key});
+  const BottomLoader({required this.children, super.key});
+
+  final dynamic children;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
         height: 25,
-        width: 25,
-        child: CircularProgressIndicator(
-            strokeWidth: 1.5, color: colorEmber),
+        // width: 25,
+        child: children,
       ),
     );
   }

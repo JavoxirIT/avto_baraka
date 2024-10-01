@@ -1,4 +1,5 @@
 import 'package:avto_baraka/router/route_impoer.dart';
+import 'package:avto_baraka/view/checking_internet_connection.dart';
 
 
 final routers = {
@@ -20,5 +21,6 @@ final routers = {
   RouteName.loginToAnotherAccount: (_) => const LoginToAnotherAccount(),
   RouteName.ratesView: (_) => const RatesView(),
   RouteName.privacyWeb: (_) => const PrivacyWeb(),
-  RouteName.termsConditionWeb: (_) => const TermsConditionWeb()
+  RouteName.termsConditionWeb: (_) => const TermsConditionWeb(),
+  RouteName.internetConnection: (_) => const CheckingInternetConnection(title: "")
 };

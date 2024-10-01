@@ -14,6 +14,8 @@
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+	<!--  -->
+	<uses-permission android:name="android.permission.VIBRATE"/>
 	<queries>
 		<intent>
 			<action android:name="android.intent.action.VIEW" />
@@ -31,8 +33,10 @@
         android:label="Avto Baraka"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
        
         >
+		<service android:name="com.dexterous.flutterlocalnotifications.notifications.NotificationService" android:permission="android.permission.BIND_JOB_SERVICE"/>
 		<!-- flutterlocalnotifications -->
 		<receiver android:name="com.dexterous.flutterlocalnotifications.receivers.ActionReceiver" android:exported="true"/>
 		<!-- flutterlocalnotifications -->
@@ -80,5 +84,8 @@
 		<meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+		<meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="high_importance_channel" />
 	</application>
 </manifest>

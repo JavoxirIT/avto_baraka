@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "648296789232",
+    "project_id": "avto-baraka",
+    "storage_bucket": "avto-baraka.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648296789232:android:04c40e6b631b3c4e2abe35",
+        "android_client_info": {
+          "package_name": "com.autobaraka.auto_baraka"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZ7DutZ4rlSDjjwz2_TFaZez6aWSQJUL0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

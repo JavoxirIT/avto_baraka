@@ -18,4 +18,5 @@ class RouteName {
   static const ratesView = "/ratesView";
   static const privacyWeb = "/privacyWeb";
   static const termsConditionWeb = "/termsConditionWeb";
+  static const internetConnection = "/internetConnection";
 }

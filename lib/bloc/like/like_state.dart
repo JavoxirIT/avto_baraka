@@ -15,7 +15,7 @@ final class LikeStateData extends LikeState {
   const LikeStateData({
     required this.listing,
   });
-  final List<ListingGetModals> listing;
+  final List<ListingGetModels> listing;
 
   @override
   List<Object> get props => super.props..add(listing);

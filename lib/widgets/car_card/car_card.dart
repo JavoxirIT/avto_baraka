@@ -110,7 +110,13 @@ class _CarCardState extends State<CarCard> {
                 : state.listing.length + 1,
             itemBuilder: (context, i) {
               if (i >= state.listing.length) {
-                return const BottomLoader();
+                return BottomLoader(
+                  children: state.currentPage == state.lastPage
+                      ? Text(S.of(context).yangiElonlarQoq,
+                          textAlign: TextAlign.center)
+                      : CircularProgressIndicator(
+                          strokeWidth: 1.5, color: colorEmber),
+                );
               }
 
               final item = state.listing[i];
@@ -139,18 +145,18 @@ class _CarCardState extends State<CarCard> {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(12.0),
                                   child: FadeInImage(
-                                    imageSemanticLabel: "image auto",
-                                    fit: BoxFit.cover,
-                                    width: MediaQuery.of(context).size.width,
-                                    height: 200.0,
-                                    placeholder: MemoryImage(
-                                      base64.decode(bs64Image.split(',').last),
-                                    ),
-                                    image: NetworkImage(
-                                      Config.imageUrl! +
-                                          item.carImage[0].substring(1),
-                                    ),
-                                  ),
+                                      imageSemanticLabel: "image auto",
+                                      fit: BoxFit.cover,
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 200.0,
+                                      placeholder: MemoryImage(
+                                        base64
+                                            .decode(bs64Image.split(',').last),
+                                      ),
+                                      image: item.carImage.isNotEmpty
+                                          ? NetworkImage(Config.imageUrl! +
+                                              item.carImage[0].substring(1))
+                                          : NetworkImage("")),
                                 ),
                                 item.topStatus == 1
                                     ? Positioned(
@@ -343,7 +349,7 @@ class _CarCardState extends State<CarCard> {
     // }
   }
 
-  List<Widget> carTag(ListingGetModals item) {
+  List<Widget> carTag(ListingGetModels item) {
     return [
       cardTagCard(
         "${item.year} yil",

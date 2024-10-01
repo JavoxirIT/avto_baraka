@@ -1,7 +1,9 @@
 // ignore_for_file: unused_element
 
 import 'dart:async';
+import 'dart:developer';
 
+import 'package:avto_baraka/api/models/general_model_car.dart';
 import 'package:avto_baraka/api/models/listing_get_models.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
@@ -25,7 +27,7 @@ EventTransformer<E> throttleDroppable<E>(Duration duration) {
 
 class ListingBloc extends Bloc<ListingEvent, ListingState> {
   ListingBloc(this._listingService) : super(const ListingState()) {
-    on<ListingEventLoad>(getOneListing,
+    on<ListingEventLoad>(getCarListing,
         transformer: throttleDroppable(throttleDuration));
     on<ListingEvantSearch>(getSearchData);
     on<ListingEventRefresh>(getRefresh);
@@ -35,38 +37,46 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
 
   final ListingService _listingService;
 
-  Future<void> getOneListing(
+  Future<void> getCarListing(
     ListingEventLoad event,
     Emitter<ListingState> emit,
   ) async {
-    int page = 1;
+    // log("state.hasReachedMax: ${state.hasReachedMax}");
+    // log("state.status == ListingStatus.initial: ${state.status == ListingStatus.initial}");
     if (state.hasReachedMax) return;
+
+    // log("state.status: ${state.status}");
+    // log("ListingStatus.initial: ${ListingStatus.initial}");
 
     try {
       if (state.status == ListingStatus.initial) {
-        final listing = await _listingService.getDataListing(page);
+        GeneralModelCar listing =
+            await _listingService.getDataListing(state.currentPage);
         // debugPrint('1');
-        return emit(state.copyWith(
-          status: ListingStatus.success,
-          listing: listing,
-          hasReachedMax: false,
-          currentPage: page + 1,
-        ));
+        return emit(
+          state.copyWith(
+            status: ListingStatus.success,
+            listing: listing.data,
+            hasReachedMax: false,
+            currentPage: listing.currentPage,
+            lastPage: listing.lastPage,
+          ),
+        );
       }
 
-      if (state.listing.length >= 10) {
-        final listings =
-            await _listingService.getDataListing(state.currentPage);
+      if (state.lastPage > state.currentPage) {
+        GeneralModelCar listings =
+            await _listingService.getDataListing(state.currentPage + 1);
         // if (listings.isEmpty) return;
-        if (listings.isEmpty) {
+        if (listings.data.isEmpty) {
           emit(state.copyWith(
               hasReachedMax: true, listing: List.of(state.listing)));
         } else {
           emit(state.copyWith(
             status: ListingStatus.success,
-            listing: List.of(state.listing)..addAll(listings),
+            listing: List.of(state.listing)..addAll(listings.data),
             hasReachedMax: false,
-            currentPage: state.currentPage + 1,
+            currentPage: listings.currentPage,
           ));
         }
       }
@@ -95,14 +105,14 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
     ListingEventRefresh event,
     Emitter<ListingState> emit,
   ) async {
-    // emit(const ListingStateInitial());
+    // emit( ListingStateInitial());
     try {
       emit(state.copyWith(status: ListingStatus.initial));
 
       // debugPrint('REFRESH: $listing');
-      final listing = await _listingService.getDataListing(1);
+      GeneralModelCar listing = await _listingService.getDataListing(1);
 
-      if (listing.isEmpty) {
+      if (listing.data.isEmpty) {
         emit(state.copyWith(
           hasReachedMax: false,
           listing: state.listing,
@@ -110,12 +120,14 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
         ));
       } else {
         emit(state.copyWith(
-          status: ListingStatus.success,
-          listing: listing,
-          hasReachedMax: false,
-          currentPage: 1,
-        ));
+            status: ListingStatus.success,
+            listing: listing.data,
+            hasReachedMax: false,
+            currentPage: listing.currentPage,
+            lastPage: listing.lastPage));
       }
+      // log("state.lastPage: ${state.lastPage}");
+      //   log("state.currentPage: ${state.currentPage}");
     } catch (e) {
       emit(state.copyWith(status: ListingStatus.failure));
     }
@@ -125,7 +137,7 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
   Future<void> getSearchData(
       ListingEvantSearch event, Emitter<ListingState> emit) async {
     try {
-      final searchData = await _listingService.getSearchListing(
+      GeneralModelCar searchData = await _listingService.getSearchListing(
         event.lang,
         event.token,
         event.brand_id,
@@ -137,28 +149,32 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
         event.start_price,
         event.start_year,
         event.valyuta,
-        event.ltype_id
+        event.ltype_id,
       );
-      if (searchData.isEmpty) {
-        final listings =
-            await _listingService.getDataListing(state.currentPage);
-        emit(ListingStateNoDataSearch());
+
+      if (searchData.data.isEmpty) {
+        // GeneralModelCar listings =
+        //     await _listingService.getDataListing(state.currentPage);
+        // emit(ListingStateNoDataSearch());
+        // emit(state.copyWith(status: ListingStatus.initial));
+        // ! NUJNO POKAZAT UVIDAMLENIYE CHTO OBYAVLENIYA NE NAYDENI
         await Future.delayed(const Duration(milliseconds: 500));
         emit(state.copyWith(
           hasReachedMax: false,
           status: ListingStatus.success,
-          listing: listings,
+          listing: state.listing,
           currentPage: state.currentPage,
         ));
       } else {
-        emit(ListingStateHasDataSearch(count: searchData.length));
+        emit(ListingStateHasDataSearch(count: searchData.total));
         await Future.delayed(const Duration(milliseconds: 500));
         emit(
           state.copyWith(
             status: ListingStatus.success,
-            listing: searchData,
+            listing: searchData.data,
             hasReachedMax: false,
-            currentPage: 1,
+            currentPage: searchData.currentPage,
+            lastPage: searchData.lastPage,
           ),
         );
       }
@@ -190,12 +206,12 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
     try {
       final response = await _listingService.onLiked(event.token, event.id);
 
-      List<ListingGetModals> updatedListings;
+      List<ListingGetModels> updatedListings;
 
       if (response != "1") {
         updatedListings = state.listing.map((el) {
           if (el.id == event.id) {
-            return ListingGetModals(
+            return ListingGetModels(
               id: el.id,
               userId: el.userId,
               activeStatus: el.activeStatus,
@@ -241,7 +257,7 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
       } else {
         updatedListings = state.listing.map((el) {
           if (el.id == event.id) {
-            return ListingGetModals(
+            return ListingGetModels(
               id: el.id,
               userId: el.userId,
               activeStatus: el.activeStatus,

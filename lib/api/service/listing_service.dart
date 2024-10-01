@@ -1,5 +1,8 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'dart:developer';
+
+import 'package:avto_baraka/api/models/general_model_car.dart';
 import 'package:avto_baraka/api/models/listing_get_models.dart';
 import 'package:avto_baraka/api/service/local_memory.dart';
 import 'package:avto_baraka/http_config/config.dart';
@@ -15,11 +18,11 @@ class ListingService {
   final _url = Config.dbMobile;
   final String tokenKey = 'access_token';
 
-  List<ListingGetModals> listingDataList = [];
-  List<ListingGetModals> listingActiveDataList = [];
-  List<ListingGetModals> listingBlockedDataList = [];
-  List<ListingGetModals> listingNotActivList = [];
-  List<ListingGetModals> listingLikeList = [];
+  List<ListingGetModels> listingDataList = [];
+  List<ListingGetModels> listingActiveDataList = [];
+  List<ListingGetModels> listingBlockedDataList = [];
+  List<ListingGetModels> listingNotActivList = [];
+  List<ListingGetModels> listingLikeList = [];
   List<MultipartFile> filePaths = [];
   String? likedStatus;
   String statusText = "";
@@ -86,12 +89,8 @@ class ListingService {
   }
 
   // GET LISTING
-  Future<List<ListingGetModals>> getDataListing(int page) async {
+  Future getDataListing(int page) async {
     var lang = await LocalMemory.service.getLanguageCode();
-
-    // debugPrint('Page: ${await LocalMemory.service.getLocolToken()}');
-
-    listingDataList.clear();
     try {
       final response = await _dio.post(
         '${_url}get-listing/$lang/?page=$page',
@@ -100,13 +99,11 @@ class ListingService {
         ),
       );
       if (response.statusCode == 200) {
-        for (var element in response.data['data']) {
-          // debugPrint('response.data: ${response.data['data']}');
-
-          listingDataList.add(ListingGetModals.fromMap(element));
-        }
+        // for (var element in response.data['data']) {
+        //   listingDataList.add(ListingGetModals.fromMap(element));
+        // }
+        return GeneralModelCar.fromJson(response.data);
       } else {
-        // debugPrint('LISTING ERROR: ${response.statusCode}');
         if (response.statusCode == 401) {
           TokenProvider().removeTokenPreferences(tokenKey);
           redirectToLogin();
@@ -120,12 +117,10 @@ class ListingService {
         }
       }
     }
-
-    return listingDataList;
   }
 
   // GET ACTIVE LISTING
-  Future<List<ListingGetModals>> getActiveDataListing(lang, token) async {
+  Future<List<ListingGetModels>> getActiveDataListing(lang, token) async {
     listingActiveDataList.clear();
     try {
       final response = await _dio.post(
@@ -136,7 +131,7 @@ class ListingService {
       );
       if (response.statusCode == 200) {
         for (var element in response.data) {
-          listingActiveDataList.add(ListingGetModals.fromMap(element));
+          listingActiveDataList.add(ListingGetModels.fromMap(element));
         }
       } else {
         debugPrint('LISTING ACTIVE ERROR: ${response.statusCode}');
@@ -153,7 +148,7 @@ class ListingService {
   }
 
   // GET BLOCKED LISTING
-  Future<List<ListingGetModals>> getBlockedDataListing(lang, token) async {
+  Future<List<ListingGetModels>> getBlockedDataListing(lang, token) async {
     listingBlockedDataList.clear();
     try {
       final response = await _dio.post(
@@ -164,7 +159,7 @@ class ListingService {
       );
       if (response.statusCode == 200) {
         for (var element in response.data) {
-          listingBlockedDataList.add(ListingGetModals.fromMap(element));
+          listingBlockedDataList.add(ListingGetModels.fromMap(element));
         }
       } else {
         debugPrint('LISTING BLOCKED ERROR: ${response.statusCode}');
@@ -181,7 +176,7 @@ class ListingService {
   }
 
   // GET DEACTIVE LISTING
-  Future<List<ListingGetModals>> getNotActiveListing(lang, token) async {
+  Future<List<ListingGetModels>> getNotActiveListing(lang, token) async {
     listingNotActivList.clear();
     try {
       final response = await _dio.post(
@@ -192,7 +187,7 @@ class ListingService {
       );
       if (response.statusCode == 200) {
         for (var element in response.data) {
-          listingNotActivList.add(ListingGetModals.fromMap(element));
+          listingNotActivList.add(ListingGetModels.fromMap(element));
         }
       } else {
         debugPrint('LISTING NOT ACTIVE ERROR: ${response.statusCode}');
@@ -227,7 +222,7 @@ class ListingService {
   }
 
   // SEARCH
-  Future<List<ListingGetModals>> getSearchListing(lang, token,
+  Future getSearchListing(lang, token,
       [int? brand_id,
       int? car_type,
       int? end_price,
@@ -238,10 +233,10 @@ class ListingService {
       int? start_year,
       int? valyuta,
       int? ltype_id]) async {
-    listingDataList.clear();
+    // listingDataList.clear();
     var data = {
-      "brand_id": '${brand_id == -1 ? "" : brand_id}',
-      "car_type": '${car_type ?? ""}',
+      "brand_id": '${brand_id ?? ""}',
+      // "car_type": '${car_type ?? ""}',
       "end_price": '${end_price ?? ""}',
       "end_year": '${end_year ?? ""}',
       "model_id": '${model_id ?? ""}',
@@ -251,20 +246,24 @@ class ListingService {
       "valyuta": '${valyuta ?? ""}',
       "ltype_id": '${ltype_id ?? ""}'
     };
-    // debugPrint('getSearchListing: $data');
-
+    log('getSearchListing: $data');
+    String path = "";
     try {
-      final response = await _dio.post(
-        '${_url}get-listing/$lang',
+      log('${_url}get-listing3/$lang?&$path');
+
+      final response = await _dio.get(
+        '${_url}get-listing3/$lang?&$path',
         options: Options(
           headers: {'Authorization': token},
         ),
         data: data,
       );
       if (response.statusCode == 200) {
-        for (var element in response.data['data']) {
-          listingDataList.add(ListingGetModals.fromMap(element));
-        }
+        // path = response.data['path'];
+        // for (var element in response.data['data']) {
+        //   listingDataList.add(ListingGetModals.fromMap(element));
+        // }
+        return GeneralModelCar.fromJson(response.data);
       } else {
         debugPrint('ОШИБКА ПРИ ПОИСКЕ : ${response.statusCode}');
       }
@@ -276,7 +275,6 @@ class ListingService {
         }
       }
     }
-    return listingDataList;
   }
 
   // LIKED
@@ -305,7 +303,7 @@ class ListingService {
   }
 
   // GET LIKED
-  Future<List<ListingGetModals>> getLikeList(String lang, String token) async {
+  Future<List<ListingGetModels>> getLikeList(String lang, String token) async {
     // debugPrint('RESPONSE DATA');
     try {
       listingLikeList.clear();
@@ -318,7 +316,7 @@ class ListingService {
 
       if (response.statusCode == 200) {
         for (var element in response.data) {
-          listingLikeList.add(ListingGetModals.fromMap(element));
+          listingLikeList.add(ListingGetModels.fromMap(element));
         }
       } else {
         debugPrint('Ошибка при получение LIKE LIST: ${response.statusCode}');

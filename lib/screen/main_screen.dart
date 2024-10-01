@@ -29,41 +29,14 @@ class _MainScreenState extends State<MainScreen>
   // late AnimationController _controller;
   // late Animation<double> _animation;
   // late Animation<Offset> _animation;
-  late Future<void> _initialization;
   // late Timer _timer;
 
   @override
   void initState() {
     super.initState();
-    initConnectivity();
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
     getData();
-    // _initialization = getData();
-
-    // _initialization.then((_) {
-    //   _controller.forward().then((_) {
-    //     if (categoryList!.isNotEmpty) {
-    //       Future.delayed(const Duration(seconds: 6), () {
-    //         showLoadingIndicator = false;
-    //       });
-    //     }
-    //   });
-    // });
-
-    // // ::::::::::::::::::::: loading
-    // _controller = AnimationController(
-    //   duration: const Duration(seconds: 3),
-    //   vsync: this,
-    // );
-
-    // _animation = Tween<Offset>(
-    //   begin: Offset.zero,
-    //   end: const Offset(0, -3),
-    // ).animate(CurvedAnimation(
-    //   parent: _controller,
-    //   curve: Curves.elasticIn,
-    // ));
   }
 
   @override
@@ -82,50 +55,35 @@ class _MainScreenState extends State<MainScreen>
 
   @override
   Widget build(BuildContext context) {
-    // _controller.forward();
-
-    return _connectionStatus.toString() == [ConnectivityResult.none].toString()
-        ? const CheckingInternetConnection(title: "Title")
-        : Stack(
-            children: [
-              Scaffold(
-                extendBody: true,
-                body: GestureDetector(
-                  onTap: () {
-                    Provider.of<KeyboardVisibilityController>(context,
-                            listen: false)
-                        .hideKeyboard(context);
-                  },
-                  child: Center(
-                    child: screenList.elementAt(_selectedIndex),
-                  ),
-                ),
-                bottomNavigationBar: CurvedNavigationBar(
-                  height: 55.0,
-                  key: bottomNavigationKey,
-                  index: 0,
-                  items: curvedNavigationBarItem,
-                  color: colorEmber,
-                  buttonBackgroundColor: colorEmber,
-                  backgroundColor: Colors.transparent,
-                  animationCurve: Curves.easeInOut,
-                  animationDuration: const Duration(milliseconds: 600),
-                  onTap: _onItemTapped,
-                  letIndexChange: (index) => true,
-                ),
-              ),
-              // if (showLoadingIndicator)
-              //   SlideTransition(
-              //     position: _animation,
-              //     child: Container(
-              //       decoration: const BoxDecoration(
-              //         image: DecorationImage(
-              //             image: AssetImage(imgBlack), fit: BoxFit.cover),
-              //       ),
-              //     ),
-              //   ),
-            ],
-          );
+    return Stack(
+      children: [
+        Scaffold(
+          extendBody: true,
+          body: GestureDetector(
+            onTap: () {
+              Provider.of<KeyboardVisibilityController>(context, listen: false)
+                  .hideKeyboard(context);
+            },
+            child: Center(
+              child: screenList.elementAt(_selectedIndex),
+            ),
+          ),
+          bottomNavigationBar: CurvedNavigationBar(
+            height: 55.0,
+            key: bottomNavigationKey,
+            index: 0,
+            items: curvedNavigationBarItem,
+            color: colorEmber,
+            buttonBackgroundColor: colorEmber,
+            backgroundColor: Colors.transparent,
+            animationCurve: Curves.easeInOut,
+            animationDuration: const Duration(milliseconds: 600),
+            onTap: _onItemTapped,
+            letIndexChange: (index) => true,
+          ),
+        ),
+      ],
+    );
   }
 
   List<Widget> get curvedNavigationBarItem {
@@ -183,33 +141,13 @@ class _MainScreenState extends State<MainScreen>
     );
   }
 
-  // Сообщения платформы асинхронны, поэтому мы инициализируем их в асинхронном методе.
-  Future<void> initConnectivity() async {
-    late List<ConnectivityResult> result;
-    // Сообщения платформы могут давать сбои, поэтому мы используем try/catch PlatformException.
-    try {
-      result = await _connectivity.checkConnectivity();
-    } on PlatformException catch (e) {
-      debugPrint('Couldn\'t check connectivity status,  $e');
-      return;
-    }
-
-// Если виджет был удален из дерева, пока асинхронное сообщение платформы
-// находилось в пути, мы хотим отменить ответ, а не вызывать
-// setState для обновления нашего несуществующего внешнего вида.
-    if (!mounted) {
-      return Future.value(null);
-    }
-
-    return _updateConnectionStatus(result);
-  }
-
   _updateConnectionStatus(List<ConnectivityResult> result) {
     setState(() {
       _connectionStatus = result;
+      if (result.toString() == [ConnectivityResult.none].toString()) {
+        Navigator.of(context).pushNamed(RouteName.internetConnection);
+      }
     });
-    // ignore: avoid_print
-    // print('Connectivity changed: $_connectionStatus');
   }
 
   Future<void> getData() async {

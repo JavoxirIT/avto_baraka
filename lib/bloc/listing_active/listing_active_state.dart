@@ -16,7 +16,7 @@ final class ListingActiveStateLoad extends ListingActiveState {
   const ListingActiveStateLoad({
     required this.listing,
   });
-  final List<ListingGetModals> listing;
+  final List<ListingGetModels> listing;
 
   @override
   List<Object> get props => super.props..add(listing);

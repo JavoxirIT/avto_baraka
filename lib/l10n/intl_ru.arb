@@ -203,5 +203,6 @@
   "deviceSimNotSuported": "Устройство не поддерживает SIM-карты, перехват SMS отключен.",
   "boshqaNameAvtomobillariOrasidaNarxDarajasi": "Ценовая степень среди других автомашин {name}",
   "xabarlarMavjutEmas": "Нет сообщений",
-  "akkauntniOchirish": "Удалить аккаунт"
+  "akkauntniOchirish": "Удалить аккаунт",
+  "yangiElonlarQoq": "Новых объявление нет"
 }

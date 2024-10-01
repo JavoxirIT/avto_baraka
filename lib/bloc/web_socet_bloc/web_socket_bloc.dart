@@ -74,7 +74,7 @@ class WebSocketBloc extends Bloc<WebSocketEvent, WebSocketState> {
       });
       _channel?.sink.add(dataJson);
 
-      debugPrint('event.id: ${event.id}');
+      // debugPrint('event.id: ${dataJson}');
     } catch (e) {
       debugPrint('WebSocket SendMessage: $e');
     }
@@ -91,7 +91,7 @@ class WebSocketBloc extends Bloc<WebSocketEvent, WebSocketState> {
         roomId: event.roomId,
       ));
 
-      // debugPrint('ReceiveMessage: ${event.id}');
+      debugPrint('ReceiveMessage: ${event.id}');
 
       if (event.id == int.parse(LocalMemory.service.userId)) {
         //  debugPrint('notificationService');

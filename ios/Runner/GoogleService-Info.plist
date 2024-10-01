@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBfV_ny31Hs5SeaZd8e5SQqJ82ZaV9oF9Q</string>
+	<key>GCM_SENDER_ID</key>
+	<string>648296789232</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.avtobarakaBRROBB.avto-baraka</string>
+	<key>PROJECT_ID</key>
+	<string>avto-baraka</string>
+	<key>STORAGE_BUCKET</key>
+	<string>avto-baraka.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:648296789232:ios:1e09e35d3c6d36952abe35</string>
+</dict>
+</plist>

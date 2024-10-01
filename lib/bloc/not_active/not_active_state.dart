@@ -12,7 +12,7 @@ final class NotActiveInitial extends NotActiveState {}
 final class NotActiveLoad extends NotActiveState {
   const NotActiveLoad({required this.list});
 
-  final List<ListingGetModals> list;
+  final List<ListingGetModels> list;
 
   @override
   List<Object> get props => super.props..add(list);

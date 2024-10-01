@@ -68,7 +68,7 @@ class ListingActiveBloc extends Bloc<ListingActiveEvent, ListingActiveState> {
             var updatedElement = currentState.listing[oneElementIndex].copyWith(
               price: int.parse(event.value),
             );
-            List<ListingGetModals> updatedList =
+            List<ListingGetModels> updatedList =
                 List.from(currentState.listing);
             updatedList[oneElementIndex] = updatedElement;
 

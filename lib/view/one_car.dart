@@ -36,7 +36,7 @@ class OneCarView extends StatefulWidget {
 
 class OneCarViewState extends State<OneCarView> {
   final ShareRouteObserver shareRouteObserver = ShareRouteObserver();
-  ListingGetModals? _carData;
+  ListingGetModels? _carData;
   final List carImageList = [];
   final List carChipTagList = [];
   final _complaint = TextEditingController();
@@ -52,7 +52,7 @@ class OneCarViewState extends State<OneCarView> {
     RouteSettings setting = ModalRoute.of(context)!.settings;
 
     if (setting.arguments != null) {
-      _carData = setting.arguments as ListingGetModals;
+      _carData = setting.arguments as ListingGetModels;
       for (var i = 0; i < _carData!.carImage.length; i++) {
         carImageList.add({"image": _carData!.carImage[i]});
       }
@@ -537,7 +537,7 @@ class OneCarViewState extends State<OneCarView> {
 
   // ignore: unused_element
   void _onShareXFileFromAssets(
-      BuildContext context, ListingGetModals? carData) async {
+      BuildContext context, ListingGetModels? carData) async {
     final imageUrl = Config.imageUrl! + carImageList[0]['image'].substring(1);
     final box = context.findRenderObject() as RenderBox?;
     final data = await NetworkAssetBundle(Uri.parse(imageUrl)).load('');

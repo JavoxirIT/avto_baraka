@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:avto_baraka/screen/imports/imports_listing.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/sized_box_10.dart';
@@ -15,9 +17,9 @@ class _ListingScreenState extends State<ListingScreen> {
   final _scrollController = ScrollController();
   @override
   void initState() {
-    super.initState();
     _scrollController.addListener(_onScroll);
     getData();
+    super.initState();
   }
 
   @override
@@ -29,6 +31,7 @@ class _ListingScreenState extends State<ListingScreen> {
   }
 
   void _onScroll() {
+    // log("${_isBottom}");
     if (_isBottom) context.read<ListingBloc>().add(const ListingEventLoad());
   }
 

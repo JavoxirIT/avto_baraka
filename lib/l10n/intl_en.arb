@@ -203,5 +203,6 @@
   "deviceSimNotSuported": "Устройство не поддерживает SIM-карты, перехват SMS отключен.",
   "boshqaNameAvtomobillariOrasidaNarxDarajasi": "Boshqa {name} avtomobillari orasida narx darajasi",
   "xabarlarMavjutEmas": "Xabarlar mavjut emas",
-  "akkauntniOchirish": "Akkauntni o`chirish"
+  "akkauntniOchirish": "Akkauntni o`chirish",
+  "yangiElonlarQoq": "Yangi e'lonlar qo'q"
 }

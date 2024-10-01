@@ -33,10 +33,10 @@ class SearchViewState extends State<SearchView> {
   SizedBox sizeBox20 = const SizedBox(
     height: 20.0,
   );
-  int regionGroupValue = -1;
-  int carTypeId = -1;
-  int carBrandValue = -1;
-  int carModelValue = -1;
+  int? regionGroupValue;
+  int? carTypeId;
+  int? carBrandValue;
+  int? carModelValue;
   List<CarBrandsModels> carBrandList = [];
   List<CarCategoryModels> categoryList = [];
   List<ValyutaModels> valyutaList = [];
@@ -173,7 +173,7 @@ class SearchViewState extends State<SearchView> {
                                   carTypeId = element.id;
                                 });
                                 carBrandList =
-                                    await CarService().getBrands(carTypeId);
+                                    await CarService().getBrands(carTypeId!);
 
                                 if (carBrandList.isEmpty) {
                                   carModelList = [];
@@ -261,7 +261,7 @@ class SearchViewState extends State<SearchView> {
                                         Navigator.of(context).pop();
                                         carModelList =
                                             await CarService().getCarModel(
-                                          carTypeId,
+                                          carTypeId!,
                                           value!,
                                         );
                                         setState(() {});
@@ -458,7 +458,7 @@ class SearchViewState extends State<SearchView> {
       token: token,
       lang: lang,
       brand_id: carBrandValue,
-      car_type: carTypeId,
+      ltype_id: carTypeId,
       model_id: carModelValue,
       region_id: regionGroupValue,
       end_price: int.parse(_payEnd.text),

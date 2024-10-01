@@ -55,7 +55,7 @@ class CarService {
     } catch (e) {
       debugPrint('Ошибка при загрузке категорий автомобилей: $e');
       if (e is DioException) {
-        if (e.response!.statusCode == 401) {
+        if (e.response?.statusCode == 401) {
           TokenProvider().removeTokenPreferences(tokenKey);
           redirectToLogin();
         }

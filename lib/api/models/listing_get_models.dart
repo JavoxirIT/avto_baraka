@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, non_constant_identifier_names
 import 'dart:convert';
 
-class ListingGetModals {
-  ListingGetModals({
+class ListingGetModels {
+  ListingGetModels({
     required this.id,
     required this.userId,
     required this.activeStatus,
@@ -82,7 +82,7 @@ class ListingGetModals {
   late String? valyutaShort;
   late String price_foiz;
 
-  ListingGetModals.fromMap(Map<String, dynamic> map) {
+  ListingGetModels.fromMap(Map<String, dynamic> map) {
     min_price = map['min_price'];
     max_price = map['max_price'];
     carImage = jsonDecode(map['carImage']).cast<String>();
@@ -123,7 +123,7 @@ class ListingGetModals {
     price_foiz = map['price_foiz'];
   }
 
-  ListingGetModals copyWith({
+  ListingGetModels copyWith({
     int? min_price,
     int? max_price,
     int? id,
@@ -163,7 +163,7 @@ class ListingGetModals {
     String? valyutaShort,
     String? price_foiz,
   }) {
-    return ListingGetModals(
+    return ListingGetModels(
       min_price: min_price ?? this.min_price,
       max_price: max_price ?? this.max_price,
       id: id ?? this.id,

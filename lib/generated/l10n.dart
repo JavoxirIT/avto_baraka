@@ -2103,6 +2103,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Yangi e'lonlar qo'q`
+  String get yangiElonlarQoq {
+    return Intl.message(
+      'Yangi e\'lonlar qo\'q',
+      name: 'yangiElonlarQoq',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,6 +1,8 @@
 import 'package:avto_baraka/api/service/chat_servive.dart';
 import 'package:avto_baraka/bloc/all_rooms/all_rooms_bloc.dart';
+import 'package:avto_baraka/bloc/web_socet_bloc/web_socket_bloc.dart';
 import 'package:avto_baraka/generated/l10n.dart';
+import 'package:avto_baraka/http_config/config.dart';
 import 'package:avto_baraka/router/route_name.dart';
 import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/widgets/padding_layout.dart';
@@ -17,6 +19,8 @@ class ChatScreen extends StatefulWidget {
 class ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
+    BlocProvider.of<WebSocketBloc>(context)
+        .add(ConnectWebSocket(url: Config.ws!));
     BlocProvider.of<AllRoomsBloc>(context).add(AllRoomEventLoad());
     getUnread();
     super.initState();

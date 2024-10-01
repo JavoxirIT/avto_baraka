@@ -13,7 +13,7 @@ final class ListingBlockedStateLoad extends ListingBlockedState {
   const ListingBlockedStateLoad({
     required this.blockedList,
   });
-  final List<ListingGetModals> blockedList;
+  final List<ListingGetModels> blockedList;
 
   @override
   List<Object> get props => super.props..add(blockedList);

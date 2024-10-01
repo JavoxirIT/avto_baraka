@@ -6,23 +6,26 @@ enum ListingStatus { initial, success, failure }
 class ListingState extends Equatable {
   const ListingState({
     this.status = ListingStatus.initial,
-    this.listing = const <ListingGetModals>[],
+    this.listing = const <ListingGetModels>[],
     this.hasReachedMax = false,
     this.currentPage = 1,
     this.count = 0,
+    this.lastPage = 0
   });
   final ListingStatus status;
-  final List<ListingGetModals> listing;
+  final List<ListingGetModels> listing;
   final bool hasReachedMax;
   final int currentPage;
   final int count;
+  final int lastPage;
 
   ListingState copyWith({
     ListingStatus? status,
-    List<ListingGetModals>? listing,
+    List<ListingGetModels>? listing,
     bool? hasReachedMax,
     int? currentPage,
     int? count,
+    int? lastPage,
   }) {
     return ListingState(
       status: status ?? this.status,
@@ -30,6 +33,7 @@ class ListingState extends Equatable {
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
       currentPage: currentPage ?? this.currentPage,
       count: count ?? this.count,
+      lastPage: lastPage ?? this.lastPage,
     );
   }
 
