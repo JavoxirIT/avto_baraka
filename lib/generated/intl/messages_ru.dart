@@ -378,7 +378,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "yangiElonQoshish":
             MessageLookupByLibrary.simpleMessage("Добавить обявления"),
         "yangiElonlarQoq":
-            MessageLookupByLibrary.simpleMessage("Новых объявление нет"),
+            MessageLookupByLibrary.simpleMessage("Других объявление нет"),
         "yangiMarxniKiriting":
             MessageLookupByLibrary.simpleMessage("Введите новую цену"),
         "yangiXabar": MessageLookupByLibrary.simpleMessage("Новое сообщение"),

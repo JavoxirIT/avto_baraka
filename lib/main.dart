@@ -23,6 +23,10 @@ void main() async {
     DeviseTokenService.DTS.sendDeviceToken(token);
   });
 
+//   token APNS
+  final apnsToken = await FirebaseMessaging.instance.getAPNSToken();
+  log('APNS Token: $apnsToken');
+
   const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', // id
     'High Importance Notifications', // title
@@ -55,7 +59,7 @@ void main() async {
               channel.id,
               channel.name,
               channelDescription: channel.description,
-              icon: android?.smallIcon,
+              icon: android.smallIcon,
               // other properties...
             ),
           ));
@@ -181,3 +185,7 @@ class _AvtoBarakaMainAppState extends State<AvtoBarakaMainApp>
     }
   }
 }
+
+
+
+// L5SPR58ZHJ  FCAPNS

@@ -10,7 +10,7 @@ class BottomLoader extends StatelessWidget {
     return Center(
       child: SizedBox(
         height: 25,
-        // width: 25,
+        width: 25,
         child: children,
       ),
     );

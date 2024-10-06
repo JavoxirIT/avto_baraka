@@ -21,7 +21,7 @@ class CategoryCarousel extends StatelessWidget {
     final languageProvider = Provider.of<LocalProvider>(context);
     final tokenProvider = Provider.of<TokenProvider>(context);
     return FlutterCarousel(
-      options: CarouselOptions(
+      options: FlutterCarouselOptions(
         // autoPlay: true,
         autoPlayCurve: Curves.ease,
         autoPlayInterval: const Duration(seconds: 3),
@@ -29,7 +29,7 @@ class CategoryCarousel extends StatelessWidget {
         enlargeCenterPage: false,
         enableInfiniteScroll: true,
         // disableCenter: true,
-        viewportFraction: 0.4,
+        viewportFraction: 0.3,
         aspectRatio: 2.0,
         initialPage: 1,
         height: 85.0,
@@ -50,29 +50,32 @@ class CategoryCarousel extends StatelessWidget {
               },
               // ltype_id
               child: Card(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.network(
-                      Config.imageUrl! + item.icon,
-                      fit: BoxFit.cover,
-                      height: 42.0,
-                      width: 42.0,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: 5.0, left: 0.0, right: 0.0),
-                      child: Center(
-                        child: Text(
-                          item.name,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 12.0,
+                child: Container(
+                  padding: EdgeInsets.only(left: 10, right: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.network(
+                        Config.imageUrl! + item.icon,
+                        fit: BoxFit.cover,
+                        // height: 42.0,
+                        width: 42.0,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 5.0, left: 0.0, right: 0.0),
+                        child: Center(
+                          child: Text(
+                            item.name,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 10.0,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

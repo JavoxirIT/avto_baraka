@@ -5,7 +5,7 @@ import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:photo_view/photo_view.dart';
 
 class FullScreenImage extends StatefulWidget {
-  const FullScreenImage({Key? key}) : super(key: key);
+  const FullScreenImage({super.key});
 
   @override
   State<FullScreenImage> createState() => _FullScreenImageState();
@@ -74,7 +74,7 @@ class _FullScreenImageState extends State<FullScreenImage> {
               ),
             )
             .toList(),
-        options: CarouselOptions(
+        options: FlutterCarouselOptions(
           showIndicator: false,
           autoPlay: false,
           // controller: buttonCarouselController,

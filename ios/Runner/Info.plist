@@ -1,91 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
+<dict>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Avto Baraka</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.avtobarakaBRROBB.avto-baraka</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>uz</string>
+		<string>ru</string>
+	</array>
+	<key>CFBundleName</key>
+	<string>avto_baraka</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(FLUTTER_BUILD_NAME)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>tel</string>
+		<string>googlemaps</string>
+		<string>yandexmaps</string>
+	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>ITSAppUsesNonExemptEncryption</key>
-		<false/>
-		<key>CADisableMinimumFrameDurationOnPhone</key>
+		<key>NSAllowsArbitraryLoads</key>
 		<true/>
-		<key>CFBundleDevelopmentRegion</key>
-		<string>$(DEVELOPMENT_LANGUAGE)</string>
-		<key>CFBundleDisplayName</key>
-		<string>Avto Baraka</string>
-		<key>CFBundleExecutable</key>
-		<string>$(EXECUTABLE_NAME)</string>
-		<key>CFBundleIdentifier</key>
-		<string>com.avtobarakaBRROBB.avto-baraka</string>
-		<!-- <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string> -->
-		<key>CFBundleInfoDictionaryVersion</key>
-		<string>6.0</string>
-		<key>CFBundleLocalizations</key>
-		<array>
-			<string>uz</string>
-			<string>ru</string>
-		</array>
-		<key>CFBundleName</key>
-		<string>avto_baraka</string>
-		<key>CFBundlePackageType</key>
-		<string>APPL</string>
-		<key>CFBundleShortVersionString</key>
-		<string>$(FLUTTER_BUILD_NAME)</string>
-		<key>CFBundleSignature</key>
-		<string>????</string>
-		<key>CFBundleVersion</key>
-		<string>$(FLUTTER_BUILD_NUMBER)</string>
-		<key>FirebaseAppDelegateProxyEnabled</key>
-		<false/>
-		<key>LSApplicationCategoryType</key>
-		<string></string>
-		<key>LSApplicationQueriesSchemes</key>
-		<array>
-			<string>tel</string>
-			<string>googlemaps</string>
-			<string>yandexmaps</string>
-		</array>
-		<key>LSRequiresIPhoneOS</key>
-		<true/>
-		<key>NSAppTransportSecurity</key>
-		<dict>
-			<key>NSAllowsArbitraryLoads</key>
-			<true/>
-		</dict>
-		<key>NSCameraUsageDescription</key>
-		<string>We use access to your camera to allow you to take a photo of your vehicle.</string>
-		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-		<string>The app needs access to location data when using and adding new listings.</string>
-		<key>NSLocationWhenInUseUsageDescription</key>
-		<string>The app needs access to location data when using</string>
-		<key>NSMicrophoneUsageDescription</key>
-		<string>We use access to your microphone to make calls.</string>
-		<key>NSPhotoLibraryUsageDescription</key>
-		<string>The app uses access to your photo library to select the photos you want to upload to your profile.</string>
-		<key>UIApplicationSupportsIndirectInputEvents</key>
-		<true/>
-		<key>UIBackgroundModes</key>
-		<array>
-			<string>fetch</string>
-			<string>remote-notification</string>
-		</array>
-		<key>UILaunchStoryboardName</key>
-		<string>LaunchScreen</string>
-		<key>UIMainStoryboardFile</key>
-		<string>Main</string>
-		<key>UIRequiresFullScreen</key>
-		<false/>
-		<key>UIStatusBarHidden</key>
-		<false/>
-		<key>UISupportedInterfaceOrientations</key>
-		<array>
-			<string>UIInterfaceOrientationPortrait</string>
-			<string>UIInterfaceOrientationLandscapeLeft</string>
-			<string>UIInterfaceOrientationLandscapeRight</string>
-		</array>
-		<key>UISupportedInterfaceOrientations~ipad</key>
-		<array>
-			<string>UIInterfaceOrientationPortrait</string>
-			<string>UIInterfaceOrientationPortraitUpsideDown</string>
-			<string>UIInterfaceOrientationLandscapeLeft</string>
-			<string>UIInterfaceOrientationLandscapeRight</string>
-		</array>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>We use access to your camera to allow you to take a photo of your vehicle.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>The app needs access to location data when using and adding new listings.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The app needs access to location data when using</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We use access to your microphone to make calls.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The app uses access to your photo library to select the photos you want to upload to your profile.</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UIRequiresFullScreen</key>
+	<false/>
+	<key>UIStatusBarHidden</key>
+	<false/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+</dict>
 </plist>

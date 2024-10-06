@@ -132,7 +132,7 @@ class OneCarViewState extends State<OneCarView> {
                   ),
                 )
                 .toList(),
-            options: CarouselOptions(
+            options: FlutterCarouselOptions(
               autoPlay: true,
               showIndicator: false,
               // controller: buttonCarouselController,

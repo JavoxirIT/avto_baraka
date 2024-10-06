@@ -2,7 +2,7 @@ import UIKit
 import Flutter
 import flutter_local_notifications
 //import app_settings
-
+import Firebase
 import UIKit
 
 @main
@@ -11,7 +11,7 @@ import UIKit
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-     
+    FirebaseApp.configure()
     if #available(iOS 10.0, *) {
       UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
     }
@@ -58,5 +58,9 @@ import UIKit
   override func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
     completionHandler([.alert, .badge, .sound])
   }
-    
+    override func application(_ application: UIApplication,
+                                didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+        super.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+      }
 }

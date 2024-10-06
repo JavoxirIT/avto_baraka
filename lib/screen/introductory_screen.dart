@@ -12,7 +12,7 @@ class IntroductionScreen extends StatefulWidget {
 
 class _MainPageState extends State<IntroductionScreen>
     with SingleTickerProviderStateMixin {
-  CarouselController buttonCarouselController = CarouselController();
+  FlutterCarouselController buttonCarouselController = FlutterCarouselController();
   int _currentPosition = 0;
 
   bool onNextPage = false;
@@ -66,7 +66,7 @@ class _MainPageState extends State<IntroductionScreen>
                             ),
                           )
                           .toList(),
-                      options: CarouselOptions(
+                      options: FlutterCarouselOptions(
                         showIndicator: false,
                         autoPlay: false,
                         controller: buttonCarouselController,

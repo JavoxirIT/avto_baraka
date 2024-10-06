@@ -5,7 +5,7 @@ import 'package:avto_baraka/style/colors.dart';
 import 'package:avto_baraka/style/sized_box_10.dart';
 
 class ListingScreen extends StatefulWidget {
-  const ListingScreen({Key? key}) : super(key: key);
+  const ListingScreen({super.key});
 
   @override
   State<ListingScreen> createState() => _ListingScreenState();

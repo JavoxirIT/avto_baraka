@@ -380,7 +380,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "yangiElonQoshish":
             MessageLookupByLibrary.simpleMessage("Yangi e’lon qo’shish"),
         "yangiElonlarQoq":
-            MessageLookupByLibrary.simpleMessage("Yangi e\'lonlar qo\'q"),
+            MessageLookupByLibrary.simpleMessage("Boshqa e`lon mavjut emas"),
         "yangiMarxniKiriting":
             MessageLookupByLibrary.simpleMessage("Yangi narxni kiriting"),
         "yangiXabar": MessageLookupByLibrary.simpleMessage("Yangi xabar"),
